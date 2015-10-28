@@ -1,0 +1,1076 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="AI,Machine Learning,监督学习," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> 【Machine Learning】从零开始，了解监督学习的方法 // Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              【Machine Learning】从零开始，了解监督学习的方法
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-05-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/AI/">AI</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <hr>
+<h1 id="概念学习">概念学习</h1><h2 id="一种常见的学习方法_–_泛化(generalization)">一种常见的学习方法 – 泛化(generalization)</h2><ul>
+<li>泛化的定义<ul>
+<li>从集合的角度：表达式P比表达式Q更泛化，当且仅当P ⊇ Q</li>
+<li>比如我们可以将<br>排球，篮球，足球 ==(泛化为)==&gt;球类或者运动</li>
+</ul>
+</li>
+<li>机器学习中主要的泛化操作有：<ul>
+<li>变量替换常量</li>
+<li>从合取表达式中去掉一些条件</li>
+<li>对表达式增加一个析取式</li>
+<li>用属性的超类替换属性</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="通过泛化进行概念学习">通过泛化进行概念学习</h2><ul>
+<li><p>什么是覆盖(covering)？<br>如果说概念P比概念q更泛化，我们就说p覆盖q</p>
+</li>
+<li><p>概念空间(concept space)的定义</p>
+<ul>
+<li>概念空间是一些<strong>潜在的概念</strong>的<strong>集合</strong></li>
+<li>潜在概念(potential concept / candidate concept)是由泛化、特化等学习方法产生的<br>下图就是一个拥有如下属性和值的object的概念空间<br>Size = {small, large}<br>Color = {red, white, blue}<br>Shape = {ball, brick, cube}</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-41e4013ad497c87c_zpsxdpmth8s.png" alt="概念空间"></p>
+<p><strong>从下至上是一个泛化的过程</strong>，比如Obj(X, Y, ball)就可以覆盖Obj(X, red, ball)和Obj(small, X, ball)等等，这也是通过泛化就行概念学习的体现。</p>
+<hr>
+<h1 id="变形空间搜索">变形空间搜索</h1><blockquote>
+<p>Version space search (Mitchell 1978, 1979, 1982) illustrates the implementation of inductive learning as search through a concept space.</p>
+</blockquote>
+<p>说白了就是从训练实例可以生成一个<strong>概念空间</strong>，比如上图。然后再从概念空间中<strong>搜索</strong>一个能<strong>覆盖</strong>所有概念的概念。 比如上图的Obj(X, Y, Z)。</p>
+<h2 id="变形空间(version_space)的定义">变形空间(version space)的定义</h2><h2 id="三种搜索概念空间的算法">三种搜索概念空间的算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#29305;&#27530;&#21040;&#19968;&#33324; (specific to general)&#10;&#19968;&#33324;&#21040;&#29305;&#27530; (general to specific)&#10;&#20505;&#36873;&#35299;&#25490;&#38500; (candidate elimination)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这些算法依赖于<strong>变形空间</strong>的概念，在有更多<strong>实例</strong>时，可以缩减变形空间的大小。</li>
+<li>目标：<strong>学习到的概念不仅足以覆盖所有正例，而且能排除所有的反例</strong>。上面讲的Obj(X, Y, Z)虽然可以覆盖所有正例，但可能太泛化了。</li>
+<li>避免超泛化(overgeneralization)的方法：<ul>
+<li>采用尽可能小得泛化，使之只覆盖正例</li>
+<li>用反例排除超泛化了得概念<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-a1be0adc572d3c96_zpsgpj8tkqm.png" alt="反例在防止超泛化中的作用"></li>
+</ul>
+</li>
+</ul>
+<h3 id="特殊到一般">特殊到一般</h3><ul>
+<li>维护一个假设集S (即候选概念定义集)</li>
+<li>最特殊的泛化(Maximally specific generalization)<br>一个概念c是最特殊的,如果：<br>① 覆盖所有正例，而不覆盖反例<br>② 对于所有其他覆盖正例的概念c’, c ≤ c’</li>
+</ul>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-cc45e8be3c858e1f_zpsm4nz7xfm.png" alt="由特殊到一般的搜索"></p>
+<h3 id="一般到特殊">一般到特殊</h3><ul>
+<li>维护一个假设集G(即候选概念集合)</li>
+<li>最一般概念(Maximally general concept)<br>一个概念c是最一般的，如果：<br>① 覆盖所有正例，而不覆盖反例<br>② 对于任意其他不覆盖反例的概念c’, c ≥ c’</li>
+</ul>
+<p>下图的背景为：<br>size = {large, small}<br>color = {red, white, blue}<br>shape = {ball, brick, cube}<br>所以由第一个反例我们可以特化出：<br>size不能是small =&gt; obj(large, Y, Z)<br>color不能是red =&gt; obj(X, white, Z) 和 obj(X, blue, Z)<br>shape不能是brick =&gt;obj(X, Y, ball) 和 obj(X, Y, cube)</p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-e5859ccb592c95b2_zpse2afwlpg.png" alt="由一般到特殊的搜索"></p>
+<h3 id="候选解排除">候选解排除</h3><ul>
+<li>候选解排除法综合上面两种办法，<strong>双向搜索</strong></li>
+<li>维护两个候选概念集合S和G</li>
+<li>算法特化G并泛化S直到它们收敛在目标概念上</li>
+</ul>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-6e08cf2b0f8985a8_zpskuqjf18t.png" alt="双向搜索"></p>
+<h2 id="评估候选解排除算法">评估候选解排除算法</h2><h3 id="优点">优点</h3><ul>
+<li>候选解排除算法是增量式的(incremental)，所以不同于其他的算法需要在学习之前给出所有训练实例</li>
+</ul>
+<h3 id="缺点">缺点</h3><ul>
+<li>像其他搜索问题一样，基于搜索的学习必须处理问题空间的合并问题</li>
+<li>候选解排除算法是不能有噪声(noise)的 </li>
+</ul>
+<hr>
+<h1 id="决策树">决策树</h1><h2 id="什么是决策树？">什么是决策树？</h2><blockquote>
+<p>机器学习中，<strong>决策树</strong>是一个预测模型；他代表的是对象属性(property)与对象值(value)之间的一种映射关系。树中每个<strong>节点</strong>表示某个<strong>对象</strong>，而每个<strong>分叉路径</strong>则代表的某个可能的<strong>属性值</strong>，而每个<strong>叶结点</strong>则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有复数输出，可以建立独立的决策树以处理不同输出。<br>-来自 Wikipedia</p>
+</blockquote>
+<ul>
+<li>决策树可以分为<strong>分类树</strong>和<strong>回归树</strong>，分别针对于离散变量和连续变量。</li>
+<li>再简单点说就是，建立一棵能把所有训练数据进行正确分类的树型结构。</li>
+</ul>
+<p>下面举个简单的例子助于理解。对于估计个人<strong>信用风险</strong>(risk)问题，要基于这样一些属性，比如<strong>信用历史</strong>(credit history)、<strong>当前债务</strong>(debt)、<strong>抵押</strong>(collateral)和<strong>收入</strong>(income)。下表列出了已知信用风险的个人的样本。</p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-eda13a963a184b37_zps3tddcbny.png" alt="已知信用风险的个人的样本"></p>
+<p>基于上面的信息，我们可以得到下面<strong>两个不同的</strong>决策树。</p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-3c37a63a87058eda_zpsljxj0nml.png" alt="决策树 A"></p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-605d7e7cfc809a73_zpslvbmboj6.png" alt="决策树 B"></p>
+<p>我们可以发现，虽然两棵决策树都能对给定实例集进行正确分类，但是<strong>决策树B</strong>要比<strong>决策树A</strong>简单得多。可见，对给定实例集分类所必需的树的大小，<strong>随测试属性的顺序</strong>而不同。</p>
+<h2 id="常见的建立决策树的算法">常见的建立决策树的算法</h2><h3 id="ID3">ID3</h3><p>ID3 was developed in 1986 by Ross Quinlan. The algorithm creates a multiway tree, finding for each node (i.e. in a greedy manner) the categorical feature that will yield the largest information gain for categorical targets. Trees are grown to their maximum size and then a pruning step is usually applied to improve the ability of the tree to generalise to unseen data.</p>
+<p>下文会重点介绍ID3算法</p>
+<h3 id="C4-5">C4.5</h3><p>C4.5 is the successor to ID3 and removed the restriction that features must be categorical by dynamically defining a discrete attribute (based on numerical variables) that partitions the continuous attribute value into a discrete set of intervals. C4.5 converts the trained trees (i.e. the output of the ID3 algorithm) into sets of if-then rules. These accuracy of each rule is then evaluated to determine the order in which they should be applied. Pruning is done by removing a rule’s precondition if the accuracy of the rule improves without it.</p>
+<h3 id="C5-0">C5.0</h3><p>C5.0 is Quinlan’s latest version release under a proprietary license. It uses less memory and builds smaller rulesets than C4.5 while being more accurate.</p>
+<h3 id="CART">CART</h3><p>CART (Classification and Regression Trees) is very similar to C4.5, but it differs in that it supports numerical target variables (regression) and does not compute rule sets. CART constructs binary trees using the feature and threshold that yield the largest information gain at each node.</p>
+<h2 id="ID3算法详解">ID3算法详解</h2><h3 id="奥卡姆剃刀(Occam’s_Razor)">奥卡姆剃刀(Occam’s Razor)</h3><p>奥卡姆剃刀最早是由逻辑数学家William of Occam于1324年提出的：</p>
+<blockquote>
+<p>It is vain to do with more what can be done with less. . . . Entities should not be multiplied beyond necessity.</p>
+</blockquote>
+<p>简单点说，找到能够符合数据的<strong>最简单的</strong>解！</p>
+<h3 id="ID3算法的基本思路">ID3算法的基本思路</h3><p>给定训练实例集和能对它们正确分类的一组不同的决策树，我们想要知道哪棵树对未来实例正确分类的可能性最大。ID3算法<strong>假定</strong>可能性最大的树是能够覆盖所有训练实例的<strong>最简单的决策树</strong>。<br>注：ID3不能保证每次都生成最小的树，只是一种<strong>启发式算法</strong>。</p>
+<p>ID3采用自顶向下决策树归纳(Top-Down Decision Tree Induction)：</p>
+<ul>
+<li>首先确定哪一个属性作为<strong>根节点</strong>(root node)的测试</li>
+<li>选择分类能力最好的(信息增益最大)属性，作为<strong>当前节点</strong>(current node)的测试</li>
+<li>用这个测试来划分实例集，该属性的每一个可能值都成为一个<strong>划分</strong>(partition)</li>
+<li>对于每一个划分重复上述过程，建立其子树</li>
+<li>直到一个划分中的所有成员在同一类别中，这个类别成为树的<strong>叶节点</strong>(leaf node)</li>
+</ul>
+<p>注：我们可以把所有可能的决策树集合看成是定义一个变形空间(version space)。ID3在所有的可能树的空间中实现一种<strong>贪心搜索</strong>，对当前树增加一个子树，并继续搜索，而且<strong>不回溯</strong>。</p>
+<h3 id="如何判断最佳分类属性">如何判断最佳分类属性</h3><p>ID3算法是由Quinlan首先提出的，该算法是以<strong>信息论</strong>(Information Theory)为基础的，ID3通过把每个属性当作当前树的根节点来度量信息增益，然后算法选取提供最大信息增益的属性。</p>
+<p>① 信息增益的度量标准 - <strong>熵</strong>(Entropy)<br>熵主要是指信息的混乱程度，变量的不确定性越大，熵的值也就越大。<br>变量的不确定性主要可以体现在两个方面：</p>
+<ul>
+<li><strong>可能信息的数量</strong><br>简单地说，掷硬币有两种可能信息(正面或者反面)，掷筛子有六种可能信息(1,2,3,4,5,6)，所以正确预测筛子的信息对我们更有价值：掷筛子游戏赢钱更多。</li>
+<li><strong>每条信息出现的概率</strong><br>简单地说，如果我们假设对掷硬币作弊使它正面出现的概率为3/4。那么既然我已经知道猜正面的概率为3/4，告诉我掷硬币结果的消息就不如关于未作弊的硬币的消息更有价值。(后面讲了具体计算)</li>
+</ul>
+<p>综上，给定消息空间M = {m1, m2, …..}以及相应的概率P(mi)，熵的公式为：</p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-04c43ffa9e383182_zpsk0pa3ta8.png" alt="熵的公式"></p>
+<p>未作弊和作弊的熵计算如下：</p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-08aa2be0f6c4b77f_zpsrap7f3zj.png" alt="未作弊的熵值计算"></p>
+<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-a54653f9550874a2_zpsyckuzuun.png" alt="作弊后的熵值计算"></p>
+<p>为作弊熵值更大，掷硬币的消息更有价值！！！</p>
+<p>② 信息增益(Information Gain)<br>假设有训练实例集C。如果我们通过属性P作为当前树的根结点，将把C分成子集{C1, C2, C3 …..}。再把P当作跟结点完成树所需的信息的期望为：<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-1030ca182c9e17fd_zpsqdhfsv1d.png" alt="完成树所需的信息的期望"></p>
+<p>所以从从属性P得到的增益通过树的<strong>总信息量</strong>减去<strong>完成树的信息期望</strong>来计算：<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-123992830bcb60e1_zpssg1lv8vb.png" alt="信息增益"></p>
+<p>还是举信用风险的例子，P(low)=5/14, P(moderate)=3/14，P(high)=6/14。所以总信息量计算如下：<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-8c3dd871c9c3d934_zpsqdfwpuq9.png" alt="总信息量"></p>
+<p>如果把收入(income)作为树的根结点，表中的实例被划分为C1 = {1,4,7,11}、C2 = {2,3,12,14}和C3 = {5,6,8,9,10,13}。<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-8337a8373b8f84e1_zpshapaqkin.png" alt="决策树的一部分"></p>
+<p>完成树所需的期望值为：<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-cfd0cceac8d17bab_zpsgihrpbya.png" alt="完成树所需的期望值"></p>
+<p><strong>最后，gain(income) = 1.531 - 0.564 = 0.967 bits</strong><br>类似的，可以得到：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">信息增益(bits)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">gain(credit history)</td>
+<td style="text-align:center">0.266</td>
+</tr>
+<tr>
+<td style="text-align:center">gain(debt)</td>
+<td style="text-align:center">0.063</td>
+</tr>
+<tr>
+<td style="text-align:center">gain(collateral)</td>
+<td style="text-align:center">0.206</td>
+</tr>
+</tbody>
+</table>
+<p>由于收入提供了最大的信息增益，所以ID3会选择它作为根结点。</p>
+<h3 id="评价ID3">评价ID3</h3><p>虽然ID3算法产生简单的决策树(包括根结点，决策结点和叶结点)，但这种树对预测未知实例的分类不见得一定有效。</p>
+<h2 id="评估决策树">评估决策树</h2><ul>
+<li>决策树适用于离散型数据，变量的结果是有限集合。</li>
+<li>优点<ul>
+<li>决策树计算复杂度不高，便于使用，高效！</li>
+<li>决策树可以处理具有不相关特征的数据。</li>
+<li>决策树可以很容易的构造出一系列易于理解的规则。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>处理缺失数据，坏数据的以及连续型数据的困难。</li>
+<li>大的数据集可能会产生很大的决策树。</li>
+<li>忽略了数据集中属性之间的关系。</li>
+<li><strong>过度拟合</strong>(涉及到剪枝)</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考文献">参考文献</h1><ol>
+<li><a href="">Artificial Intelligence，6th Edition</a></li>
+<li><a href="http://blog.csdn.net/v_july_v/article/details/7577684" target="_blank" rel="external">从决策树学习谈到贝叶斯分类算法、EM、HMM</a></li>
+<li><a href="http://blog.csdn.net/suipingsp/article/details/41927247" target="_blank" rel="external">机器学习经典算法详解及Python实现–决策树（Decision Tree）</a></li>
+<li><a href="http://scikit-learn.org/stable/documentation.html" target="_blank" rel="external">Scikit-learn 文档</a></li>
+</ol>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/"> #AI </a>
+          
+            <a href="/tags/Machine-Learning/"> #Machine Learning </a>
+          
+            <a href="/tags/监督学习/"> #监督学习 </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/13/【Machine-Learning】从零开始，了解无监督学习的方法/">【Machine Learning】从零开始，了解无监督学习的方法</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/02/【Machine-Learning】机器学习-简谈/">【Machine Learning】机器学习-简谈</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+      <div class="comments" id="comments">
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念学习"><span class="nav-number">1.</span> <span class="nav-text">概念学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一种常见的学习方法_–_泛化(generalization)"><span class="nav-number">1.1.</span> <span class="nav-text">一种常见的学习方法 – 泛化(generalization)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过泛化进行概念学习"><span class="nav-number">1.2.</span> <span class="nav-text">通过泛化进行概念学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变形空间搜索"><span class="nav-number">2.</span> <span class="nav-text">变形空间搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变形空间(version_space)的定义"><span class="nav-number">2.1.</span> <span class="nav-text">变形空间(version space)的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种搜索概念空间的算法"><span class="nav-number">2.2.</span> <span class="nav-text">三种搜索概念空间的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊到一般"><span class="nav-number">2.2.1.</span> <span class="nav-text">特殊到一般</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一般到特殊"><span class="nav-number">2.2.2.</span> <span class="nav-text">一般到特殊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#候选解排除"><span class="nav-number">2.2.3.</span> <span class="nav-text">候选解排除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估候选解排除算法"><span class="nav-number">2.3.</span> <span class="nav-text">评估候选解排除算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">2.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">2.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树"><span class="nav-number">3.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是决策树？"><span class="nav-number">3.1.</span> <span class="nav-text">什么是决策树？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的建立决策树的算法"><span class="nav-number">3.2.</span> <span class="nav-text">常见的建立决策树的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">3.2.1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">3.2.2.</span> <span class="nav-text">C4.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C5-0"><span class="nav-number">3.2.3.</span> <span class="nav-text">C5.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART"><span class="nav-number">3.2.4.</span> <span class="nav-text">CART</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ID3算法详解"><span class="nav-number">3.3.</span> <span class="nav-text">ID3算法详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#奥卡姆剃刀(Occam’s_Razor)"><span class="nav-number">3.3.1.</span> <span class="nav-text">奥卡姆剃刀(Occam’s Razor)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3算法的基本思路"><span class="nav-number">3.3.2.</span> <span class="nav-text">ID3算法的基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断最佳分类属性"><span class="nav-number">3.3.3.</span> <span class="nav-text">如何判断最佳分类属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价ID3"><span class="nav-number">3.3.4.</span> <span class="nav-text">评价ID3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评估决策树"><span class="nav-number">3.4.</span> <span class="nav-text">评估决策树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      if (isDesktop() && HEXO_SIDEBAR_CONFIGURATION === 'post') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

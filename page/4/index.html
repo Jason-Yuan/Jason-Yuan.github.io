@@ -1,0 +1,1392 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+  <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/33-Search-in-Rotated-Sorted-Array/">
+                33 Search in Rotated Sorted Array
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>假设有一个排序的按未知的旋转轴旋转的数组(比如，0 1 2 4 5 6 7 可能成为4 5 6 7 0 1 2)。给定一个目标值进行搜索，如果在数组中找到目标值返回数组中的索引位置，否则返回-1。</p>
+</blockquote>
+<p>给出[4, 5, 1, 2, 3]和target=1，返回 2<br>给出[4, 5, 1, 2, 3]和target=0，返回 -1</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><strong>没有重复的元素</strong>是重要信息，有重复下面方法不成立</li>
+<li><p>排序数组 =&gt; binary search =&gt; 每次扔掉一半，找中间的数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">      /|&#10;    /  |&#10;  /    |&#10;______|_____&#10;       |    /&#10;       |  /&#10;       | /</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分情况讨论Mid落在左上区间还是右下区间，然后再分别讨论target跟Mid的关系</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums[mid] &gt; nums[start]:</span><br><span class="line">    <span class="comment"># mid 在左上</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># mid 在右下</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &gt; nums[start]:</span><br><span class="line">                <span class="comment"># 注意此处有两个等于号，表明在闭区间内</span></span><br><span class="line">                <span class="keyword">if</span> target &gt;= nums[start] <span class="keyword">and</span> target &lt;= nums[mid]:</span><br><span class="line">                    end = mid</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 注意此处有两个等于号，表明在闭区间内</span></span><br><span class="line">                <span class="keyword">if</span> target &gt;= nums[mid] <span class="keyword">and</span> target &lt;= nums[end]:</span><br><span class="line">                    start = mid</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    end = mid</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">if</span> nums[start] == target:</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">if</span> nums[end] == target:</span><br><span class="line">            <span class="keyword">return</span> end</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/34-Search-for-a-Range/">
+                34 Search for a Range
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个包含 n 个整数的排序数组，找出给定目标值 target 的起始和结束位置。<br>如果目标值不在数组中，则返回[-1, -1]</p>
+</blockquote>
+<p>给出[5, 7, 7, 8, 8, 10]和目标值 target=8,<br>返回[3, 4]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>错误思路：找到一个target，然后向前向后搜索边界，如果整个数组都是target，则时间复杂度变为O(n)</li>
+<li>正确思路：<strong>分两步</strong>，找到target的first position和last position</li>
+<li>类似的题，<strong>一个sorted array中target出现了几次</strong>，一样的解法</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A : a list of integers</span><br><span class="line">    @param target : an integer to be searched</span><br><span class="line">    @return : a list of length 2, [index1, index2]</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchRange</span><span class="params">(self, A, target)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A <span class="keyword">or</span> target &gt; A[-<span class="number">1</span>] <span class="keyword">or</span> target &lt; A[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> [-<span class="number">1</span>, -<span class="number">1</span>]</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># find left bound</span></span><br><span class="line">        start, end = <span class="number">0</span>, len(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mid] &lt; target:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">        <span class="keyword">if</span> A[start] == target:</span><br><span class="line">            leftBound = start</span><br><span class="line">        <span class="keyword">elif</span> A[end] == target:</span><br><span class="line">            leftBound = end</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> [-<span class="number">1</span>, -<span class="number">1</span>]</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># find right bound</span></span><br><span class="line">        start, end = <span class="number">0</span>, len(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mid] &gt; target:</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start = mid</span><br><span class="line">        <span class="keyword">if</span> A[end] == target:</span><br><span class="line">            rightBound = end</span><br><span class="line">        <span class="keyword">elif</span> A[start] == target:</span><br><span class="line">            rightBound = start</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> [-<span class="number">1</span>, -<span class="number">1</span>]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> [leftBound, rightBound]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/74-Search-a-2D-Matrix/">
+                74 Search a 2D Matrix
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>写出一个高效的算法来搜索 m × n矩阵中的值。<br>这个矩阵具有以下特性：<br>每行中的整数从左到右是排序的。<br>每行的第一个数大于上一行的最后一个整数。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [1, 3, 5, 7],&#10;  [10, 11, 16, 20],&#10;  [23, 30, 34, 50]&#10;]</span><br></pre></td></tr></table></figure>
+<p>给出 target = 3，返回 true</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>首先可以把这个二维数组看成一维数组，3 * 4 的矩阵可以看成一个12个数的一维数组，所以对于50的坐标为(2,3)，可以看成第array[11]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 3, 5, 7, 10, 11, 16, 20, 23, 30, 34, 50]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一维数组与二维数组的转化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 = 11 / 4, 3 = 11 % 4   # width = 4&#10;``` &#10;&#10;# &#23436;&#25972;&#20195;&#30721;&#10;```python&#10;class Solution(object):&#10;    def searchMatrix(self, matrix, target):&#10;        &#34;&#34;&#34;&#10;        :type matrix: List[List[int]]&#10;        :type target: int&#10;        :rtype: bool&#10;        &#34;&#34;&#34;&#10;        if not matrix:&#10;            return False&#10;        &#10;        start = 0&#10;        width = len(matrix[0])&#10;        end = len(matrix) * width - 1&#10;        while start + 1 &#60; end:&#10;            mid = start + (end - start) / 2&#10;            if matrix[mid / width][mid % width] == target:&#10;                return True&#10;            elif matrix[mid / width][mid % width] &#62; target:&#10;                end = mid&#10;            else:&#10;                start = mid&#10;            &#10;        if matrix[start / width][start % width] == target:&#10;            return True&#10;        if matrix[end / width][end % width] == target:&#10;            return True&#10;        return False</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/35-Search-Insert-Position/">
+                35 Search Insert Position
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个排序数组和一个目标值，如果在数组中找到目标值则返回索引。如果没有，返回到它将会被按顺序插入的位置。</p>
+</blockquote>
+<p>[1,3,5,6]，5 → 2<br>[1,3,5,6]，2 → 1<br>[1,3,5,6]， 7 → 4<br>[1,3,5,6]，0 → 0</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>对于插入排序，所有数字都要插入一次，而且对于数组，要整体向后移动，所以这时的插入即从后往前交换到不能交换位置。<strong>二分查找再插入并不会加快速度</strong></li>
+<li>本题是假设有一个很大的数组，数组之间可能留有空隙，只需要插入一个或几个数字，所以需要<strong>二分法</strong>快速定位</li>
+<li><strong>概念偷换</strong>可以减少if/else判断语句！！！本题把target存在和不存在结合在一起 =&gt; <strong>找到数组中有几个数比target小</strong></li>
+<li>核心部分都写成<code>start = mid</code>或者<code>end = mid</code>，具体情况最后讨论</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A : a list of integers</span><br><span class="line">    @param target : an integer to be inserted</span><br><span class="line">    @return : an integer</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchInsert</span><span class="params">(self, A, target)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> target &lt; A[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mid] == target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> A[mid] &lt; target:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> A[end] == target:</span><br><span class="line">            <span class="keyword">return</span> end</span><br><span class="line">        <span class="keyword">elif</span> A[end] &lt; target:</span><br><span class="line">            <span class="keyword">return</span> end + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> A[start] == target:</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> end</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/14-Binary-Search/">
+                14 Binary Search
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个排序的整数数组（升序）和一个要查找的整数target，用O(logn)的时间查找到target第一次出现的下标（从0开始），如果target不存在于数组中，返回-1。</p>
+</blockquote>
+<p>在数组 [1, 2, 3, 3, 4, 5, 10] 中二分查找3，返回2。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先使用<strong>start + 1 &lt; end</strong> =&gt;表示相交或者相邻停止</li>
+<li><p>因为是找第一次出现的位置所以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if nums[mid] &#60; target:&#10;    start = mid&#10;else:&#10;    end = mid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后start和end可能相等可能不等，统一模板，两个都check，顺序依照题目而定，本题先chcek start</p>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param nums: The integer array</span></span><br><span class="line">    <span class="comment"># @param target: Target number to find</span></span><br><span class="line">    <span class="comment"># @return the first position of target in nums, position start from 0 </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">binarySearch</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &lt; target:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> nums[start] == target:</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">if</span> nums[end] == target:</span><br><span class="line">            <span class="keyword">return</span> end</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/47-Permutations-II/">
+                47 Permutations II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个具有重复数字的列表，找出列表所有不同的排列</p>
+</blockquote>
+<p>给出列表[1,2,2]，不同的排列有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;    [1,2,2],&#10;    [2,1,2],&#10;    [2,2,1]&#10;]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先数组排序，跳出recursion条件为<code>len(path) == len(num)</code></li>
+<li>设置一个flag数组，来判定一个元素是否被访问过</li>
+<li>如果<code>previous</code>没有被访问，而且<code>current == previous</code>，则会出现重复，所以跳过</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permuteUnique</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        flags = [<span class="keyword">False</span>] * len(nums)</span><br><span class="line">        self.permuteForReal(sorted(nums), result, flags, [])</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permuteForReal</span><span class="params">(self, num, output, flags, path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(path) == len(num):</span><br><span class="line">            output.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">         </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num)):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> flags[i]:</span><br><span class="line">                <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> flags[i-<span class="number">1</span>] <span class="keyword">and</span> num[i] == num[i-<span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                path.append(num[i])</span><br><span class="line">                flags[i] = <span class="keyword">True</span></span><br><span class="line">                self.permuteForReal(num, output, flags, path)</span><br><span class="line">                path.pop()</span><br><span class="line">                flags[i] = <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Permutation/"> #Permutation </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/46-Permutations/">
+                46 Permutations
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个数字列表，返回其所有可能的排列。</p>
+</blockquote>
+<p>给出一个列表[1,2,3]，其全排列为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [1,2,3],&#10;  [1,3,2],&#10;  [2,1,3],&#10;  [2,3,1],&#10;  [3,1,2],&#10;  [3,2,1]&#10;]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>与subset题相似，只不过当<code>len(path) == len(list)</code>的时候才会将path加入到结果</li>
+<li>对于每一层，遍历list中的元素，把不在path中的元素加入path</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permute</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> nums <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        result = []</span><br><span class="line">        self.helper(nums, [], result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, List, path, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(path) == len(List):</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(List)):</span><br><span class="line">            <span class="keyword">if</span> List[i] <span class="keyword">in</span> path:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            path.append(List[i])</span><br><span class="line">            self.helper(List, path, result)</span><br><span class="line">            path.pop()</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Permutation/"> #Permutation </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/90-Subsets-II/">
+                90 Subsets II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个可能具有重复数字的列表，返回其所有可能的子集</p>
+</blockquote>
+<p>如果S = [1,2,2]，一个可能的答案为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [2],&#10;  [1],&#10;  [1,2,2],&#10;  [2,2],&#10;  [1,2],&#10;  []&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>子集中的每个元素都是非降序的<br>两个子集间的顺序是无关紧要的<br>解集中不能包含重复子集</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>对于每次层，如果current == previous则跳过<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> i != pos <span class="keyword">and</span> List[i] == List[i - <span class="number">1</span>]:</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsetsWithDup</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result.append([])</span><br><span class="line">            self.dfs(sorted(nums), <span class="number">0</span>, [], result)</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, List, pos, path, result)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(pos, len(List)):</span><br><span class="line">            <span class="keyword">if</span> i != pos <span class="keyword">and</span> List[i] == List[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                result.append(path + [List[i]])</span><br><span class="line">            self.dfs(List, i + <span class="number">1</span>, path + [List[i]], result)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/78-Subsets/">
+                78 Subsets
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个含不同整数的集合，返回其所有的子集</p>
+</blockquote>
+<p>如果 S = [1,2,3]，有如下的解：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [3],&#10;  [1],&#10;  [2],&#10;  [1,2,3],&#10;  [1,3],&#10;  [2,3],&#10;  [1,2],&#10;  []&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>子集中的元素排列必须是非降序的，解集必须不包含重复的子集</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>Backtracking, DFS</li>
+<li>首先，数组要排序，在第n层，加入一个元素进入n+1层，删除刚刚加入的元素，加入第n层的第二个元素……<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">                   [ ]&#10;                /   |   \&#10;             [1]   [2]   [3]&#10;           /  |     |&#10;    [1, 2] [1, 3] [2, 3]&#10;      /&#10;[1, 2, 3]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> nums <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res = [[]]</span><br><span class="line">        self.dfs(sorted(nums), <span class="number">0</span>, [], res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, nums, index, path, res)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(index, len(nums)):</span><br><span class="line">            res.append(path + [nums[i]])</span><br><span class="line">            path.append(nums[i])</span><br><span class="line">            self.dfs(nums, i+<span class="number">1</span>, path, res)</span><br><span class="line">            path.pop()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> nums <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        res = [[]]</span><br><span class="line">        self.dfs(sorted(nums), <span class="number">0</span>, [], res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, nums, index, path, res)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(index, len(nums)):</span><br><span class="line">            res.append(path + [nums[i]])</span><br><span class="line">            self.dfs(nums, i+<span class="number">1</span>, path+[nums[i]], res)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        result = [[]]</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> nums:</span><br><span class="line">            with_x = []</span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> result:</span><br><span class="line">                with_x.append(s + [x])</span><br><span class="line">            result = result + with_x</span><br><span class="line">	<span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/28-Implement-strStr/">
+                28 Implement strStr()
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>字符串查找（又称查找子字符串），是字符串操作中一个很有用的函数。你的任务是实现这个函数。<br>对于一个给定的 source 字符串和一个 target 字符串，你应该在 source 字符串中找出 target 字符串出现的第一个位置(从0开始)。<br>如果不存在，则返回 -1。</p>
+</blockquote>
+<p>如果 source = “source” 和 target = “target”，返回 -1。<br>如果 source = “abcdabcdefg” 和 target = “bcd”，返回 1。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>双层for循环, O(m*n)</li>
+<li>注意一些边界情况，主要是开头的处理</li>
+<li><code>haystack == None , needle == None</code> 要返回<code>-1</code></li>
+<li><code>haystack == &quot;&quot; , needle == &quot;&quot;</code> 要返回<code>0</code>而不是<code>-1</code></li>
+<li><code>needle = &quot;&quot;</code> 要返回<code>0</code></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">strStr</span><span class="params">(self, haystack, needle)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type haystack: str</span><br><span class="line">        :type needle: str</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> haystack == <span class="keyword">None</span> <span class="keyword">or</span> needle == <span class="keyword">None</span> <span class="keyword">or</span> len(haystack) &lt; len(needle):</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> haystack == needle <span class="keyword">or</span> needle == <span class="string">""</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(haystack) - len(needle) + <span class="number">1</span>):</span><br><span class="line">            flag = <span class="keyword">True</span></span><br><span class="line">            res = i</span><br><span class="line">            <span class="keyword">for</span> char <span class="keyword">in</span> needle:</span><br><span class="line">                <span class="keyword">if</span> char == haystack[i]:</span><br><span class="line">                    i += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    flag = <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">if</span> flag:</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/String/"> #String </a>
+          
+            <a href="/tags/Two-Pointer/"> #Two Pointer </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+  </div>
+
+  
+  <div class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

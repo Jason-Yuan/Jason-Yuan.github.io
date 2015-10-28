@@ -1,0 +1,1423 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+  <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/25/55-Jump-Game/">
+                55 Jump Game
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个非负整数数组，你最初定位在数组的第一个位置。　　　<br>数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　　<br>判断你是否能到达数组的最后一个位置。</p>
+</blockquote>
+<p>A =<strong> [2,3,1,1,4]</strong>，返回 true.<br>A =<strong> [3,2,1,0,4]</strong>，返回 false.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一：贪心法 greedy</li>
+<li>方法二：单序列型动态规划 - Sequence DP (因为题目中给的是序列而不是数组，注意两者的区别)，本题动归的方法不能过OJ</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一，贪心</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        farest = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i &lt;= farest <span class="keyword">and</span> nums[i] + i &gt; farest:</span><br><span class="line">                farest = nums[i] + i</span><br><span class="line">            <span class="keyword">if</span> farest &gt;= len(nums) - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二，动态规划</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        cache = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> cache[j] <span class="keyword">is</span> <span class="keyword">True</span> <span class="keyword">and</span> j + nums[j] &gt;= i:</span><br><span class="line">                    cache[i] == <span class="keyword">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> cache[len(nums) - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/Greedy/"> #Greedy </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sequence-DP/"> #Sequence DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/25/120-Triangle/">
+                120 Triangle
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个数字三角形，找到从顶部到底部的最小路径和。每一步可以移动到下面一行的相邻数字上。</p>
+</blockquote>
+<p>比如，给出下列数字三角形：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; &#160; &#160;[2],&#10;  &#160; [3,4],&#10;&#160; &#160;[6,5,7],&#10;&#160; [4,1,8,3]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>从顶到底部的最小路径和为11 (<strong> 2 + 3 + 5 + 1 = 11</strong>)。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>矩阵型动态规划问题 - Matrix DP</li>
+<li>有两种解决方案，自顶向下或者自底向上</li>
+<li>下面代码采用自底向上的方法，cache[i][j]表明从最底层到i,j所用的最短距离是多少</li>
+<li><code>cache[i][j]</code>就等于<code>cache[i+1][j]</code>(左下角)与<code>cache[i+1][j+1]</code>(右下角)中最小的加上<code>triangle[i][j]</code>的值</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minimumTotal</span><span class="params">(self, triangle)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type triangle: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> triangle:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        m = len(triangle)</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            cache[m - <span class="number">1</span>][i] = triangle[m - <span class="number">1</span>][i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m - i):</span><br><span class="line">                cache[m - <span class="number">1</span> - i][j] = min(cache[m - i][j], cache[m - i][j + <span class="number">1</span>]) + triangle[m - <span class="number">1</span> - i][j]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Matrix-DP/"> #Matrix DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/24/64-Minimum-Path-Sum/">
+                64 Minimum Path Sum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个只含非负整数的m*n网格，找到一条从左上角到右下角的可以使数字和最小的路径。</p>
+</blockquote>
+<p>你在同一时间只能向下或者向右移动一步</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>矩阵型动态规划 - Matrix DP</li>
+<li>与Unique Paths I/II非常类似，不同的是每次要找最小value</li>
+<li>cache[i][j]表示从左上角到达i,j的数字和最小路径，它等于cache[i][j - 1]与cache[i - 1][j]的最小值，加上grid[i][j]的值</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minPathSum</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type grid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid <span class="keyword">or</span> <span class="keyword">not</span> grid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(grid)</span><br><span class="line">        n = len(grid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        sum1 = sum2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            sum1 += grid[<span class="number">0</span>][i]</span><br><span class="line">            cache[<span class="number">0</span>][i] = sum1</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">            sum2 += grid[j][<span class="number">0</span>]</span><br><span class="line">            cache[j][<span class="number">0</span>] = sum2</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">                cache[j][i] = min(cache[j - <span class="number">1</span>][i], cache[j][i - <span class="number">1</span>]) + grid[j][i]</span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Matrix-DP/"> #Matrix DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/24/70-Climbing-Stairs/">
+                70 Climbing Stairs
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>假设你正在爬楼梯，需要n步你才能到达顶部。但每次你只能爬一步或者两步，你能有多少种不同的方法爬到楼顶部？</p>
+</blockquote>
+<p>比如n=3，1+1+1=1+2=2+1=3，共有3中不同的方法<br>返回 3</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>本题本质和菲波那切数列问题非常相似</li>
+<li>单序列型动态规划问题 - Sequence DP</li>
+<li>cache[i]表示有i个台阶，能跳到第i个台阶的方案个数</li>
+<li>因为每次可以跳一步或者跳两步，所以cache[i]就等于下面的和<ul>
+<li>可以跳的i - 1的方案个数即cache[i - 1]</li>
+<li>可以跳到i - 2的方案个数即cache[i - 2]</li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        cache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        cache[<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n):</span><br><span class="line">            cache[i] = cache[i - <span class="number">1</span>] + cache[i - <span class="number">2</span>]</span><br><span class="line">        <span class="keyword">return</span> cache[n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sequence-DP/"> #Sequence DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/24/63-Unique-Paths-II/">
+                63 Unique Paths II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>现在考虑网格中有障碍物，那样将会有多少条不同的路径？<br>网格中的障碍和空位置分别用<strong>1</strong>和<strong>0</strong>来表示。</p>
+</blockquote>
+<p>如下所示在3x3的网格中有一个障碍物：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [0,0,0],&#10;&#160; [0,1,0],&#10;&#160; [0,0,0]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>一共有2条不同的路径从左上角到右下角。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>同样是矩阵型动态规划 - Matrix DP</li>
+<li>对于有障碍物的地图来说，只需要把<strong>障碍物的坐标设为0即可</strong></li>
+<li>要注意对第一行和第一列的初始化，如果遇到障碍物第一行后面和第一列下面都是0</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(self, obstacleGrid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type obstacleGrid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> obstacleGrid <span class="keyword">or</span> <span class="keyword">not</span> obstacleGrid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(obstacleGrid)</span><br><span class="line">        n = len(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        flag1 = flag2 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m): </span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[j][<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">                flag1 = <span class="number">0</span></span><br><span class="line">            cache[j][<span class="number">0</span>] = flag1</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][i] == <span class="number">1</span>:</span><br><span class="line">                flag2 = <span class="number">0</span></span><br><span class="line">            cache[<span class="number">0</span>][i] = flag2</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                cache[j][i] = (cache[j - <span class="number">1</span>][i] + cache[j][i - <span class="number">1</span>]) <span class="keyword">if</span> obstacleGrid[j][i] == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Matrix-DP/"> #Matrix DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/24/62-Unique-Paths/">
+                62 Unique Paths
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>有一个机器人的位于一个M×N个网格左上角（下图中标记为’Start’）。<br>机器人每一时刻只能向下或者向右移动一步。机器人试图达到网格的右下角（下图中标记为’Finish’）。<br>问有多少条不同的路径？</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1, 1</th>
+<th style="text-align:center">1, 2</th>
+<th style="text-align:center">1, 3</th>
+<th style="text-align:center">1, 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2, 1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3, 1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4, 1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">4, 4</td>
+</tr>
+</tbody>
+</table>
+<p>以上4 x 4的网格中，有多少条不同的路径？</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>动态规划就是解决了重复计算，具体实现方式有：<ul>
+<li>记忆化搜索</li>
+<li>循环求解(本题采用此方法)</li>
+</ul>
+</li>
+<li>典型DP问题 - <strong>矩阵型动态规划</strong>(Matrix DP)</li>
+<li><code>cache[x][y]</code>表示从起点到<code>x,y</code>的路径数，等于<code>cache[x][y - 1]</code>与<code>cache[x - 1][y]</code>的路径数之和</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePaths</span><span class="params">(self, m, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type m: int</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> m &lt; <span class="number">1</span> <span class="keyword">or</span> n &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(m)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            cache[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">            cache[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">                cache[i][j] = cache[i - <span class="number">1</span>][j] + cache[i][j - <span class="number">1</span>]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[n - <span class="number">1</span>][m - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Matrix-DP/"> #Matrix DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/21/94-Binary-Tree-Inorder-Traversal/">
+                94 Binary Tree Inorder Traversal
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树,返回其中序遍历</p>
+</blockquote>
+<p>给出二叉树 {1,#,2,3}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 2&#10;&#160; &#160; /&#10;&#160;&#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>返回 [1,3,2]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一：递归，定义helper函数</li>
+<li>方法二：Divide &amp; Conquer</li>
+<li>方法二：非递归<ul>
+<li>(操作一)每一次从当前节点开始(第一次是root节点)遍历至最左节点，一次入栈。</li>
+<li>(操作二)pop出栈一个node，node.val加入到结果，然后看该node有没有右儿子</li>
+<li>有的话重复操作一</li>
+<li>没有的话，继续pop出栈一个node，重复操作二</li>
+</ul>
+</li>
+<li>非递归解法可以体会一下另外一个题[Inorder Successor in Binary Search Tree]</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        self.helper(root, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root != <span class="keyword">None</span>:</span><br><span class="line">            self.helper(root.left, result)</span><br><span class="line">            result.append(root.val)</span><br><span class="line">            self.helper(root.right, result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        result.append(root.val)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># divide</span></span><br><span class="line">        left = self.inorderTraversal(root.left)</span><br><span class="line">        right = self.inorderTraversal(root.right)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># conquer</span></span><br><span class="line">        <span class="keyword">return</span> left + result + right</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        stack = []</span><br><span class="line">        result = []</span><br><span class="line">        current = root</span><br><span class="line">        <span class="keyword">while</span> current != <span class="keyword">None</span> <span class="keyword">or</span> len(stack) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">while</span> current != <span class="keyword">None</span>:</span><br><span class="line">                stack.append(current)</span><br><span class="line">                current = current.left</span><br><span class="line">            current = stack[-<span class="number">1</span>];</span><br><span class="line">            stack.pop();</span><br><span class="line">            result.append(current.val);</span><br><span class="line">            current = current.right;</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Non-recursion/"> #Non-recursion </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/21/145-Binary-Tree-Postorder-Traversal/">
+                145 Binary Tree Postorder Traversal
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树，返回其节点值的后序遍历。</p>
+</blockquote>
+<p>给出一棵二叉树 {1,#,2,3}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 2&#10;&#160; &#160; /&#10;&#160;&#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>返回 [3,2,1]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>递归求解，定义一个helper函数，定义一个result全局变量，传入helper函数</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root: The root of binary tree.</span><br><span class="line">    @return: Postorder in ArrayList which contains node values.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">postorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        self.helper(root, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            self.helper(root.left, result)</span><br><span class="line">            self.helper(root.right, result)</span><br><span class="line">            result.append(root.val)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/21/85-Insert-Node-in-a-Binary-Search-Tree/">
+                85 Insert Node in a Binary Search Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一棵二叉查找树和一个新的树节点，将节点插入到树中。<br>你需要保证该树仍然是一棵二叉查找树。</p>
+</blockquote>
+<p>给出如下一棵二叉查找树，在插入节点6之后这棵二叉查找树可以是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 2 &#160; &#160; &#160; &#160; &#160; &#160; 2&#10;&#160;/ \ &#160; &#160; &#160; &#160; &#160; / \&#10;1 &#160; 4 &#160; --&#62; &#160; 1 &#160; 4&#10;&#160;&#160; / &#160; &#160; &#160; &#160; &#160; &#160; / \&#160;&#10;&#160; 3 &#160; &#160; &#160; &#160; &#160; &#160; 3 &#160; 6</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>如果root为空，给root赋值</li>
+<li>root不为空，根据root.val与node.val的大小去判断往左儿子走还是右儿子走</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root: The root of the binary search tree.</span><br><span class="line">    @param node: insert this node into the binary search tree.</span><br><span class="line">    @return: The root of the new binary search tree.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertNode</span><span class="params">(self, root, node)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            root = node</span><br><span class="line">        <span class="keyword">elif</span> root.val &gt; node.val:</span><br><span class="line">            <span class="keyword">if</span> root.left:</span><br><span class="line">                self.insertNode(root.left, node)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                root.left = node</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> root.right:</span><br><span class="line">                self.insertNode(root.right, node)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                root.right = node</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/21/111-Minimum-Depth-of-Binary-Tree/">
+                111 Minimum Depth of Binary Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个二叉树，找出其最小深度。<br>二叉树的最小深度为根节点到最近叶子节点的距离。</p>
+</blockquote>
+<p>给出一棵如下的二叉树:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; &#160; &#160; 1&#10;&#160; &#160; &#160;/ &#160; &#160; \&#160;&#10;&#160; &#160;2 &#160; &#160; &#160; 3&#10;&#160; &#160; &#160; &#160; &#160; / &#160; &#160;\&#10;&#160; &#160; &#160; &#160; 4 &#160; &#160; &#160;5</span><br></pre></td></tr></table></figure></p>
+<p>这个二叉树的最小深度为 2</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p><strong>一定要注意定义</strong>，比如下面这棵树的最小深度是<strong>3</strong>不是<strong>1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#10; \&#10;  2&#10;   \&#10;    3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法和找最大深度一样，Divide &amp; Conquer<br>只需要判断如果左右儿子中又None，则返回非None的儿子的高度+1</p>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">None</span> <span class="keyword">in</span> [root.left, root.right]:</span><br><span class="line">            <span class="keyword">return</span> max(self.minDepth(root.left), self.minDepth(root.right)) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> min(self.minDepth(root.left), self.minDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+  </div>
+
+  
+  <div class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

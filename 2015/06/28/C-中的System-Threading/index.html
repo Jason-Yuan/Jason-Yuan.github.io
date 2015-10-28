@@ -1,0 +1,1003 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="ASP.NET,C#,Operating System,Take a Bite,Thread & Process," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> C#中的System-Threading // Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              C#中的System-Threading
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-06-28
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/ASP-NET/">ASP.NET</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-7fd36207e95438db_zpsomzwjb0k.png" alt="MultiThreading ? ? ?"></p>
+<p>在说C#中的<code>System.Threading</code>之前，先来简单说说<code>Process</code>, <code>Thread</code>, <code>CPU</code>, 和<code>OS</code>，算是一个铺垫，说的比较浅，都算是OS课的范畴。话说这是我转专业上的第一门课，当时几乎没有任何编程基础和计算机基础知识，可谓相当痛苦。学习效果也比较渣，现在算是回头慢慢补救。</p>
+<a id="more"></a>
+<h1 id="Process_和_Thread_的比较">Process 和 Thread 的比较</h1><ul>
+<li><p><strong>Process</strong>(进程)<br>Process是正在运行的应用程序的实例(executing instance)。比如我们双击Microsoft Word图标，就启动了一个Process。所以说，一台计算机上可以运行多个Process</p>
+</li>
+<li><p><strong>Thread</strong>(线程)</p>
+<ul>
+<li>线程，有时被称为轻量级进程(Lightweight Process，LWP)，是程序执行流的最小单元。</li>
+<li>线程是进程中的一个实体，是被系统独立调度和分派的基本单位。</li>
+<li>一个进程可以有很多线程，每条线程<strong>并行</strong>执行不同的任务，称为多线程(multi-threading)。<blockquote>
+<p>比如， 你在word中单击<strong>打印</strong>就开启了一个新的线程(backgroud thread)，但同时你可以返回主页面继续进行<strong>文字编辑</strong>(这是另外一个thread accept user input)。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>推荐当年看过的一篇<a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="external">@阮一峰</a>大神的blog，浅显易懂 - <a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html" target="_blank" rel="external">进程与线程的一个简单解释</a></p>
+<h1 id="单核CPU的运行方式">单核CPU的运行方式</h1><ul>
+<li>运行一个thread<blockquote>
+<ul>
+<li>thread首先加载到RAM中</li>
+<li>通过bus转移到CPU的pipeline中(一个queue)</li>
+<li>指令集(instruction set)中的指令依此被执行 </li>
+</ul>
+</blockquote>
+</li>
+<li>运行多个threads<blockquote>
+<ul>
+<li>比如，两个threads加载到RAM中</li>
+<li>此时，在CPU和RAM中多了一个<strong>scheduler</strong>，负责把thread转移到CPU的pipeline中，scheduler会在两个threads之间相互转换，分别给每个thread一定的time slice</li>
+<li>对于我们而言，当time slice足够小，看起来两个threads就像是同时多线程(Simultaneous multithreading)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h1 id="发展">发展</h1><p>伴随着<code>Multi-task OS</code>和<code>Multi-thread Application</code>的出现，CPU设计也开始适应这种需求，出现了：</p>
+<ul>
+<li>Hyper Threading</li>
+<li>Multi-Core CPU</li>
+<li>Multi CPU</li>
+</ul>
+<h1 id="C#中的_System-Threading_命名空间">C#中的 System.Threading 命名空间</h1><ul>
+<li>第一个例子，不使用<code>System.Threading</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using System;&#10;using System.Collections.Generic;&#10;using System.Linq;&#10;using System.Text;&#10;using System.Threading.Tasks;&#10;// &#31532;&#19968;&#20010;&#25511;&#21046;&#21488;&#31243;&#24207;&#10;namespace LearnThread&#10;&#123;&#10;    class Program&#10;    &#123;&#10;        static void subTask()&#10;        &#123;&#10;            for (int i = 0; i &#60; 5; i++)&#10;            &#123;&#10;                Console.WriteLine(&#34;subTask is running&#34;);&#10;            &#125;&#10;        &#125;&#10;        static void Main(string[] args)&#10;        &#123;&#10;            subTask();&#10;            for (int i = 0; i &#60; 5; i++ )&#10;            &#123;&#10;                Console.WriteLine(&#34;main is running&#34;);&#10;            &#125;&#10;            Console.ReadLine();&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>subTask</code>运行结束之后才会运行<code>main</code>中的for循环，运行结果为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subTask is running&#10;subTask is running&#10;subTask is running&#10;subTask is running&#10;subTask is running&#10;main is running&#10;main is running&#10;main is running&#10;main is running&#10;main is running</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>第二个例子，使用<code>System.Threading</code>，建立一个新thread<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using System;&#10;using System.Collections.Generic;&#10;using System.Linq;&#10;using System.Text;&#10;using System.Threading;&#10;using System.Threading.Tasks;&#10;// &#31532;&#20108;&#20010;&#25511;&#21046;&#21488;&#31243;&#24207;&#10;namespace LearnThread&#10;&#123;&#10;    class Program&#10;    &#123;&#10;        static void subTask()&#10;        &#123;&#10;            for (int i = 0; i &#60; 5; i++)&#10;            &#123;&#10;                Console.WriteLine(&#34;subTask is running&#34;);&#10;            &#125;&#10;        &#125;&#10;        static void Main(string[] args)&#10;        &#123;&#10;            // create one thread&#10;            Thread t = new Thread(new ThreadStart(subTask)); &#10;            // invoke this thread&#10;            t.Start();&#10;            for (int i = 0; i &#60; 5; i++ )&#10;            &#123;&#10;                Console.WriteLine(&#34;main is running&#34;);&#10;            &#125;&#10;            Console.ReadLine();&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在运行<code>subTask</code>这个thread的时候，并不是运行到结束再执行<code>main</code>中的for循环，而是交替执行，<strong>类似Simultaneous multithreading</strong>，运行结果为(结果随机)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subTask is running&#10;main is running&#10;main is running&#10;subTask is running&#10;subTask is running&#10;main is running&#10;subTask is running&#10;subTask is running&#10;main is running&#10;main is running</span><br></pre></td></tr></table></figure></p>
+<p>可见，<code>System.Threading</code>命名空间中的<code>Thread</code>类可以帮助我们实现程序中的并行。</p>
+<ul>
+<li><code>System.Threading.Thread</code>类中常见的方法<br><strong>Thread.Start():</strong> 启动线程的执行<br><strong>Thread.Suspend():</strong> 挂起线程，或者如果线程已挂起，则不起作用；<br><strong>Thread.Resume():</strong> 继续已挂起的线程<br><strong>Thread.Interrupt():</strong> 中止处于 Wait或者Sleep或者Join 线程状态的线程<br><strong>Thread.Join():</strong> 阻塞调用线程，直到某个线程终止时为止<br><strong>Thread.Sleep():</strong> 将当前线程阻塞指定的毫秒数<br><strong>Thread.Abort():</strong> 终止此线程的过程。如果线程已经在终止，则不能通过Thread.Start()来启动线程</li>
+</ul>
+<h1 id="Thread的两种类型">Thread的两种类型</h1><ul>
+<li><strong>Foreground thread</strong><br>如果主程序结束了，foreground thread依然存在或者继续运行。正如下面的例子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namespace LearnThread&#10;&#123;&#10;    class Program&#10;    &#123;&#10;        static void Main(string[] args)&#10;        &#123;&#10;            // A thread will be created to run&#10;            // function1 parallely&#10;            Thread obj1 = new Thread(Function1);&#10;            obj1.IsBackground = true;&#10;            obj1.Start();&#10;&#10;            // the control will come here and exit the main function&#10;            Console.WriteLine(&#34;The main application has exited&#34;);&#10;        &#125;&#10;&#10;        static void Function1()&#10;        &#123;&#10;            Console.WriteLine(&#34;Function 1 entered&#34;);&#10;            // wait here until the user put any input&#10;            Console.ReadLine();&#10;            Console.WriteLine(&#34;Function 1 is exited&#34;);&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>程序的运行结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The main application has exited&#10;Function 1 entered&#10;hello&#10;Function 1 exited&#10;Press any key to continue . . .</span><br></pre></td></tr></table></figure></p>
+<p>可见，虽然主程序结束了，foreground thread依然会等待用户输入，在用户输入<code>hello</code>之后，执行最后一句，退出</p>
+<ul>
+<li><strong>Background thread</strong><br>如果主程序结束了，background thread也随即结束。正如下面例子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namespace LearnThread&#10;&#123;&#10;    class Program&#10;    &#123;&#10;        static void Main(string[] args)&#10;        &#123;&#10;            // A thread will be created to run&#10;            // function1 parallely&#10;            Thread obj1 = new Thread(Function1);&#10;            obj1.IsBackground = true;&#10;            obj1.Start();&#10;&#10;            // the control will come here and exit the main function&#10;            Console.WriteLine(&#34;The main application has exited&#34;);&#10;        &#125;&#10;&#10;        static void Function1()&#10;        &#123;&#10;            Console.WriteLine(&#34;Function 1 entered&#34;);&#10;            // wait here until the user put any input&#10;            Console.ReadLine();&#10;            Console.WriteLine(&#34;Function 1 is exited&#34;);&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>改程序的输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The main application has exited&#10;Function 1 entered&#10;Press any key to continue . . .</span><br></pre></td></tr></table></figure></p>
+<p>可见，主程序退出后，background thread也结束了，没有再等待用户输入</p>
+<h2 id="关于_Thread_Safe_Object">关于 Thread Safe Object</h2><ul>
+<li><p>在两个thread中运行下面的程序，如果我们不考虑thread safe的问题，程序会报错，因为会出现<strong>零</strong>作为除数的情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random o = new Random();&#10;for (long i = 0; i &#60; 10000; i++)&#10;&#123;&#10;    Num1 = o.Next(1, 2);&#10;    Num2 = o.Next(1, 2);&#10;    int result = Num1/Num2;&#10;    Num1 = 0;&#10;    Num2 = 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在.NET中提供的解决方案：</p>
+<ul>
+<li>Lock</li>
+<li>Mutex</li>
+<li>Semaphore</li>
+</ul>
+</li>
+<li><p>比如，使用lock修改后的程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random o = new Random();&#10;for (long i = 0; i &#60; 10000; i++)&#10;&#123;&#10;    lock (this)&#10;    &#123;&#10;        Num1 = o.Next(1, 2);&#10;        Num2 = o.Next(1, 2);&#10;        int result = Num1/Num2;&#10;        Num1 = 0;&#10;        Num2 = 0;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="更多资源">更多资源</h1><ol>
+<li><a href="http://resources.infosecinstitute.com/multithreading/" target="_blank" rel="external">C# Multithreading Example</a></li>
+<li>Thread Class (MSDN)</li>
+</ol>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ASP-NET/"> #ASP.NET </a>
+          
+            <a href="/tags/C/"> #C# </a>
+          
+            <a href="/tags/Operating-System/"> #Operating System </a>
+          
+            <a href="/tags/Take-a-Bite/"> #Take a Bite </a>
+          
+            <a href="/tags/Thread-Process/"> #Thread & Process </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/22/TYPlayer-为网站添加视频背景/">TYPlayer - 为网站添加视频背景</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/24/通过Github-Pages和Jekyll搭建个人博客/">通过Github Pages和Jekyll搭建个人博客</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+      <div class="comments" id="comments">
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Process_和_Thread_的比较"><span class="nav-number">1.</span> <span class="nav-text">Process 和 Thread 的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单核CPU的运行方式"><span class="nav-number">2.</span> <span class="nav-text">单核CPU的运行方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发展"><span class="nav-number">3.</span> <span class="nav-text">发展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C#中的_System-Threading_命名空间"><span class="nav-number">4.</span> <span class="nav-text">C#中的 System.Threading 命名空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thread的两种类型"><span class="nav-number">5.</span> <span class="nav-text">Thread的两种类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于_Thread_Safe_Object"><span class="nav-number">5.1.</span> <span class="nav-text">关于 Thread Safe Object</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多资源"><span class="nav-number">6.</span> <span class="nav-text">更多资源</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      if (isDesktop() && HEXO_SIDEBAR_CONFIGURATION === 'post') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

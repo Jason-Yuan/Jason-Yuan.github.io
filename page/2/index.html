@@ -1,0 +1,1429 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+  <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/21/236-Lowest-Common-Ancestor-of-a-Binary-Tree/">
+                236 Lowest Common Ancestor of a Binary Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一棵二叉树，找到两个节点的最近公共父节点(LCA)。<br>最近公共祖先是两个节点的公共的祖先节点且具有最大深度。</p>
+</blockquote>
+<p>对于下面这棵二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 4&#10;&#160;/ \&#10;3 &#160; 7&#10;&#160;&#160; / \&#10;&#160; 5 &#160; 6&#10;LCA(3, 5) = 4&#10;LCA(5, 6) = 7&#10;LCA(6, 7) = 7</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>Divide &amp; Conquer 的思路</li>
+<li>如果<code>root</code>为空，则返回空</li>
+<li>如果<code>root</code>等于其中某个<code>node</code>，则返回<code>root</code></li>
+<li>如果上述两种情况都不满足，则divide，左右子树分别调用该方法</li>
+<li>Divide &amp; Conquer中<strong>治</strong>这一步要考虑清楚，本题三种情况<ul>
+<li>如果<code>left</code>和<code>right</code>都有结果返回，说明root是最小公共祖先</li>
+<li>如果只有<code>left</code>有返回值，说明<code>left</code><strong>的返回值</strong>是最小公共祖先</li>
+<li>如果只有<code>right</code>有返回值，说明<code>right</code><strong>的返回值</strong>是最小公共祖先</li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lowestCommonAncestor</span><span class="params">(self, root, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :type p: TreeNode</span><br><span class="line">        :type q: TreeNode</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># divide</span></span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># conquer</span></span><br><span class="line">        <span class="keyword">if</span> left != <span class="keyword">None</span> <span class="keyword">and</span> right != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> left != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> right</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LCA/"> #LCA </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/21/235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree/">
+                235 Lowest Common Ancestor of a Binary Search Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一棵平衡二叉树(BST)，找到两个节点的最近公共父节点(LCA)。<br>最近公共祖先是两个节点的公共的祖先节点且具有最大深度。</p>
+</blockquote>
+<p>对于下面这棵二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 4&#10;&#160;/ \&#10;3 &#160; 7&#10;&#160;&#160; / \&#10;&#160; 5 &#160; 6</span><br></pre></td></tr></table></figure></p>
+<p>LCA(3, 5) = 4<br>LCA(5, 6) = 7<br>LCA(6, 7) = 7</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>与本题类似的题是把BST换成普通的二叉树，方法为divide &amp; conquer</li>
+<li>对于本题，初始如果<code>root</code>为空，则直接返回None</li>
+<li>如果有其中一个<code>node</code>跟<code>root</code>相等，则返回<code>root</code></li>
+<li>以上两两种情况都不满足，考虑到是一棵平衡二叉树，所以有以下三种情况<ul>
+<li>如果两个<code>node</code>中的较小值都大于<code>root.val</code>，则答案一定在右子树</li>
+<li>如果两个<code>node</code>中的较大值都小于<code>root.val</code>，则答案一定在左子树</li>
+<li>或者<code>root.val</code>的值介于两个<code>node</code>的值中间，则返回<code>root</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lowestCommonAncestor</span><span class="params">(self, root, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :type p: TreeNode</span><br><span class="line">        :type q: TreeNode</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">            <span class="keyword">return</span> root.val</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> q.val &gt; p.val:</span><br><span class="line">            q, p = p, q</span><br><span class="line">        <span class="keyword">if</span> q.val &lt; root.val <span class="keyword">and</span> p.val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span> root.val</span><br><span class="line">        <span class="keyword">if</span> q.val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">if</span> p.val &lt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.left, p, q)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/LCA/"> #LCA </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/173-Binary-Search-Tree-Iterator/">
+                173 Binary Search Tree Iterator
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>设计实现一个带有下列属性的二叉查找树的迭代器：<br>元素按照递增的顺序被访问（比如中序遍历）<br>next()和hasNext()的询问操作要求<strong>均摊</strong>时间复杂度是O(1)</p>
+</blockquote>
+<p>对于下列二叉查找树，使用迭代器进行中序遍历的结果为 [3, 6, 7, 8, 9, 10, 11, 12]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160;   10&#10;&#160;  /&#160; &#160; \&#10;  6&#160; &#160; &#160; 11&#10; /&#160;\ &#160; &#160; &#160; \&#10;3&#160;  9 &#160; &#160; &#160; 12&#10;   /&#10;  8&#10; /&#10;7</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>本题相当于考察了BST的非递归中序遍历</li>
+<li><p>需要maintain一个stack，首先从root开始push入栈直到最左节点<br>初始stack为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10, 6, 3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在遍历过程中，如果某个节点存在右儿子，则继续从右儿子开始push入栈直到其最左节点<br>result = 3, 6<br>因为6有右儿子，所以6被pop出去之后，从6为root开始push入栈直到最左节点，然后stack为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10&#65292; 9&#65292; 8&#65292; 7</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line"></span><br><span class="line">Example of iterate a tree:</span><br><span class="line">iterator = Solution(root)</span><br><span class="line">while iterator.hasNext():</span><br><span class="line">    node = iterator.next()</span><br><span class="line">    do something for node </span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        self.stack = []</span><br><span class="line">        <span class="keyword">while</span> root:</span><br><span class="line">            self.stack.append(root)</span><br><span class="line">            root = root.left</span><br><span class="line"></span><br><span class="line">    <span class="comment"># @return a boolean, whether we have a next smallest number</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasNext</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span> <span class="keyword">if</span> self.stack <span class="keyword">else</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @return an node</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></span><br><span class="line">        current = self.stack.pop()</span><br><span class="line">        node = current.right</span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            self.stack.append(node)</span><br><span class="line">            node = node.left</span><br><span class="line">        <span class="keyword">return</span> current</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Non-recursion/"> #Non-recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/11-Search-Range-In-Binary-Search-Tree/">
+                11 Search Range In Binary Search Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定两个值 k1 和 k2（k1 &lt; k2）和一个二叉查找树的根节点。找到树中所有值在 k1 到 k2 范围内的节点。即打印所有x (k1 &lt;= x &lt;= k2) 其中 x 是二叉查找树的中的节点值。返回所有升序的节点值。</p>
+</blockquote>
+<p>如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 20&#10;&#160;&#160; /&#160; \&#10;&#160; 8 &#160; 22&#10;&#160;/ \&#10;4 &#160; 12</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一：暴力解法，DFS遍历所有节点，符合要求的加入result中，最后result排序，返回</li>
+<li>方法二：同样是DFS遍历，但加入判断，相当于剪枝。<ul>
+<li>如果<code>root.val &gt; start</code>则可以继续左子树</li>
+<li>如果<code>root.val &lt; end</code>则可以继续右子树</li>
+<li>如果<code>start &lt;= root.val &lt;= end</code>则把<code>root.val</code>加入<code>result</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root: The root of the binary search tree.</span><br><span class="line">    @param k1 and k2: range k1 to k2.</span><br><span class="line">    @return: Return all keys that k1&lt;=key&lt;=k2 in ascending order.</span><br><span class="line">    """</span>     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchRange</span><span class="params">(self, root, k1, k2)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        self.dfs(root, k1, k2, res)</span><br><span class="line">        <span class="keyword">return</span> sorted(res)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, start, end, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt;= start <span class="keyword">and</span> root.val &lt;= end:</span><br><span class="line">                result.append(root.val)</span><br><span class="line">            self.dfs(root.left, start, end, result)</span><br><span class="line">            self.dfs(root.right, start, end, result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root: The root of the binary search tree.</span><br><span class="line">    @param k1 and k2: range k1 to k2.</span><br><span class="line">    @return: Return all keys that k1&lt;=key&lt;=k2 in ascending order.</span><br><span class="line">    """</span>     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchRange</span><span class="params">(self, root, k1, k2)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        self.dfs(root, k1, k2, res)</span><br><span class="line">        <span class="keyword">return</span> sorted(res)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, start, end, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt; start:</span><br><span class="line">                self.dfs(root.left, start, end, result)</span><br><span class="line">            <span class="keyword">if</span> root.val &gt;= start <span class="keyword">and</span> root.val &lt;= end:</span><br><span class="line">                result.append(root.val)</span><br><span class="line">            <span class="keyword">if</span> root.val &lt; end:</span><br><span class="line">                self.dfs(root.right, start, end, result)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/98-Validate-Binary-Search-Tree/">
+                98 Validate Binary Search Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个二叉树，判断它是否是合法的二叉查找树(BST)<br>一棵BST定义为：<br>节点的左子树中的值要<strong>严格小于</strong>该节点的值。<br>节点的右子树中的值要<strong>严格大于</strong>该节点的值。<br>左右子树也必须是二叉查找树。</p>
+</blockquote>
+<p>一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; / \&#10;&#160;2 &#160; 3&#10;&#160; &#160; /&#10;&#160;&#160; 4&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 5</span><br></pre></td></tr></table></figure></p>
+<p>上述这棵二叉树序列化为”{1,2,3,#,#,4,#,#,5}”.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>BST的中序遍历结果是一个<strong>升序序列</strong><br>所以可以转化为数组，再遍历一遍数组，看是否升序。时间空间复杂度都是O(n)</li>
+<li>divide &amp; conquer<ul>
+<li>result每次返回一个区间的最大，最小</li>
+<li>conquer的时候判断左子树</li>
+</ul>
+</li>
+<li>递归判断<code>min &lt; left.val &lt; node.val &lt; right.val &lt; max</code></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        self.inOrderToArray(root, res)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(res)):</span><br><span class="line">            <span class="keyword">if</span> res[i-<span class="number">1</span>] &gt;= res[i]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inOrderToArray</span><span class="params">(self, node, array)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> node:</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                self.inOrderToArray(node.left, array)</span><br><span class="line">            array.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                self.inOrderToArray(node.right, array)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        res, _, _ = self.Helper(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span>, - sys.maxint, sys.maxint</span><br><span class="line">        </span><br><span class="line">        left = self.Helper(root.left)</span><br><span class="line">        right = self.Helper(root.right)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> left[<span class="number">0</span>] <span class="keyword">or</span> <span class="keyword">not</span> right[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">None</span> <span class="keyword">and</span> left[<span class="number">1</span>] &gt;= root.val) <span class="keyword">or</span> (root.right != <span class="keyword">None</span> <span class="keyword">and</span> right[<span class="number">2</span>] &lt;= root.val):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>, max(root.val, right[<span class="number">1</span>]), min(root.val, left[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.helper(root)  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, min=-float<span class="params">(<span class="string">"inf"</span>)</span>, max=float<span class="params">(<span class="string">"inf"</span>)</span>)</span>:</span></span><br><span class="line">	    <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">	    <span class="keyword">elif</span> root.left == <span class="keyword">None</span> <span class="keyword">and</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> root.val &gt; min <span class="keyword">and</span> root.val &lt; max</span><br><span class="line">	    <span class="keyword">elif</span> root.left == <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> self.helper(root.right, root.val, max) <span class="keyword">and</span> root.val &gt; min</span><br><span class="line">	    <span class="keyword">elif</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> self.helper(root.left, min, root.val) <span class="keyword">and</span> root.val &lt; max</span><br><span class="line">	    <span class="keyword">return</span> self.helper(root.left, min, root.val) <span class="keyword">and</span> self.helper(root.right, root.val, max)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+            <a href="/tags/Traversal/"> #Traversal </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/103-Binary-Tree-Zigzag-Level-Order-Traversal/">
+                103 Binary Tree Zigzag Level Order Traversal
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树，返回其节点值的锯齿形层次遍历（先从左往右，下一层再从右往左，层与层之间交替进行） </p>
+</blockquote>
+<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 3&#10;&#160;&#160; / \&#10;&#160; 9&#160; 20&#10;&#160; &#160; /&#160; \&#10;&#160;&#160; 15 &#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>返回其锯齿形的层次遍历为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [3],&#10;&#160; [20,9],&#10;&#160; [15,7]&#10;]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>相似题[Binary Tree Level Order Traversal]和[Binary Tree Level Order Traversal II]</li>
+<li>同样是一个queue实现BFS，只是在处理temp结果的时候每次改变顺序，借助一个<code>flag</code>变量</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">zigzagLevelOrder</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        result = []</span><br><span class="line">        MyQueue = Queue.Queue()</span><br><span class="line">        MyQueue.put(root)</span><br><span class="line">        flag = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> MyQueue.empty():</span><br><span class="line">            size = MyQueue.qsize()</span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                node = MyQueue.get()</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    MyQueue.put(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    MyQueue.put(node.right)</span><br><span class="line">                <span class="keyword">if</span> flag:</span><br><span class="line">                    temp.append(node.val)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    temp.insert(<span class="number">0</span>, node.val)</span><br><span class="line">            result.append(temp)</span><br><span class="line">            flag = <span class="keyword">not</span> flag</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/107-Binary-Tree-Level-Order-Traversal-II/">
+                107 Binary Tree Level Order Traversal II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）</p>
+</blockquote>
+<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 3&#10;&#160;&#160; / \&#10;&#160; 9&#160; 20&#10;&#160; &#160; /&#160; \&#10;&#160;&#160; 15 &#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>按照从下往上的层次遍历为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [15,7],&#10;&#160; [9,20],&#10;&#160; [3]&#10;]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>本题与[Binary Tree Level Order Traversal I]一样，同样使用一个queue解决，只是在生成result的时候不是<code>append</code>而是<code>insert(0, temp)</code></li>
+<li>每次从见面加入<code>temp</code>结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        result = []</span><br><span class="line">        MyQueue = Queue.Queue()</span><br><span class="line">        MyQueue.put(root)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> MyQueue.empty():</span><br><span class="line">            temp = []</span><br><span class="line">            size = MyQueue.qsize()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                node = MyQueue.get()</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    MyQueue.put(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    MyQueue.put(node.right)</span><br><span class="line">                temp.append(node.val)</span><br><span class="line">            result.insert(<span class="number">0</span>, temp)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/102-Binary-Tree-Level-Order-Traversal/">
+                102 Binary Tree Level Order Traversal
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树，返回其节点值的层次遍历（逐层从左往右访问）</p>
+</blockquote>
+<p>给一棵二叉树 {3,9,20,#,#,15,7} ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 3&#10;&#160;/ \&#10;9&#160; 20&#10;&#160; /&#160; \&#10;&#160;15 &#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>返回他的分层遍历结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [3],&#10;&#160; [9,20],&#10;&#160; [15,7]&#10;]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>实现方式有三种<ul>
+<li>两个queue</li>
+<li>一个queue + dummy node</li>
+<li>一个queue</li>
+</ul>
+</li>
+<li>对于使用一个queue的实现方式为，每次先求size，即这一层多少node。然后再把这一层node的value加入temp组成数组加入到最后的结果中，把这一层node的左右儿子加入到queue中</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        result = []</span><br><span class="line">        MyQueue = Queue.Queue()</span><br><span class="line">        MyQueue.put(root)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> MyQueue.empty():</span><br><span class="line">            size = MyQueue.qsize()</span><br><span class="line">            temp = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                node = MyQueue.get()</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    MyQueue.put(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    MyQueue.put(node.right)</span><br><span class="line">                temp.append(node.val)</span><br><span class="line">            result.append(temp)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/124-Binary-Tree-Maximum-Path-Sum/">
+                124 Binary Tree Maximum Path Sum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）</p>
+</blockquote>
+<p>给出一棵二叉树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; &#160; &#160; 1&#10;&#160; &#160; &#160; / \&#10;&#160;&#160; &#160; 2 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>返回 6</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先，想一个简化版(single path)，找从<code>root</code>到任意点得最大值。类似于maxDepth，每次加<code>root.val</code>而不再是<code>+1</code></li>
+<li>求单路的时候，如果<code>root</code>加左儿子单路或者右儿子单路最后的值都小于0，则返回0，意味着不要<code>root</code>开始的这个单路了</li>
+<li>本题思路，divide &amp; conquer<br>求最大路径和就等于下面三个值的最大值：<ul>
+<li>左子树的最大路径和</li>
+<li>右子树最大路径和</li>
+<li>左子树单路 + 右子树单路 + root.val</li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxPathSum</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        res, _ = self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> -sys.maxint, <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left = self.helper(root.left)</span><br><span class="line">        right = self.helper(root.right)</span><br><span class="line">        singlePathSum = max(left[<span class="number">1</span>] + root.val, right[<span class="number">1</span>] + root.val, <span class="number">0</span>)</span><br><span class="line">        maxPathSum = max(left[<span class="number">0</span>], right[<span class="number">0</span>], left[<span class="number">1</span>] + right[<span class="number">1</span>] + root.val)</span><br><span class="line">        <span class="keyword">return</span> maxPathSum, singlePathSum</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/20/110-Balanced-Binary-Tree/">
+                110 Balanced Binary Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-20
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个二叉树,确定它是高度平衡的。对于这个问题,一棵高度平衡的二叉树的定义是：一棵二叉树中每个节点的两个子树的深度相差不会超过1。 </p>
+</blockquote>
+<p>给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A)&#160; 3&#160; &#160; &#160; &#160; &#160; &#160; B)&#160; &#160; 3&#160;&#10;&#160;&#160; / \&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; \&#10;&#160; 9&#160; 20 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 20&#10;&#160; &#160; /&#160; \&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; / \&#10;&#160;&#160; 15 &#160; 7&#160; &#160; &#160; &#160; &#160; &#160; &#160; 15&#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>二叉树A是高度平衡的二叉树，但是B不是</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>一般BST的问题，首先往divide &amp; conquer的思路去想</li>
+<li>一棵二叉树是不是平衡二叉树 =&gt; 左子树是不是平衡二叉树？右子树是不是平衡二叉树？<ul>
+<li>如果任意一颗子树不平衡，整个树肯定不平衡</li>
+<li>如果左右子树都是平衡的，但左右子树相差高度大于1，此刻这课树又是不平衡的</li>
+<li>问题转化为分别对左右子树求maxDepth，平衡就返回最大深度，不平衡就返回-1</li>
+</ul>
+</li>
+<li>技巧：用-1表示它不是一颗平衡二叉树</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isBalanced</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.maxDepth(root) != -<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxDepth</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        left = self.maxDepth(root.left)</span><br><span class="line">        right = self.maxDepth(root.right)</span><br><span class="line">        <span class="keyword">if</span> left == -<span class="number">1</span> <span class="keyword">or</span> right == -<span class="number">1</span> <span class="keyword">or</span> abs(left - right) &gt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> max(left, right) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+  </div>
+
+  
+  <div class="pagination">
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

@@ -1,0 +1,1403 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+  <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/11/360-Sliding-Window-Median/">
+                360 Sliding Window Median
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-11
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个包含 n 个整数的数组，和一个大小为 k 的滑动窗口,从左到右在数组中滑动这个窗口，找到数组中每个窗口内的最大值。(如果数组中有偶数，则在该窗口存储该数字后，返回第 N/2-th 个数字。)</p>
+</blockquote>
+<p>对于数组 [1,2,7,8,5], 滑动大小 k = 3 的窗口时，返回 [2,7,7]<br>最初，窗口的数组是这样的：<br>[ <code>1,2,7</code> ,8,5] , 返回中位数 2;<br>接着，窗口继续向前滑动一次。<br>[1, <code>2,7,8</code> ,5], 返回中位数 7;<br>接着，窗口继续向前滑动一次。<br>[1,2, <code>7,8,5</code> ], 返回中位数 7;</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>类似题是[Data Stream Median]，[Data Stream Median]维护了一个max heap和一个min heap，不需要删除操作</li>
+<li>本题是滑动窗口类型题目，分为两个操作，加入新元素，删除头部元素</li>
+<li>由于涉及删除元素，所以要维护一个<code>hash max heap</code>和一个<code>hash min heap</code></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">node</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    create a node class to handle the duplicates in heap.</span><br><span class="line">    id =&gt; the index of x, num = number of x in heap</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, id, number)</span>:</span></span><br><span class="line">        self.id = id</span><br><span class="line">        self.num = number</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashHeap</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.map = &#123;&#125;</span><br><span class="line">        self.hashmaxheap = [<span class="number">0</span>]</span><br><span class="line">        self.map[<span class="number">0</span>] = node(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        self.currentSize = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">put</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        <span class="string">"""add a new item to the hashmaxheap"""</span></span><br><span class="line">        <span class="keyword">if</span> data <span class="keyword">in</span> self.map:</span><br><span class="line">            existData = self.map[data]</span><br><span class="line">            self.map[data] = node(existData.id, existData.num + <span class="number">1</span>)</span><br><span class="line">            self.currentSize += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.hashmaxheap.append(data)</span><br><span class="line">            self.map[data] = node(len(self.hashmaxheap) - <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            self.currentSize += <span class="number">1</span></span><br><span class="line">            self.siftUp(len(self.hashmaxheap) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peek</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""returns the item with the maxmum key value"""</span></span><br><span class="line">        <span class="keyword">return</span> self.hashmaxheap[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""returns the item with the maxmum key value, removing the item from the heap"""</span></span><br><span class="line">        res = self.hashmaxheap[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> self.map[res].num == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> self.map[res].id == len(self.hashmaxheap) - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">del</span> self.map[res]</span><br><span class="line">                self.hashmaxheap.pop()</span><br><span class="line">                self.currentSize -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            <span class="keyword">del</span> self.map[res]</span><br><span class="line">            self.hashmaxheap[<span class="number">1</span>] = self.hashmaxheap[-<span class="number">1</span>]</span><br><span class="line">            self.map[self.hashmaxheap[<span class="number">1</span>]] = node(<span class="number">1</span>, self.map[self.hashmaxheap[<span class="number">1</span>]].num)</span><br><span class="line">            self.hashmaxheap.pop()</span><br><span class="line">            self.siftDown(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.map[res] = node(<span class="number">1</span>, self.map[res].num - <span class="number">1</span>)</span><br><span class="line">        self.currentSize -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        existData = self.map[data]</span><br><span class="line">        <span class="keyword">if</span> existData.num == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">del</span> self.map[data]</span><br><span class="line">            <span class="keyword">if</span> existData.id == len(self.hashmaxheap) - <span class="number">1</span>:</span><br><span class="line">                self.hashmaxheap.pop()</span><br><span class="line">                self.currentSize -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            self.hashmaxheap[existData.id] = self.hashmaxheap[-<span class="number">1</span>]</span><br><span class="line">            self.map[self.hashmaxheap[-<span class="number">1</span>]] = node(existData.id, self.map[self.hashmaxheap[-<span class="number">1</span>]].num)</span><br><span class="line">            self.hashmaxheap.pop()</span><br><span class="line">            self.siftUp(existData.id)</span><br><span class="line">            self.siftDown(existData.id)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.map[data] = node(existData.id, existData.num - <span class="number">1</span>)</span><br><span class="line">        self.currentSize -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">siftUp</span><span class="params">(self, index)</span>:</span></span><br><span class="line">        <span class="comment"># // means devide by 2 and return int</span></span><br><span class="line">        <span class="keyword">while</span> index // <span class="number">2</span> &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> self.hashmaxheap[index] &lt; self.hashmaxheap[index // <span class="number">2</span>]:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                numA = self.map[self.hashmaxheap[index]].num</span><br><span class="line">                numB = self.map[self.hashmaxheap[index // <span class="number">2</span>]].num</span><br><span class="line">                self.map[self.hashmaxheap[index]] = node(index // <span class="number">2</span>, numA)</span><br><span class="line">                self.map[self.hashmaxheap[index // <span class="number">2</span>]] = node(index, numB)</span><br><span class="line">                self.hashmaxheap[index], self.hashmaxheap[index // <span class="number">2</span>] = self.hashmaxheap[index // <span class="number">2</span>], self.hashmaxheap[index] </span><br><span class="line">            index = index // <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">siftDown</span><span class="params">(self, index)</span>:</span></span><br><span class="line">        <span class="string">"""correct single violation in a sub-tree"""</span></span><br><span class="line">        <span class="keyword">if</span> index &gt; (len(self.hashmaxheap) - <span class="number">1</span>) // <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment"># find the max child of current index</span></span><br><span class="line">        <span class="keyword">if</span> (index * <span class="number">2</span> + <span class="number">1</span>) &gt; (len(self.hashmaxheap) - <span class="number">1</span>) <span class="keyword">or</span> self.hashmaxheap[index * <span class="number">2</span>] &gt; self.hashmaxheap[index * <span class="number">2</span> + <span class="number">1</span>]:</span><br><span class="line">            maxChild = index * <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            maxChild = index * <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.hashmaxheap[index] &gt; self.hashmaxheap[maxChild]:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            numA = self.map[self.hashmaxheap[index]].num</span><br><span class="line">            numB = self.map[self.hashmaxheap[maxChild]].num</span><br><span class="line">            self.map[self.hashmaxheap[index]] = node(maxChild, numA)</span><br><span class="line">            self.map[self.hashmaxheap[maxChild]] = node(index, numB)</span><br><span class="line">            self.hashmaxheap[index], self.hashmaxheap[maxChild] = self.hashmaxheap[maxChild], self.hashmaxheap[index] </span><br><span class="line">        self.siftDown(index * <span class="number">2</span>)</span><br><span class="line">        self.siftDown(index * <span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">size</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.currentSize</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.currentSize == <span class="number">0</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers.</span><br><span class="line">    @return: The median of element inside the window at each moving.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">medianSlidingWindow</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        median = nums[<span class="number">0</span>]</span><br><span class="line">        minHeap = HashHeap()</span><br><span class="line">        maxHeap = HashHeap()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> nums[i] &gt; median:</span><br><span class="line">                    minHeap.put(- nums[i])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    maxHeap.put(nums[i])</span><br><span class="line">            <span class="keyword">if</span> i &gt;= k:</span><br><span class="line">                <span class="keyword">if</span> median == nums[i - k]:</span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">not</span> maxHeap.isEmpty():</span><br><span class="line">                        median = maxHeap.get()</span><br><span class="line">                    <span class="keyword">elif</span> <span class="keyword">not</span> minHeap.isEmpty():</span><br><span class="line">                        median = - minHeap.get()</span><br><span class="line">                <span class="keyword">elif</span> median &lt; nums[i - k]:</span><br><span class="line">                    minHeap.delete(- nums[i - k])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    maxHeap.delete(nums[i - k])</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">while</span> maxHeap.size() &gt; minHeap.size():</span><br><span class="line">                minHeap.put(- median)</span><br><span class="line">                median = maxHeap.get()</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> minHeap.size() &gt; maxHeap.size() + <span class="number">1</span>:</span><br><span class="line">                maxHeap.put(median)</span><br><span class="line">                median = - minHeap.get()</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span> i + <span class="number">1</span> &gt;= k:</span><br><span class="line">                res.append(median)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Hash-Heap/"> #Hash Heap </a>
+          
+            <a href="/tags/Heap/"> #Heap </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Median/"> #Median </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/10/239-Sliding-Window-Maximum/">
+                239 Sliding Window Maximum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-10
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个可能包含重复的整数数组，和一个大小为 k 的滑动窗口, 从左到右在数组中滑动这个窗口，找到数组中每个窗口内的最大值。</p>
+</blockquote>
+<p>给出数组 [1,2,7,7,8], 滑动窗口大小为 k = 3. 返回 [7,7,8].<br>最开始，窗口的状态如下：<br>[<code>1, 2 ,7</code> ,7 , 8], 最大值为 7;<br>然后窗口向右移动一位：<br>[1, <code>2, 7, 7</code>, 8], 最大值为 7;<br>最后窗口再向右移动一位：<br>[1, 2, <code>7, 7, 8</code>], 最大值为 8.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一：最直观的，每次从起点<code>i</code>遍历一遍窗口长度<code>j = i, i + k</code>，找最大值，两层for循环，时间复杂度O(n * k)</li>
+<li>方法二：维护一个<strong>hash heap</strong>，每次移动，加入右边元素O(logk)，减去左边元素O(logk)，返回maxheap中的最大值O(1)，时间复杂度为O(n * logk)</li>
+<li><p>使用<strong>Deque</strong>，维护一个递减的deque，时间复杂度为O(n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#24050;&#30693; [1&#65292; 2&#65292; 7&#65292; 3&#65292; 8&#65292; 5&#65292; 3&#65292; 2]&#10;[1], 2&#36827;&#20837;, 2 &#62; 1 &#24377;&#20986;1&#10;[2], 7&#36827;&#20837;&#65292; 7 &#62; 2 &#24377;&#20986;2&#10;[7], &#31532;&#19968;&#20010;&#31383;&#21475;&#26368;&#22823;&#20540;&#20026;7&#65292;3&#36827;&#20837;&#65292;3 &#60; 7&#10;[7, 3], &#31532;&#20108;&#20010;&#31383;&#21475;&#26368;&#22823;&#20540;&#20026;7&#65292;8&#36827;&#20837;&#65292; 8 &#62; 3 &#24377;&#20986;3&#10;[7], 8 &#62; 7, &#24377;&#20986;7 &#10;[8], &#31532;&#19977;&#20010;&#31383;&#21475;&#26368;&#22823;&#20540;&#20026;8</span><br></pre></td></tr></table></figure>
+<p>为什么要用deque呢？注意这种情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#24403;&#21069;&#20026;[9, 8, 7], 6&#36827;&#20837;&#65292;6 &#60; 7, 6&#36827;&#20837;&#10;[9, 8, 7, 6] &#20294;&#26159;&#23545;K=3&#30340;&#31383;&#21475;&#65292;&#24517;&#39035;&#35201;&#24377;&#20986;9&#65292;&#36825;&#27493;&#23601;&#35201;&#29992;&#21040;deque</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Python中使用deque, 和list的API类似，多了<code>popleft</code>, <code>appendleft</code>, <code>extendleft</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line">d = collections.deque()</span><br><span class="line">d.extend([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">d.pop() <span class="comment"># 3</span></span><br><span class="line">d.popleft() <span class="comment"># 1</span></span><br><span class="line">d.append() <span class="comment"># [2, 10]</span></span><br><span class="line">d.appendleft() <span class="comment"># [20, 2, 10]</span></span><br><span class="line">d[<span class="number">0</span>] <span class="comment"># peek at leftmost item</span></span><br><span class="line">d[-<span class="number">1</span>] <span class="comment"># peek at rightmost item</span></span><br><span class="line"><span class="keyword">if</span> d:</span><br><span class="line">    <span class="comment"># d is not empty</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># d is empty</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSlidingWindow</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        d = collections.deque()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">while</span> d <span class="keyword">and</span> d[-<span class="number">1</span>] &lt; nums[i]:</span><br><span class="line">                d.pop()</span><br><span class="line">            d.append(nums[i])</span><br><span class="line">            <span class="keyword">if</span> i &gt; k - <span class="number">1</span> <span class="keyword">and</span> d[<span class="number">0</span>] == nums[i - k]:</span><br><span class="line">                d.popleft()</span><br><span class="line">            <span class="keyword">if</span> i &gt;= k - <span class="number">1</span>:</span><br><span class="line">                res.append(d[<span class="number">0</span>])</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Deque/"> #Deque </a>
+          
+            <a href="/tags/Heap/"> #Heap </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/10/150-Evaluate-Reverse-Polish-Notation/">
+                150 Evaluate Reverse Polish Notation
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-10
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>对于一个逆波兰数学表达式求值</p>
+</blockquote>
+<p>[“2”, “1”, “+”, “3”, “<em>“] -&gt; ((2 + 1) </em> 3) -&gt; 9<br>[“4”, “13”, “5”, “/“, “+”] -&gt; (4 + (13 / 5)) -&gt; 6</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>使用stack，遍历逆波兰表达式</li>
+<li>遇到<code>+-*/</code>则从stack中pop出两个数做相应的运算，结果push入栈</li>
+<li>遇到数字直接入栈</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">evalRPN</span><span class="params">(self, tokens)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type tokens: List[str]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        stack = []</span><br><span class="line">        operators = <span class="string">"+-*/"</span></span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> tokens:</span><br><span class="line">            <span class="keyword">if</span> str <span class="keyword">not</span> <span class="keyword">in</span> operators:</span><br><span class="line">                stack.append(int(str))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                a = stack.pop()</span><br><span class="line">                b = stack.pop()</span><br><span class="line">                <span class="keyword">if</span> str == <span class="string">"+"</span>:</span><br><span class="line">                    stack.append(a + b)</span><br><span class="line">                <span class="keyword">elif</span> str == <span class="string">"-"</span>:</span><br><span class="line">                    stack.append(b - a)</span><br><span class="line">                <span class="keyword">elif</span> str == <span class="string">"*"</span>:</span><br><span class="line">                    stack.append(a * b)</span><br><span class="line">                <span class="keyword">elif</span> str == <span class="string">"/"</span>:</span><br><span class="line">                    <span class="keyword">if</span> a * b &lt; <span class="number">0</span> <span class="keyword">and</span> b % a != <span class="number">0</span>:</span><br><span class="line">                        stack.append(b / a + <span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        stack.append(b / a)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> stack.pop()</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/10/368-Expression-Evaluation/">
+                368 Expression Evaluation
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-10
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给一个用字符串表示的表达式数组，求出这个表达式的值。</p>
+</blockquote>
+<p>对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  &#34;2&#34;, &#34;*&#34;, &#34;6&#34;, &#34;-&#34;, &#34;(&#34;,&#10;  &#34;23&#34;, &#34;+&#34;, &#34;7&#34;, &#34;)&#34;, &#34;/&#34;,&#10;  (&#34;, &#34;1&#34;, &#34;+&#34;, &#34;2&#34;, &#34;)&#34;&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>其值为 2</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>str与int相互转化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = int(&#34;15&#34;) // num = 15&#10;s = str(num) // s = &#34;15&#34;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表达式 -&gt; 建立表达式树</p>
+</li>
+<li>表达式树 -&gt; 求逆波兰表达式</li>
+<li>逆波兰表达式 -&gt; 求值(使用stack)。遍历<strong>逆波兰表达式</strong>，遇到<code>+-*/</code>除pop两个数做相应的运算，结果入栈。如果遇到数字，直接push入栈</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">expressionTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, symbol)</span>:</span></span><br><span class="line">        self.symbol = symbol</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, val, s)</span>:</span></span><br><span class="line">        self.left = <span class="keyword">None</span></span><br><span class="line">        self.right = <span class="keyword">None</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.exp_node = expressionTreeNode(s)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param expression: a list of strings;</span></span><br><span class="line">    <span class="comment"># @return: an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_val</span><span class="params">(self, a, base)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'+'</span> <span class="keyword">or</span> a == <span class="string">'-'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + base</span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'*'</span> <span class="keyword">or</span> a == <span class="string">'/'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span> + base</span><br><span class="line">        <span class="keyword">return</span> sys.maxint</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_tree</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        stack = []</span><br><span class="line">        base = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(expression)):</span><br><span class="line">            <span class="keyword">if</span> expression[i] == <span class="string">'('</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base += <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">elif</span> expression[i] == <span class="string">')'</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base -= <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            val = self.get_val(expression[i], base)</span><br><span class="line">    </span><br><span class="line">            node = MyNode(val, expression[i])</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> val &lt;= stack[-<span class="number">1</span>].val:</span><br><span class="line">                node.left = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> stack:</span><br><span class="line">                stack[-<span class="number">1</span>].right = node</span><br><span class="line">            stack.append(node)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> stack[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_tree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        root.exp_node.left = self.copy_tree(root.left)</span><br><span class="line">        root.exp_node.right = self.copy_tree(root.right)</span><br><span class="line">        <span class="keyword">return</span> root.exp_node</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        root = self.create_tree(expression)</span><br><span class="line">        <span class="keyword">return</span> self.copy_tree(root)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, list)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		<span class="keyword">if</span> root.left:</span><br><span class="line">			self.dfs(root.left, list)</span><br><span class="line">		<span class="keyword">if</span> root.right:</span><br><span class="line">			self.dfs(root.right, list)</span><br><span class="line">		list.append(root.symbol)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">convertToRPN</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        root = self.build(expression)</span><br><span class="line">        self.dfs(root, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">evaluateExpression</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        reversePolishNotation = self.convertToRPN(expression)</span><br><span class="line">        stack = []</span><br><span class="line">        operators = <span class="string">"+-*/"</span></span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> reversePolishNotation:</span><br><span class="line">            <span class="keyword">if</span> str <span class="keyword">not</span> <span class="keyword">in</span> operators:</span><br><span class="line">                stack.append(int(str))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                a = stack.pop()</span><br><span class="line">                b = stack.pop()</span><br><span class="line">                <span class="keyword">if</span> str == <span class="string">"+"</span>:</span><br><span class="line">                    stack.append(a + b)</span><br><span class="line">                <span class="keyword">elif</span> str == <span class="string">"-"</span>:</span><br><span class="line">                    stack.append(b - a)</span><br><span class="line">                <span class="keyword">elif</span> str == <span class="string">"/"</span>:</span><br><span class="line">                    stack.append(b / a)</span><br><span class="line">                <span class="keyword">elif</span> str == <span class="string">"*"</span>:</span><br><span class="line">                    stack.append(a * b)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> stack[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/10/369-Convert-Expression-to-Polish-Notation/">
+                369 Convert Expression to Polish Notation
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-10
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个表达式字符串数组，返回该表达式的波兰表达式。（即去掉括号）</p>
+</blockquote>
+<p>对于 [(5 − 6) <em> 7] 的表达式（该表达式可表示为 [“(“, “5”, “−”, “6”, “)”, “</em>“, “7”]），其对应的波兰表达式为 [<em> - 5 6 7]（其返回的数值为[“</em>“, “−”, “5”, “6”, “7”]）。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先建立表达式树，如题[Expression Tree Build]</li>
+<li>Polish Notation即表达式树前序遍历的结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">expressionTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, symbol)</span>:</span></span><br><span class="line">        self.symbol = symbol</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, val, s)</span>:</span></span><br><span class="line">        self.left = <span class="keyword">None</span></span><br><span class="line">        self.right = <span class="keyword">None</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.exp_node = expressionTreeNode(s)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param expression: A string list</span></span><br><span class="line">    <span class="comment"># @return: The Polish notation of this expression</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_val</span><span class="params">(self, a, base)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'+'</span> <span class="keyword">or</span> a == <span class="string">'-'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + base</span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'*'</span> <span class="keyword">or</span> a == <span class="string">'/'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span> + base</span><br><span class="line">        <span class="keyword">return</span> sys.maxint</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_tree</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        stack = []</span><br><span class="line">        base = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(expression)):</span><br><span class="line">            <span class="keyword">if</span> expression[i] == <span class="string">'('</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base += <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">elif</span> expression[i] == <span class="string">')'</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base -= <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            val = self.get_val(expression[i], base)</span><br><span class="line">    </span><br><span class="line">            node = MyNode(val, expression[i])</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> val &lt;= stack[-<span class="number">1</span>].val:</span><br><span class="line">                node.left = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> stack:</span><br><span class="line">                stack[-<span class="number">1</span>].right = node</span><br><span class="line">            stack.append(node)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> stack[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_tree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        root.exp_node.left = self.copy_tree(root.left)</span><br><span class="line">        root.exp_node.right = self.copy_tree(root.right)</span><br><span class="line">        <span class="keyword">return</span> root.exp_node</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        root = self.create_tree(expression)</span><br><span class="line">        <span class="keyword">return</span> self.copy_tree(root)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, list)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		list.append(root.symbol)</span><br><span class="line">		<span class="keyword">if</span> root.left:</span><br><span class="line">			self.dfs(root.left, list)</span><br><span class="line">		<span class="keyword">if</span> root.right:</span><br><span class="line">			self.dfs(root.right, list)</span><br><span class="line">		</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">convertToPN</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        root = self.build(expression)</span><br><span class="line">        self.dfs(root, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/10/370-Convert-Expression-to-Reverse-Polish-Notation/">
+                370 Convert Expression to Reverse Polish Notation
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-10
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个表达式字符串数组，返回该表达式的逆波兰表达式（即去掉括号）。</p>
+</blockquote>
+<p>对于 [3 - 4 + 5]的表达式（该表达式可表示为[“3”, “-“, “4”, “+”, “5”]），返回 [3 4 - 5 +]（该表达式可表示为 [“3”, “4”, “-“, “5”, “+”]）。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先建立表达式树，如题[Expression Tree Build]</li>
+<li>Reverse Polish Notation即表达式树后序遍历的结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">expressionTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, symbol)</span>:</span></span><br><span class="line">        self.symbol = symbol</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, val, s)</span>:</span></span><br><span class="line">        self.left = <span class="keyword">None</span></span><br><span class="line">        self.right = <span class="keyword">None</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.exp_node = expressionTreeNode(s)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param expression: A string list</span></span><br><span class="line">    <span class="comment"># @return: The Reverse Polish notation of this expression</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_val</span><span class="params">(self, a, base)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'+'</span> <span class="keyword">or</span> a == <span class="string">'-'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + base</span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'*'</span> <span class="keyword">or</span> a == <span class="string">'/'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span> + base</span><br><span class="line">        <span class="keyword">return</span> sys.maxint</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_tree</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        stack = []</span><br><span class="line">        base = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(expression)):</span><br><span class="line">            <span class="keyword">if</span> expression[i] == <span class="string">'('</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base += <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">elif</span> expression[i] == <span class="string">')'</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base -= <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            val = self.get_val(expression[i], base)</span><br><span class="line">    </span><br><span class="line">            node = MyNode(val, expression[i])</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> val &lt;= stack[-<span class="number">1</span>].val:</span><br><span class="line">                node.left = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> stack:</span><br><span class="line">                stack[-<span class="number">1</span>].right = node</span><br><span class="line">            stack.append(node)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> stack[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_tree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        root.exp_node.left = self.copy_tree(root.left)</span><br><span class="line">        root.exp_node.right = self.copy_tree(root.right)</span><br><span class="line">        <span class="keyword">return</span> root.exp_node</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        root = self.create_tree(expression)</span><br><span class="line">        <span class="keyword">return</span> self.copy_tree(root)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, list)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		<span class="keyword">if</span> root.left:</span><br><span class="line">			self.dfs(root.left, list)</span><br><span class="line">		<span class="keyword">if</span> root.right:</span><br><span class="line">			self.dfs(root.right, list)</span><br><span class="line">		list.append(root.symbol)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">convertToRPN</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        root = self.build(expression)</span><br><span class="line">        self.dfs(root, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/08/367-Expression-Tree-Build/">
+                367 Expression Tree Build
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-09
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>表达树是一个二叉树的结构，用于衡量特定的表达。所有表达树的叶子都有一个数字字符串值。而所有表达树的非叶子都有另一个操作字符串值。<br>给定一个表达数组，请构造该表达的表达树，并返回该表达树的根。</p>
+</blockquote>
+<p>对于 <code>(2*6-(23+7)/(1+2))</code> 的表达（可表示为 [“2” “*” “6” “-“ “(“ “23” “+” “7” “)” “/“ “(“ “1” “+” “2” “)”]). 其表达树如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">            [ - ]&#10;         /          \&#10;    [ * ]              [ / ]&#10;  /     \           /         \&#10;[ 2 ]  [ 6 ]      [ + ]        [ + ]&#10;                 /    \       /      \&#10;               [ 23 ][ 7 ] [ 1 ]   [ 2 ]</span><br></pre></td></tr></table></figure></p>
+<p>在构造该表达树后，你只需返回根节点[-]。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先定义一个<code>MyTreeNode</code>，对于每一个符号或者数字，附上一个val，以便于之后evaluate它，来建立树</li>
+<li>如果<code>expression[i]</code>等于”(“或者”)”调整base然后<code>continue</code>跳过后面的步骤</li>
+<li>维护一个递增stack，建立<strong>最小树</strong>，类似题[Max Tree]</li>
+<li>最后递归copy已经建立的树，给<code>self.exp_node</code>赋值</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of ExpressionTreeNode:</span><br><span class="line">class ExpressionTreeNode:</span><br><span class="line">    def __init__(self, symbol):</span><br><span class="line">        self.symbol = symbol</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, val, s)</span>:</span></span><br><span class="line">        self.left = <span class="keyword">None</span></span><br><span class="line">        self.right = <span class="keyword">None</span></span><br><span class="line">        self.val = val</span><br><span class="line">        self.exp_node = ExpressionTreeNode(s)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param expression: A string list</span></span><br><span class="line">    <span class="comment"># @return: The root of expression tree</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_val</span><span class="params">(self, a, base)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'+'</span> <span class="keyword">or</span> a == <span class="string">'-'</span>:</span><br><span class="line">            <span class="keyword">if</span> base == sys.maxint:</span><br><span class="line">                <span class="keyword">return</span> base</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + base</span><br><span class="line">        <span class="keyword">if</span> a == <span class="string">'*'</span> <span class="keyword">or</span> a == <span class="string">'/'</span>:</span><br><span class="line">            <span class="keyword">if</span> base == sys.maxint:</span><br><span class="line">                <span class="keyword">return</span> base</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span> + base</span><br><span class="line">        <span class="keyword">return</span> sys.maxint</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_tree</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        stack = []</span><br><span class="line">        base = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(expression)):</span><br><span class="line">            <span class="keyword">if</span> expression[i] == <span class="string">'('</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base += <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">elif</span> expression[i] == <span class="string">')'</span>:</span><br><span class="line">                <span class="keyword">if</span> base != sys.maxint:</span><br><span class="line">                    base -= <span class="number">10</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            val = self.get_val(expression[i], base)</span><br><span class="line">    </span><br><span class="line">            node = MyTreeNode(val, expression[i])</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> val &lt;= stack[-<span class="number">1</span>].val:</span><br><span class="line">                node.left = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> stack:</span><br><span class="line">                stack[-<span class="number">1</span>].right = node</span><br><span class="line">            stack.append(node)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stack:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> stack[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_tree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        root.exp_node.left = self.copy_tree(root.left)</span><br><span class="line">        root.exp_node.right = self.copy_tree(root.right)</span><br><span class="line">        <span class="keyword">return</span> root.exp_node</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, expression)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        root = self.create_tree(expression)</span><br><span class="line">        <span class="keyword">return</span> self.copy_tree(root)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Expression-Tree/"> #Expression Tree </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Min-Tree/"> #Min Tree </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/06/364-Trapping-Rain-Water-II/">
+                364 Trapping Rain Water II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-07
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出 n <em> m 个非负整数，代表一张X轴上每个区域为 1 \</em> 1 的 2D 海拔图, 计算这个海拔图最多能接住多少（面积）雨水。</p>
+</blockquote>
+<p>例如，给定一个 5*4 的矩阵：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[12,13,0,12],&#10;[13,4,13,12],&#10;[13,8,10,12],&#10;[12,13,12,12],&#10;[13,13,13,13]</span><br></pre></td></tr></table></figure></p>
+<p>返回 14.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>维护一个最小堆，保存最外面一圈的高度，因为最矮的格子决定了水能存放多少</li>
+<li>每次取最小高度 h，与周围4个中没有被访问过的元素进行比较<ul>
+<li>如果该元素的高度小于 h，则注水到其中，并将其加入到最小堆中，设置该元素被访问过</li>
+<li>如果该元素的高度大于 h，则直接将其加入到最小堆中，设置改元素被访问过</li>
+</ul>
+</li>
+<li>创建一个cell类，封装x, y坐标以及高度h，还有定义compare规则</li>
+<li>定义一个<code>dx = [1, -1, 0, 0]</code>和<code>dy = [0, 0, 1, -1]</code>用于生成坐标(x, y)上下左右的点</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cell</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x, y, h)</span>:</span></span><br><span class="line">        self.x, self.y, self.h = x, y, h</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__cmp__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.h &lt; other.h:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> self.h &gt; other.h:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param heights: a matrix of integers</span></span><br><span class="line">    <span class="comment"># @return: an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.dx = [<span class="number">1</span>,-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">        self.dy = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,-<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapRainWater</span><span class="params">(self, heights)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(heights) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        q = Queue.PriorityQueue()</span><br><span class="line">        n = len(heights)</span><br><span class="line">        m = len(heights[<span class="number">0</span>])</span><br><span class="line">        visit = [[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            q.put(Cell(i, <span class="number">0</span>, heights[i][<span class="number">0</span>]))</span><br><span class="line">            q.put(Cell(i, m-<span class="number">1</span>, heights[i][m-<span class="number">1</span>]))</span><br><span class="line">            visit[i][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">            visit[i][m-<span class="number">1</span>] = <span class="keyword">True</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            q.put(Cell(<span class="number">0</span>, i, heights[<span class="number">0</span>][i]))</span><br><span class="line">            q.put(Cell(n-<span class="number">1</span>, i, heights[n-<span class="number">1</span>][i]))</span><br><span class="line">            visit[<span class="number">0</span>][i] = <span class="keyword">True</span></span><br><span class="line">            visit[n-<span class="number">1</span>][i] = <span class="keyword">True</span></span><br><span class="line">            </span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            now = q.get()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                nx = now.x + self.dx[i]</span><br><span class="line">                ny = now.y + self.dy[i]</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= nx <span class="keyword">and</span> nx &lt; n <span class="keyword">and</span> <span class="number">0</span> &lt;= ny <span class="keyword">and</span> ny &lt; m <span class="keyword">and</span> <span class="keyword">not</span> visit[nx][ny]:</span><br><span class="line">                    visit[nx][ny] = <span class="keyword">True</span></span><br><span class="line">                    q.put(Cell(nx, ny, max(now.h,heights[nx][ny])))</span><br><span class="line">                    ans += max(<span class="number">0</span>, now.h - heights[nx][ny])</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Priority-Queue/"> #Priority Queue </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/06/42-Trapping-Rain-Water/">
+                42 Trapping Rain Water
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出 n 个非负整数，代表一张X轴上每个区域宽度为 1 的海拔图, 计算这个海拔图最多能接住多少（面积）雨水。</p>
+</blockquote>
+<p>海拔分别为 [0,1,0,2,1,0,1,3,2,1,2,1], 返回 6.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>一块直柱能接的水取决于左右两边较短的高度，所以第一个比较直观的方法是从左到有遍历一遍记录该点左边的最大值，从右到左遍历一遍记录该点的右边的最大值，此方法为O(n) 时间, O(n) 空间，第二种方法可以利用<strong>单调递减栈</strong>来实现，此方法为O(n) 时间, O(n) 空间</li>
+<li>第三种方法为先找出中间最大点，然后左边部分相当于已经确定了右边最大值，左指针不断向右逼近就行，右边部分相当于记录了左边最大值，右指针不断向左逼近就行，此方法为O(n) 时间, O(1) 空间，第四种方法类似第三种，左右夹逼，每次选择小的那个指针向中间靠拢，此方法为O(n) 时间, O(1) 空间，但是要比方法三少遍历一遍。</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param heights: a list of integers</span></span><br><span class="line">    <span class="comment"># @return: a integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapRainWater</span><span class="params">(self, heights)</span>:</span></span><br><span class="line">        water = <span class="number">0</span></span><br><span class="line">        MaxIndex = -<span class="number">1</span></span><br><span class="line">        MaxHeight = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(heights)):</span><br><span class="line">            <span class="keyword">if</span> heights[i] &gt; MaxHeight:</span><br><span class="line">                MaxHeight = heights[i]</span><br><span class="line">                MaxIndex = i</span><br><span class="line">                </span><br><span class="line">        prev = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, MaxIndex):</span><br><span class="line">            <span class="keyword">if</span> heights[i] &gt; prev:</span><br><span class="line">                water += (heights[i] - prev) * (MaxIndex - i)</span><br><span class="line">                prev = heights[i]</span><br><span class="line">            water -= heights[i]</span><br><span class="line">            </span><br><span class="line">        prev = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights) - <span class="number">1</span>, MaxIndex, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> heights[i] &gt; prev:</span><br><span class="line">                water += (heights[i] - prev) * (i - MaxIndex)</span><br><span class="line">                prev = heights[i]</span><br><span class="line">            water -= heights[i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> water</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法四</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param heights: a list of integers</span></span><br><span class="line">    <span class="comment"># @return: a integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapRainWater</span><span class="params">(self, heights)</span>:</span></span><br><span class="line">        n = len(heights)</span><br><span class="line">        l, r, water, minHeight = <span class="number">0</span>, n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> heights[l] &lt;= minHeight:</span><br><span class="line">                water += minHeight - heights[l]</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> heights[r] &lt;= minHeight:</span><br><span class="line">                water += minHeight - heights[r]</span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">            minHeight = min(heights[l], heights[r])</span><br><span class="line">        <span class="keyword">return</span> water</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+            <a href="/tags/Two-Pointer/"> #Two Pointer </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/207-Interval-Sum-II/">
+                207 Interval Sum II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>在类的构造函数中给一个整数数组, 实现两个方法 query(start, end) 和 modify(index, value):<br>对于 query(start, end), 返回数组中下标 start 到 end 的和。<br>对于 modify(index, value), 修改数组中下标为 index 上的数为 value.</p>
+</blockquote>
+<p>给定数组 A = [1,2,7,8,5].<br>query(0, 2), 返回 10.<br>modify(0, 4), 将 A[0] 修改为 4.<br>query(0, 1), 返回 6.<br>modify(2, 1), 将 A[2] 修改为 1.<br>query(2, 4), 返回 14.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>同[Interval Sum I]的思路一样，只是做成了Interval Sum类，实现API</li>
+<li>分别定义了<code>build</code>, <code>queryHelper</code>, <code>modifyHelper</code>三个helper函数，相应的API接口调用helper函数</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, Sum)</span>:</span></span><br><span class="line">        self.start, self.end, self.Sum = start, end, Sum</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># @param A: An integer list</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        self.root = self.build(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, L, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(L, start, mid)</span><br><span class="line">            root.right = self.build(L, mid + <span class="number">1</span>, end)</span><br><span class="line">            root.Sum = root.left.Sum + root.right.Sum</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            root.Sum = L[start]</span><br><span class="line">        <span class="keyword">return</span> root    </span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param start, end: Indices</span></span><br><span class="line">    <span class="comment"># @return: The sum from start to end</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.queryHelper(self.root, start, end)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">queryHelper</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.Sum</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftSum, rightSum = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftSum = self.queryHelper(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftSum = self.queryHelper(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightSum = self.queryHelper(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightSum = self.queryHelper(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftSum + rightSum</span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param index, value: modify A[index] to value.</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self, index, value)</span>:</span></span><br><span class="line">        self.modifyHelper(self.root, index, value)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modifyHelper</span><span class="params">(self, root, index, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == index <span class="keyword">and</span> root.end == index:</span><br><span class="line">            root.Sum = value</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> root.start &lt;= index <span class="keyword">and</span> index &lt;= mid:</span><br><span class="line">            self.modifyHelper(root.left, index, value)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; index <span class="keyword">and</span> index &lt;= root.end:</span><br><span class="line">            self.modifyHelper(root.right, index, value)</span><br><span class="line">        root.Sum =  root.left.Sum + root.right.Sum</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+  </div>
+
+  
+  <div class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/">&raquo;</a>
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

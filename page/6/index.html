@@ -1,0 +1,1383 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+  <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/206-Interval-Sum-I/">
+                206 Interval Sum I
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组（下标由 0 到 n-1，其中 n 表示数组的规模），以及一个查询列表。每一个查询列表有两个整数 [start, end] 。 对于每个查询，计算出数组中从下标 start 到 end 之间的数的总和，并返回在结果列表中。</p>
+</blockquote>
+<p>对于数组 [1,2,7,8,5]，查询[(1,2),(0,4),(2,4)], 返回 [9,23,20]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>建立<strong>下标型线段树</strong>， 自下而上，回溯更新</li>
+<li><code>root.sum = root.left.sum + root.right.sum</code></li>
+<li>for循环query更新结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of Interval.</span><br><span class="line">class Interval(object):</span><br><span class="line">    def __init__(self, start, end):</span><br><span class="line">        self.start = start</span><br><span class="line">        self.end = end</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, Sum)</span>:</span></span><br><span class="line">        self.start, self.end, self.Sum = start, end, Sum</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A, queries: Given an integer array and an Interval list</span><br><span class="line">                       The ith query is [queries[i-1].start, queries[i-1].end]</span><br><span class="line">    @return: The result list</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, L, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(L, start, mid)</span><br><span class="line">            root.right = self.build(L, mid + <span class="number">1</span>, end)</span><br><span class="line">            root.Sum = root.left.Sum + root.right.Sum</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            root.Sum = L[start]</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.Sum</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftSum, rightSum = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftSum = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftSum = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightSum = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightSum = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftSum + rightSum</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intervalSum</span><span class="params">(self, A, queries)</span>:</span></span><br><span class="line">        root = self.build(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            res.append(self.query(root, q.start, q.end))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/249-Count-the-Smaller-Number-Before-Itself/">
+                249 Count the Smaller Number Before Itself
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组（下标由 0 到 n-1， n 表示数组的规模，取值范围由 0 到10000）。对于数组中的每个 ai 元素，请计算 ai 前的数中比它小的元素的数量。</p>
+</blockquote>
+<p>对于数组[1,2,7,8,5] ，返回 [0,1,2,3,2]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>建立<strong>值型线段树</strong></li>
+<li>首先建立树count都等于0，然后循环query再modify</li>
+<li>注意查找x-1可能出现负值，要做判断，x-1 &lt; 0直接<code>res.append(0)</code></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, count)</span>:</span></span><br><span class="line">        self.start, self.end, self.count = start, end, count</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A: A list of integer</span><br><span class="line">    @return: Count the number of element before this element 'ai' is </span><br><span class="line">             smaller than it and return count number list</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start == end:</span><br><span class="line">            root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(start, mid)</span><br><span class="line">            root.right = self.build(mid + <span class="number">1</span>, end)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.count</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftCount, rightCount = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftCount = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftCount = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightCount = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightCount = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftCount + rightCount</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self, root, index, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == index <span class="keyword">and</span> root.end == index:</span><br><span class="line">            root.count += value</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> root.start &lt;= index <span class="keyword">and</span> index &lt;= mid:</span><br><span class="line">            self.modify(root.left, index, value)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> mid &lt; index <span class="keyword">and</span> index &lt;= root.end:</span><br><span class="line">            self.modify(root.right, index, value)</span><br><span class="line">        </span><br><span class="line">        root.count = root.left.count + root.right.count</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countOfSmallerNumberII</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        root = self.build(<span class="number">0</span>, <span class="number">10000</span>)</span><br><span class="line">        </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> A:</span><br><span class="line">            ans = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> num &gt; <span class="number">0</span>:</span><br><span class="line">                ans = self.query(root, <span class="number">0</span>, num - <span class="number">1</span>)</span><br><span class="line">            self.modify(root, num, <span class="number">1</span>)</span><br><span class="line">            res.append(ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/248-Count-the-Smaller-Number/">
+                248 Count the Smaller Number
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组 （下标由 0 到 n-1，其中 n 表示数组的规模，数值范围由 0 到 10000），以及一个 查询列表。对于每一个查询，将会给你一个整数，请你返回该数组中小于给定整数的元素的数量。</p>
+</blockquote>
+<p>对于数组 [1,2,7,8,5] ，查询 [1,8,5]，返回 [0,4,2]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一，将数组快速排序，然后对于某个数x，二分查找最后一个x-1的位置</li>
+<li>方法二，建立<strong>值型线段树</strong></li>
+<li>对于方法二要注意查找x-1可能出现负值，要做判断，x-1 &lt; 0直接<code>res.append(0)</code></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A: A list of integer</span><br><span class="line">    @return: The number of element in the array that </span><br><span class="line">             are smaller that the given integer</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countOfSmallerNumber</span><span class="params">(self, A, queries)</span>:</span></span><br><span class="line">        A.sort()</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            res.append(self.SmallerNumber(A, q))</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">SmallerNumber</span><span class="params">(self, L, num)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(L) == <span class="number">0</span> <span class="keyword">or</span> L[-<span class="number">1</span>] &lt; num:</span><br><span class="line">            <span class="keyword">return</span> len(L)</span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(L) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> L[mid] &gt;= num:</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start = mid</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> L[start] &gt;= num:</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">if</span> L[end] &gt;= num:</span><br><span class="line">            <span class="keyword">return</span> end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, count)</span>:</span></span><br><span class="line">        self.start, self.end, self.count = start, end, count</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A: A list of integer</span><br><span class="line">    @return: The number of element in the array that </span><br><span class="line">             are smaller that the given integer</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start == end:</span><br><span class="line">            root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(start, mid)</span><br><span class="line">            root.right = self.build(mid + <span class="number">1</span>, end)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.count</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftCount, rightCount = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftCount = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftCount = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightCount = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightCount = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftCount + rightCount</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self, root, index, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == index <span class="keyword">and</span> root.end == index:</span><br><span class="line">            root.count += value</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> root.start &lt;= index <span class="keyword">and</span> index &lt;= mid:</span><br><span class="line">            self.modify(root.left, index, value)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> mid &lt; index <span class="keyword">and</span> index &lt;= root.end:</span><br><span class="line">            self.modify(root.right, index, value)</span><br><span class="line">        </span><br><span class="line">        root.count = root.left.count + root.right.count</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countOfSmallerNumber</span><span class="params">(self, A, queries)</span>:</span></span><br><span class="line">        root = self.build(<span class="number">0</span>, <span class="number">1000</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> A:</span><br><span class="line">            self.modify(root, num, <span class="number">1</span>)</span><br><span class="line">            </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            ans = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> q &gt; <span class="number">0</span>:</span><br><span class="line">                ans = self.query(root, <span class="number">0</span>, q - <span class="number">1</span>)</span><br><span class="line">            res.append(ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Quick-Sort/"> #Quick Sort </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/205-Interval-Minimum-Number/">
+                205 Interval Minimum Number
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组（下标由 0 到 n-1，其中 n 表示数组的规模），以及一个查询列表。每一个查询列表有两个整数 [start, end]。 对于每个查询，计算出数组中从下标 start 到 end 之间的数的最小值，并返回在结果列表中。</p>
+</blockquote>
+<p>对于数组 [1,2,7,8,5]， 查询 [(1,2),(0,4),(2,4)]，返回 [2,1,5]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>使用线段树，典型例题</li>
+<li>首先构造node类，实现Query和Build</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of Interval.</span><br><span class="line">class Interval(object):</span><br><span class="line">    def __init__(self, start, end):</span><br><span class="line">        self.start = start</span><br><span class="line">        self.end = end</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, min)</span>:</span></span><br><span class="line">        self.start, self.end, self.min = start, end, min</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A, queries: Given an integer array and an Interval list</span><br><span class="line">                       The ith query is [queries[i-1].start, queries[i-1].end]</span><br><span class="line">    @return: The result list</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.helper(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, L, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start == end:</span><br><span class="line">            root = segmentTreeNode(start, end, L[start])</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.helper(L, start, mid)</span><br><span class="line">            root.right = self.helper(L, mid + <span class="number">1</span>, end)</span><br><span class="line">        root.min = min(root.left.min, root.right.min)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end <span class="keyword">or</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> sys.maxint</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> root.start &gt;= start <span class="keyword">and</span> root.end &lt;= end:</span><br><span class="line">            <span class="keyword">return</span> root.min</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftMin, rightMin = sys.maxint, sys.maxint</span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftMin = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftMin = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightMin = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightMin = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> min(leftMin, rightMin)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intervalMinNumber</span><span class="params">(self, A, queries)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        root = self.build(A)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            res.append(self.query(root, q.start, q.end))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/203-Segment-Tree-Modify/">
+                203 Segment Tree Modify
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>对于一棵 最大线段树, 每个节点包含一个额外的 max 属性，用于存储该节点所代表区间的最大值。<br>设计一个 modify 的方法，接受三个参数 root、 index 和 value。该方法将 root 为跟的线段树中 [start, end] = [index, index] 的节点修改为了新的 value ，并确保在修改后，线段树的每个节点的 max 属性仍然具有正确的值。</p>
+</blockquote>
+<p>对于线段树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                      [<span class="number">1</span>, <span class="number">4</span>, max=<span class="number">3</span>]</span><br><span class="line">                    /                \</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, max=<span class="number">2</span>]                [<span class="number">3</span>, <span class="number">4</span>, max=<span class="number">3</span>]</span><br><span class="line">       /              \             /             \</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, max=<span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>, max=<span class="number">1</span>], [<span class="number">3</span>, <span class="number">3</span>, max=<span class="number">0</span>], [<span class="number">4</span>, <span class="number">4</span>, max=<span class="number">3</span>]</span><br></pre></td></tr></table></figure></p>
+<p>如果调用 modify(root, 2, 4), 返回:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                      [<span class="number">1</span>, <span class="number">4</span>, max=<span class="number">4</span>]</span><br><span class="line">                    /                \</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, max=<span class="number">4</span>]                [<span class="number">3</span>, <span class="number">4</span>, max=<span class="number">3</span>]</span><br><span class="line">       /              \             /             \</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, max=<span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>, max=<span class="number">4</span>], [<span class="number">3</span>, <span class="number">3</span>, max=<span class="number">0</span>], [<span class="number">4</span>, <span class="number">4</span>, max=<span class="number">3</span>]</span><br></pre></td></tr></table></figure></p>
+<p>或 调用 modify(root, 4, 0), 返回:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                     [<span class="number">1</span>, <span class="number">4</span>, max=<span class="number">2</span>]</span><br><span class="line">                    /                \</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, max=<span class="number">2</span>]                [<span class="number">3</span>, <span class="number">4</span>, max=<span class="number">0</span>]</span><br><span class="line">       /              \             /             \</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, max=<span class="number">2</span>], [<span class="number">2</span>, <span class="number">2</span>, max=<span class="number">1</span>], [<span class="number">3</span>, <span class="number">3</span>, max=<span class="number">0</span>], [<span class="number">4</span>, <span class="number">4</span>, max=<span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>自上而下，递归查找</li>
+<li>自下而上，回溯更新</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end, max):</span><br><span class="line">        self.start, self.end, self.max = start, end, max</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root, index, value: The root of segment tree and </span><br><span class="line">    @ change the node's value with [index, index] to the new given value</span><br><span class="line">    @return: nothing</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self, root, index, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == index <span class="keyword">and</span> root.end == index:</span><br><span class="line">            root.max = value</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">        mid = (root.start + root.end) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> root.start &lt;= index <span class="keyword">and</span> index &lt;= mid:</span><br><span class="line">            self.modify(root.left, index, value)</span><br><span class="line">        <span class="keyword">elif</span> mid &lt; index <span class="keyword">and</span> index &lt;= root.end:</span><br><span class="line">            self.modify(root.right, index, value)</span><br><span class="line">        root.max = max(root.left.max, root.right.max)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/439-Segment-Tree-Build-II/">
+                439 Segment Tree Build II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>线段树是一棵二叉树，他的每个节点包含了两个额外的属性start和end用于表示该节点所代表的区间。start和end都是整数，并按照如下的方式赋值:<br>根节点的 start 和 end 由 build 方法所给出。<br>对于节点 A 的左儿子，有 start=A.left, end=(A.left + A.right) / 2。<br>对于节点 A 的右儿子，有 start=(A.left + A.right) / 2 + 1, end=A.right。<br>如果 start 等于 end, 那么该节点是叶子节点，不再有左右儿子。<br>实现一个 build 方法，接受 start 和 end 作为参数, 然后构造一个代表区间 [start, end] 的线段树，每个节点包含这段区间的最大值，返回这棵线段树的根。</p>
+</blockquote>
+<p>给定[3,2,1,4]. 对应的线段树为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                 [<span class="number">0</span>,  <span class="number">3</span>] (max = <span class="number">4</span>)</span><br><span class="line">                  /            \</span><br><span class="line">        [<span class="number">0</span>,  <span class="number">1</span>] (max = <span class="number">3</span>)     [<span class="number">2</span>, <span class="number">3</span>]  (max = <span class="number">4</span>)</span><br><span class="line">        /        \               /             \</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>](max = <span class="number">3</span>)  [<span class="number">1</span>, <span class="number">1</span>](max = <span class="number">2</span>)[<span class="number">2</span>, <span class="number">2</span>](max = <span class="number">1</span>) [<span class="number">3</span>, <span class="number">3</span>] (max = <span class="number">4</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>自上而下，递归分裂</li>
+<li>自下而上，回溯更新</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end, max):</span><br><span class="line">        self.start, self.end, self.max = start, end, max</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="comment"># @oaram A: a list of integer</span></span><br><span class="line">    <span class="comment"># @return: The root of Segment Tree</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.helper(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, L, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start == end:</span><br><span class="line">            root = SegmentTreeNode(start, end, L[start])</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">            </span><br><span class="line">        root = SegmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.helper(L, start, mid)</span><br><span class="line">            root.right = self.helper(L, mid + <span class="number">1</span>, end)</span><br><span class="line">        root.max = max(root.left.max, root.right.max)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/201-Segment-Tree-Build/">
+                201 Segment Tree Build
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>线段树是一棵二叉树，他的每个节点包含了两个额外的属性start和end用于表示该节点所代表的区间。start和end都是整数，并按照如下的方式赋值:<br>根节点的 start 和 end 由 build 方法所给出。<br>对于节点 A 的左儿子，有 start=A.left, end=(A.left + A.right) / 2。<br>对于节点 A 的右儿子，有 start=(A.left + A.right) / 2 + 1, end=A.right。<br>如果 start 等于 end, 那么该节点是叶子节点，不再有左右儿子。<br>实现一个 build 方法，接受 start 和 end 作为参数, 然后构造一个代表区间 [start, end] 的线段树，返回这棵线段树的根。</p>
+</blockquote>
+<p>比如给定start=1, end=6，对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [1,  6]&#10;             /        \&#10;      [1,  3]           [4,  6]&#10;      /     \           /     \&#10;   [1, 2]  [3,3]     [4, 5]   [6,6]&#10;   /    \           /     \&#10;[1,1]   [2,2]     [4,4]   [5,5]</span><br></pre></td></tr></table></figure></p>
+<p>线段树(又称区间树), 是一种高级数据结构，他可以支持这样的一些操作:</p>
+<ul>
+<li>查找给定的点包含在了哪些区间内</li>
+<li>查找给定的区间包含了哪些点</li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>自上而下，递归分裂</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end):</span><br><span class="line">        self.start, self.end = start, end</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="comment"># @param start, end: Denote an segment / interval</span></span><br><span class="line">    <span class="comment"># @return: The root of Segment Tree</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        root = SegmentTreeNode(start, end)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(start, mid)</span><br><span class="line">            root.right = self.build(mid + <span class="number">1</span>, end)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/247-Segment-Tree-Query-II/">
+                247 Segment Tree Query II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>对于一个数组，我们可以对其建立一棵线段树, 每个结点存储一个额外的值count来代表这个结点所指代的数组区间内的元素个数. (数组中并不一定每个位置上都有元素)<br>实现一个query的方法，该方法接受三个参数root, start和end, 分别代表线段树的根节点和需要查询的区间，找到数组中在区间[start, end]内的元素个数。</p>
+</blockquote>
+<p>对于数组 [0, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">                  [0, 3, count=3]&#10;                  /             \&#10;       [0,1,count=1]             [2,3,count=2]&#10;       /         \               /            \&#10;[0,0,count=1] [1,1,count=0] [2,2,count=1], [3,3,count=1]</span><br></pre></td></tr></table></figure></p>
+<p>query(1, 1), return 0<br>query(1, 2), return 1<br>query(2, 3), return 2<br>query(0, 2), return 2</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>本题为<strong>值型线段树</strong>的Query</li>
+<li>如果查询区间 == 节点表示区间 =&gt; 直接返回root.count</li>
+<li>如果查询区间被节点表示的左/右区间包含 =&gt; 递归搜索左/右区间</li>
+<li>如果查询区间和结点表示的区间相交不相等 =&gt; 分裂递归搜索左/右区间</li>
+<li>典型的divide &amp; conquer</li>
+<li>最后返回 leftCount + rightCount</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end, count):</span><br><span class="line">        self.start, self.end, self.count = start, end, count</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="comment"># @param root, start, end: The root of segment tree and </span></span><br><span class="line">    <span class="comment">#                          an segment / interval</span></span><br><span class="line">    <span class="comment"># @return: The count number in the interval [start, end] </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end <span class="keyword">or</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> root.start &gt;= start <span class="keyword">and</span> root.end &lt;= end:</span><br><span class="line">            <span class="keyword">return</span> root.count</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftCount, rightCount = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftCount = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftCount = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightCount = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightCount = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftCount + rightCount</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/202-Segment-Tree-Query/">
+                202 Segment Tree Query
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>对于一个有n个数的整数数组，在对应的线段树中, 根节点所代表的区间为0-n-1, 每个节点有一个额外的属性max，值为该节点所代表的数组区间start到end内的最大值。<br>为SegmentTree设计一个query的方法，接受3个参数root, start和end，线段树root所代表的数组中子区间[start, end]内的最大值。</p>
+</blockquote>
+<p>对于数组 [1, 4, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [0, 3, max=4]&#10;              /             \&#10;       [0,1,max=4]        [2,3,max=3]&#10;       /         \        /         \&#10;[0,0,max=1] [1,1,max=4] [2,2,max=2], [3,3,max=3]</span><br></pre></td></tr></table></figure></p>
+<p>query(root, 1, 1), return 4<br>query(root, 1, 2), return 4<br>query(root, 2, 3), return 3<br>query(root, 0, 2), return 4</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>本题为<strong>下标型线段树</strong>的Query</li>
+<li>如果查询区间 == 节点表示区间 =&gt; 直接返回root.max</li>
+<li>如果查询区间被节点表示的左/右区间包含 =&gt; 递归搜索左/右区间</li>
+<li>如果查询区间和结点表示的区间相交不相等 =&gt; 分裂递归搜索左/右区间</li>
+<li>典型的divide &amp; conquer</li>
+<li>最后返回max(leftMax, rightMax)</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end, max):</span><br><span class="line">        self.start, self.end, self.max = start, end, max</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="comment"># @param root, start, end: The root of segment tree and </span></span><br><span class="line">    <span class="comment">#                          an segment / interval</span></span><br><span class="line">    <span class="comment"># @return: The maximum number in the interval [start, end]</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end <span class="keyword">or</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> - sys.maxint</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> root.start &gt;= start <span class="keyword">and</span> root.end &lt;= end:</span><br><span class="line">            <span class="keyword">return</span> root.max</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftMax, rightMax = - sys.maxint - <span class="number">1</span>, - sys.maxint - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftMax = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftMax = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightMax = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightMax = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> max(leftMax, rightMax)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/285-Inorder-Successor-in-BST/">
+                285 Inorder Successor in BST
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-04
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>Given a binary search tree and a node in it, find the in-order successor of that node in the BST.</p>
+</blockquote>
+<p>Given tree = [2,1] and node = 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; /&#10;1</span><br></pre></td></tr></table></figure></p>
+<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; / \&#10;1   3</span><br></pre></td></tr></table></figure></p>
+<p>return node 3.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>successor变量记录<strong>root</strong>的父亲结点，当while循环结束时，如果原本的root = None或者p不存在与BST中(那么此刻root = None)，都返回None</li>
+<li>找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</li>
+<li>找到p之后，如果有右儿子，则找到右子树中的<strong>最左边的值</strong>(最小值)</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root &lt;TreeNode&gt;: The root of the BST.</span><br><span class="line">    @param p &lt;TreeNode&gt;: You need find the successor node of p.</span><br><span class="line">    @return &lt;TreeNode&gt;: Successor of p.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderSuccessor</span><span class="params">(self, root, p)</span>:</span></span><br><span class="line">        successor = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">while</span> root != <span class="keyword">None</span> <span class="keyword">and</span> root.val != p.val:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt; p.val:</span><br><span class="line">                successor = root</span><br><span class="line">                root = root.left</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                root = root.right</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 原本的root = None 或者 p不存在与BST中，此刻root = None</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">                </span><br><span class="line">        <span class="comment"># 找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</span></span><br><span class="line">        <span class="keyword">if</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> successor</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找到p之后，如果有右儿子，则找到右子树中的最左边的值（最小值）</span></span><br><span class="line">        root = root.right</span><br><span class="line">        <span class="keyword">while</span> root.left != <span class="keyword">None</span>:</span><br><span class="line">            root = root.left</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+  </div>
+
+  
+  <div class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/">&raquo;</a>
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

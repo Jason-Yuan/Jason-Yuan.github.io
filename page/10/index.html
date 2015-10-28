@@ -1,0 +1,1411 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column 
+   page-home 
+">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+  <div id="posts" class="posts-expand">
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/27/155-Min-Stack/">
+                155 Min Stack
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-27
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>实现一个带有取最小值min方法的栈，min方法将返回当前栈中的最小值。你实现的栈将支持<strong>push</strong>，<strong>pop</strong>和<strong>min</strong>操作，所有操作要求都在O(1)时间内完成。</p>
+</blockquote>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>使用两个stack实现， 一个stack正常存储数值，另一个stack存储每次的最小值（保存最小值的变化序列）</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.minstack = []</span><br><span class="line">        self.stack = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type x: int</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line">        <span class="keyword">if</span> len(self.minstack) == <span class="number">0</span> <span class="keyword">or</span> self.minstack[-<span class="number">1</span>] &gt; x:</span><br><span class="line">            self.minstack.append(x)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.minstack.append(self.minstack[-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.minstack.pop()</span><br><span class="line">        <span class="keyword">return</span> self.stack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.stack[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.minstack[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/26/126-Word-Ladder-II/">
+                126 Word Ladder II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出两个单词（start和end）和一个字典，找出所有从start到end的最短转换序列<br>比如：<br>1.每次只能改变一个字母。<br>2.变换过程中的中间单词必须在字典中出现。</p>
+</blockquote>
+<p>start = <strong>“hit”</strong><br>end = <strong>“cog”</strong><br>dict = <strong>[“hot”,”dot”,”dog”,”lot”,”log”]</strong></p>
+<p>返回<br>[<br>    [“hit”,”hot”,”dot”,”dog”,”cog”],<br>    [“hit”,”hot”,”lot”,”log”,”cog”]<br>  ]</p>
+<p><strong>注意</strong></p>
+<ul>
+<li>所有单词具有相同的长度。</li>
+<li>所有单词都只包含小写字母。</li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先，善用一个条件，所有的单词<strong>长度相同</strong></li>
+<li><p>建立一个index，作用就是把去掉某一个位置的字母后，剩余部分相同的放入一个桶中。为了优化时间复杂度。比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;abcd&#34; -&#62; (1, bcd) &#60;- &#34;fbcd&#34;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BFS一遍，确定为一个单词在图中的第几层</p>
+</li>
+<li>DFS一遍，找到每一个可行的路线。此时BFS的作用就是从第n层只能往n+1层走，以保证最短路径</li>
+<li>为什么使用<code>dict.get(key)</code>而不是<code>dict[key]</code>？<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#21487;&#20197;&#35774;&#23450;&#19968;&#20010;default value, &#22914;&#26524;key&#19981;&#23384;&#22312;&#65292;&#23601;&#24314;&#31435;&#30456;&#24212;&#30340;key-value pair&#10;a = dictionary.get(&#34;bogus&#34;, None)   # return None&#10;a = dictionary[&#34;bogus&#34;]             # raise KeyError</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildIndex</span><span class="params">(self, length, dict)</span>:</span></span><br><span class="line">        indexes = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            index = &#123;&#125;</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">                entry = word[:i] + word[i + <span class="number">1</span>:]</span><br><span class="line">                words = index.get(entry, [])</span><br><span class="line">                words.append(word)</span><br><span class="line">                index[entry] = words</span><br><span class="line">            indexes.append(index)</span><br><span class="line">        <span class="keyword">return</span> indexes</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNextWord</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            entry = word[:i] + word[i + <span class="number">1</span>:]</span><br><span class="line">            <span class="keyword">if</span> entry <span class="keyword">in</span> self.indexes[i]:</span><br><span class="line">                <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.indexes[i][entry]:</span><br><span class="line">                    <span class="keyword">if</span> nextWord != word:</span><br><span class="line">                        res.append(nextWord)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        self.distance = &#123;&#125;</span><br><span class="line">        self.distance[start] = <span class="number">0</span></span><br><span class="line">        q = Queue.Queue()</span><br><span class="line">        q.put(start)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            head = q.get()</span><br><span class="line">            <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.getNextWord(head):</span><br><span class="line">                <span class="keyword">if</span> nextWord <span class="keyword">not</span> <span class="keyword">in</span> self.distance:</span><br><span class="line">                    self.distance[nextWord] = self.distance[head] + <span class="number">1</span></span><br><span class="line">                    q.put(nextWord)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self, current, target, path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> current == target:</span><br><span class="line">            self.result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> self.getNextWord(current):</span><br><span class="line">            <span class="keyword">if</span> self.distance[word] - <span class="number">1</span> == self.distance[current]:</span><br><span class="line">                self.DFS(word, target, path + [word])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord, endWord, wordlist)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type beginWord: str</span><br><span class="line">        :type endWord: str</span><br><span class="line">        :type wordlist: Set[str]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> endWord <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> len(beginWord) != len(endWord):</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">not</span> <span class="keyword">in</span> wordlist <span class="keyword">or</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordlist:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        self.indexes = self.buildIndex(len(beginWord), wordlist)</span><br><span class="line">        self.BFS(beginWord, endWord)</span><br><span class="line">        </span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">in</span> self.distance:</span><br><span class="line">            self.DFS(beginWord, endWord, [beginWord])</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> self.result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/String/"> #String </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/26/127-Word-Ladder-I/">
+                127 Word Ladder I
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="原题">原题</h3><blockquote>
+<p>给出两个单词（start和end）和一个字典，找到从start到end的最短转换序列<br>比如：<br>1.每次只能改变一个字母。<br>2.变换过程中的中间单词必须在字典中出现。</p>
+</blockquote>
+<p>start = <strong>“hit”</strong><br>end = <strong>“cog”</strong><br>dict = <strong> [“hot”,”dot”,”dog”,”lot”,”log”]</strong><br>一个最短的变换序列是<br><strong>“hit”</strong>-&gt;<strong>“hot” </strong>-&gt;<strong> “dot”</strong>-&gt;<strong> “dog”</strong>-&gt;<strong>“cog”</strong> 返回它的长度 5</p>
+<p><strong>注意</strong>:</p>
+<ul>
+<li>如果没有转换序列则返回0。</li>
+<li>所有单词具有相同的长度。</li>
+<li>所有单词都只包含小写字母。</li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>无向图求最短路 - BFS 中的<strong>level order</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#21363;&#27599;&#27425;count&#19968;&#19979;&#36825;&#19968;&#23618;&#30340;size()&#65292;&#28982;&#21518;&#36941;&#21382;&#36825;&#19968;&#23618;&#10;size = q.qsize()&#10;for i in range(size):</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>题目中如果提到单词，要考虑到单词长度一般是有限的，进行优化</p>
+</li>
+<li>如何找通过一次改变可以形成的单词在不在字典中，假设单词长度为L，变量单词，每个位置可以有26种变换，所以O(L*26)，再check是否存在在字典中O(1)复杂度（更精确，应该是O(L)的复杂度）</li>
+<li>ord(‘a’) =&gt; 97 / chr(97) =&gt; a</li>
+<li>Java中的<code>HashSet&lt;xxx&gt;</code>可以用Python中的<code>Set()</code></li>
+<li>注意Python中string是immutable<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import string&#10;aToz = string.ascii_lowercase&#10;# &#39;str&#39; object does not support item assignment&#10;newWord[i] = &#39;a&#39; &#10;# &#25152;&#20197;&#65292;&#25442;&#31181;&#26041;&#24335;&#10;newWord = current[:i] + &#39;a&#39; + current[i+1:]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNextWord</span><span class="params">(self, word, dict)</span>:</span></span><br><span class="line">        aToz = string.ascii_lowercase</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> aToz:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                <span class="keyword">if</span> word[j] == char:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                newWord = word[:j] + char + word[j+<span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">if</span> newWord <span class="keyword">in</span> dict:</span><br><span class="line">                    res.append(newWord)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord, endWord, wordList)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type beginWord: str</span><br><span class="line">        :type endWord: str</span><br><span class="line">        :type wordList: Set[str]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        q = Queue.Queue()</span><br><span class="line">        visited = set()</span><br><span class="line">        q.put(beginWord)</span><br><span class="line">        visited.add(beginWord)</span><br><span class="line">        length = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            length += <span class="number">1</span></span><br><span class="line">            size = q.qsize()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                word = q.get()</span><br><span class="line">                <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.getNextWord(word, wordList):</span><br><span class="line">                    <span class="keyword">if</span> nextWord <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    <span class="keyword">if</span> nextWord == endWord:</span><br><span class="line">                        <span class="keyword">return</span> length</span><br><span class="line">                    q.put(nextWord)</span><br><span class="line">                    visited.add(nextWord)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Level-Order-Traversal/"> #Level Order Traversal </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/26/40-Combination-Sum-II/">
+                40 Combination Sum II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一组候选数字(C)和目标数字(T),找出C中所有的组合，使组合中数字的和为T。C中每个数字在每个组合中只能使用一次。</p>
+</blockquote>
+<p>给出一个例子，候选数字集合为<strong>[10,1,6,7,2,1,5] </strong> 和目标数字 <strong>8
+</strong><br>解集为：<strong>[[1,7], [1,2,5], [2,6], [1,1,6]]</strong> </p>
+<p><strong>注意</strong>： </p>
+<ul>
+<li>所有的数字(包括目标数字)均为正整数。</li>
+<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
+<li>解集不能包含重复的组合。 </li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>Backtracking, DFS</li>
+<li>与permutation和subset解题思路类似</li>
+<li>在<code>combination sum I</code>的基础上，此题关键在于candidate中可能出现重复元素，所以使用<code>prev</code>参数每次check一下<code>candidates[i] == prev</code>的话就<code>continue</code><br>因为如果candidates = [1(a), 1(b), 2, 3], target = 4<br>结果可能会出现 [1(a), 3], [1(b), 3] 所以如果加上判断后<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prev = 1(a)&#10;candidates[i] = a(b)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此时会<code>continue</code></p>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        prev = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> prev != -<span class="number">1</span> <span class="keyword">and</span> prev == candidates[i]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path+[candidates[i]], i+<span class="number">1</span>, result)</span><br><span class="line">            prev = candidates[i]</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum2</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">        candidates.sort()    </span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/26/39-Combination-Sum-I/">
+                39 Combination Sum I
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一组候选数字(C)和目标数字(T),找到C中所有的组合，使找出的数字和为T。C中的数字可以无限制重复被选取。</p>
+</blockquote>
+<p>例如,给出候选数组<strong>[2,3,6,7]</strong>和目标数字7<br>所求的解为：<strong>[7]</strong> 和 <strong>[2,2,3]</strong> </p>
+<p><strong>注意</strong>： </p>
+<ul>
+<li>所有的数字(包括目标数字)均为正整数。</li>
+<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
+<li>解集不能包含重复的组合。 </li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>backtracking 在代码的实现上可以在使用<code>加了再还原</code>的方式，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.append(candidates[i])&#10;self.helper(candidates, target - candidates[i], path, i, result)&#10;path.pop()</span><br></pre></td></tr></table></figure>
+<p>也可以直接把添加的步骤直接通过参数传递的方式，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与permutation和subset的思考方式类似，DFS</p>
+</li>
+<li>每一次向下搜索时，起始位置都和上一次相同，因为可以取相同元素不止一次，即每次向下传入的<code>index</code></li>
+<li>For循环每次从<code>index</code>开始，避免返回到之前的元素</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        candidates.sort()</span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sum/"> #Sum </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/07/28/Python中的-arg和-kwarg/">
+                Python中的*arg和**kwarg
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-07-28
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/Python/">Python</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="一个简单的函数">一个简单的函数</h1><p>首先我们可以定一个简单的函数, 函数内部只考虑<code>required_arg</code>这一个形参(<strong>位置参数</strong>)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def exmaple(required_arg):&#10;    print required_arg&#10;&#10;exmaple(&#34;Hello, World!&#34;)&#10;&#10;&#62;&#62; Hello, World!</span><br></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/28/Python中的-arg和-kwarg/#more">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kwarg/"> #**kwarg </a>
+          
+            <a href="/tags/arg/"> #*arg </a>
+          
+            <a href="/tags/Python/"> #Python </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/07/25/你能区别Internet和Web吗/">
+                你能区别Internet和Web吗
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-07-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/MISC/">MISC</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>之前看过一个很火的帖子，说从你在浏览器输入一个网址到网页呈现在你面前都经历了哪些步骤。脑洞大开的geek，技术宅等一批大神给出了不断丰富的答案。我觉得我也有必要借此好好了解一下这里面的细节。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/25/你能区别Internet和Web吗/#more">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DNS/"> #DNS </a>
+          
+            <a href="/tags/HTTP/"> #HTTP </a>
+          
+            <a href="/tags/Internet/"> #Internet </a>
+          
+            <a href="/tags/RESTFUL/"> #RESTFUL </a>
+          
+            <a href="/tags/Web/"> #Web </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/07/22/TYPlayer-为网站添加视频背景/">
+                TYPlayer - 为网站添加视频背景
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-07-22
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/MISC/">MISC</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-723be3ca1ce754fc_zps26e4w1pc.png" alt="You Tube"></p>
+<p>最近突然想把网站的背景图片换成视频玩一玩，瞬间觉得高大上有木有！虽然…loading的有点慢…不过也没有深入研究，只是在Github看到了这个插件。觉得很好用，大牛绕过，小白们走起</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/22/TYPlayer-为网站添加视频背景/#more">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Background-Vedio/"> #Background Vedio </a>
+          
+            <a href="/tags/Youtube/"> #Youtube </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/06/28/C-中的System-Threading/">
+                C#中的System-Threading
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-06-28
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/ASP-NET/">ASP.NET</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-7fd36207e95438db_zpsomzwjb0k.png" alt="MultiThreading ? ? ?"></p>
+<p>在说C#中的<code>System.Threading</code>之前，先来简单说说<code>Process</code>, <code>Thread</code>, <code>CPU</code>, 和<code>OS</code>，算是一个铺垫，说的比较浅，都算是OS课的范畴。话说这是我转专业上的第一门课，当时几乎没有任何编程基础和计算机基础知识，可谓相当痛苦。学习效果也比较渣，现在算是回头慢慢补救。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/28/C-中的System-Threading/#more">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ASP-NET/"> #ASP.NET </a>
+          
+            <a href="/tags/C/"> #C# </a>
+          
+            <a href="/tags/Operating-System/"> #Operating System </a>
+          
+            <a href="/tags/Take-a-Bite/"> #Take a Bite </a>
+          
+            <a href="/tags/Thread-Process/"> #Thread & Process </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/06/24/通过Github-Pages和Jekyll搭建个人博客/">
+                通过Github Pages和Jekyll搭建个人博客
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-06-24
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/MISC/">MISC</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <hr>
+<h1 id="什么是Jekyll_?">什么是Jekyll ?</h1><p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-f98becf54ff9fabc_zpstbnjl7ae.png" alt="Jekyll"></p>
+<ul>
+<li>Jekyll 是目前非常流行的静态网站生成器(static website generator)。静态网站即只包含HTML, CSS 和 Javascript<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jekyll(raw_text_files, templates)&#10;&#123;&#10;    return Beautiful_web_pages;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/24/通过Github-Pages和Jekyll搭建个人博客/#more">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Github-Pages/"> #Github Pages </a>
+          
+            <a href="/tags/Jekyll/"> #Jekyll </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+  </div>
+
+  
+  <div class="pagination">
+    <a class="extend prev" rel="prev" href="/page/9/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/">&raquo;</a>
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>

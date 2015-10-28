@@ -1,0 +1,1061 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.2"/>
+
+
+    <meta name="description" content="WORK HARD, PLAY HARD" />
+
+
+
+  <meta name="keywords" content="DNS,HTTP,Internet,RESTFUL,Web," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Code Chemistry" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.2" />
+
+
+
+
+  <title> 你能区别Internet和Web吗 // Code Chemistry </title>
+</head>
+
+<body>
+<!--[if lte IE 8]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'> <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari." style='margin-left:auto;margin-right:auto;display: block;'/></a></div> <![endif]-->
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Code Chemistry</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+     
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-categories">
+        <a href="/categories">
+          <i class="menu-item-icon icon-categories"></i> <br />
+          Categories
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-about">
+        <a href="/about">
+          <i class="menu-item-icon icon-about"></i> <br />
+          About
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              你能区别Internet和Web吗
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-07-25
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/MISC/">MISC</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <p>之前看过一个很火的帖子，说从你在浏览器输入一个网址到网页呈现在你面前都经历了哪些步骤。脑洞大开的geek，技术宅等一批大神给出了不断丰富的答案。我觉得我也有必要借此好好了解一下这里面的细节。</p>
+<a id="more"></a>
+<p>请注意，前方大波词汇来袭！下面这些词汇你都了解吗？<br><code>Client</code><br><code>Web Server</code><br><code>DNS</code><br><code>Hosting</code><br><code>IP address</code><br><code>Mail Server</code><br><code>HTTP</code><br><code>HTTPs</code><br><code>URLs</code><br><code>Domain Name</code><br><code>TLD</code><br><code>IPv4</code><br><code>IPv6</code><br><code>TCP/IP</code><br><code>Router</code><br><code>Switch</code><br><code>LAN</code><br><code>VPS</code><br><code>Dedicated Server</code><br><code>FTP</code><br><code>REST</code><br><code>RESTFUL</code><br><code>A record</code><br><code>CNAME</code><br><code>CDN</code></p>
+<hr>
+<p>如果有一些似曾相识，却又说不清楚，不妨接着往下看，给你一个basic idea。下面这张图大体解释了Internet和Web的不同。</p>
+<p><img src="http://s7.computerhistory.org/is/image/CHM/500004969?$re-medium$" alt="Internet vs Web"></p>
+<h1 id="先来说说Internet_Architecture">先来说说Internet Architecture</h1><p>Internet一项最主要的功能就是实现计算机之间的<strong>信息传递</strong>。</p>
+<blockquote>
+<p>The backbone of the internet is made up of core routers, primary networks, and typically fiber optic cables connecting networks around the globe.</p>
+</blockquote>
+<h2 id="Internet上的计算机分类">Internet上的计算机分类</h2><p>接入Internet的计算机中，有的request信息，有的对request进行反馈，也有的两者兼有。因此，接入Internet的计算机可以大致分为两类：Client &amp; Server</p>
+<h3 id="Client">Client</h3><p>任何能够在网络上请求资源、信息的设备都可以看做是客户端(Client)，比如手机，台式机，笔记本，平板电脑……</p>
+<h3 id="Server">Server</h3><ul>
+<li><p>同个人设备或者说客户端相比，server具有以下特点：</p>
+<ul>
+<li>Faster CPUs</li>
+<li>Higher Performance RAM</li>
+<li>More Storage</li>
+<li>Backup Power</li>
+<li>Backup Storage</li>
+</ul>
+</li>
+<li><p>Server根据功能可以被分为:</p>
+<ul>
+<li>Database Server</li>
+<li>Mail Server: send and receive email messages </li>
+<li>File Server</li>
+<li>Web Server: host website</li>
+<li>Game Server</li>
+<li>DNS Server (后面具体展开)</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<h3 id="Web_Hosting">Web Hosting</h3><p>如果自己建站，你还需要把你的网站存放到server上，别人才能看到。<br>web hosting的几种方式：</p>
+<ul>
+<li>Shared hosting: 经济型，适用于访问量不大的情形。很多网站并行放在一个计算机集群。</li>
+<li>VPS: 即Virtual Private Server，相比第一种提供更多空间，更快速度… 拥有独立虚拟计算机，可配置操作系统，更高灵活性</li>
+<li>Dedicated Server</li>
+</ul>
+<h3 id="FTP">FTP</h3><p>File Transfer Protocol，即文件传输协议，是用于在网络上进行文件传输的一套标准协议。它属于网络传输协议的应用层。</p>
+<p>sftp是一种更为安全的传输协议，S表示Security。</p>
+<p>常用的FTP客户端：</p>
+<ul>
+<li>Cyberduck</li>
+<li>Filezilla</li>
+</ul>
+<h3 id="TCP/IP">TCP/IP</h3><p>前面说到了Client-Server模型，那么信息是如何在他们之间实现传递的呢？为了能够让网络上的计算机之间都能够相互交流，就需要制定一个标准，就好比大家都说普通话才能顺畅交流一样。这样就出现了TCP/IP协议。</p>
+<ul>
+<li>TCP - Transmissionn Control Protocol </li>
+<li>IP - Internet Protocol</li>
+</ul>
+<p>当我们发送一个请求的时候，根据TCP我们可以把<strong>数据</strong>(网页、视频、邮件…)碎片化即<code>packets</code>。这些<code>packets</code>通过不同的渠道路径以最快的速度到达目的地，然后再通过TCP按照正确的顺序还原真实数据。所以说TCP就是指导怎样打散数据以及还原数据，而IP则指导<code>packets</code>该去向哪里以及返回地址。</p>
+<h2 id="如何连入Internet">如何连入Internet</h2><p>一个一般的过程为：<br><code>Your Computer</code> =(request)=&gt; <code>Router</code> ==&gt; <code>Modem</code> ==&gt; <code>ISP</code> ==&gt; <code>Internet</code></p>
+<h3 id="Switch">Switch</h3><ul>
+<li>交换机是通过电缆将不同设备连接起来，构成网络。这种连接方式称为物理连接。</li>
+<li>在学校，机房以及办公室通过交换机连接起来的网络就叫做 - 局域网(LAN)</li>
+</ul>
+<h3 id="LAN">LAN</h3><ul>
+<li>local area network，即局域网。是通过switch连接起来的。</li>
+</ul>
+<h3 id="Router">Router</h3><ul>
+<li>路由器的作用就是把data packets从局域网(local network)传送出去, 比如从A点传送到B点。</li>
+<li>如同client-server之间的传输一样，路由器之间的传输也要遵循相应的protocol(TCP/IP)。</li>
+<li>路由器智能的地方就是当你想把数据从A传到B时，他会试图寻找最短的路径。通过一系列路由器之间的传递，到达最终目的地。这也是路由器和交换机的一个区别。</li>
+</ul>
+<h3 id="Modem">Modem</h3><p>Modem中文即调制解调器。顾名思义有两个功能<strong>调制</strong>和<strong>解调</strong>。</p>
+<ul>
+<li>调制 - 将计算机上的数字信号(digital data)调制成模拟载波信号传送出去</li>
+<li>解调 - 将收到的模拟信号解调成数字信号返回给计算机</li>
+</ul>
+<p>Modem会将<code>packets</code>通过同轴电缆(coaxial cable)或者电话线又或者通过无线方式传送给ISP。</p>
+<p>两种常见Modem：</p>
+<ul>
+<li>DSL</li>
+<li>Cable</li>
+</ul>
+<h3 id="ISP">ISP</h3><p>Internet Service Provider，即互联网服务供应商。</p>
+<hr>
+<h2 id="再来说说Web">再来说说Web</h2><p>Web(万维网，World Wide Web的简称)是Internet的一部分。我们今天用浏览器上网，浏览网页，就是在用Web。</p>
+<h3 id="URLs">URLs</h3><p>Uniform Resource Locators, 即统一资源定位符，比如下面这个：<br><code>http://www.jianshu.com/p/2b207971c2b1</code><br>想要浏览网页，第一件事就是在地址栏输入URL，它包括：</p>
+<ul>
+<li>Scheme or Protocol： <code>http</code></li>
+<li>Basic Destination (Domain Name or IP address)： <code>www.jianshu.com</code></li>
+<li>Resource Path (for a file)： <code>/p/2b207971c2b1</code></li>
+</ul>
+<h3 id="HTTP">HTTP</h3><p>Hypertext Transfer Protocol，即超文本传输协议。是web上客户端和服务器之间沟通要遵守的协议，通过HTTP或者HTTPS协议请求的资源由统一资源标识符(Uniform Resource Identifiers，URI)来标识。</p>
+<ul>
+<li><p>HTTP状态码<br><code>1xx</code>: 信息<br><code>2xx</code>: 成功<br><code>3xx</code>: 重定向<br><code>4xx</code>: 客户端错误<br><code>5xx</code>: 服务器错误</p>
+</li>
+<li><p>HTTP最基本的method：<br><code>GET</code> 获取资源<br><code>POST</code> 新建资源<br><code>PUT</code> 更新资源<br><code>DELETE</code> 删除资源</p>
+</li>
+<li><p>HTTP请求有三部分：</p>
+<ul>
+<li>Request line<br>告知服务器<strong>请求类型</strong>(<code>GET</code>, <code>POST</code>….)以及<strong>需要的资源</strong></li>
+<li>Header<br>客户端额外的信息</li>
+<li>Body<br>对于<code>GET</code>方法为空，对于<code>POST</code>或者<code>PUT</code>方法，body里面即存放相关信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="REST/RESRFUL">REST/RESRFUL</h3><p>Representational State Transfer，即表现层状态转化。它是一种软件架构风格，一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就叫RESTful。REST的名称”表现层状态转化”中，省略了主语。”表现层”其实指的是”资源”(Resources)的”表现层”。</p>
+<p>说一个情形，你用google搜索<code>简书</code>，google会返回很多结果(hyperlink)，当你点击某一个连接，你就进入了另一个页面，这就是所谓的state transfer。上述过程就遵循了REST原则。</p>
+<p>一个RESTful API要遵循：</p>
+<ul>
+<li>客户端和服务器相分离</li>
+<li>客户端和服务器之间的交互在请求之间是无状态的</li>
+<li>使用HTTP和标准HTTP方法</li>
+</ul>
+<h3 id="IP_address">IP address</h3><p>Internet Protocol address，即互联网协议地址。它就是给遵循IP协议的互联网上的设备的一个数字编号。</p>
+<h3 id="IPv4">IPv4</h3><p>Internet Protocol version 4，由四个数字组成。从<code>0.0.0.0</code>到<code>255.255.255.255</code>能够表示43亿个不同的地址。</p>
+<h3 id="IPv6">IPv6</h3><p>Internet Protocol version 6，由于IPv4已经不能满足需求。<a href="https://zh.wikipedia.org/wiki/IPv6" target="_blank" rel="external">wikipedia</a></p>
+<h3 id="Domain_Name">Domain Name</h3><p>Domain Name，即域名。相比较IP地址，它实际就是为我们提供了一种更易于管理和记忆的形式。如果你想登陆百度你可以输入<code>www.baidu.com</code>而不再是一串数字<code>139.168.2.13</code></p>
+<p>Domain Name的规则</p>
+<ul>
+<li>LDH Rules: 命名domain或者subdomain时，使用字母(Letter)、数字(Digit)和连接号(Hyphen)，但不能以hyphen开始或者结束。</li>
+<li>Domain Name是从右向左读的。<br><code>subdomain</code> + <code>domain</code> + <code>TLD</code></li>
+<li>Domain Name最多可以有127个level<br>e.g. <code>www.jianshu.com</code><br>e.g. <code>www.jianshu.example.com</code></li>
+<li>Domain Name的总长度最多可以为253个字符，而且必须是ASCII码</li>
+<li>推荐<a href="https://domainr.com/" target="_blank" rel="external">Domainr</a> 可以帮你选名字，查价格</li>
+</ul>
+<h3 id="TLD">TLD</h3><p>Top Level Domain，即顶级域名。由<a href="https://www.icann.org/" target="_blank" rel="external">ICCAN</a>管理和维护。<br>目前，有326个不同的TLD。</p>
+<ul>
+<li>常见的TLD有：<br><code>.com</code>  commercial<br><code>.net</code> network<br><code>.edu</code> education<br><code>.org</code> organisation<br><code>.gov</code> government</li>
+<li>国家顶级域名<br><code>.uk</code> United Kingdom<br><code>.us</code> United State<br><code>.jp</code> Japan<br><code>.cn</code> China </li>
+<li>其它组织，品牌甚至虚拟名字<br><code>.online</code><br><code>.inc</code><br><code>.shopping</code><br><code>.ninja</code><br><code>.name</code></li>
+</ul>
+<h2 id="DNS">DNS</h2><p>Domain Name System，即域名系统，它作为将<strong>域名</strong>和<strong>IP地址</strong>相互映射的一个分布式数据库，能够使人更方便的访问互联网。</p>
+<ul>
+<li>不是每一个DNS都知道每一个域名和IP地址的对应关系</li>
+<li>你可能通过不同的DNS找到<code>www.jianshu.com</code>，比如你在家里上网和在咖啡馆上网，使用的DNS可能就不同。</li>
+<li>DNS Hosting的不同类型<ul>
+<li>Registrar DNS Hosting</li>
+<li>DNS Hosting Services</li>
+<li>DNS Self Hosting</li>
+</ul>
+</li>
+</ul>
+<p>To be continued….</p>
+<ul>
+<li>Name Server</li>
+<li>Root Server</li>
+<li>TTL</li>
+<li>A record</li>
+<li>CNAME</li>
+<li>CDN: content delivery network</li>
+</ul>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DNS/"> #DNS </a>
+          
+            <a href="/tags/HTTP/"> #HTTP </a>
+          
+            <a href="/tags/Internet/"> #Internet </a>
+          
+            <a href="/tags/RESTFUL/"> #RESTFUL </a>
+          
+            <a href="/tags/Web/"> #Web </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/28/Python中的-arg和-kwarg/">Python中的*arg和**kwarg</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/22/TYPlayer-为网站添加视频背景/">TYPlayer - 为网站添加视频背景</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    
+      <div class="comments" id="comments">
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview">
+        <div class="site-author motion-element">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="Jason Yuan" />
+          <p class="site-author-name">Jason Yuan</p>
+        </div>
+        <p class="site-description motion-element">WORK HARD, PLAY HARD</p>
+        <div class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </div>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+              <a href="https://github.com/Jason-Yuan" target="_blank">Github</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://twitter.com/yuanbo0109" target="_blank">Twitter</a>
+            </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://www.linkedin.com/in/boyuan1" target="_blank">LinkedIn</a>
+            </span>
+            
+          
+        </div>
+
+        
+        
+
+      </div>
+
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#先来说说Internet_Architecture"><span class="nav-number">1.</span> <span class="nav-text">先来说说Internet Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Internet上的计算机分类"><span class="nav-number">1.1.</span> <span class="nav-text">Internet上的计算机分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Client"><span class="nav-number">1.1.1.</span> <span class="nav-text">Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Server"><span class="nav-number">1.1.2.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web_Hosting"><span class="nav-number">1.1.3.</span> <span class="nav-text">Web Hosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP"><span class="nav-number">1.1.4.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP/IP"><span class="nav-number">1.1.5.</span> <span class="nav-text">TCP/IP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何连入Internet"><span class="nav-number">1.2.</span> <span class="nav-text">如何连入Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch"><span class="nav-number">1.2.1.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LAN"><span class="nav-number">1.2.2.</span> <span class="nav-text">LAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router"><span class="nav-number">1.2.3.</span> <span class="nav-text">Router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modem"><span class="nav-number">1.2.4.</span> <span class="nav-text">Modem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISP"><span class="nav-number">1.2.5.</span> <span class="nav-text">ISP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再来说说Web"><span class="nav-number">1.3.</span> <span class="nav-text">再来说说Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URLs"><span class="nav-number">1.3.1.</span> <span class="nav-text">URLs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">1.3.2.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REST/RESRFUL"><span class="nav-number">1.3.3.</span> <span class="nav-text">REST/RESRFUL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP_address"><span class="nav-number">1.3.4.</span> <span class="nav-text">IP address</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4"><span class="nav-number">1.3.5.</span> <span class="nav-text">IPv4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6"><span class="nav-number">1.3.6.</span> <span class="nav-text">IPv6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Domain_Name"><span class="nav-number">1.3.7.</span> <span class="nav-text">Domain Name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLD"><span class="nav-number">1.3.8.</span> <span class="nav-text">TLD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">1.4.</span> <span class="nav-text">DNS</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
+
+    </div>
+  </div>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">Jason Yuan</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.content img').each(function () {
+        var $image = $(this);
+        var $imageWrapLink = $image.parent('a');
+
+        if ($imageWrapLink.size() < 1) {
+          $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+        }
+        $imageWrapLink.addClass('fancybox');
+      });
+    });
+    $('.fancybox').fancybox({
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+
+  function displaySidebar () {
+    setTimeout(function () {
+      $('.sidebar-toggle').trigger('click');
+    }, 800);
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebarToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebarToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      if (isDesktop() && HEXO_SIDEBAR_CONFIGURATION === 'post') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    var HEXO_SIDEBAR_CONFIGURATION = 'post';
+    $(document).ready(function () {
+      if (HEXO_SIDEBAR_CONFIGURATION === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+  
+
+  
+
+
+
+
+  
+  
+</body>
+</html>
