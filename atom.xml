@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-11-01T01:39:30.000Z</updated>
+  <updated>2015-11-01T02:39:04.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[45 Jump Game II]]></title>
+    <link href="http://yoursite.com/2015/10/31/45-Jump-Game-II/"/>
+    <id>http://yoursite.com/2015/10/31/45-Jump-Game-II/</id>
+    <published>2015-10-31T19:37:41.000Z</published>
+    <updated>2015-11-01T02:39:04.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>给出一个非负整数数组，你最初定位在数组的第一个位置。<br>数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　<br>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+</blockquote>
+<p>给出数组A =<strong> [2,3,1,1,4]</strong>，最少到达数组最后一个位置的跳跃次数是2(从数组下标0跳一步到数组下标1，然后跳3步到数组的最后一个位置，一共跳跃2次)</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一：贪心(Greedy)<ul>
+<li>维护一个<code>farthest</code>变量，每次在遍历<code>start</code>到<code>end</code>之间的元素，尝试更新<code>farthest</code>变量</li>
+<li><code>start = end + 1</code></li>
+<li><code>end = farthest</code></li>
+<li>比较<code>end</code>时候大于数组长度，大于返回结果，否则<code>steps += 1</code></li>
+</ul>
+</li>
+<li>方法二：动态规划(领会思路，OJ会超时)<ul>
+<li>开辟一个<code>steps</code>数组长度与<code>input</code>数组相同，初始值为<code>maxint</code></li>
+<li><code>steps[0] = 0</code></li>
+<li><code>steps[i]</code>等于遍历<code>steps[0]</code> ~ <code>steps[i-1]</code>，如果存在<code>nums[x] + x &gt; i</code>，则更新<code>steps[i] = steps[x] + 1</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一：贪心</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        start, end, steps = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> end &lt; len(nums) - <span class="number">1</span>:</span><br><span class="line">            steps += <span class="number">1</span></span><br><span class="line">            farthest = end</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(start, end + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> nums[i] + i &gt; farthest:</span><br><span class="line">                    farthest = nums[i] + i</span><br><span class="line">            start = end + <span class="number">1</span></span><br><span class="line">            end = farthest</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> steps</span><br><span class="line"><span class="comment"># 方法二：动态规划</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        steps = [sys.maxint <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        </span><br><span class="line">        steps[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> steps[j] != sys.maxint <span class="keyword">and</span> j + nums[j] &gt;= i:</span><br><span class="line">                    steps[i] = steps[j] + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> steps[len(nums) - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>给出一个非负整数数组，你最初定位在数组的第一个位置。<br>数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　<br>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+</blockquot]]>
+    </summary>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
+    
+      <category term="Greedy" scheme="http://yoursite.com/tags/Greedy/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[183 Wood Cut]]></title>
@@ -721,39 +765,6 @@
 <p>给出一棵二叉树，返回其节点值的锯齿形层次遍历（先从左往右，下一层再从右往左，层与层之间交替进行） </p>
 </blockquote>
 <p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figu]]>
-    </summary>
-    
-      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
-    
-      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[107 Binary Tree Level Order Traversal II]]></title>
-    <link href="http://yoursite.com/2015/10/20/107-Binary-Tree-Level-Order-Traversal-II/"/>
-    <id>http://yoursite.com/2015/10/20/107-Binary-Tree-Level-Order-Traversal-II/</id>
-    <published>2015-10-21T01:38:34.000Z</published>
-    <updated>2015-10-21T08:39:04.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）</p>
-</blockquote>
-<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 3&#10;&#160;&#160; / \&#10;&#160; 9&#160; 20&#10;&#160; &#160; /&#160; \&#10;&#160;&#160; 15 &#160; 7</span><br></pre></td></tr></table></figure></p>
-<p>按照从下往上的层次遍历为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [15,7],&#10;&#160; [9,20],&#10;&#160; [3]&#10;]</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>本题与[Binary Tree Level Order Traversal I]一样，同样使用一个queue解决，只是在生成result的时候不是<code>append</code>而是<code>insert(0, temp)</code></li>
-<li>每次从见面加入<code>temp</code>结果</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        result = []</span><br><span class="line">        MyQueue = Queue.Queue()</span><br><span class="line">        MyQueue.put(root)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> MyQueue.empty():</span><br><span class="line">            temp = []</span><br><span class="line">            size = MyQueue.qsize()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                node = MyQueue.get()</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    MyQueue.put(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    MyQueue.put(node.right)</span><br><span class="line">                temp.append(node.val)</span><br><span class="line">            result.insert(<span class="number">0</span>, temp)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）</p>
-</blockquote>
-<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br]]>
     </summary>
     
       <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
