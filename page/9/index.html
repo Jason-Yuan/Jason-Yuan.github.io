@@ -125,6 +125,102 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/28/123-Best-Time-to-Buy-and-Sell-Stock-III/">
+                123 Best Time to Buy and Sell Stock III
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-29
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/28/123-Best-Time-to-Buy-and-Sell-Stock-III/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/123-Best-Time-to-Buy-and-Sell-Stock-III/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>假设你有一个数组，它的第i个元素是一支给定的股票在第i天的价格。设计一个算法来找到最大的利润。你最多可以完成两笔交易。</p>
+</blockquote>
+<p>给出一个样例数组 [4,4,6,1,1,4,2,5], 返回 6</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>类似题[Maximum Subarray II]</li>
+<li>遍历数组，以每一个数作为分割线分别求左右两边各一次交易最大获利，即[Best Time to Buy and Sell Stock I]</li>
+<li>具体实现，两次分别从左向右和从右向左遍历数组，DP求解</li>
+<li>最后遍历一遍，左右最大相加，不断更新维护profit</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type prices: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> prices <span class="keyword">or</span> len(prices) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        size = len(prices)</span><br><span class="line">        left, right = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)], [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)]</span><br><span class="line">        <span class="comment"># DP from left to right;</span></span><br><span class="line">        left[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        minPrice = prices[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">            minPrice = min(prices[i], minPrice)</span><br><span class="line">            left[i] = max(left[i - <span class="number">1</span>], prices[i] - minPrice)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># DP from right to left;</span></span><br><span class="line">        right[size - <span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">        maxPrice = prices[size - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            maxPrice = max(prices[i], maxPrice)</span><br><span class="line">            right[i] = max(right[i + <span class="number">1</span>], maxPrice - prices[i])</span><br><span class="line">        </span><br><span class="line">        profit = -sys.maxint - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">            profit = max(left[i] + right[i], profit)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> profit</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/28/42-Maximum-Subarray-II/">
                 42 Maximum Subarray II
               </a>
@@ -972,108 +1068,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/27/146-LRU-Cache/">
-                146 LRU Cache
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-27
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/27/146-LRU-Cache/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/146-LRU-Cache/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>为最近最少使用（LRU）缓存策略设计一个数据结构，它应该支持以下操作：获取数据（<strong>get</strong>）和写入数据（<strong>set</strong>）。<br>1.获取数据<strong>get(key)
-</strong>：如果缓存中存在key，则获取其数据值（通常是正数），否则返回-1。<br>2.写入数据<strong>set(key, value)</strong>：如果key还没有在缓存中，则写入其数据值。当缓存达到上限，它应该在写入新数据之前删除最近最少使用的数据用来腾出空闲位置。</p>
-</blockquote>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>第一过程中涉及membership的查询 -&gt; Hash Table</li>
-<li>第二过程中涉及一个个的<strong>增</strong>、<strong>删</strong> -&gt; Linked List (数组不适合，数组适合一批一批的增删)</li>
-<li><p>Linked List中的每个node要有next和prev属性，要同时记录Dummy(head)和tail</p>
-</li>
-<li><p>本解法采用的singly linked list所以<strong>hash表里面存的key指向的是前一个node</strong></p>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedNode</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, key=None, value=None, next=None)</span>:</span></span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line">        self.next = next</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type capacity: int</span><br><span class="line">        """</span></span><br><span class="line">        self.hash = &#123;&#125;</span><br><span class="line">        self.head = LinkedNode()</span><br><span class="line">        self.tail = self.head</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push_back</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        self.hash[node.key] = self.tail</span><br><span class="line">        self.tail.next = node</span><br><span class="line">        self.tail = node</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop_front</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self.hash[self.head.next.key]</span><br><span class="line">        self.head.next = self.head.next.next</span><br><span class="line">        self.hash[self.head.next.key] = self.head</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># change "prev-&gt;node-&gt;next...-&gt;tail"</span></span><br><span class="line">    <span class="comment"># to "prev-&gt;next-&gt;...-&gt;tail-&gt;node"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kick</span><span class="params">(self, prev)</span>:</span></span><br><span class="line">        node = prev.next</span><br><span class="line">        <span class="keyword">if</span> node == self.tail:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        prev.next = node.next</span><br><span class="line">        <span class="keyword">if</span> node.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            self.hash[node.next.key] = prev</span><br><span class="line">            node.next = <span class="keyword">None</span></span><br><span class="line">        self.push_back(node)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.hash:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        self.kick(self.hash[key])</span><br><span class="line">        <span class="keyword">return</span> self.hash[key].next.value</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type key: int</span><br><span class="line">        :type value: int</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.hash:</span><br><span class="line">            self.kick(self.hash[key])</span><br><span class="line">            self.hash[key].next.value = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.push_back(LinkedNode(key, value))</span><br><span class="line">            <span class="keyword">if</span> len(self.hash) &gt; self.capacity:</span><br><span class="line">                self.pop_front()</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Cache/"> #Cache </a>
-          
-            <a href="/tags/Hash/"> #Hash </a>
-          
-            <a href="/tags/LRU/"> #LRU </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Linked-List/"> #Linked List </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1112,7 +1106,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">115</span>
+              <span class="site-state-item-count">116</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
