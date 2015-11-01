@@ -125,6 +125,300 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/02/75-Sort-Colors/">
+                75 Sort Colors
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/02/75-Sort-Colors/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/75-Sort-Colors/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个包含红，白，蓝且长度为n的数组，将数组元素进行分类使同颜色的元素相邻，并按照红、白、蓝的顺序进行排序。<br>我们可以使用整数0，1和2分别代表红，白，蓝。</p>
+</blockquote>
+<p>一个相当直接的解决方案是使用计数排序扫描2遍的算法。<br>首先，迭代数组计算0,1,2出现的次数，然后依次用0,1,2出现的次数去覆盖数组。<br>你否能想出一个仅使用常数级额外空间复杂度且只扫描遍历一遍数组的算法？</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>最直接的想法是类似于桶排序，先loop一遍计算每种颜色的个数，再一遍从0-&gt;2按照相应个数重新生成数组，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span> </span><br><span class="line">    nums[:] = [<span class="number">0</span>]*nums.count(<span class="number">0</span>) + [<span class="number">1</span>]*nums.count(<span class="number">1</span>) + [<span class="number">2</span>]*nums.count(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本题，根据要求，一遍扫描 -&gt; 拿到一个元素，就应该知道该放的位置</p>
+</li>
+<li>借助快速排序中partition思想，把1当作pivot元对数组进行划分，使0在数组的左边，2在数组的右边，1在数组的中间。</li>
+<li>记录红色index=0，蓝色index=n，loop数组，每次判断颜色，红色则与红色index交换，蓝色与蓝色index交换，黄色不变      </li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: void Do not return anything, modify nums in-place instead.</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        redIndex, blueIndex = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= blueIndex:</span><br><span class="line">            <span class="keyword">if</span> nums[i] == <span class="number">0</span>:</span><br><span class="line">                nums[i], nums[redIndex] = nums[redIndex], nums[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                redIndex += <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] == <span class="number">2</span>:</span><br><span class="line">                nums[i], nums[blueIndex] = nums[blueIndex], nums[i]</span><br><span class="line">                blueIndex -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Quick-Sort/"> #Quick Sort </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/01/18-4Sum/">
+                18 4Sum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/01/18-4Sum/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/18-4Sum/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给一个包含n个数的整数数组S，在S中找到所有使得和为给定整数target的四元组(a, b, c, d)。</p>
+</blockquote>
+<p>例如，对于给定的整数数组S=<strong>[1, 0, -1, 0, -2, 2]</strong>和<strong>target=0</strong>. 满足要求的四元组集合为：<br><strong>(-1, 0, 0, 1)</strong><br><strong>(-2, -1, 1, 2)</strong><br><strong>(-2, 0, 0, 2)</strong></p>
+<p>四元组(a, b, c, d)中，需要满足a &lt;= b &lt;= c &lt;= d<br>答案中不可以包含重复的四元组</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>从2Sum, 3Sum一路演变而来，可以转化为连个for循环+2Sum解决</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, len(nums)):</span><br><span class="line">                <span class="keyword">if</span> j != i + <span class="number">1</span> <span class="keyword">and</span> nums[j] == nums[j - <span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">                left, right = j + <span class="number">1</span>, len(nums) - <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                    sum = nums[i] + nums[j] + nums[left] + nums[right]</span><br><span class="line">                    <span class="keyword">if</span> sum &lt; target:</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> sum &gt; target:</span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        res.append([nums[i], nums[j], nums[left], nums[right]])</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> nums[left] == nums[left - <span class="number">1</span>]:</span><br><span class="line">                            left += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> nums[right] == nums[right + <span class="number">1</span>]:</span><br><span class="line">                            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sum/"> #Sum </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/01/16-3Sum-Closest/">
+                16 3Sum Closest
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/01/16-3Sum-Closest/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/16-3Sum-Closest/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给一个包含n个整数的数组S, 找到和与给定整数target最接近的三元组，返回这三个数的和。</p>
+</blockquote>
+<p>例如S = <strong>[-1, 2, 1, -4]</strong> and target = <strong>1</strong>.  和最接近1的三元组是 <strong>-1 + 2 + 1 = 2</strong>.</p>
+<p>只需要返回三元组之和，无需返回三元组本身</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>题目要求找到x+y+z最接近target，我们可以遍历x，然后将题目转化为2Sum Closest，即找到y+z最接近target-x</li>
+<li>对于2Sum Closest，同样是使用<strong>对撞型指针</strong>，不断维护一个<strong>closest sum</strong></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        closest = sys.maxint</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                Sum = sortNum[i] + sortNum[left] + sortNum[right]</span><br><span class="line">                <span class="keyword">if</span> Sum == target:</span><br><span class="line">                    <span class="keyword">return</span> Sum</span><br><span class="line">                <span class="keyword">elif</span> Sum &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                closest = Sum <span class="keyword">if</span> abs(Sum - target) &lt; abs(closest - target) <span class="keyword">else</span> closest </span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> closest</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sum/"> #Sum </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/01/15-3Sum/">
                 15 3Sum
               </a>
@@ -800,291 +1094,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/28/44-Minimum-Subarray/">
-                44 Minimum Subarray
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/28/44-Minimum-Subarray/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/44-Minimum-Subarray/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组，找到一个具有最小和的子数组。返回其最小和。</p>
-</blockquote>
-<p>给出数组<strong>[1, -1, -2, 1]</strong>，返回 -3<br>子数组最少包含一个数字</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>相似题[Maximum Subarray]，本题是找一个区间使得区间内值的和最小，[Maximum Subarray]是找一个区间使得区间内值的和最大</li>
-<li>巧妙使用<strong>前缀和数组</strong> sum[i] = array[0] + array[1] +…. + array[i]</li>
-<li>想求x~y这段区间的最小值，则让sum[y]尽可能小，让sum[x]尽可能大，那么sum[y]-sum[x]最小</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: a list of integers</span><br><span class="line">    @return: A integer denote the sum of minimum subarray</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        res, sum, maxSum = sys.maxint - <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            sum += num</span><br><span class="line">            res = min(res, sum - maxSum)</span><br><span class="line">            maxSum = max(maxSum, sum)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/28/121-Best-Time-to-Buy-and-Sell-Stock-I/">
-                121 Best Time to Buy and Sell Stock I
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/28/121-Best-Time-to-Buy-and-Sell-Stock-I/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/121-Best-Time-to-Buy-and-Sell-Stock-I/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>假设有一个数组，它的第i个元素是一支给定的股票在第i天的价格。如果你最多只允许完成一次交易(例如,一次买卖股票),设计一个算法来找出最大利润。</p>
-</blockquote>
-<p>给出一个数组样例[3,2,3,1,2], 返回 1 </p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>相似题[Maximum Subarray]，本题是找两个点使得end-start最大，[Maximum Subarray]是找一个区间使得区间内值的和最大</li>
-<li>想求y-x的最大值，则让y尽可能大，让x尽可能小</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type prices: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> prices:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        res = - sys.maxint</span><br><span class="line">        end = <span class="number">0</span></span><br><span class="line">        minStart = prices[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">            end = prices[i]</span><br><span class="line">            res = max(res, end - minStart)</span><br><span class="line">            minStart = min(minStart, end)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> res &lt; <span class="number">0</span> <span class="keyword">else</span> res</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/28/53-Maximum-Subarray-I/">
-                53 Maximum Subarray I
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/28/53-Maximum-Subarray-I/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/53-Maximum-Subarray-I/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组，找到一个具有最大和的子数组，返回其最大和。</p>
-</blockquote>
-<p>给出数组[−2,2,−3,4,−1,2,1,−5,3]，符合要求的子数组为[4,−1,2,1]，其最大和为6<br>子数组最少包含一个数</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>相似题[Best Time to Buy and Sell Stock]，本题是找一个区间使得区间内值的和最大，[Best Time to Buy and Sell Stock]是找两个点使得end-start最大</li>
-<li>巧妙使用<strong>前缀和数组</strong> sum[i] = array[0] + array[1] +…. + array[i]</li>
-<li><strong>[Best Time to Buy and Sell Stock]中的每个点，就相当于[Maximum Subarray]中的前缀和数组</strong></li>
-<li>想求x~y这段区间的最大值，则让sum[y]尽可能大，让sum[x]尽可能小，那么sum[y]-sum[x]最大</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        res, sum, minSum = -sys.maxint - <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            sum += num</span><br><span class="line">            res = max(res, sum - minSum)</span><br><span class="line">            minSum = min(minSum, sum)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1123,7 +1132,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-count">114</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
