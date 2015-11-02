@@ -125,6 +125,105 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/01/139-Word-Break/">
+                139 Word Break
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-11-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/01/139-Word-Break/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/01/139-Word-Break/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个字符串s和一个词典，判断字符串s是否可以被空格切分成一个或多个出现在字典中的单词。</p>
+</blockquote>
+<p>给出<br>s = <strong>“leetcode”</strong><br>dict = <strong>[“leet”,”code”]</strong><br>返回 true 因为<strong>“leetcode”</strong>可以被空格切分成<strong>“leet code”</strong></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>动态规划是一种解决问题的思想 - 大规模问题的结果，是由小规模问题的结果运算得来的</li>
+<li><strong>动态规划不等同于递归，动态规划思想可以由递归来实现</strong></li>
+<li>DP初始化时一般要有个<code>1</code>或者<code>true</code></li>
+<li>本题属于序列型动态规划 - Sequence DP</li>
+<li><code>cache[i]</code>表示前<code>i</code>个字符能不能被<code>dict</code>完美划分</li>
+<li>判断<code>cache[i]</code>，则需要遍历<code>0~i</code>中是否存在一个<code>j</code>，使得<code>cache[j]=true</code>而且<code>j+1~i</code>存在于<code>dict</code>中</li>
+<li>本题还有一个值得注意的地方，<strong>一定要考虑到单词长度是有上限的！</strong>，所以每次不需要遍历<code>0~i</code>而是<code>x~i</code>(i-x为单词最大长度)</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s, wordDict)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :type wordDict: Set[str]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wordDict:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        maxLength = self.getMaxLength(wordDict)</span><br><span class="line">        cache = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s) + <span class="number">1</span>):</span><br><span class="line">            j = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> j &lt;= maxLength <span class="keyword">and</span> j &lt;= i:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> cache[i - j]:</span><br><span class="line">                    j += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> s[i - j:i] <span class="keyword">in</span> wordDict:</span><br><span class="line">                    cache[i] = <span class="keyword">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[len(s)]</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMaxLength</span><span class="params">(self, dict)</span>:</span></span><br><span class="line">        maxLength = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">            maxLength = max(len(word), maxLength)</span><br><span class="line">        <span class="keyword">return</span> maxLength</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sequence-DP/"> #Sequence DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/31/76-Longest-Increasing-Subsequence/">
                 76 Longest Increasing Subsequence
               </a>
@@ -996,102 +1095,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/24/63-Unique-Paths-II/">
-                63 Unique Paths II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-25
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/24/63-Unique-Paths-II/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/63-Unique-Paths-II/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>现在考虑网格中有障碍物，那样将会有多少条不同的路径？<br>网格中的障碍和空位置分别用<strong>1</strong>和<strong>0</strong>来表示。</p>
-</blockquote>
-<p>如下所示在3x3的网格中有一个障碍物：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [0,0,0],&#10;&#160; [0,1,0],&#10;&#160; [0,0,0]&#10;]</span><br></pre></td></tr></table></figure></p>
-<p>一共有2条不同的路径从左上角到右下角。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>同样是矩阵型动态规划 - Matrix DP</li>
-<li>对于有障碍物的地图来说，只需要把<strong>障碍物的坐标设为0即可</strong></li>
-<li>要注意对第一行和第一列的初始化，如果遇到障碍物第一行后面和第一列下面都是0</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(self, obstacleGrid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type obstacleGrid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> obstacleGrid <span class="keyword">or</span> <span class="keyword">not</span> obstacleGrid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(obstacleGrid)</span><br><span class="line">        n = len(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        flag1 = flag2 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m): </span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[j][<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">                flag1 = <span class="number">0</span></span><br><span class="line">            cache[j][<span class="number">0</span>] = flag1</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][i] == <span class="number">1</span>:</span><br><span class="line">                flag2 = <span class="number">0</span></span><br><span class="line">            cache[<span class="number">0</span>][i] = flag2</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                cache[j][i] = (cache[j - <span class="number">1</span>][i] + cache[j][i - <span class="number">1</span>]) <span class="keyword">if</span> obstacleGrid[j][i] == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Matrix-DP/"> #Matrix DP </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1130,7 +1133,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">116</span>
+              <span class="site-state-item-count">117</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

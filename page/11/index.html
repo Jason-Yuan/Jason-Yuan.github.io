@@ -125,6 +125,117 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/26/39-Combination-Sum-I/">
+                39 Combination Sum I
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/26/39-Combination-Sum-I/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/39-Combination-Sum-I/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一组候选数字(C)和目标数字(T),找到C中所有的组合，使找出的数字和为T。C中的数字可以无限制重复被选取。</p>
+</blockquote>
+<p>例如,给出候选数组<strong>[2,3,6,7]</strong>和目标数字7<br>所求的解为：<strong>[7]</strong> 和 <strong>[2,2,3]</strong> </p>
+<p><strong>注意</strong>： </p>
+<ul>
+<li>所有的数字(包括目标数字)均为正整数。</li>
+<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
+<li>解集不能包含重复的组合。 </li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>backtracking 在代码的实现上可以在使用<code>加了再还原</code>的方式，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.append(candidates[i])&#10;self.helper(candidates, target - candidates[i], path, i, result)&#10;path.pop()</span><br></pre></td></tr></table></figure>
+<p>也可以直接把添加的步骤直接通过参数传递的方式，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>与permutation和subset的思考方式类似，DFS</p>
+</li>
+<li>每一次向下搜索时，起始位置都和上一次相同，因为可以取相同元素不止一次，即每次向下传入的<code>index</code></li>
+<li>For循环每次从<code>index</code>开始，避免返回到之前的元素</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        candidates.sort()</span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sum/"> #Sum </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/07/28/Python中的-arg和-kwarg/">
                 Python中的*arg和**kwarg
               </a>
@@ -963,163 +1074,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/31/【machine-learning】-决策树-DTs-之Python实现-by-Scikit-Learn/">
-                【machine learning】- 决策树(DTs)之Python实现 by Scikit-Learn
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-05-31
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/Python/">Python</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/05/31/【machine-learning】-决策树-DTs-之Python实现-by-Scikit-Learn/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/31/【machine-learning】-决策树-DTs-之Python实现-by-Scikit-Learn/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>这学期AI课的最后一次assignment，老师要让大家实践一下decision tree，而且“You can use any existing machine learning tool for this task”，所以就有了我下面这篇文章，不足之处，望指正，共勉！</p>
-<hr>
-<h1 id="环境搭建">环境搭建</h1><h2 id="用Python实现机器学习的基础环境搭建,_click_here-">用Python实现机器学习的基础环境搭建, <a href="http://www.jianshu.com/p/24603369b7d0" target="_blank" rel="external">click here</a>.</h2><h2 id="安装_pyparsing_(1-5-7)_和_pydot">安装 pyparsing (1.5.7) 和 pydot</h2><p>注：以下针对于 Mac OS 并且使用 Python2.7</p>
-<ul>
-<li><p>如果已经安装了pyparsing (2.x.x)，操作如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip uninstalled pyparsing&#10;$ pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709&#10;$ pip install pydot</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果没有安装过pyparsing任何版本，操作如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709&#10;$ pip install pydot</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="安装_GraphViz">安装 GraphViz</h2><p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-f7e6a845be923dd9_zpsm8ahaw17.png" alt="graphviz"></p>
-<blockquote>
-<p><strong>Graphviz</strong> (Graph Visualization Software) 是一个由AT&amp;T实验室启动的开源工具包，用于绘制DOT语言脚本描述的图形。</p>
-</blockquote>
-<ul>
-<li>GraphViz不能通过pip安装。 所以，下载对于Mac的正确版本<a href="http://www.graphviz.org/Download_macos.php" title="GraphViz for Mac" target="_blank" rel="external">(graphviz-2.36.0.pkg)</a>之后，自行安装。</li>
-<li><p>你可能还需要安装xlrd</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install xlrd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>GraphViz <a href="http://www.graphviz.org/" target="_blank" rel="external">官网</a></p>
-</li>
-</ul>
-<hr>
-<h1 id="什么是Decision_Tree？">什么是Decision Tree？</h1><p>决策树(Decision Tree)是基于符号的监督学习方法中的一种。更多相关知识，可以看我另外一篇<a href="http://www.jianshu.com/p/5cd71856cb6e" target="_blank" rel="external">文章</a>。</p>
-<hr>
-<h1 id="具体Python实现">具体Python实现</h1><ul>
-<li><p>导入library</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np&#10;import pandas as pd&#10;from sklearn import tree&#10;from sklearn.feature_extraction import DictVectorizer</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>读取数据</p>
-</li>
-<li>使用pandas读取Excel文件，当然pandas还支持多种文件格式的读写，比如：text, sql,  json, csv ……</li>
-<li><p>使用<em>pd.read_excel()</em> 读取后默认生成 <a href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.html" target="_blank" rel="external">pandas.DataFrame</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># read data from excel file as DataFrame&#10;raw_train_data = pd.read_excel(&#34;/Users/boyuan/Desktop/TrainingData.xlsx&#34;, parse_cols=[1,2,3,4,5,6,7,8,9,10,11])&#10;raw_test_data = pd.read_excel(&#34;/Users/boyuan/Desktop/TestingData.xlsx&#34;, parse_cols=[1,2,3,4,5,6,7,8,9,10,11])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>清洗数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># If the data has missing values, they will become NaNs in the resulting Numpy arrays.&#10;# The vectorizer will create additional column &#60;feature&#62;=NA for each feature with NAs&#10;&#10;raw_train_data = raw_train_data.fillna(&#34;NA&#34;)&#10;raw_test_data = raw_test_data.fillna(&#34;NA&#34;)&#10;&#10;exc_cols = [u&#39;adjGross&#39;]&#10;cols = [c for c in raw_train_data.columns if c not in exc_cols]&#10;&#10;X_train = raw_train_data.ix[:,cols]&#10;y_train = raw_train_data[&#39;adjGross&#39;].values&#10;&#10;X_test = raw_test_data.ix[:,cols]&#10;y_test = raw_test_data[&#39;adjGross&#39;].values</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用pandas <em>to_dict()</em> 将DataFrame转化成Dict</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Convert DataFrame to dict See more: http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.to_dict.html#pandas.DataFrame.to_dict&#10;dict_X_train = X_train.to_dict(orient=&#39;records&#39;)&#10;dict_X_test = X_test.to_dict(orient=&#39;records&#39;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><a href="http://scikit-learn.org/stable/modules/preprocessing.html" target="_blank" rel="external">Encoding categorical features</a></p>
-</li>
-<li>使用Scikit-learn中的<a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html" target="_blank" rel="external">DictVectorizer</a></li>
-<li>DictVectorizer中使用的是<a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder" target="_blank" rel="external">OneHotEncoder</a>来实现</li>
-<li><p>对于Label可以使用<a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html" target="_blank" rel="external">LabelEncoder</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vec = DictVectorizer()&#10;X_train = vec.fit_transform(dict_X_train).toarray()&#10;X_test = vec.fit_transform(dict_X_test).toarray()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最后，把train data喂给fit()函数，用score()函数检验模型在test data上的表现！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clf = tree.DecisionTreeClassifier()&#10;clf = clf.fit(X_train,y_train)&#10;&#10;score = clf.score(X_test,y_test)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当然也可以把tree导出到dot文件中，使用GraphViz画图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.externals.six import StringIO&#10;with open(&#34;&#25991;&#20214;&#21517;&#31216;.dot&#34;, &#39;w&#39;) as f:&#10;    f = tree.export_graphviz(clf, out_file=f, feature_names= vec.get_feature_names())</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>在CLI上输入如下命令:<br><code>$ dot -Tps tree.dot -o tree.ps</code>     (PostScript 格式)<br><code>$ dot -Tpng tree.dot -o tree.png</code>    (PNG 格式)</p>
-<ul>
-<li><p>最后附上两张tree图，分别是没有设置max_depth以及设置max_depth=8的情形<br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-f463e45111f72762_zpsxuf4rwjg.png" alt="tree_with_8_depth"><br><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-c562fc489dd63ae1_zpsb4u38csr.png" alt="tree_without_limit_depth"></p>
-</li>
-<li><p>网上有很多流行的数据集，比如简书上的<a href="http://www.jianshu.com/p/be23b3870d2e" target="_blank" rel="external">《最流行的4个机器学习数据集》</a></p>
-</li>
-<li>我使用的是UCI上一个判断年工资是否大于50k的<a href="http://archive.ics.uci.edu/ml/datasets/Adult" target="_blank" rel="external">数据集</a></li>
-</ul>
-<hr>
-<h1 id="结语">结语</h1><ul>
-<li>这是第一次使用Python进行data mining，学习使用Python断断续续也有大半年，从写简单的算法课作业，后来写爬虫，接触Flask写网站， 不断体会到“人生苦短，我用Python”。这当然基于Python非常完善的代码库。</li>
-<li>没有一种语言是万能的，Python当然也不是，但不得不说在某些领域Python确实作为一种高级语言，可以让你更专注你核心要做的事情， 而非语言本身。</li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Desicion-Tree/"> #Desicion Tree </a>
-          
-            <a href="/tags/Machine-Learning/"> #Machine Learning </a>
-          
-            <a href="/tags/Python/"> #Python </a>
-          
-            <a href="/tags/Scikit-learn/"> #Scikit-learn </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1158,7 +1112,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">116</span>
+              <span class="site-state-item-count">117</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
