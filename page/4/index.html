@@ -125,6 +125,198 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/12/162-Find-Peak-Element/">
+                162 Find Peak Element
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/12/162-Find-Peak-Element/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/12/162-Find-Peak-Element/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>你给出一个整数数组(size为n)，其具有以下特点：<br>相邻位置的数字是不同的<br>A[0] &lt; A[1] 并且 A[n - 2] &gt; A[n - 1]<br>假定P是峰值的位置则满足A[P] &gt; A[P-1]且A[P] &gt; A[P+1]，返回数组中任意一个峰值的位置。</p>
+</blockquote>
+<p>给出数组[1, 2, 1, 3, 4, 5, 7, 6]返回1, 即数值 2 所在位置, 或者6, 即数值 7 所在位置.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>分三种情况讨论<ul>
+<li>nums[mid] &lt; nums[mid - 1]说明mid往前是一个递增区间，存在峰值</li>
+<li>nums[mid] &lt; nums[mid + 1]说明mid往后是一个递增区间，存在峰值</li>
+<li>第三种情况mid比左右都大，mid就是峰，返回mid</li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findPeakElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &lt; nums[mid - <span class="number">1</span>]:</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; nums[mid + <span class="number">1</span>]:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">return</span> start <span class="keyword">if</span> nums[start] &gt; nums[end] <span class="keyword">else</span> end</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/12/278-First-Bad-Version/">
+                278 First Bad Version
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/12/278-First-Bad-Version/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/12/278-First-Bad-Version/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>代码库的版本号是从 1 到 n 的整数。某一天，有人提交了错误版本的代码，因此造成自身及之后版本的代码在单元测试中均出错。请找出第一个错误的版本号。<br>你可以通过 isBadVersion 的接口来判断版本号 version 是否在单元测试中出错，具体接口详情和调用方法请见代码的注释部分。</p>
+</blockquote>
+<p>给出 n=5<br>调用isBadVersion(3)，得到false<br>调用isBadVersion(5)，得到true<br>调用isBadVersion(4)，得到true<br>此时我们可以断定4是第一个错误的版本号</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>相当于找第一个target元素，例如找第一个1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000001111111111111111</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The isBadVersion API is already defined for you.</span></span><br><span class="line"><span class="comment"># @param version, an integer</span></span><br><span class="line"><span class="comment"># @return a bool</span></span><br><span class="line"><span class="comment"># def isBadVersion(version):</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstBadVersion</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        start, end = <span class="number">0</span>, n</span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> isBadVersion(mid):</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start = mid</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> isBadVersion(start):</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> end</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/12/154-Find-Minimum-in-Rotated-Sorted-Array-II/">
                 154 Find Minimum in Rotated Sorted Array II
               </a>
@@ -887,200 +1079,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/11/74-Search-a-2D-Matrix/">
-                74 Search a 2D Matrix
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-11
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/11/74-Search-a-2D-Matrix/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/74-Search-a-2D-Matrix/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>写出一个高效的算法来搜索 m × n矩阵中的值。<br>这个矩阵具有以下特性：<br>每行中的整数从左到右是排序的。<br>每行的第一个数大于上一行的最后一个整数。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [1, 3, 5, 7],&#10;  [10, 11, 16, 20],&#10;  [23, 30, 34, 50]&#10;]</span><br></pre></td></tr></table></figure>
-<p>给出 target = 3，返回 true</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p>首先可以把这个二维数组看成一维数组，3 * 4 的矩阵可以看成一个12个数的一维数组，所以对于50的坐标为(2,3)，可以看成第array[11]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 3, 5, 7, 10, 11, 16, 20, 23, 30, 34, 50]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一维数组与二维数组的转化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 = 11 / 4, 3 = 11 % 4   # width = 4&#10;``` &#10;&#10;# &#23436;&#25972;&#20195;&#30721;&#10;```python&#10;class Solution(object):&#10;    def searchMatrix(self, matrix, target):&#10;        &#34;&#34;&#34;&#10;        :type matrix: List[List[int]]&#10;        :type target: int&#10;        :rtype: bool&#10;        &#34;&#34;&#34;&#10;        if not matrix:&#10;            return False&#10;        &#10;        start = 0&#10;        width = len(matrix[0])&#10;        end = len(matrix) * width - 1&#10;        while start + 1 &#60; end:&#10;            mid = start + (end - start) / 2&#10;            if matrix[mid / width][mid % width] == target:&#10;                return True&#10;            elif matrix[mid / width][mid % width] &#62; target:&#10;                end = mid&#10;            else:&#10;                start = mid&#10;            &#10;        if matrix[start / width][start % width] == target:&#10;            return True&#10;        if matrix[end / width][end % width] == target:&#10;            return True&#10;        return False</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Binary-Search/"> #Binary Search </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/11/35-Search-Insert-Position/">
-                35 Search Insert Position
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-11
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/11/35-Search-Insert-Position/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/35-Search-Insert-Position/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个排序数组和一个目标值，如果在数组中找到目标值则返回索引。如果没有，返回到它将会被按顺序插入的位置。</p>
-</blockquote>
-<p>[1,3,5,6]，5 → 2<br>[1,3,5,6]，2 → 1<br>[1,3,5,6]， 7 → 4<br>[1,3,5,6]，0 → 0</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>对于插入排序，所有数字都要插入一次，而且对于数组，要整体向后移动，所以这时的插入即从后往前交换到不能交换位置。<strong>二分查找再插入并不会加快速度</strong></li>
-<li>本题是假设有一个很大的数组，数组之间可能留有空隙，只需要插入一个或几个数字，所以需要<strong>二分法</strong>快速定位</li>
-<li><strong>概念偷换</strong>可以减少if/else判断语句！！！本题把target存在和不存在结合在一起 =&gt; <strong>找到数组中有几个数比target小</strong></li>
-<li>核心部分都写成<code>start = mid</code>或者<code>end = mid</code>，具体情况最后讨论</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A : a list of integers</span><br><span class="line">    @param target : an integer to be inserted</span><br><span class="line">    @return : an integer</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchInsert</span><span class="params">(self, A, target)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> target &lt; A[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(A) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> A[mid] == target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> A[mid] &lt; target:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> A[end] == target:</span><br><span class="line">            <span class="keyword">return</span> end</span><br><span class="line">        <span class="keyword">elif</span> A[end] &lt; target:</span><br><span class="line">            <span class="keyword">return</span> end + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> A[start] == target:</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> end</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Binary-Search/"> #Binary Search </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1119,7 +1117,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">117</span>
+              <span class="site-state-item-count">119</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

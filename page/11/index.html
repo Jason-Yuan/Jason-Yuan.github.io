@@ -125,6 +125,220 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/26/127-Word-Ladder-I/">
+                127 Word Ladder I
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/26/127-Word-Ladder-I/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/127-Word-Ladder-I/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="原题">原题</h3><blockquote>
+<p>给出两个单词（start和end）和一个字典，找到从start到end的最短转换序列<br>比如：<br>1.每次只能改变一个字母。<br>2.变换过程中的中间单词必须在字典中出现。</p>
+</blockquote>
+<p>start = <strong>“hit”</strong><br>end = <strong>“cog”</strong><br>dict = <strong> [“hot”,”dot”,”dog”,”lot”,”log”]</strong><br>一个最短的变换序列是<br><strong>“hit”</strong>-&gt;<strong>“hot” </strong>-&gt;<strong> “dot”</strong>-&gt;<strong> “dog”</strong>-&gt;<strong>“cog”</strong> 返回它的长度 5</p>
+<p><strong>注意</strong>:</p>
+<ul>
+<li>如果没有转换序列则返回0。</li>
+<li>所有单词具有相同的长度。</li>
+<li>所有单词都只包含小写字母。</li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>无向图求最短路 - BFS 中的<strong>level order</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#21363;&#27599;&#27425;count&#19968;&#19979;&#36825;&#19968;&#23618;&#30340;size()&#65292;&#28982;&#21518;&#36941;&#21382;&#36825;&#19968;&#23618;&#10;size = q.qsize()&#10;for i in range(size):</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>题目中如果提到单词，要考虑到单词长度一般是有限的，进行优化</p>
+</li>
+<li>如何找通过一次改变可以形成的单词在不在字典中，假设单词长度为L，变量单词，每个位置可以有26种变换，所以O(L*26)，再check是否存在在字典中O(1)复杂度（更精确，应该是O(L)的复杂度）</li>
+<li>ord(‘a’) =&gt; 97 / chr(97) =&gt; a</li>
+<li>Java中的<code>HashSet&lt;xxx&gt;</code>可以用Python中的<code>Set()</code></li>
+<li>注意Python中string是immutable<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import string&#10;aToz = string.ascii_lowercase&#10;# &#39;str&#39; object does not support item assignment&#10;newWord[i] = &#39;a&#39; &#10;# &#25152;&#20197;&#65292;&#25442;&#31181;&#26041;&#24335;&#10;newWord = current[:i] + &#39;a&#39; + current[i+1:]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNextWord</span><span class="params">(self, word, dict)</span>:</span></span><br><span class="line">        aToz = string.ascii_lowercase</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> aToz:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                <span class="keyword">if</span> word[j] == char:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                newWord = word[:j] + char + word[j+<span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">if</span> newWord <span class="keyword">in</span> dict:</span><br><span class="line">                    res.append(newWord)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord, endWord, wordList)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type beginWord: str</span><br><span class="line">        :type endWord: str</span><br><span class="line">        :type wordList: Set[str]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        q = Queue.Queue()</span><br><span class="line">        visited = set()</span><br><span class="line">        q.put(beginWord)</span><br><span class="line">        visited.add(beginWord)</span><br><span class="line">        length = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            length += <span class="number">1</span></span><br><span class="line">            size = q.qsize()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                word = q.get()</span><br><span class="line">                <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.getNextWord(word, wordList):</span><br><span class="line">                    <span class="keyword">if</span> nextWord <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    <span class="keyword">if</span> nextWord == endWord:</span><br><span class="line">                        <span class="keyword">return</span> length</span><br><span class="line">                    q.put(nextWord)</span><br><span class="line">                    visited.add(nextWord)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Level-Order-Traversal/"> #Level Order Traversal </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/26/40-Combination-Sum-II/">
+                40 Combination Sum II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/26/40-Combination-Sum-II/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/40-Combination-Sum-II/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一组候选数字(C)和目标数字(T),找出C中所有的组合，使组合中数字的和为T。C中每个数字在每个组合中只能使用一次。</p>
+</blockquote>
+<p>给出一个例子，候选数字集合为<strong>[10,1,6,7,2,1,5] </strong> 和目标数字 <strong>8
+</strong><br>解集为：<strong>[[1,7], [1,2,5], [2,6], [1,1,6]]</strong> </p>
+<p><strong>注意</strong>： </p>
+<ul>
+<li>所有的数字(包括目标数字)均为正整数。</li>
+<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
+<li>解集不能包含重复的组合。 </li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>Backtracking, DFS</li>
+<li>与permutation和subset解题思路类似</li>
+<li>在<code>combination sum I</code>的基础上，此题关键在于candidate中可能出现重复元素，所以使用<code>prev</code>参数每次check一下<code>candidates[i] == prev</code>的话就<code>continue</code><br>因为如果candidates = [1(a), 1(b), 2, 3], target = 4<br>结果可能会出现 [1(a), 3], [1(b), 3] 所以如果加上判断后<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prev = 1(a)&#10;candidates[i] = a(b)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此时会<code>continue</code></p>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        prev = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> prev != -<span class="number">1</span> <span class="keyword">and</span> prev == candidates[i]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path+[candidates[i]], i+<span class="number">1</span>, result)</span><br><span class="line">            prev = candidates[i]</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum2</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">        candidates.sort()    </span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/26/39-Combination-Sum-I/">
                 39 Combination Sum I
               </a>
@@ -887,193 +1101,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/16/ASP-NET-Razor-简介/">
-                ASP.NET Razor 简介
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-06-16
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/ASP-NET/">ASP.NET</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/16/ASP-NET-Razor-简介/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/16/ASP-NET-Razor-简介/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <hr>
-<p> <img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-c0c761294e344088_zpsw9p8g9ez.png" alt="razor"></p>
-<h1 id="什么是Razor_?">什么是Razor ?</h1><ul>
-<li>Razor 不是一种编程语言，而是一种标记语法，可以将基于服务器的代码（Visual Basic 和 C#）嵌入到网页中。</li>
-<li>Razor 是基于 ASP.NET 的，是为创建 Web 应用程序而设计的。</li>
-<li>Razor支持代码混写。</li>
-<li>带 Razor 语法的 ASP.NET 网页有特殊的文件扩展名cshtml(Razor C#)或者vbhtml(Razor VB)。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/16/ASP-NET-Razor-简介/#more">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ASP-NET/"> #ASP.NET </a>
-          
-            <a href="/tags/C/"> #C# </a>
-          
-            <a href="/tags/Razor/"> #Razor </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/07/说说OAuth那点事/">
-                说说OAuth那点事
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-06-07
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/MISC/">MISC</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/07/说说OAuth那点事/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/07/说说OAuth那点事/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>今年年初，第一份实习，接触了如何使用Facebook API, Twitter API…去获取数据，自动发个Facebook什么的，也在那会听到了这个词-OAuth. 不明觉厉。无奈最近实习中又接触了，实在不想迷迷糊糊了，决心搞清楚，在拜读了各路大牛的文章之后，决定为自己写个总结。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/07/说说OAuth那点事/#more">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/API/"> #API </a>
-          
-            <a href="/tags/OAUTH-2-0/"> #OAUTH 2.0 </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1112,7 +1139,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">117</span>
+              <span class="site-state-item-count">119</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

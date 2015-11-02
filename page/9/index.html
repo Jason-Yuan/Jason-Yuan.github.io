@@ -125,6 +125,205 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/29/373-Partition-Array-by-Odd-and-Even/">
+                373 Partition Array by Odd and Even
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-30
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/29/373-Partition-Array-by-Odd-and-Even/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/373-Partition-Array-by-Odd-and-Even/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>分割一个整数数组，使得奇数在前偶数在后。</p>
+</blockquote>
+<p>给定 [1, 2, 3, 4]，返回 [1, 3, 2, 4]。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>非常相似的题[Partition Array]</li>
+<li>正宗<strong>两个指针</strong>中对撞型指针的问题</li>
+<li>最外层大while循环，终止条件是两根指针对撞</li>
+<li>内层循环，分三步走<ul>
+<li>左边如果是奇数, left++</li>
+<li>右边如果是偶数, right–</li>
+<li>最后停下时如果left &lt;= right, swap</li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param nums: a list of integers</span></span><br><span class="line">    <span class="comment"># @return: nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> nums</span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">                nums[left], nums[right] = nums[right], nums[left]</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/29/152-Maximum-Product-Subarray/">
+                152 Maximum Product Subarray
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-30
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/29/152-Maximum-Product-Subarray/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/152-Maximum-Product-Subarray/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>找出一个序列中乘积最大的连续子序列（至少包含一个数）。</p>
+</blockquote>
+<p>比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。</p>
+<h2 id="解题思路">解题思路</h2><ul>
+<li>动态规划求解</li>
+<li><p>维护两个数组maxCache和minCache, 每次判断下一个数的正负</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是正数 </span></span><br><span class="line">maxCache = max(maxCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">minCache[i] = min(minCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line"><span class="comment"># 如果是负数</span></span><br><span class="line">maxCache[i] = max(maxCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">minCache[i] = min(minCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>result变量去维护一个最大值</p>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProduct</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        maxCache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        minCache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        </span><br><span class="line">        minCache[<span class="number">0</span>] = maxCache[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        result = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            minCache[i] = maxCache[i] = nums[i]</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">0</span>:</span><br><span class="line">                maxCache[i] = max(maxCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">                minCache[i] = min(minCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; <span class="number">0</span>:</span><br><span class="line">                maxCache[i] = max(maxCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">                minCache[i] = min(minCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">            </span><br><span class="line">            result = max(result, maxCache[i])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/28/45-Maximum-Subarray-Difference/">
                 45 Maximum Subarray Difference
               </a>
@@ -871,201 +1070,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/27/169-Majority-Element-I/">
-                169 Majority Element I
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-27
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/27/169-Majority-Element-I/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/169-Majority-Element-I/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整型数组，找出主元素，它在数组中的出现次数严格大于数组元素个数的二分之一。</p>
-</blockquote>
-<p>给出数组<strong>[1,1,1,1,2,2,2]</strong>，返回 1</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>方法一，排序，返回中位数 O(nlogn)</li>
-<li>方法二，遍历数组一次，不一样的相互抵消，数量占优的会留下来 O(n)</li>
-</ul>
-<h2 id="完整代码">完整代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Method 1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;integer[]&#125; nums</span></span><br><span class="line">    <span class="comment"># @return &#123;integer&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> sorted(nums)[len(nums)/<span class="number">2</span>]</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Method 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;integer[]&#125; nums</span></span><br><span class="line">    <span class="comment"># @return &#123;integer&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        count, candidate = <span class="number">0</span>, -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> count == <span class="number">0</span>:</span><br><span class="line">                candidate = item</span><br><span class="line">                count = <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> candidate != item:</span><br><span class="line">                count -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> candidate</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/27/81-Data-Stream-Median/">
-                81 Data Stream Median
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-27
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/27/81-Data-Stream-Median/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/81-Data-Stream-Median/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>数字是不断进入数组的，在每次添加一个新的数进入数组的同时返回当前新数组的中位数。</p>
-</blockquote>
-<p>持续进入数组的数的列表为：<strong>[1, 2, 3, 4, 5]</strong>，则返回[<strong>1, 1, 2, 2, 3]</strong><br>持续进入数组的数的列表为：<strong>[4, 5, 1, 3, 2, 6, 0]</strong>，则返回 <strong>[4, 4, 4, 3, 3, 3, 3]</strong><br>持续进入数组的数的列表为：<strong>[2, 20, 100]</strong>，则返回<strong>[2, 2, 20]</strong></p>
-<p>时间复杂度为O(nlogn)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>Priority Queue</li>
-<li>维护一个MaxHeap和一个MinHeap</li>
-<li>size(MinHeap) - 1 &lt; size(MaxHeap) &lt; size(MaxHeap)</li>
-<li>MaxHeap可以通过MinHeap实现，每次put相反数入队</li>
-<li>python中Priority Queue的使用<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line">q = Queue.PriorityQueue()</span><br><span class="line">q.put(<span class="number">3</span>)</span><br><span class="line">q.put(<span class="number">1</span>)</span><br><span class="line">q.put(<span class="number">2</span>)</span><br><span class="line">a = q.get()</span><br><span class="line"><span class="keyword">print</span> a <span class="comment"># output = 1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers.</span><br><span class="line">    @return: The median of numbers</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">medianII</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">            </span><br><span class="line">        median = nums[<span class="number">0</span>]</span><br><span class="line">        MaxHeap, MinHeap = Queue.PriorityQueue(), Queue.PriorityQueue()</span><br><span class="line">        result.append(median)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; median:</span><br><span class="line">                MinHeap.put(nums[i])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                MaxHeap.put(-nums[i])</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span> MaxHeap.qsize() &gt; MinHeap.qsize():</span><br><span class="line">                MinHeap.put(median)</span><br><span class="line">                median = -MaxHeap.get()</span><br><span class="line">            <span class="keyword">if</span> MaxHeap.qsize() + <span class="number">1</span> &lt; MinHeap.qsize():</span><br><span class="line">                MaxHeap.put(-median)</span><br><span class="line">                median = MinHeap.get()</span><br><span class="line">            result.append(median)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-            <a href="/tags/MaxHeap/"> #MaxHeap </a>
-          
-            <a href="/tags/MinHeap/"> #MinHeap </a>
-          
-            <a href="/tags/Priority-Queue/"> #Priority Queue </a>
-          
-            <a href="/tags/Queue/"> #Queue </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1104,7 +1108,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">117</span>
+              <span class="site-state-item-count">119</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
