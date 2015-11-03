@@ -125,6 +125,294 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/31/49-Group-Anagrams/">
+                49 Group Anagrams
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-31
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/31/49-Group-Anagrams/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/31/49-Group-Anagrams/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。</p>
+</blockquote>
+<p>对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [&#34;ate&#34;, &#34;eat&#34;,&#34;tea&#34;],&#10;&#160; [&#34;nat&#34;,&#34;tan&#34;],&#10;&#160; [&#34;bat&#34;]&#10;]</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先，注意返回结果中，子字符串数组内要保持有序，所以第一步先把strs排序</li>
+<li>本题考察使用hashtable，与直接判断两个字符串是否是anagram不同，遍历一遍字符串数组，将<strong>排序的字符串作为key</strong>，把原始字符串作为value</li>
+<li>最后遍历hashtable生成结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type strs: List[str]</span><br><span class="line">        :rtype: List[List[str]]</span><br><span class="line">        """</span></span><br><span class="line">        strs.sort()</span><br><span class="line">        d = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">""</span>.join(sorted(str)) <span class="keyword">not</span> <span class="keyword">in</span> d:</span><br><span class="line">                d[<span class="string">""</span>.join(sorted(str))] = [str]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d[<span class="string">""</span>.join(sorted(str))].append(str)</span><br><span class="line">                </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> d.items():</span><br><span class="line">            res.append(value)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hash/"> #Hash </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/String/"> #String </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/25/55-Jump-Game/">
+                55 Jump Game
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/25/55-Jump-Game/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/25/55-Jump-Game/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个非负整数数组，你最初定位在数组的第一个位置。　　　<br>数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　　<br>判断你是否能到达数组的最后一个位置。</p>
+</blockquote>
+<p>A =<strong> [2,3,1,1,4]</strong>，返回 true.<br>A =<strong> [3,2,1,0,4]</strong>，返回 false.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>方法一：贪心法 greedy</li>
+<li>方法二：单序列型动态规划 - Sequence DP (因为题目中给的是序列而不是数组，注意两者的区别)，本题动归的方法不能过OJ</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一，贪心</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        farest = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i &lt;= farest <span class="keyword">and</span> nums[i] + i &gt; farest:</span><br><span class="line">                farest = nums[i] + i</span><br><span class="line">            <span class="keyword">if</span> farest &gt;= len(nums) - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二，动态规划</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        cache = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> cache[j] <span class="keyword">is</span> <span class="keyword">True</span> <span class="keyword">and</span> j + nums[j] &gt;= i:</span><br><span class="line">                    cache[i] == <span class="keyword">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> cache[len(nums) - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/Greedy/"> #Greedy </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sequence-DP/"> #Sequence DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/25/120-Triangle/">
+                120 Triangle
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/25/120-Triangle/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/25/120-Triangle/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个数字三角形，找到从顶部到底部的最小路径和。每一步可以移动到下面一行的相邻数字上。</p>
+</blockquote>
+<p>比如，给出下列数字三角形：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; &#160; &#160;[2],&#10;  &#160; [3,4],&#10;&#160; &#160;[6,5,7],&#10;&#160; [4,1,8,3]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>从顶到底部的最小路径和为11 (<strong> 2 + 3 + 5 + 1 = 11</strong>)。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>矩阵型动态规划问题 - Matrix DP</li>
+<li>有两种解决方案，自顶向下或者自底向上</li>
+<li>下面代码采用自底向上的方法，cache[i][j]表明从最底层到i,j所用的最短距离是多少</li>
+<li><code>cache[i][j]</code>就等于<code>cache[i+1][j]</code>(左下角)与<code>cache[i+1][j+1]</code>(右下角)中最小的加上<code>triangle[i][j]</code>的值</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minimumTotal</span><span class="params">(self, triangle)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type triangle: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> triangle:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        m = len(triangle)</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            cache[m - <span class="number">1</span>][i] = triangle[m - <span class="number">1</span>][i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m - i):</span><br><span class="line">                cache[m - <span class="number">1</span> - i][j] = min(cache[m - i][j], cache[m - i][j + <span class="number">1</span>]) + triangle[m - <span class="number">1</span> - i][j]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Matrix-DP/"> #Matrix DP </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/24/64-Minimum-Path-Sum/">
                 64 Minimum Path Sum
               </a>
@@ -829,317 +1117,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/21/111-Minimum-Depth-of-Binary-Tree/">
-                111 Minimum Depth of Binary Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-22
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/21/111-Minimum-Depth-of-Binary-Tree/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/21/111-Minimum-Depth-of-Binary-Tree/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个二叉树，找出其最小深度。<br>二叉树的最小深度为根节点到最近叶子节点的距离。</p>
-</blockquote>
-<p>给出一棵如下的二叉树:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; &#160; &#160; 1&#10;&#160; &#160; &#160;/ &#160; &#160; \&#160;&#10;&#160; &#160;2 &#160; &#160; &#160; 3&#10;&#160; &#160; &#160; &#160; &#160; / &#160; &#160;\&#10;&#160; &#160; &#160; &#160; 4 &#160; &#160; &#160;5</span><br></pre></td></tr></table></figure></p>
-<p>这个二叉树的最小深度为 2</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p><strong>一定要注意定义</strong>，比如下面这棵树的最小深度是<strong>3</strong>不是<strong>1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#10; \&#10;  2&#10;   \&#10;    3</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法和找最大深度一样，Divide &amp; Conquer<br>只需要判断如果左右儿子中又None，则返回非None的儿子的高度+1</p>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">None</span> <span class="keyword">in</span> [root.left, root.right]:</span><br><span class="line">            <span class="keyword">return</span> max(self.minDepth(root.left), self.minDepth(root.right)) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> min(self.minDepth(root.left), self.minDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
-          
-            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/21/236-Lowest-Common-Ancestor-of-a-Binary-Tree/">
-                236 Lowest Common Ancestor of a Binary Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-22
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/21/236-Lowest-Common-Ancestor-of-a-Binary-Tree/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/21/236-Lowest-Common-Ancestor-of-a-Binary-Tree/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一棵二叉树，找到两个节点的最近公共父节点(LCA)。<br>最近公共祖先是两个节点的公共的祖先节点且具有最大深度。</p>
-</blockquote>
-<p>对于下面这棵二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 4&#10;&#160;/ \&#10;3 &#160; 7&#10;&#160;&#160; / \&#10;&#160; 5 &#160; 6&#10;LCA(3, 5) = 4&#10;LCA(5, 6) = 7&#10;LCA(6, 7) = 7</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>Divide &amp; Conquer 的思路</li>
-<li>如果<code>root</code>为空，则返回空</li>
-<li>如果<code>root</code>等于其中某个<code>node</code>，则返回<code>root</code></li>
-<li>如果上述两种情况都不满足，则divide，左右子树分别调用该方法</li>
-<li>Divide &amp; Conquer中<strong>治</strong>这一步要考虑清楚，本题三种情况<ul>
-<li>如果<code>left</code>和<code>right</code>都有结果返回，说明root是最小公共祖先</li>
-<li>如果只有<code>left</code>有返回值，说明<code>left</code><strong>的返回值</strong>是最小公共祖先</li>
-<li>如果只有<code>right</code>有返回值，说明<code>right</code><strong>的返回值</strong>是最小公共祖先</li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lowestCommonAncestor</span><span class="params">(self, root, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :type p: TreeNode</span><br><span class="line">        :type q: TreeNode</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># divide</span></span><br><span class="line">        left = self.lowestCommonAncestor(root.left, p, q)</span><br><span class="line">        right = self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># conquer</span></span><br><span class="line">        <span class="keyword">if</span> left != <span class="keyword">None</span> <span class="keyword">and</span> right != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> left != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> left</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> right</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
-          
-            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
-          
-            <a href="/tags/LCA/"> #LCA </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/21/235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree/">
-                235 Lowest Common Ancestor of a Binary Search Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-22
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/21/235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/21/235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一棵平衡二叉树(BST)，找到两个节点的最近公共父节点(LCA)。<br>最近公共祖先是两个节点的公共的祖先节点且具有最大深度。</p>
-</blockquote>
-<p>对于下面这棵二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 4&#10;&#160;/ \&#10;3 &#160; 7&#10;&#160;&#160; / \&#10;&#160; 5 &#160; 6</span><br></pre></td></tr></table></figure></p>
-<p>LCA(3, 5) = 4<br>LCA(5, 6) = 7<br>LCA(6, 7) = 7</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>与本题类似的题是把BST换成普通的二叉树，方法为divide &amp; conquer</li>
-<li>对于本题，初始如果<code>root</code>为空，则直接返回None</li>
-<li>如果有其中一个<code>node</code>跟<code>root</code>相等，则返回<code>root</code></li>
-<li>以上两两种情况都不满足，考虑到是一棵平衡二叉树，所以有以下三种情况<ul>
-<li>如果两个<code>node</code>中的较小值都大于<code>root.val</code>，则答案一定在右子树</li>
-<li>如果两个<code>node</code>中的较大值都小于<code>root.val</code>，则答案一定在左子树</li>
-<li>或者<code>root.val</code>的值介于两个<code>node</code>的值中间，则返回<code>root</code></li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lowestCommonAncestor</span><span class="params">(self, root, p, q)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :type p: TreeNode</span><br><span class="line">        :type q: TreeNode</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> root == p <span class="keyword">or</span> root == q:</span><br><span class="line">            <span class="keyword">return</span> root.val</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> q.val &gt; p.val:</span><br><span class="line">            q, p = p, q</span><br><span class="line">        <span class="keyword">if</span> q.val &lt; root.val <span class="keyword">and</span> p.val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span> root.val</span><br><span class="line">        <span class="keyword">if</span> q.val &gt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.right, p, q)</span><br><span class="line">        <span class="keyword">if</span> p.val &lt; root.val:</span><br><span class="line">            <span class="keyword">return</span> self.lowestCommonAncestor(root.left, p, q)</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/BST/"> #BST </a>
-          
-            <a href="/tags/LCA/"> #LCA </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Recursion/"> #Recursion </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
   </div>
 
 
@@ -1173,7 +1155,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1187,7 +1169,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>

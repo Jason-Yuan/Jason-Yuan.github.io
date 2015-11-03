@@ -125,6 +125,305 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/01/16-3Sum-Closest/">
+                16 3Sum Closest
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/01/16-3Sum-Closest/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/16-3Sum-Closest/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给一个包含n个整数的数组S, 找到和与给定整数target最接近的三元组，返回这三个数的和。</p>
+</blockquote>
+<p>例如S = <strong>[-1, 2, 1, -4]</strong> and target = <strong>1</strong>.  和最接近1的三元组是 <strong>-1 + 2 + 1 = 2</strong>.</p>
+<p>只需要返回三元组之和，无需返回三元组本身</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>题目要求找到x+y+z最接近target，我们可以遍历x，然后将题目转化为2Sum Closest，即找到y+z最接近target-x</li>
+<li>对于2Sum Closest，同样是使用<strong>对撞型指针</strong>，不断维护一个<strong>closest sum</strong></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        closest = sys.maxint</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                Sum = sortNum[i] + sortNum[left] + sortNum[right]</span><br><span class="line">                <span class="keyword">if</span> Sum == target:</span><br><span class="line">                    <span class="keyword">return</span> Sum</span><br><span class="line">                <span class="keyword">elif</span> Sum &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                closest = Sum <span class="keyword">if</span> abs(Sum - target) &lt; abs(closest - target) <span class="keyword">else</span> closest </span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> closest</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sum/"> #Sum </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/01/15-3Sum/">
+                15 3Sum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-02
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/01/15-3Sum/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/15-3Sum/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个有n个整数的数组S，在S中找到三个整数a, b, c，找到所有使得a + b + c = 0的三元组。</p>
+</blockquote>
+<p>如<strong>S = {-1 0 1 2 -1 -4}</strong>, 你需要返回的三元组集合的是：<br><strong>(-1, 0, 1)</strong><br><strong>(-1, -1, 2)</strong></p>
+<p>在三元组(a, b, c)，要求a &lt;= b &lt;= c。<br>结果不能包含重复的三元组。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先，数组排序!!!</li>
+<li>遍历数组, 每次check当前数值current往后能不能找到两个数的和等于-current</li>
+<li><strong>两个指针</strong>中对撞型指针的问题</li>
+<li>排序O(nlgn)+遍历O(n^2)，最终时间复杂度O(n^2)</li>
+<li><strong>注意</strong>有几个地方的代码是为了去掉重复结果<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> sortNum[i] == sortNum[i - <span class="number">1</span>]:</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line"><span class="comment"># 每次left++ 或者 right--之后要记得检查left&lt;right这个条件</span></span><br><span class="line"><span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[left] == sortNum[left - <span class="number">1</span>]:</span><br><span class="line">    left += <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[right] == sortNum[right + <span class="number">1</span>]:</span><br><span class="line">    right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> sortNum[i] == sortNum[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            target = - sortNum[i]</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                <span class="keyword">if</span> sortNum[left] + sortNum[right] == target:</span><br><span class="line">                    res.append([sortNum[i], sortNum[left], sortNum[right]])</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[left] == sortNum[left - <span class="number">1</span>]:</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[right] == sortNum[right + <span class="number">1</span>]:</span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> sortNum[left] + sortNum[right] &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Sum/"> #Sum </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/29/31-Partition-Array/">
+                31 Partition Array
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-30
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/29/31-Partition-Array/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/31-Partition-Array/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个整数数组nums和一个整数k。划分数组（即移动数组nums中的元素），使得：<br>所有小于k的元素移到左边<br>所有大于等于k的元素移到右边<br>返回数组划分的位置，即数组中第一个位置i，满足nums[i]大于等于k。</p>
+</blockquote>
+<p>给出数组nums=<strong>[3,2,2,1]</strong>和 k=2，返回 1</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>非常相似的题[Partition Array by Odd and Even]</li>
+<li>正宗<strong>两个指针</strong>中对撞型指针的问题</li>
+<li>最外层大while循环，终止条件是两根指针对撞</li>
+<li>内层循环，分三步走<ul>
+<li>左边如果小于K, left++</li>
+<li>右边如果大于等于K, right–</li>
+<li>最后停下时如果left &lt;= right, swap </li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: The integer array you should partition</span><br><span class="line">    @param k: As description</span><br><span class="line">    @return: The index after partition</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        <span class="comment"># you should partition the nums by k</span></span><br><span class="line">        <span class="comment"># and return the partition index as description</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt; k:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt;= k:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">                nums[left],  nums[right] = nums[right], nums[left]</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> left</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/29/373-Partition-Array-by-Odd-and-Even/">
                 373 Partition Array by Odd and Even
               </a>
@@ -787,294 +1086,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/28/53-Maximum-Subarray-I/">
-                53 Maximum Subarray I
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/28/53-Maximum-Subarray-I/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/53-Maximum-Subarray-I/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组，找到一个具有最大和的子数组，返回其最大和。</p>
-</blockquote>
-<p>给出数组[−2,2,−3,4,−1,2,1,−5,3]，符合要求的子数组为[4,−1,2,1]，其最大和为6<br>子数组最少包含一个数</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>相似题[Best Time to Buy and Sell Stock]，本题是找一个区间使得区间内值的和最大，[Best Time to Buy and Sell Stock]是找两个点使得end-start最大</li>
-<li>巧妙使用<strong>前缀和数组</strong> sum[i] = array[0] + array[1] +…. + array[i]</li>
-<li><strong>[Best Time to Buy and Sell Stock]中的每个点，就相当于[Maximum Subarray]中的前缀和数组</strong></li>
-<li>想求x~y这段区间的最大值，则让sum[y]尽可能大，让sum[x]尽可能小，那么sum[y]-sum[x]最大</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        res, sum, minSum = -sys.maxint - <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            sum += num</span><br><span class="line">            res = max(res, sum - minSum)</span><br><span class="line">            minSum = min(minSum, sum)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/28/48-Majority-Element-III/">
-                48 Majority Element III
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/28/48-Majority-Element-III/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/48-Majority-Element-III/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整型数组，找到主元素，它在数组中的出现次数严格大于数组元素个数的<strong>1/k</strong>。</p>
-</blockquote>
-<p>给出数组<strong>[3,1,2,3,2,3,3,4,4,4]</strong>，和 k =<strong>3</strong>，返回 3<br>数组中只有唯一的主元素</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>大体思路同Majority Element I, Majority Element II是一样的。本题则为k-k抵消</li>
-<li>维护一个hash表，当hash表中key的个数等于k的时候，所有key对应的value减一，注意<strong>如果value减一之后为零，要删除key</strong></li>
-<li>python中dictionary相关操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># get all the keys of a dictionary&#10;dict.keys()&#10;# delete a key in dictionary&#10;dict.pop(key, None) # or dict.pop(key)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers</span><br><span class="line">    @param k: As described</span><br><span class="line">    @return: The majority number</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeKey</span><span class="params">(self, counters)</span>:</span></span><br><span class="line">        keySet = counters.keys()</span><br><span class="line">        removeList = []</span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> keySet:</span><br><span class="line">            counters[key] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> counters[key] == <span class="number">0</span>:</span><br><span class="line">                removeList.append(key)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> removeList:</span><br><span class="line">            counters.pop(key, <span class="keyword">None</span>)</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityNumber</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        counters = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> counters:</span><br><span class="line">                counters[num] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                counters[num] += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span> len(counters) &gt;= k:</span><br><span class="line">                self.removeKey(counters)</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">if</span> len(counters) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 从新计算剩下的数字中在原数组的出现次数</span></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> counters.keys():</span><br><span class="line">            counters[key] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">in</span> counters:</span><br><span class="line">                counters[num] += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">        <span class="comment"># find the max key</span></span><br><span class="line">        maxCounter, maxKey = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> counters.iteritems():</span><br><span class="line">            <span class="keyword">if</span> value &gt; maxCounter:</span><br><span class="line">                maxCounter = value</span><br><span class="line">                maxKey = key</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> maxKey</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Hash/"> #Hash </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/27/229-Majority-Element-II/">
-                229 Majority Element II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-27
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/27/229-Majority-Element-II/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/229-Majority-Element-II/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整型数组，找到所有主元素，它在数组中的出现次数严格大于数组元素个数的三分之一。</p>
-</blockquote>
-<p>给出数组<strong>[1,2,1,2,1,3,3] </strong>返回 1</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>三三抵消，最后会剩下两个candidates，但是注意此时不是谁占多数谁是最终结果，反例[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 4, 4] 三三抵消后剩下 [1, 4，4] 4数量占优，但结果应该是1，所以三三抵消后，再loop一遍找1和4谁数量超过了len(nums)/3</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        candidate1, count1 = <span class="keyword">None</span>, <span class="number">0</span></span><br><span class="line">        candidate2, count2 = <span class="keyword">None</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> candidate1 == num:</span><br><span class="line">                count1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> candidate2 == num:</span><br><span class="line">                count2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> count1 == <span class="number">0</span>:</span><br><span class="line">                count1 += <span class="number">1</span></span><br><span class="line">                candidate1 = num</span><br><span class="line">            <span class="keyword">elif</span> count2 == <span class="number">0</span>:</span><br><span class="line">                count2 += <span class="number">1</span></span><br><span class="line">                candidate2 = num</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count1 -= <span class="number">1</span></span><br><span class="line">                count2 -= <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        count1, count2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num == candidate1:</span><br><span class="line">                count1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> num == candidate2:</span><br><span class="line">                count2 += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> count1 &gt; len(nums) / <span class="number">3</span>:</span><br><span class="line">            result.append(candidate1)</span><br><span class="line">        <span class="keyword">if</span> count2 &gt; len(nums) / <span class="number">3</span>:</span><br><span class="line">            result.append(candidate2)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">&raquo;</a>
   </div>
 
 
@@ -1108,7 +1124,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1122,7 +1138,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>

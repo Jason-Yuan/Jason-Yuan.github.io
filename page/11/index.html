@@ -125,6 +125,304 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/27/126-Max-Tree/">
+                126 Max Tree
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-27
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/27/126-Max-Tree/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/126-Max-Tree/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个没有重复的整数数组，在此数组上建立最大树的定义如下：<br>1.根是数组中最大的数<br>2.左子树和右子树元素分别是被父节点元素切分开的子数组中的最大值<br>利用给定的数组构造最大树。</p>
+</blockquote>
+<p>给出数组 [2, 5, 6, 0, 3, 1]，构造的最大树如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    6&#10;   / \&#10;  5   3&#10; /   / \&#10;2   0   1</span><br></pre></td></tr></table></figure></p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>通过观察发现规律，对于每个node的父亲节点 = min(左边第一个比它大的，右边第一个比它大的)</li>
+<li>维护一个降序数组，可以实现对这个min的快速查找<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># stack = [2], push 5 &#22240;&#20026; 5 &#62; 2, &#25152;&#20197;2&#26159;5&#30340;&#24038;&#20799;&#23376;, pop 2&#10;# stack = [], push 5&#10;# stack = [5], push 6, &#22240;&#20026; 6 &#62; 5&#65292;&#25152;&#20197;5&#26159;6&#30340;&#24038;&#20799;&#23376;, pop 5&#10;# stack = [], push 6&#10;# stack = [6], push 0, &#22240;&#20026;0 &#60; 6, stack = [6], &#25152;&#20197;0&#26159;6&#30340;&#21491;&#20799;&#23376;&#10;# stack = [6, 0], push 3, &#22240;&#20026;3 &#62; 0, &#25152;&#20197;0&#26159;3&#30340;&#24038;&#20799;&#23376;&#65292; pop 0&#10;# stack = [6], &#25152;&#20197;3&#26159;6&#30340;&#21491;&#20799;&#23376;&#65292; push 3&#10;# stack = [6, 3], push 1, &#22240;&#20026;1 &#60; 3&#65292;&#25152;&#20197;1&#26159;3&#30340;&#21491;&#20799;&#23376;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param A: Given an integer array with no duplicates.</span></span><br><span class="line">    <span class="comment"># @return: The root of max tree.</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxTree</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        stack = []</span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> A:</span><br><span class="line">            node = TreeNode(element)</span><br><span class="line">            <span class="keyword">while</span> len(stack) != <span class="number">0</span> <span class="keyword">and</span> element &gt; stack[-<span class="number">1</span>].val:</span><br><span class="line">                node.left = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> len(stack) != <span class="number">0</span>:</span><br><span class="line">                stack[-<span class="number">1</span>].right = node</span><br><span class="line">            stack.append(node)</span><br><span class="line">        <span class="keyword">return</span> stack[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Descending-order-stack/"> #Descending order stack </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/27/155-Min-Stack/">
+                155 Min Stack
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-27
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/27/155-Min-Stack/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/155-Min-Stack/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>实现一个带有取最小值min方法的栈，min方法将返回当前栈中的最小值。你实现的栈将支持<strong>push</strong>，<strong>pop</strong>和<strong>min</strong>操作，所有操作要求都在O(1)时间内完成。</p>
+</blockquote>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>使用两个stack实现， 一个stack正常存储数值，另一个stack存储每次的最小值（保存最小值的变化序列）</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.minstack = []</span><br><span class="line">        self.stack = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type x: int</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line">        <span class="keyword">if</span> len(self.minstack) == <span class="number">0</span> <span class="keyword">or</span> self.minstack[-<span class="number">1</span>] &gt; x:</span><br><span class="line">            self.minstack.append(x)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.minstack.append(self.minstack[-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.minstack.pop()</span><br><span class="line">        <span class="keyword">return</span> self.stack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.stack[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.minstack[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/26/126-Word-Ladder-II/">
+                126 Word Ladder II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-26
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/26/126-Word-Ladder-II/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/126-Word-Ladder-II/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出两个单词（start和end）和一个字典，找出所有从start到end的最短转换序列<br>比如：<br>1.每次只能改变一个字母。<br>2.变换过程中的中间单词必须在字典中出现。</p>
+</blockquote>
+<p>start = <strong>“hit”</strong><br>end = <strong>“cog”</strong><br>dict = <strong>[“hot”,”dot”,”dog”,”lot”,”log”]</strong></p>
+<p>返回<br>[<br>    [“hit”,”hot”,”dot”,”dog”,”cog”],<br>    [“hit”,”hot”,”lot”,”log”,”cog”]<br>  ]</p>
+<p><strong>注意</strong></p>
+<ul>
+<li>所有单词具有相同的长度。</li>
+<li>所有单词都只包含小写字母。</li>
+</ul>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先，善用一个条件，所有的单词<strong>长度相同</strong></li>
+<li><p>建立一个index，作用就是把去掉某一个位置的字母后，剩余部分相同的放入一个桶中。为了优化时间复杂度。比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34;abcd&#34; -&#62; (1, bcd) &#60;- &#34;fbcd&#34;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BFS一遍，确定为一个单词在图中的第几层</p>
+</li>
+<li>DFS一遍，找到每一个可行的路线。此时BFS的作用就是从第n层只能往n+1层走，以保证最短路径</li>
+<li>为什么使用<code>dict.get(key)</code>而不是<code>dict[key]</code>？<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#21487;&#20197;&#35774;&#23450;&#19968;&#20010;default value, &#22914;&#26524;key&#19981;&#23384;&#22312;&#65292;&#23601;&#24314;&#31435;&#30456;&#24212;&#30340;key-value pair&#10;a = dictionary.get(&#34;bogus&#34;, None)   # return None&#10;a = dictionary[&#34;bogus&#34;]             # raise KeyError</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildIndex</span><span class="params">(self, length, dict)</span>:</span></span><br><span class="line">        indexes = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            index = &#123;&#125;</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">                entry = word[:i] + word[i + <span class="number">1</span>:]</span><br><span class="line">                words = index.get(entry, [])</span><br><span class="line">                words.append(word)</span><br><span class="line">                index[entry] = words</span><br><span class="line">            indexes.append(index)</span><br><span class="line">        <span class="keyword">return</span> indexes</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNextWord</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            entry = word[:i] + word[i + <span class="number">1</span>:]</span><br><span class="line">            <span class="keyword">if</span> entry <span class="keyword">in</span> self.indexes[i]:</span><br><span class="line">                <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.indexes[i][entry]:</span><br><span class="line">                    <span class="keyword">if</span> nextWord != word:</span><br><span class="line">                        res.append(nextWord)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        self.distance = &#123;&#125;</span><br><span class="line">        self.distance[start] = <span class="number">0</span></span><br><span class="line">        q = Queue.Queue()</span><br><span class="line">        q.put(start)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            head = q.get()</span><br><span class="line">            <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.getNextWord(head):</span><br><span class="line">                <span class="keyword">if</span> nextWord <span class="keyword">not</span> <span class="keyword">in</span> self.distance:</span><br><span class="line">                    self.distance[nextWord] = self.distance[head] + <span class="number">1</span></span><br><span class="line">                    q.put(nextWord)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self, current, target, path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> current == target:</span><br><span class="line">            self.result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> self.getNextWord(current):</span><br><span class="line">            <span class="keyword">if</span> self.distance[word] - <span class="number">1</span> == self.distance[current]:</span><br><span class="line">                self.DFS(word, target, path + [word])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord, endWord, wordlist)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type beginWord: str</span><br><span class="line">        :type endWord: str</span><br><span class="line">        :type wordlist: Set[str]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> endWord <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> len(beginWord) != len(endWord):</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">not</span> <span class="keyword">in</span> wordlist <span class="keyword">or</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordlist:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        self.indexes = self.buildIndex(len(beginWord), wordlist)</span><br><span class="line">        self.BFS(beginWord, endWord)</span><br><span class="line">        </span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">in</span> self.distance:</span><br><span class="line">            self.DFS(beginWord, endWord, [beginWord])</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> self.result</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/BFS/"> #BFS </a>
+          
+            <a href="/tags/Backtracking/"> #Backtracking </a>
+          
+            <a href="/tags/DFS/"> #DFS </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/String/"> #String </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/26/127-Word-Ladder-I/">
                 127 Word Ladder I
               </a>
@@ -811,301 +1109,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/24/通过Github-Pages和Jekyll搭建个人博客/">
-                通过Github Pages和Jekyll搭建个人博客
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-06-24
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/MISC/">MISC</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/24/通过Github-Pages和Jekyll搭建个人博客/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/24/通过Github-Pages和Jekyll搭建个人博客/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <hr>
-<h1 id="什么是Jekyll_?">什么是Jekyll ?</h1><p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-f98becf54ff9fabc_zpstbnjl7ae.png" alt="Jekyll"></p>
-<ul>
-<li>Jekyll 是目前非常流行的静态网站生成器(static website generator)。静态网站即只包含HTML, CSS 和 Javascript<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jekyll(raw_text_files, templates)&#10;&#123;&#10;    return Beautiful_web_pages;&#10;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/24/通过Github-Pages和Jekyll搭建个人博客/#more">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Github-Pages/"> #Github Pages </a>
-          
-            <a href="/tags/Jekyll/"> #Jekyll </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/21/ASP-NET-LINQ-简介/">
-                ASP.NET LINQ 简介
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-06-21
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/ASP-NET/">ASP.NET</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/21/ASP-NET-LINQ-简介/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/21/ASP-NET-LINQ-简介/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <hr>
-<p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-a93a53f1d9cfcd13_zpsxd0ffrfw.jpg" alt="LINQ"></p>
-<h1 id="什么是LINQ_?">什么是LINQ ?</h1><ul>
-<li><strong>LINQ，集成查询语言(Language Integrated Query)</strong><ul>
-<li><strong>Language Integrated</strong>：说明LINQ变成了编程语言的一部分。</li>
-<li><strong>Query</strong>：说明了LINQ是用来查询数据的。</li>
-</ul>
-</li>
-<li><strong>LINQ主要包含以下三部分:</strong><ul>
-<li><strong>LINQ</strong> - LINQ to Objects 主要负责对象的查询 </li>
-<li><strong>XLINQ</strong> - LINQ to XML 主要负责XML的查询</li>
-<li><strong>DLINQ</strong> - LINQ to ADO.NET 主要负责数据库查询</li>
-</ul>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/21/ASP-NET-LINQ-简介/#more">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ASP-NET/"> #ASP.NET </a>
-          
-            <a href="/tags/LINQ/"> #LINQ </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/21/C-中的var关键字/">
-                C#中的var关键字
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-06-21
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/C/">C#</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/21/C-中的var关键字/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/21/C-中的var关键字/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="声明变量的时候，可以有下面两种方式">声明变量的时候，可以有下面两种方式</h1><blockquote>
-<p>int a = “hello world”;  // 显示类型的(explicitly typed)<br>var a = “hello world”;  // 隐式类型的(implicitly typed)</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/21/C-中的var关键字/#more">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/C/"> #C# </a>
-          
-            <a href="/tags/Implicit-Type/"> #Implicit Type </a>
-          
-            <a href="/tags/Take-a-Bite/"> #Take a Bite </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">&raquo;</a>
   </div>
 
 
@@ -1139,7 +1147,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1153,7 +1161,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>

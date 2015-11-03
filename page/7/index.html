@@ -125,6 +125,290 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/05/207-Interval-Sum-II/">
+                207 Interval Sum II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/05/207-Interval-Sum-II/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/05/207-Interval-Sum-II/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>在类的构造函数中给一个整数数组, 实现两个方法 query(start, end) 和 modify(index, value):<br>对于 query(start, end), 返回数组中下标 start 到 end 的和。<br>对于 modify(index, value), 修改数组中下标为 index 上的数为 value.</p>
+</blockquote>
+<p>给定数组 A = [1,2,7,8,5].<br>query(0, 2), 返回 10.<br>modify(0, 4), 将 A[0] 修改为 4.<br>query(0, 1), 返回 6.<br>modify(2, 1), 将 A[2] 修改为 1.<br>query(2, 4), 返回 14.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>同[Interval Sum I]的思路一样，只是做成了Interval Sum类，实现API</li>
+<li>分别定义了<code>build</code>, <code>queryHelper</code>, <code>modifyHelper</code>三个helper函数，相应的API接口调用helper函数</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, Sum)</span>:</span></span><br><span class="line">        self.start, self.end, self.Sum = start, end, Sum</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># @param A: An integer list</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        self.root = self.build(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, L, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(L, start, mid)</span><br><span class="line">            root.right = self.build(L, mid + <span class="number">1</span>, end)</span><br><span class="line">            root.Sum = root.left.Sum + root.right.Sum</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            root.Sum = L[start]</span><br><span class="line">        <span class="keyword">return</span> root    </span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param start, end: Indices</span></span><br><span class="line">    <span class="comment"># @return: The sum from start to end</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.queryHelper(self.root, start, end)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">queryHelper</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.Sum</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftSum, rightSum = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftSum = self.queryHelper(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftSum = self.queryHelper(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightSum = self.queryHelper(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightSum = self.queryHelper(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftSum + rightSum</span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param index, value: modify A[index] to value.</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self, index, value)</span>:</span></span><br><span class="line">        self.modifyHelper(self.root, index, value)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modifyHelper</span><span class="params">(self, root, index, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == index <span class="keyword">and</span> root.end == index:</span><br><span class="line">            root.Sum = value</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> root.start &lt;= index <span class="keyword">and</span> index &lt;= mid:</span><br><span class="line">            self.modifyHelper(root.left, index, value)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; index <span class="keyword">and</span> index &lt;= root.end:</span><br><span class="line">            self.modifyHelper(root.right, index, value)</span><br><span class="line">        root.Sum =  root.left.Sum + root.right.Sum</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/206-Interval-Sum-I/">
+                206 Interval Sum I
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/05/206-Interval-Sum-I/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/05/206-Interval-Sum-I/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组（下标由 0 到 n-1，其中 n 表示数组的规模），以及一个查询列表。每一个查询列表有两个整数 [start, end] 。 对于每个查询，计算出数组中从下标 start 到 end 之间的数的总和，并返回在结果列表中。</p>
+</blockquote>
+<p>对于数组 [1,2,7,8,5]，查询[(1,2),(0,4),(2,4)], 返回 [9,23,20]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>建立<strong>下标型线段树</strong>， 自下而上，回溯更新</li>
+<li><code>root.sum = root.left.sum + root.right.sum</code></li>
+<li>for循环query更新结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of Interval.</span><br><span class="line">class Interval(object):</span><br><span class="line">    def __init__(self, start, end):</span><br><span class="line">        self.start = start</span><br><span class="line">        self.end = end</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, Sum)</span>:</span></span><br><span class="line">        self.start, self.end, self.Sum = start, end, Sum</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A, queries: Given an integer array and an Interval list</span><br><span class="line">                       The ith query is [queries[i-1].start, queries[i-1].end]</span><br><span class="line">    @return: The result list</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, L, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(L, start, mid)</span><br><span class="line">            root.right = self.build(L, mid + <span class="number">1</span>, end)</span><br><span class="line">            root.Sum = root.left.Sum + root.right.Sum</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            root.Sum = L[start]</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.Sum</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftSum, rightSum = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftSum = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftSum = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightSum = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightSum = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftSum + rightSum</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intervalSum</span><span class="params">(self, A, queries)</span>:</span></span><br><span class="line">        root = self.build(A, <span class="number">0</span>, len(A) - <span class="number">1</span>)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            res.append(self.query(root, q.start, q.end))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/05/249-Count-the-Smaller-Number-Before-Itself/">
+                249 Count the Smaller Number Before Itself
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-05
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/05/249-Count-the-Smaller-Number-Before-Itself/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/05/249-Count-the-Smaller-Number-Before-Itself/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组（下标由 0 到 n-1， n 表示数组的规模，取值范围由 0 到10000）。对于数组中的每个 ai 元素，请计算 ai 前的数中比它小的元素的数量。</p>
+</blockquote>
+<p>对于数组[1,2,7,8,5] ，返回 [0,1,2,3,2]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>建立<strong>值型线段树</strong></li>
+<li>首先建立树count都等于0，然后循环query再modify</li>
+<li>注意查找x-1可能出现负值，要做判断，x-1 &lt; 0直接<code>res.append(0)</code></li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">segmentTreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, start, end, count)</span>:</span></span><br><span class="line">        self.start, self.end, self.count = start, end, count</span><br><span class="line">        self.left, self.right = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A: A list of integer</span><br><span class="line">    @return: Count the number of element before this element 'ai' is </span><br><span class="line">             smaller than it and return count number list</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start == end:</span><br><span class="line">            root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">            </span><br><span class="line">        root = segmentTreeNode(start, end, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> start != end:</span><br><span class="line">            mid = (start + end) / <span class="number">2</span></span><br><span class="line">            root.left = self.build(start, mid)</span><br><span class="line">            root.right = self.build(mid + <span class="number">1</span>, end)</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == start <span class="keyword">and</span> root.end == end:</span><br><span class="line">            <span class="keyword">return</span> root.count</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftCount, rightCount = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftCount = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftCount = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightCount = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightCount = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftCount + rightCount</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">modify</span><span class="params">(self, root, index, value)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root.start == index <span class="keyword">and</span> root.end == index:</span><br><span class="line">            root.count += value</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> root.start &lt;= index <span class="keyword">and</span> index &lt;= mid:</span><br><span class="line">            self.modify(root.left, index, value)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> mid &lt; index <span class="keyword">and</span> index &lt;= root.end:</span><br><span class="line">            self.modify(root.right, index, value)</span><br><span class="line">        </span><br><span class="line">        root.count = root.left.count + root.right.count</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countOfSmallerNumberII</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        root = self.build(<span class="number">0</span>, <span class="number">10000</span>)</span><br><span class="line">        </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> A:</span><br><span class="line">            ans = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> num &gt; <span class="number">0</span>:</span><br><span class="line">                ans = self.query(root, <span class="number">0</span>, num - <span class="number">1</span>)</span><br><span class="line">            self.modify(root, num, <span class="number">1</span>)</span><br><span class="line">            res.append(ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/05/248-Count-the-Smaller-Number/">
                 248 Count the Smaller Number
               </a>
@@ -795,302 +1079,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/04/285-Inorder-Successor-in-BST/">
-                285 Inorder Successor in BST
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-04
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/04/285-Inorder-Successor-in-BST/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/285-Inorder-Successor-in-BST/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>Given a binary search tree and a node in it, find the in-order successor of that node in the BST.</p>
-</blockquote>
-<p>Given tree = [2,1] and node = 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; /&#10;1</span><br></pre></td></tr></table></figure></p>
-<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; / \&#10;1   3</span><br></pre></td></tr></table></figure></p>
-<p>return node 3.</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>successor变量记录<strong>root</strong>的父亲结点，当while循环结束时，如果原本的root = None或者p不存在与BST中(那么此刻root = None)，都返回None</li>
-<li>找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</li>
-<li>找到p之后，如果有右儿子，则找到右子树中的<strong>最左边的值</strong>(最小值)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root &lt;TreeNode&gt;: The root of the BST.</span><br><span class="line">    @param p &lt;TreeNode&gt;: You need find the successor node of p.</span><br><span class="line">    @return &lt;TreeNode&gt;: Successor of p.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderSuccessor</span><span class="params">(self, root, p)</span>:</span></span><br><span class="line">        successor = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">while</span> root != <span class="keyword">None</span> <span class="keyword">and</span> root.val != p.val:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt; p.val:</span><br><span class="line">                successor = root</span><br><span class="line">                root = root.left</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                root = root.right</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 原本的root = None 或者 p不存在与BST中，此刻root = None</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">                </span><br><span class="line">        <span class="comment"># 找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</span></span><br><span class="line">        <span class="keyword">if</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> successor</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找到p之后，如果有右儿子，则找到右子树中的最左边的值（最小值）</span></span><br><span class="line">        root = root.right</span><br><span class="line">        <span class="keyword">while</span> root.left != <span class="keyword">None</span>:</span><br><span class="line">            root = root.left</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/BST/"> #BST </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/04/43-Maximum-Subarray-III/">
-                43 Maximum Subarray III
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-04
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/04/43-Maximum-Subarray-III/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/43-Maximum-Subarray-III/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组和一个整数k，找出<strong>k</strong>个不重叠子数组使得它们的和最大。<br>每个子数组的数字在数组中的位置应该是连续的。<br>返回最大的和。</p>
-</blockquote>
-<p>给出数组<strong>[-1,4,-2,3,-2,3]</strong>以及k=2，返回 8</p>
-<p>子数组最少包含一个数</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>典型划分类动态规划</li>
-<li>localMax[i][k] 表示前i个数，取k个子数组，包含第i个数的Maximum Sum</li>
-<li>globalMax[i][k] 表示前i个数，取k个子数组，可以不包含第i个数的Maximum Sum</li>
-<li>状态转移方程<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localMax[i][k] = max(localMax[i - <span class="number">1</span>][k] + nums[i - <span class="number">1</span>], globalMax[i - <span class="number">1</span>][k - <span class="number">1</span>] + nums[i - <span class="number">1</span>])</span><br><span class="line">globalMax[i][k] = max(globalMax[i - <span class="number">1</span>][k], localMax[i][k])</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers</span><br><span class="line">    @param k: An integer denote to find k non-overlapping subarrays</span><br><span class="line">    @return: An integer denote the sum of max k non-overlapping subarrays</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        n = len(nums)</span><br><span class="line">        localMax = [[-sys.maxint <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        globalMax = [[-sys.maxint <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># 边界初始化</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(k + <span class="number">1</span>):</span><br><span class="line">            localMax[k][<span class="number">0</span>] = globalMax[k][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 边界初始化</span></span><br><span class="line">            localMax[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            globalMax[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, k + <span class="number">1</span>):</span><br><span class="line">                localMax[i][k] = max(localMax[i - <span class="number">1</span>][k] + nums[i - <span class="number">1</span>], globalMax[i - <span class="number">1</span>][k - <span class="number">1</span>] + nums[i - <span class="number">1</span>])</span><br><span class="line">                globalMax[i][k] = max(globalMax[i - <span class="number">1</span>][k], localMax[i][k])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> globalMax[n][k]</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/04/188-Best-Time-to-Buy-and-Sell-Stock-IV/">
-                188 Best Time to Buy and Sell Stock IV
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-04
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/04/188-Best-Time-to-Buy-and-Sell-Stock-IV/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/188-Best-Time-to-Buy-and-Sell-Stock-IV/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>假设你有一个数组，它的第i个元素是一支给定的股票在第i天的价格。<br>设计一个算法来找到最大的利润。你最多可以完成 k 笔交易。</p>
-</blockquote>
-<p>给定价格 = [4,4,6,1,1,4,2,5], 且 k = 2, 返回 6.</p>
-<p>你不可以同时参与多笔交易(你必须在再次购买前出售掉之前的股票)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>动态规划，<strong>循环引用的状态数组(local/global数组)</strong></li>
-<li>mustSell[i][k] 表示前i天，至多进行k次交易，第i天必须sell的最大获益</li>
-<li>globalbest[i][k] 表示前i天，至多进行k次交易，第i天可以不sell的最大获益</li>
-<li>状态转移方程<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mustSell[i][k] = max(globalBest[i - <span class="number">1</span>][k - <span class="number">1</span>] + profit, mustSell[i - <span class="number">1</span>][k] + profit)</span><br><span class="line">globalBest[i][k] = max(globalBest[i - <span class="number">1</span>][k], mustSell[i][k])</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, k, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type k: int</span><br><span class="line">        :type prices: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> k &gt;= len(prices) / <span class="number">2</span>:</span><br><span class="line">            profit = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">                diff = prices[i] - prices[i - <span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> diff &gt; <span class="number">0</span>:</span><br><span class="line">                    profit += diff</span><br><span class="line">            <span class="keyword">return</span> profit</span><br><span class="line">            </span><br><span class="line">        n = len(prices)</span><br><span class="line">        mustSell = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        globalBest = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(k + <span class="number">1</span>):</span><br><span class="line">            mustSell[<span class="number">0</span>][k] = globalBest[<span class="number">0</span>][k] = <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            profit = prices[i] - prices[i - <span class="number">1</span>]</span><br><span class="line">            mustSell[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, k + <span class="number">1</span>):</span><br><span class="line">                mustSell[i][k] = max(globalBest[i - <span class="number">1</span>][k - <span class="number">1</span>] + profit, mustSell[i - <span class="number">1</span>][k] + profit)</span><br><span class="line">                globalBest[i][k] = max(globalBest[i - <span class="number">1</span>][k], mustSell[i][k])</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> globalBest[n - <span class="number">1</span>][k]</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">&raquo;</a>
   </div>
 
 
@@ -1124,7 +1117,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1138,7 +1131,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>

@@ -125,6 +125,297 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/04/285-Inorder-Successor-in-BST/">
+                285 Inorder Successor in BST
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-04
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/04/285-Inorder-Successor-in-BST/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/285-Inorder-Successor-in-BST/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>Given a binary search tree and a node in it, find the in-order successor of that node in the BST.</p>
+</blockquote>
+<p>Given tree = [2,1] and node = 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; /&#10;1</span><br></pre></td></tr></table></figure></p>
+<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; / \&#10;1   3</span><br></pre></td></tr></table></figure></p>
+<p>return node 3.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>successor变量记录<strong>root</strong>的父亲结点，当while循环结束时，如果原本的root = None或者p不存在与BST中(那么此刻root = None)，都返回None</li>
+<li>找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</li>
+<li>找到p之后，如果有右儿子，则找到右子树中的<strong>最左边的值</strong>(最小值)</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root &lt;TreeNode&gt;: The root of the BST.</span><br><span class="line">    @param p &lt;TreeNode&gt;: You need find the successor node of p.</span><br><span class="line">    @return &lt;TreeNode&gt;: Successor of p.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderSuccessor</span><span class="params">(self, root, p)</span>:</span></span><br><span class="line">        successor = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">while</span> root != <span class="keyword">None</span> <span class="keyword">and</span> root.val != p.val:</span><br><span class="line">            <span class="keyword">if</span> root.val &gt; p.val:</span><br><span class="line">                successor = root</span><br><span class="line">                root = root.left</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                root = root.right</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 原本的root = None 或者 p不存在与BST中，此刻root = None</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">                </span><br><span class="line">        <span class="comment"># 找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</span></span><br><span class="line">        <span class="keyword">if</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> successor</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找到p之后，如果有右儿子，则找到右子树中的最左边的值（最小值）</span></span><br><span class="line">        root = root.right</span><br><span class="line">        <span class="keyword">while</span> root.left != <span class="keyword">None</span>:</span><br><span class="line">            root = root.left</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/"> #BST </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/43-Maximum-Subarray-III/">
+                43 Maximum Subarray III
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-04
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/04/43-Maximum-Subarray-III/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/43-Maximum-Subarray-III/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组和一个整数k，找出<strong>k</strong>个不重叠子数组使得它们的和最大。<br>每个子数组的数字在数组中的位置应该是连续的。<br>返回最大的和。</p>
+</blockquote>
+<p>给出数组<strong>[-1,4,-2,3,-2,3]</strong>以及k=2，返回 8</p>
+<p>子数组最少包含一个数</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>典型划分类动态规划</li>
+<li>localMax[i][k] 表示前i个数，取k个子数组，包含第i个数的Maximum Sum</li>
+<li>globalMax[i][k] 表示前i个数，取k个子数组，可以不包含第i个数的Maximum Sum</li>
+<li>状态转移方程<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localMax[i][k] = max(localMax[i - <span class="number">1</span>][k] + nums[i - <span class="number">1</span>], globalMax[i - <span class="number">1</span>][k - <span class="number">1</span>] + nums[i - <span class="number">1</span>])</span><br><span class="line">globalMax[i][k] = max(globalMax[i - <span class="number">1</span>][k], localMax[i][k])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers</span><br><span class="line">    @param k: An integer denote to find k non-overlapping subarrays</span><br><span class="line">    @return: An integer denote the sum of max k non-overlapping subarrays</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        n = len(nums)</span><br><span class="line">        localMax = [[-sys.maxint <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        globalMax = [[-sys.maxint <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># 边界初始化</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(k + <span class="number">1</span>):</span><br><span class="line">            localMax[k][<span class="number">0</span>] = globalMax[k][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 边界初始化</span></span><br><span class="line">            localMax[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            globalMax[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, k + <span class="number">1</span>):</span><br><span class="line">                localMax[i][k] = max(localMax[i - <span class="number">1</span>][k] + nums[i - <span class="number">1</span>], globalMax[i - <span class="number">1</span>][k - <span class="number">1</span>] + nums[i - <span class="number">1</span>])</span><br><span class="line">                globalMax[i][k] = max(globalMax[i - <span class="number">1</span>][k], localMax[i][k])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> globalMax[n][k]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/04/188-Best-Time-to-Buy-and-Sell-Stock-IV/">
+                188 Best Time to Buy and Sell Stock IV
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-04
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/04/188-Best-Time-to-Buy-and-Sell-Stock-IV/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/188-Best-Time-to-Buy-and-Sell-Stock-IV/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>假设你有一个数组，它的第i个元素是一支给定的股票在第i天的价格。<br>设计一个算法来找到最大的利润。你最多可以完成 k 笔交易。</p>
+</blockquote>
+<p>给定价格 = [4,4,6,1,1,4,2,5], 且 k = 2, 返回 6.</p>
+<p>你不可以同时参与多笔交易(你必须在再次购买前出售掉之前的股票)</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>动态规划，<strong>循环引用的状态数组(local/global数组)</strong></li>
+<li>mustSell[i][k] 表示前i天，至多进行k次交易，第i天必须sell的最大获益</li>
+<li>globalbest[i][k] 表示前i天，至多进行k次交易，第i天可以不sell的最大获益</li>
+<li>状态转移方程<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mustSell[i][k] = max(globalBest[i - <span class="number">1</span>][k - <span class="number">1</span>] + profit, mustSell[i - <span class="number">1</span>][k] + profit)</span><br><span class="line">globalBest[i][k] = max(globalBest[i - <span class="number">1</span>][k], mustSell[i][k])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, k, prices)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type k: int</span><br><span class="line">        :type prices: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> k &gt;= len(prices) / <span class="number">2</span>:</span><br><span class="line">            profit = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">                diff = prices[i] - prices[i - <span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> diff &gt; <span class="number">0</span>:</span><br><span class="line">                    profit += diff</span><br><span class="line">            <span class="keyword">return</span> profit</span><br><span class="line">            </span><br><span class="line">        n = len(prices)</span><br><span class="line">        mustSell = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        globalBest = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(k + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(k + <span class="number">1</span>):</span><br><span class="line">            mustSell[<span class="number">0</span>][k] = globalBest[<span class="number">0</span>][k] = <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            profit = prices[i] - prices[i - <span class="number">1</span>]</span><br><span class="line">            mustSell[i][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, k + <span class="number">1</span>):</span><br><span class="line">                mustSell[i][k] = max(globalBest[i - <span class="number">1</span>][k - <span class="number">1</span>] + profit, mustSell[i - <span class="number">1</span>][k] + profit)</span><br><span class="line">                globalBest[i][k] = max(globalBest[i - <span class="number">1</span>][k], mustSell[i][k])</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> globalBest[n - <span class="number">1</span>][k]</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/03/122-Best-Time-to-Buy-and-Sell-Stock-II/">
                 122 Best Time to Buy and Sell Stock II
               </a>
@@ -790,310 +1081,11 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/01/16-3Sum-Closest/">
-                16 3Sum Closest
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-02
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/01/16-3Sum-Closest/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/16-3Sum-Closest/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给一个包含n个整数的数组S, 找到和与给定整数target最接近的三元组，返回这三个数的和。</p>
-</blockquote>
-<p>例如S = <strong>[-1, 2, 1, -4]</strong> and target = <strong>1</strong>.  和最接近1的三元组是 <strong>-1 + 2 + 1 = 2</strong>.</p>
-<p>只需要返回三元组之和，无需返回三元组本身</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>题目要求找到x+y+z最接近target，我们可以遍历x，然后将题目转化为2Sum Closest，即找到y+z最接近target-x</li>
-<li>对于2Sum Closest，同样是使用<strong>对撞型指针</strong>，不断维护一个<strong>closest sum</strong></li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        closest = sys.maxint</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                Sum = sortNum[i] + sortNum[left] + sortNum[right]</span><br><span class="line">                <span class="keyword">if</span> Sum == target:</span><br><span class="line">                    <span class="keyword">return</span> Sum</span><br><span class="line">                <span class="keyword">elif</span> Sum &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                closest = Sum <span class="keyword">if</span> abs(Sum - target) &lt; abs(closest - target) <span class="keyword">else</span> closest </span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> closest</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Sum/"> #Sum </a>
-          
-            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/01/15-3Sum/">
-                15 3Sum
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-02
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/01/15-3Sum/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/01/15-3Sum/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给出一个有n个整数的数组S，在S中找到三个整数a, b, c，找到所有使得a + b + c = 0的三元组。</p>
-</blockquote>
-<p>如<strong>S = {-1 0 1 2 -1 -4}</strong>, 你需要返回的三元组集合的是：<br><strong>(-1, 0, 1)</strong><br><strong>(-1, -1, 2)</strong></p>
-<p>在三元组(a, b, c)，要求a &lt;= b &lt;= c。<br>结果不能包含重复的三元组。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先，数组排序!!!</li>
-<li>遍历数组, 每次check当前数值current往后能不能找到两个数的和等于-current</li>
-<li><strong>两个指针</strong>中对撞型指针的问题</li>
-<li>排序O(nlgn)+遍历O(n^2)，最终时间复杂度O(n^2)</li>
-<li><strong>注意</strong>有几个地方的代码是为了去掉重复结果<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> sortNum[i] == sortNum[i - <span class="number">1</span>]:</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line"><span class="comment"># 每次left++ 或者 right--之后要记得检查left&lt;right这个条件</span></span><br><span class="line"><span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[left] == sortNum[left - <span class="number">1</span>]:</span><br><span class="line">    left += <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[right] == sortNum[right + <span class="number">1</span>]:</span><br><span class="line">    right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> sortNum[i] == sortNum[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            target = - sortNum[i]</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                <span class="keyword">if</span> sortNum[left] + sortNum[right] == target:</span><br><span class="line">                    res.append([sortNum[i], sortNum[left], sortNum[right]])</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[left] == sortNum[left - <span class="number">1</span>]:</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[right] == sortNum[right + <span class="number">1</span>]:</span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> sortNum[left] + sortNum[right] &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Sum/"> #Sum </a>
-          
-            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/29/31-Partition-Array/">
-                31 Partition Array
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-30
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/29/31-Partition-Array/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/31-Partition-Array/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给出一个整数数组nums和一个整数k。划分数组（即移动数组nums中的元素），使得：<br>所有小于k的元素移到左边<br>所有大于等于k的元素移到右边<br>返回数组划分的位置，即数组中第一个位置i，满足nums[i]大于等于k。</p>
-</blockquote>
-<p>给出数组nums=<strong>[3,2,2,1]</strong>和 k=2，返回 1</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>非常相似的题[Partition Array by Odd and Even]</li>
-<li>正宗<strong>两个指针</strong>中对撞型指针的问题</li>
-<li>最外层大while循环，终止条件是两根指针对撞</li>
-<li>内层循环，分三步走<ul>
-<li>左边如果小于K, left++</li>
-<li>右边如果大于等于K, right–</li>
-<li>最后停下时如果left &lt;= right, swap </li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: The integer array you should partition</span><br><span class="line">    @param k: As description</span><br><span class="line">    @return: The index after partition</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        <span class="comment"># you should partition the nums by k</span></span><br><span class="line">        <span class="comment"># and return the partition index as description</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt; k:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt;= k:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">                nums[left],  nums[right] = nums[right], nums[left]</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> left</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-            <a href="/tags/Two-Pointers/"> #Two Pointers </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
   <div class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/">&raquo;</a>
   </div>
 
 
@@ -1127,7 +1119,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">119</span>
+              <span class="site-state-item-count">122</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1141,7 +1133,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>
