@@ -125,6 +125,101 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/28/44-Minimum-Subarray/">
+                44 Minimum Subarray
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-28
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/28/44-Minimum-Subarray/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/44-Minimum-Subarray/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给定一个整数数组，找到一个具有最小和的子数组。返回其最小和。</p>
+</blockquote>
+<p>给出数组<strong>[1, -1, -2, 1]</strong>，返回 -3<br>子数组最少包含一个数字</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>相似题[Maximum Subarray]，本题是找一个区间使得区间内值的和最小，[Maximum Subarray]是找一个区间使得区间内值的和最大</li>
+<li>巧妙使用<strong>前缀和数组</strong> sum[i] = array[0] + array[1] +…. + array[i]</li>
+<li>想求x~y这段区间的最小值，则让sum[y]尽可能小，让sum[x]尽可能大，那么sum[y]-sum[x]最小</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: a list of integers</span><br><span class="line">    @return: A integer denote the sum of minimum subarray</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        res, sum, maxSum = sys.maxint - <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            sum += num</span><br><span class="line">            res = min(res, sum - maxSum)</span><br><span class="line">            maxSum = max(maxSum, sum)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Dynamic-Programing/"> #Dynamic Programing </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/28/121-Best-Time-to-Buy-and-Sell-Stock-I/">
                 121 Best Time to Buy and Sell Stock I
               </a>
@@ -977,99 +1072,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/27/129-Rehashing/">
-                129 Rehashing
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-27
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/27/129-Rehashing/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/129-Rehashing/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。</p>
-</blockquote>
-<p>假设你有如下一哈希表：size=3, capacity=4<br>给出 [null, 21-&gt;9-&gt;null, 14-&gt;null, null]<br>返回 [null, 9-&gt;null, null, null, null, 21-&gt;null, 14-&gt;null, null]</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>第一步容量扩大一倍，loop之前hash表的所有listnode，逐个拷贝</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of ListNode</span><br><span class="line">class ListNode(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self, val, next=None):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = next</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param hashTable: A list of The first node of linked list</span><br><span class="line">    @return: A list of The first node of linked list which have twice size</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rehashing</span><span class="params">(self, hashTable)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(hashTable) &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> hashTable</span><br><span class="line">            </span><br><span class="line">        newcapacity = <span class="number">2</span> * len(hashTable)</span><br><span class="line">        newTable = [<span class="keyword">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(newcapacity)]</span><br><span class="line">        <span class="keyword">for</span> listNode <span class="keyword">in</span> hashTable:</span><br><span class="line">            <span class="keyword">while</span> listNode != <span class="keyword">None</span>:</span><br><span class="line">                newindex = (listNode.val % newcapacity + newcapacity) % newcapacity</span><br><span class="line">                <span class="keyword">if</span> newTable[newindex] == <span class="keyword">None</span>:</span><br><span class="line">                    newTable[newindex] = ListNode(listNode.val)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dummy = newTable[newindex]</span><br><span class="line">                    <span class="keyword">while</span> dummy.next != <span class="keyword">None</span>:</span><br><span class="line">                        dummy = dummy.next</span><br><span class="line">                    dummy.next = ListNode(listNode.val)</span><br><span class="line">                listNode = listNode.next</span><br><span class="line">        <span class="keyword">return</span> newTable</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Hash/"> #Hash </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-            <a href="/tags/Rehashing/"> #Rehashing </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1108,7 +1110,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">123</span>
+              <span class="site-state-item-count">124</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
