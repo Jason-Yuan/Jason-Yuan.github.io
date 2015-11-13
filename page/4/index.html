@@ -125,6 +125,109 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/20/124-Binary-Tree-Maximum-Path-Sum/">
+                124 Binary Tree Maximum Path Sum
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-21
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/20/124-Binary-Tree-Maximum-Path-Sum/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/20/124-Binary-Tree-Maximum-Path-Sum/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）</p>
+</blockquote>
+<p>给出一棵二叉树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; &#160; &#160; 1&#10;&#160; &#160; &#160; / \&#10;&#160;&#160; &#160; 2 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>返回 6</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先，想一个简化版(single path)，找从<code>root</code>到任意点得最大值。类似于maxDepth，每次加<code>root.val</code>而不再是<code>+1</code></li>
+<li>求单路的时候，如果<code>root</code>加左儿子单路或者右儿子单路最后的值都小于0，则返回0，意味着不要<code>root</code>开始的这个单路了</li>
+<li>本题思路，divide &amp; conquer<br>求最大路径和就等于下面三个值的最大值：<ul>
+<li>左子树的最大路径和</li>
+<li>右子树最大路径和</li>
+<li>左子树单路 + 右子树单路 + root.val</li>
+</ul>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxPathSum</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        res, _ = self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> -sys.maxint, <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left = self.helper(root.left)</span><br><span class="line">        right = self.helper(root.right)</span><br><span class="line">        singlePathSum = max(left[<span class="number">1</span>] + root.val, right[<span class="number">1</span>] + root.val, <span class="number">0</span>)</span><br><span class="line">        maxPathSum = max(left[<span class="number">0</span>], right[<span class="number">0</span>], left[<span class="number">1</span>] + right[<span class="number">1</span>] + root.val)</span><br><span class="line">        <span class="keyword">return</span> maxPathSum, singlePathSum</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Binary-Tree/"> #Binary Tree </a>
+          
+            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Recursion/"> #Recursion </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/20/110-Balanced-Binary-Tree/">
                 110 Balanced Binary Tree
               </a>
@@ -999,102 +1102,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/12/240-Search-a-2D-Matrix-II/">
-                240 Search a 2D Matrix II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-12
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/12/240-Search-a-2D-Matrix-II/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/12/240-Search-a-2D-Matrix-II/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>写出一个高效的算法来搜索m×n矩阵中的值，返回这个值是否出现。<br>这个矩阵具有以下特性：<br>每行中的整数从左到右是排序的。<br>每一列的整数从上到下是排序的。<br>在每一行或每一列中没有重复的整数。</p>
-</blockquote>
-<p>考虑下列矩阵：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;    [1, 3, 5, 7],&#10;    [2, 4, 7, 8],&#10;    [3, 5, 9, 10]&#10;]</span><br></pre></td></tr></table></figure></p>
-<p>给出target = 3，返回 True</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>思考时间复杂度时，可以从有多少个答案的角度考虑，像permutation时间复杂度肯定是2^n而不会是n^2</li>
-<li>[Search a 2D Matrix I]是每一行的最后一个都小于下一行的第一个，所以可以把整个二维数组看成递增的一维数组，而本题不同。</li>
-<li>把起始点设为左下角，如本题，如果target &gt; 3则第一列跳过，如果target &lt; 3则最后一行跳过</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">searchMatrix</span><span class="params">(self, matrix, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type matrix: List[List[int]]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> matrix:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        depth = len(matrix)</span><br><span class="line">        width = len(matrix[<span class="number">0</span>])</span><br><span class="line">        row, col = depth - <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> row &gt;= <span class="number">0</span> <span class="keyword">and</span> col &lt; width:</span><br><span class="line">            <span class="keyword">if</span> matrix[row][col] == target:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">elif</span> matrix[row][col] &gt; target:</span><br><span class="line">                row -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                col += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Binary-Search/"> #Binary Search </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1133,7 +1140,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">122</span>
+              <span class="site-state-item-count">123</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

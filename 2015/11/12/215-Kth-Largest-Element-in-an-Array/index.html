@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="Divide and Conquer,LintCode,Segment Tree," />
+  <meta name="keywords" content="LeetCode,Quick Sort," />
 
 
 
@@ -35,7 +35,7 @@
 
 
 
-  <title> 247 Segment Tree Query II // Code Chemistry </title>
+  <title> 215 Kth Largest Element in an Array // Code Chemistry </title>
 </head>
 
 <body>
@@ -123,7 +123,7 @@
           
           
             
-              247 Segment Tree Query II
+              215 Kth Largest Element in an Array
             
           
         </h1>
@@ -131,14 +131,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          Posted on 2015-10-05
+          Posted on 2015-11-12
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; In
             
-              <a href="/categories/LintCode/">LintCode</a>
+              <a href="/categories/LeetCode/">LeetCode</a>
 
               
               
@@ -151,8 +151,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/10/04/247-Segment-Tree-Query-II/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/247-Segment-Tree-Query-II/"></span>
+            <a href="/2015/11/12/215-Kth-Largest-Element-in-an-Array/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/12/215-Kth-Largest-Element-in-an-Array/"></span>
             </a>
           </span>
           
@@ -167,19 +167,21 @@
 
       
         <h1 id="原题">原题</h1><blockquote>
-<p>对于一个数组，我们可以对其建立一棵线段树, 每个结点存储一个额外的值count来代表这个结点所指代的数组区间内的元素个数. (数组中并不一定每个位置上都有元素)<br>实现一个query的方法，该方法接受三个参数root, start和end, 分别代表线段树的根节点和需要查询的区间，找到数组中在区间[start, end]内的元素个数。</p>
+<p>在数组中找到第k大的元素</p>
 </blockquote>
-<p>对于数组 [0, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">                  [0, 3, count=3]&#10;                  /             \&#10;       [0,1,count=1]             [2,3,count=2]&#10;       /         \               /            \&#10;[0,0,count=1] [1,1,count=0] [2,2,count=1], [3,3,count=1]</span><br></pre></td></tr></table></figure></p>
-<p>query(1, 1), return 0<br>query(1, 2), return 1<br>query(2, 3), return 2<br>query(0, 2), return 2</p>
+<p>给出数组<strong>[9,3,2,4,8]</strong>，第三大的元素是4<br>给出数组<strong>[1,2,3,4,5]</strong>第一大的元素是5，第二大的元素是4，第三大的元素是3，以此类推</p>
 <h1 id="解题思路">解题思路</h1><ul>
-<li>本题为<strong>值型线段树</strong>的Query</li>
-<li>如果查询区间 == 节点表示区间 =&gt; 直接返回root.count</li>
-<li>如果查询区间被节点表示的左/右区间包含 =&gt; 递归搜索左/右区间</li>
-<li>如果查询区间和结点表示的区间相交不相等 =&gt; 分裂递归搜索左/右区间</li>
-<li>典型的divide &amp; conquer</li>
-<li>最后返回 leftCount + rightCount</li>
+<li>寻找第<code>k</code>大的数字可以转化为寻找第<code>n+1-k</code>小的数字，进而想到<strong>Quick Select</strong></li>
+<li>Quick Select算法的基本思路与Quick Sort类似，重点是<strong>partition</strong></li>
+<li>基本思想，随机选取一个pivot，小于的放左边，大于等于的放右边，返回pivot的位置<ul>
+<li>如果<code>pivot == k</code>，则正好找到了第k小的元素</li>
+<li>如果<code>pivot &gt; k</code>，则第k小的元素存在于pivot左边</li>
+<li>如果<code>pivot &lt; k</code>，则第k小的元素存在于pivot右边</li>
 </ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end, count):</span><br><span class="line">        self.start, self.end, self.count = start, end, count</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="comment"># @param root, start, end: The root of segment tree and </span></span><br><span class="line">    <span class="comment">#                          an segment / interval</span></span><br><span class="line">    <span class="comment"># @return: The count number in the interval [start, end] </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end <span class="keyword">or</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> root.start &gt;= start <span class="keyword">and</span> root.end &lt;= end:</span><br><span class="line">            <span class="keyword">return</span> root.count</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftCount, rightCount = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftCount = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftCount = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightCount = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightCount = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> leftCount + rightCount</span><br></pre></td></tr></table></figure>
+</li>
+<li>时间复杂度：O(<em>n</em> logn) (in quicksort), O(n) (in quickselect)</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthLargest</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="comment"># convert the kth largest to smallest</span></span><br><span class="line">        <span class="keyword">return</span> self.findKthSmallest(nums, len(nums)+<span class="number">1</span>-k)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthSmallest</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> nums:</span><br><span class="line">            pos = self.partition(nums, <span class="number">0</span>, len(nums)-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> k &gt; pos+<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> self.findKthSmallest(nums[pos+<span class="number">1</span>:], k-pos-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> k &lt; pos+<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> self.findKthSmallest(nums[:pos], k)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[pos]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># choose the right-most element as pivot   </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, nums, l, r)</span>:</span></span><br><span class="line">        low = l</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> nums[l] &lt; nums[r]:</span><br><span class="line">                nums[l], nums[low] = nums[low], nums[l]</span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        nums[low], nums[r] = nums[r], nums[low]</span><br><span class="line">        <span class="keyword">return</span> low</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -187,11 +189,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
+            <a href="/tags/LeetCode/"> #LeetCode </a>
           
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
+            <a href="/tags/Quick-Sort/"> #Quick Sort </a>
           
         </div>
       
@@ -200,13 +200,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/04/201-Segment-Tree-Build/">201 Segment Tree Build</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/04/202-Segment-Tree-Query/">202 Segment Tree Query</a>
+              <a href="/2015/11/02/77-Longest-Common-Subsequence/">77 Longest Common Subsequence</a>
             
           </div>
         </div>
@@ -932,9 +930,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2015/10/04/247-Segment-Tree-Query-II/';
-      var disqus_title = '247 Segment Tree Query II';
-      var disqus_url = 'http://yoursite.com/2015/10/04/247-Segment-Tree-Query-II/';
+      var disqus_identifier = '2015/11/12/215-Kth-Largest-Element-in-an-Array/';
+      var disqus_title = '215 Kth Largest Element in an Array';
+      var disqus_url = 'http://yoursite.com/2015/11/12/215-Kth-Largest-Element-in-an-Array/';
 
       (function(){
         var dsq = document.createElement('script');

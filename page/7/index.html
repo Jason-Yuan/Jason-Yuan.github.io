@@ -125,6 +125,102 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/06/42-Trapping-Rain-Water/">
+                42 Trapping Rain Water
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-06
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/06/42-Trapping-Rain-Water/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/06/42-Trapping-Rain-Water/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出 n 个非负整数，代表一张X轴上每个区域宽度为 1 的海拔图, 计算这个海拔图最多能接住多少（面积）雨水。</p>
+</blockquote>
+<p>海拔分别为 [0,1,0,2,1,0,1,3,2,1,2,1], 返回 6.</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>一块直柱能接的水取决于左右两边较短的高度，所以第一个比较直观的方法是从左到有遍历一遍记录该点左边的最大值，从右到左遍历一遍记录该点的右边的最大值，此方法为O(n) 时间, O(n) 空间，第二种方法可以利用<strong>单调递减栈</strong>来实现，此方法为O(n) 时间, O(n) 空间</li>
+<li>第三种方法为先找出中间最大点，然后左边部分相当于已经确定了右边最大值，左指针不断向右逼近就行，右边部分相当于记录了左边最大值，右指针不断向左逼近就行，此方法为O(n) 时间, O(1) 空间，第四种方法类似第三种，左右夹逼，每次选择小的那个指针向中间靠拢，此方法为O(n) 时间, O(1) 空间，但是要比方法三少遍历一遍。</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param heights: a list of integers</span></span><br><span class="line">    <span class="comment"># @return: a integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapRainWater</span><span class="params">(self, heights)</span>:</span></span><br><span class="line">        water = <span class="number">0</span></span><br><span class="line">        MaxIndex = -<span class="number">1</span></span><br><span class="line">        MaxHeight = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(heights)):</span><br><span class="line">            <span class="keyword">if</span> heights[i] &gt; MaxHeight:</span><br><span class="line">                MaxHeight = heights[i]</span><br><span class="line">                MaxIndex = i</span><br><span class="line">                </span><br><span class="line">        prev = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, MaxIndex):</span><br><span class="line">            <span class="keyword">if</span> heights[i] &gt; prev:</span><br><span class="line">                water += (heights[i] - prev) * (MaxIndex - i)</span><br><span class="line">                prev = heights[i]</span><br><span class="line">            water -= heights[i]</span><br><span class="line">            </span><br><span class="line">        prev = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heights) - <span class="number">1</span>, MaxIndex, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> heights[i] &gt; prev:</span><br><span class="line">                water += (heights[i] - prev) * (i - MaxIndex)</span><br><span class="line">                prev = heights[i]</span><br><span class="line">            water -= heights[i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> water</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法四</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param heights: a list of integers</span></span><br><span class="line">    <span class="comment"># @return: a integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trapRainWater</span><span class="params">(self, heights)</span>:</span></span><br><span class="line">        n = len(heights)</span><br><span class="line">        l, r, water, minHeight = <span class="number">0</span>, n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> heights[l] &lt;= minHeight:</span><br><span class="line">                water += minHeight - heights[l]</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> heights[r] &lt;= minHeight:</span><br><span class="line">                water += minHeight - heights[r]</span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">            minHeight = min(heights[l], heights[r])</span><br><span class="line">        <span class="keyword">return</span> water</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+            <a href="/tags/Two-Pointer/"> #Two Pointer </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/05/207-Interval-Sum-II/">
                 207 Interval Sum II
               </a>
@@ -980,105 +1076,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/04/202-Segment-Tree-Query/">
-                202 Segment Tree Query
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-05
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/04/202-Segment-Tree-Query/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/202-Segment-Tree-Query/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>对于一个有n个数的整数数组，在对应的线段树中, 根节点所代表的区间为0-n-1, 每个节点有一个额外的属性max，值为该节点所代表的数组区间start到end内的最大值。<br>为SegmentTree设计一个query的方法，接受3个参数root, start和end，线段树root所代表的数组中子区间[start, end]内的最大值。</p>
-</blockquote>
-<p>对于数组 [1, 4, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [0, 3, max=4]&#10;              /             \&#10;       [0,1,max=4]        [2,3,max=3]&#10;       /         \        /         \&#10;[0,0,max=1] [1,1,max=4] [2,2,max=2], [3,3,max=3]</span><br></pre></td></tr></table></figure></p>
-<p>query(root, 1, 1), return 4<br>query(root, 1, 2), return 4<br>query(root, 2, 3), return 3<br>query(root, 0, 2), return 4</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>本题为<strong>下标型线段树</strong>的Query</li>
-<li>如果查询区间 == 节点表示区间 =&gt; 直接返回root.max</li>
-<li>如果查询区间被节点表示的左/右区间包含 =&gt; 递归搜索左/右区间</li>
-<li>如果查询区间和结点表示的区间相交不相等 =&gt; 分裂递归搜索左/右区间</li>
-<li>典型的divide &amp; conquer</li>
-<li>最后返回max(leftMax, rightMax)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of SegmentTreeNode:</span><br><span class="line">class SegmentTreeNode:</span><br><span class="line">    def __init__(self, start, end, max):</span><br><span class="line">        self.start, self.end, self.max = start, end, max</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span>	</span><br><span class="line">    <span class="comment"># @param root, start, end: The root of segment tree and </span></span><br><span class="line">    <span class="comment">#                          an segment / interval</span></span><br><span class="line">    <span class="comment"># @return: The maximum number in the interval [start, end]</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, root, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end <span class="keyword">or</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> - sys.maxint</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> root.start &gt;= start <span class="keyword">and</span> root.end &lt;= end:</span><br><span class="line">            <span class="keyword">return</span> root.max</span><br><span class="line">            </span><br><span class="line">        mid = root.start + (root.end - root.start) / <span class="number">2</span></span><br><span class="line">        leftMax, rightMax = - sys.maxint - <span class="number">1</span>, - sys.maxint - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">            <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">                leftMax = self.query(root.left, start, mid)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                leftMax = self.query(root.left, start, end)</span><br><span class="line">        <span class="keyword">if</span> mid &lt; end:</span><br><span class="line">            <span class="keyword">if</span> start &lt;= mid:</span><br><span class="line">                rightMax = self.query(root.right, mid + <span class="number">1</span>, end)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rightMax = self.query(root.right, start, end)</span><br><span class="line">        <span class="keyword">return</span> max(leftMax, rightMax)</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-            <a href="/tags/Segment-Tree/"> #Segment Tree </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1117,7 +1114,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">122</span>
+              <span class="site-state-item-count">123</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

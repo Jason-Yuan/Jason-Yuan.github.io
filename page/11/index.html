@@ -125,6 +125,107 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/27/84-Largest-Rectangle-in-Histogram/">
+                84 Largest Rectangle in Histogram
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-27
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/27/84-Largest-Rectangle-in-Histogram/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/84-Largest-Rectangle-in-Histogram/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出的n个非负整数表示每个直方图的高度，每个直方图的宽均为1，在直方图中找到最大的矩形面积。</p>
+</blockquote>
+<p>给出 height = <strong>[2,1,5,6,2,3]</strong>，返回 <strong>10</strong> (5 * 2)</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>DP一般是把n!/n^n/2^n优化到n^2/n^3，而本题暴力解法是n^2，我们希望优化到n，不是DP的强项</li>
+<li>n^2 -&gt; n （stack强项）</li>
+<li>求出把每个柱子当做最小的得到的面积 -&gt; 求出n个值，取min</li>
+<li><p>通过维护一个<strong>升序stack</strong>，实现 -&gt; 找到每个数左边第一个比它小的和右边第一个比它小的</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># push 2</span><br><span class="line">stack = [] -&gt; [2]</span><br><span class="line"># push 1 ,以为2 &gt; 1，所以pop 2以维持升序stack</span><br><span class="line"># 2左边第一个比它小的就是none，右边第一个比它小的就是1</span><br><span class="line">stack = [2] -&gt; [1]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Conditional Operator in Python</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Java version</span><br><span class="line">a &gt; 10 ? b : c</span><br><span class="line"># Python version</span><br><span class="line">b if a &gt; 10 else c</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">largestRectangleArea</span><span class="params">(self, height)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type height: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> height:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        stack = []</span><br><span class="line">        height.append(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(height)):</span><br><span class="line">            current = height[i]</span><br><span class="line">            <span class="keyword">while</span> len(stack) != <span class="number">0</span> <span class="keyword">and</span> current &lt;= height[stack[-<span class="number">1</span>]]:</span><br><span class="line">                h = height[stack.pop()]</span><br><span class="line">                w = i <span class="keyword">if</span> len(stack) == <span class="number">0</span> <span class="keyword">else</span> i - stack[-<span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">                res = max(res, h * w)</span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ascending-order-stack/"> #Ascending order stack </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Stack/"> #Stack </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/27/126-Max-Tree/">
                 126 Max Tree
               </a>
@@ -1013,102 +1114,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/28/C-中的System-Threading/">
-                C#中的System-Threading
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-06-28
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/ASP-NET/">ASP.NET</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/28/C-中的System-Threading/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/28/C-中的System-Threading/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-7fd36207e95438db_zpsomzwjb0k.png" alt="MultiThreading ? ? ?"></p>
-<p>在说C#中的<code>System.Threading</code>之前，先来简单说说<code>Process</code>, <code>Thread</code>, <code>CPU</code>, 和<code>OS</code>，算是一个铺垫，说的比较浅，都算是OS课的范畴。话说这是我转专业上的第一门课，当时几乎没有任何编程基础和计算机基础知识，可谓相当痛苦。学习效果也比较渣，现在算是回头慢慢补救。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/28/C-中的System-Threading/#more">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ASP-NET/"> #ASP.NET </a>
-          
-            <a href="/tags/C/"> #C# </a>
-          
-            <a href="/tags/Operating-System/"> #Operating System </a>
-          
-            <a href="/tags/Take-a-Bite/"> #Take a Bite </a>
-          
-            <a href="/tags/Thread-Process/"> #Thread & Process </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1147,7 +1152,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">122</span>
+              <span class="site-state-item-count">123</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

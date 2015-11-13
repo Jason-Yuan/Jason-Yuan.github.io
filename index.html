@@ -125,6 +125,105 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/12/215-Kth-Largest-Element-in-an-Array/">
+                215 Kth Largest Element in an Array
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-11-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/11/12/215-Kth-Largest-Element-in-an-Array/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/12/215-Kth-Largest-Element-in-an-Array/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>在数组中找到第k大的元素</p>
+</blockquote>
+<p>给出数组<strong>[9,3,2,4,8]</strong>，第三大的元素是4<br>给出数组<strong>[1,2,3,4,5]</strong>第一大的元素是5，第二大的元素是4，第三大的元素是3，以此类推</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>寻找第<code>k</code>大的数字可以转化为寻找第<code>n+1-k</code>小的数字，进而想到<strong>Quick Select</strong></li>
+<li>Quick Select算法的基本思路与Quick Sort类似，重点是<strong>partition</strong></li>
+<li>基本思想，随机选取一个pivot，小于的放左边，大于等于的放右边，返回pivot的位置<ul>
+<li>如果<code>pivot == k</code>，则正好找到了第k小的元素</li>
+<li>如果<code>pivot &gt; k</code>，则第k小的元素存在于pivot左边</li>
+<li>如果<code>pivot &lt; k</code>，则第k小的元素存在于pivot右边</li>
+</ul>
+</li>
+<li>时间复杂度：O(<em>n</em> logn) (in quicksort), O(n) (in quickselect)</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthLargest</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="comment"># convert the kth largest to smallest</span></span><br><span class="line">        <span class="keyword">return</span> self.findKthSmallest(nums, len(nums)+<span class="number">1</span>-k)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthSmallest</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> nums:</span><br><span class="line">            pos = self.partition(nums, <span class="number">0</span>, len(nums)-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> k &gt; pos+<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> self.findKthSmallest(nums[pos+<span class="number">1</span>:], k-pos-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> k &lt; pos+<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> self.findKthSmallest(nums[:pos], k)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[pos]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># choose the right-most element as pivot   </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, nums, l, r)</span>:</span></span><br><span class="line">        low = l</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> nums[l] &lt; nums[r]:</span><br><span class="line">                nums[l], nums[low] = nums[low], nums[l]</span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        nums[low], nums[r] = nums[r], nums[low]</span><br><span class="line">        <span class="keyword">return</span> low</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+            <a href="/tags/Quick-Sort/"> #Quick Sort </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/11/02/77-Longest-Common-Subsequence/">
                 77 Longest Common Subsequence
               </a>
@@ -1009,102 +1108,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/31/41-First-Missing-Positive/">
-                41 First Missing Positive
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-31
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/31/41-First-Missing-Positive/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/31/41-First-Missing-Positive/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给出一个无序的正数数组，找出其中没有出现的最小正整数。</p>
-</blockquote>
-<p>如果给出 [1,2,0], return 3 如果给出 [3,4,-1,1], return 2<br>只允许时间复杂度O(n)的算法，并且只能使用常数级别的空间。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>类似于<strong>桶排序的思路</strong>，对于每一个整数，我们按照一定的规则放到相应的位置上，最后再去检查如果指定位置的数不存在，即为没有出现的最小正整数</li>
-<li>规则：1放在array[0]，2放在array[1]，以此类推<br>对于[3, 4, -1, 1]，运行最终结果为[1, -1, 3, 4]所以检查到array[1]时，2不存在，2即为没有出现的最小正整数</li>
-<li>注意，遍历数组是，对于每一位要while循环至该位置的数字放到正确的位置为止<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> nums[i] &lt;= len(nums) <span class="keyword">and</span> nums[i] &gt; <span class="number">0</span> <span class="keyword">and</span> nums[nums[i] - <span class="number">1</span>] != nums[i]:</span><br><span class="line">    nums[nums[i] - <span class="number">1</span>], nums[i] = nums[i], nums[nums[i] - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstMissingPositive</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">while</span> nums[i] &lt;= len(nums) <span class="keyword">and</span> nums[i] &gt; <span class="number">0</span> <span class="keyword">and</span> nums[nums[i] - <span class="number">1</span>] != nums[i]:</span><br><span class="line">                nums[nums[i] - <span class="number">1</span>], nums[i] = nums[i], nums[nums[i] - <span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] != i + <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> len(nums) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Sort/"> #Sort </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1143,7 +1146,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">122</span>
+              <span class="site-state-item-count">123</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
