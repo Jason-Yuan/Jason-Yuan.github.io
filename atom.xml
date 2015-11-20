@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-11-13T08:04:44.000Z</updated>
+  <updated>2015-11-20T07:23:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[475 Binary Tree Maximum Path Sum II]]></title>
+    <link href="http://yoursite.com/2015/11/19/475-Binary-Tree-Maximum-Path-Sum-II/"/>
+    <id>http://yoursite.com/2015/11/19/475-Binary-Tree-Maximum-Path-Sum-II/</id>
+    <published>2015-11-19T23:22:19.000Z</published>
+    <updated>2015-11-20T07:23:33.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>已知一颗二叉树，找到从根节点到任意节点的最大路径和</p>
+</blockquote>
+<p>已知下面一颗二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 1&#10;&#160;/ \&#10;2 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>返回4. (1-&gt;3)</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>Divide and Conquer</li>
+<li>借助一个helper函数，从根节点向下分裂，每一层返回左右儿子中的最大值与当前节点的值，层层递归</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.left, this.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root the root of binary tree.</span><br><span class="line">    @return an integer</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxPathSum2</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.helper(root)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left = self.helper(root.left)</span><br><span class="line">        right = self.helper(root.right)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> max(left, right) + root.val</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>已知一颗二叉树，找到从根节点到任意节点的最大路径和</p>
+</blockquote>
+<p>已知下面一颗二叉树<br><figure class="highlight plain"><table><tr><t]]>
+    </summary>
+    
+      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
+    
+      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[471 Top K Frequent Words]]></title>
+    <link href="http://yoursite.com/2015/11/12/471-Top-K-Frequent-Words/"/>
+    <id>http://yoursite.com/2015/11/12/471-Top-K-Frequent-Words/</id>
+    <published>2015-11-13T00:08:22.000Z</published>
+    <updated>2015-11-13T08:09:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>Given a list of words and an integer k, return the top k frequent words in the list.</p>
+</blockquote>
+<p>给出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ &#10;&#34;yes&#34;, &#34;lint&#34;, &#34;code&#34;, &#10;&#34;yes&#34;, &#34;code&#34;, &#34;baby&#34;, &#10;&#34;you&#34;, &#34;baby&#34;, &#34;chrome&#34;, &#10;&#34;safari&#34;, &#34;lint&#34;, &#34;code&#34;, &#10;&#34;body&#34;, &#34;lint&#34;, &#34;code&#34;&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>当k=3时，返回[“code”, “lint”, “baby”]<br>当k=4时，返回[“code”, “lint”, “baby”, “yes”]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>首先使用hash table统计词频，建立一个存有<strong>（单词，词频）结构</strong>的数组</li>
+<li>自定义<strong>（单词，词频）结构</strong>的比较方式</li>
+<li>快速排序，然后取出前K个，得到结果</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;string[]&#125; words a list of string</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; k an integer</span></span><br><span class="line">    <span class="comment"># @return &#123;string[]&#125; a list of string</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">topKFrequentWords</span><span class="params">(self, words, k)</span>:</span></span><br><span class="line">        map = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> map:</span><br><span class="line">                map[word] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                map[word] += <span class="number">1</span></span><br><span class="line">        temp = []</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> map.items():</span><br><span class="line">            temp.append((value, key))</span><br><span class="line">        temp.sort(cmp=self.cmp)</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">            result.append(temp[i][<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cmp</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] &gt; b[<span class="number">0</span>] <span class="keyword">or</span> a[<span class="number">0</span>] == b[<span class="number">0</span>] <span class="keyword">and</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> a[<span class="number">0</span>] == b[<span class="number">0</span>] <span class="keyword">and</span> a[<span class="number">1</span>] == b[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>Given a list of words and an integer k, return the top k frequent words in the list.</p>
+</blockquote>
+<p]]>
+    </summary>
+    
+      <category term="Hash Table" scheme="http://yoursite.com/tags/Hash-Table/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Quick Sort" scheme="http://yoursite.com/tags/Quick-Sort/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[264 Ugly Number II]]></title>
@@ -655,116 +722,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Matrix DP" scheme="http://yoursite.com/tags/Matrix-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[62 Unique Paths]]></title>
-    <link href="http://yoursite.com/2015/10/24/62-Unique-Paths/"/>
-    <id>http://yoursite.com/2015/10/24/62-Unique-Paths/</id>
-    <published>2015-10-25T01:52:40.000Z</published>
-    <updated>2015-10-25T08:59:16.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>有一个机器人的位于一个M×N个网格左上角（下图中标记为’Start’）。<br>机器人每一时刻只能向下或者向右移动一步。机器人试图达到网格的右下角（下图中标记为’Finish’）。<br>问有多少条不同的路径？</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">1, 1</th>
-<th style="text-align:center">1, 2</th>
-<th style="text-align:center">1, 3</th>
-<th style="text-align:center">1, 4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">2, 1</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3, 1</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4, 1</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">4, 4</td>
-</tr>
-</tbody>
-</table>
-<p>以上4 x 4的网格中，有多少条不同的路径？</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>动态规划就是解决了重复计算，具体实现方式有：<ul>
-<li>记忆化搜索</li>
-<li>循环求解(本题采用此方法)</li>
-</ul>
-</li>
-<li>典型DP问题 - <strong>矩阵型动态规划</strong>(Matrix DP)</li>
-<li><code>cache[x][y]</code>表示从起点到<code>x,y</code>的路径数，等于<code>cache[x][y - 1]</code>与<code>cache[x - 1][y]</code>的路径数之和</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePaths</span><span class="params">(self, m, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type m: int</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> m &lt; <span class="number">1</span> <span class="keyword">or</span> n &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(m)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            cache[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">            cache[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">                cache[i][j] = cache[i - <span class="number">1</span>][j] + cache[i][j - <span class="number">1</span>]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[n - <span class="number">1</span>][m - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>有一个机器人的位于一个M×N个网格左上角（下图中标记为’Start’）。<br>机器人每一时刻只能向下或者向右移动一步。机器人试图达到网格的右下角（下图中标记为’Finish’）。<br>问有多少条不同的路径？]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Matrix DP" scheme="http://yoursite.com/tags/Matrix-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[94 Binary Tree Inorder Traversal]]></title>
-    <link href="http://yoursite.com/2015/10/21/94-Binary-Tree-Inorder-Traversal/"/>
-    <id>http://yoursite.com/2015/10/21/94-Binary-Tree-Inorder-Traversal/</id>
-    <published>2015-10-22T02:58:13.000Z</published>
-    <updated>2015-10-22T09:59:19.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给出一棵二叉树,返回其中序遍历</p>
-</blockquote>
-<p>给出二叉树 {1,#,2,3}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 2&#10;&#160; &#160; /&#10;&#160;&#160; 3</span><br></pre></td></tr></table></figure></p>
-<p>返回 [1,3,2]</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>方法一：递归，定义helper函数</li>
-<li>方法二：Divide &amp; Conquer</li>
-<li>方法二：非递归<ul>
-<li>(操作一)每一次从当前节点开始(第一次是root节点)遍历至最左节点，一次入栈。</li>
-<li>(操作二)pop出栈一个node，node.val加入到结果，然后看该node有没有右儿子</li>
-<li>有的话重复操作一</li>
-<li>没有的话，继续pop出栈一个node，重复操作二</li>
-</ul>
-</li>
-<li>非递归解法可以体会一下另外一个题[Inorder Successor in Binary Search Tree]</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        self.helper(root, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root != <span class="keyword">None</span>:</span><br><span class="line">            self.helper(root.left, result)</span><br><span class="line">            result.append(root.val)</span><br><span class="line">            self.helper(root.right, result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> root == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        result.append(root.val)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># divide</span></span><br><span class="line">        left = self.inorderTraversal(root.left)</span><br><span class="line">        right = self.inorderTraversal(root.right)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># conquer</span></span><br><span class="line">        <span class="keyword">return</span> left + result + right</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        stack = []</span><br><span class="line">        result = []</span><br><span class="line">        current = root</span><br><span class="line">        <span class="keyword">while</span> current != <span class="keyword">None</span> <span class="keyword">or</span> len(stack) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">while</span> current != <span class="keyword">None</span>:</span><br><span class="line">                stack.append(current)</span><br><span class="line">                current = current.left</span><br><span class="line">            current = stack[-<span class="number">1</span>];</span><br><span class="line">            stack.pop();</span><br><span class="line">            result.append(current.val);</span><br><span class="line">            current = current.right;</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给出一棵二叉树,返回其中序遍历</p>
-</blockquote>
-<p>给出二叉树 {1,#,2,3}<br><figure class="highlight plain"><table><tr><td cl]]>
-    </summary>
-    
-      <category term="BST" scheme="http://yoursite.com/tags/BST/"/>
-    
-      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Non-recursion" scheme="http://yoursite.com/tags/Non-recursion/"/>
-    
-      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     

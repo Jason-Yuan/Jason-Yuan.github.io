@@ -125,6 +125,203 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/12/153-Find-Minimum-in-Rotated-Sorted-Array/">
+                153 Find Minimum in Rotated Sorted Array
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/12/153-Find-Minimum-in-Rotated-Sorted-Array/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/12/153-Find-Minimum-in-Rotated-Sorted-Array/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>假设一个旋转排序的数组其起始位置是未知的（比如0 1 2 4 5 6 7 可能变成是4 5 6 7 0 1 2）。<br>你需要找到其中最小的元素。<br>你可以假设数组中不存在重复的元素。</p>
+</blockquote>
+<p>给出[4,5,6,7,0,1,2]  返回 0</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>如果极端情况数组旋转了0次，即仍未升序数组，我们可以通过<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums[mid] &lt; nums[end]:</span><br><span class="line">    end = mid</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使得最后start = 0，end = 1，返回min(A[start], A[end])</p>
+<ul>
+<li>对于旋转的情况，有可能出现<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums[mid] &gt; nums[end]:</span><br><span class="line">    start = mid</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最后也只需要比较一下A[start], A[end]</p>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[end]:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">        <span class="keyword">return</span> min(nums[start], nums[end])</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/12/6-Merge-Sorted-Array-II/">
+                6 Merge Sorted Array II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/12/6-Merge-Sorted-Array-II/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/12/6-Merge-Sorted-Array-II/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>合并两个排序的整数数组A和B变成一个新的数组。</p>
+</blockquote>
+<p>给出A=[1,2,3,4]，B=[2,4,5,6]，返回 [1,2,2,3,4,4,5,6]</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li><p>不同于[Merge Sorted Array I], 由于merge到一个新的数组，所以从前往后，小的出列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">headA = <span class="number">0</span></span><br><span class="line">headB = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：合并，排序</p>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment">#@param A and B: sorted integer array A and B.</span></span><br><span class="line">    <span class="comment">#@return: A new sorted integer array</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeSortedArray</span><span class="params">(self, A, B)</span>:</span></span><br><span class="line">        headA = <span class="number">0</span></span><br><span class="line">        headB = <span class="number">0</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">while</span> headA &lt;= len(A) - <span class="number">1</span> <span class="keyword">and</span> headB &lt;= len(B) - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> A[headA] &lt;= B[headB]:</span><br><span class="line">                res.append(A[headA])</span><br><span class="line">                headA += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(B[headB])</span><br><span class="line">                headB += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> headA &lt;= len(A) - <span class="number">1</span>:</span><br><span class="line">            res.append(A[headA])</span><br><span class="line">            headA += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> headB &lt;= len(B) - <span class="number">1</span>:</span><br><span class="line">            res.append(B[headB])</span><br><span class="line">            headB += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment">#@param A and B: sorted integer array A and B.</span></span><br><span class="line">    <span class="comment">#@return: A new sorted integer array</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeSortedArray</span><span class="params">(self, A, B)</span>:</span></span><br><span class="line">        C = A + B</span><br><span class="line">        <span class="keyword">return</span> sorted(C)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Merge/"> #Merge </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/12/88-Merge-Sorted-Array/">
                 88 Merge Sorted Array
               </a>
@@ -885,203 +1082,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/11/47-Permutations-II/">
-                47 Permutations II
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-11
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/11/47-Permutations-II/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/47-Permutations-II/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给出一个具有重复数字的列表，找出列表所有不同的排列</p>
-</blockquote>
-<p>给出列表[1,2,2]，不同的排列有：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;    [1,2,2],&#10;    [2,1,2],&#10;    [2,2,1]&#10;]</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先数组排序，跳出recursion条件为<code>len(path) == len(num)</code></li>
-<li>设置一个flag数组，来判定一个元素是否被访问过</li>
-<li>如果<code>previous</code>没有被访问，而且<code>current == previous</code>，则会出现重复，所以跳过</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permuteUnique</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        flags = [<span class="keyword">False</span>] * len(nums)</span><br><span class="line">        self.permuteForReal(sorted(nums), result, flags, [])</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permuteForReal</span><span class="params">(self, num, output, flags, path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(path) == len(num):</span><br><span class="line">            output.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">         </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num)):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> flags[i]:</span><br><span class="line">                <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> flags[i-<span class="number">1</span>] <span class="keyword">and</span> num[i] == num[i-<span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                path.append(num[i])</span><br><span class="line">                flags[i] = <span class="keyword">True</span></span><br><span class="line">                self.permuteForReal(num, output, flags, path)</span><br><span class="line">                path.pop()</span><br><span class="line">                flags[i] = <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Backtracking/"> #Backtracking </a>
-          
-            <a href="/tags/DFS/"> #DFS </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Permutation/"> #Permutation </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/11/46-Permutations/">
-                46 Permutations
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-11
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/11/46-Permutations/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/11/46-Permutations/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个数字列表，返回其所有可能的排列。</p>
-</blockquote>
-<p>给出一个列表[1,2,3]，其全排列为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [1,2,3],&#10;  [1,3,2],&#10;  [2,1,3],&#10;  [2,3,1],&#10;  [3,1,2],&#10;  [3,2,1]&#10;]</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>与subset题相似，只不过当<code>len(path) == len(list)</code>的时候才会将path加入到结果</li>
-<li>对于每一层，遍历list中的元素，把不在path中的元素加入path</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">permute</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> nums <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        result = []</span><br><span class="line">        self.helper(nums, [], result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, List, path, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(path) == len(List):</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(List)):</span><br><span class="line">            <span class="keyword">if</span> List[i] <span class="keyword">in</span> path:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            path.append(List[i])</span><br><span class="line">            self.helper(List, path, result)</span><br><span class="line">            path.pop()</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Backtracking/"> #Backtracking </a>
-          
-            <a href="/tags/DFS/"> #DFS </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Permutation/"> #Permutation </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1120,7 +1120,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1134,7 +1134,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-count">82</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>
