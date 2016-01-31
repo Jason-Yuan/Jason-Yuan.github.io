@@ -125,6 +125,102 @@
           
           
             
+              <a class="post-title-link" href="/2015/09/27/130-Heapify/">
+                130 Heapify
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-27
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/27/130-Heapify/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/130-Heapify/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个整数数组，堆化操作就是把它变成一个最小堆数组。<br>对于堆数组A，A[0]是堆的根，并对于每个A[i]，A [i <em> 2 + 1]是A[i]的左儿子并且A[i </em> 2 + 2]是A[i]的右儿子。</p>
+</blockquote>
+<p>给出<strong> [3,2,1,4,5]</strong>，返回<strong>[1,2,3,4,5] </strong>或者任何一个合法的堆数组</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>minHeapify就相当于sift down函数，minHeapify函数可以写成recursion也可以写成while循环</li>
+<li>heapify就相当于buildMinHeap函数</li>
+<li>注意如果想要在函数中整体覆盖一个数组，Python的写法如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27491;&#30830;&#10;array[:] = newArray[:]&#10;# &#20004;&#20010;&#38169;&#35823;&#31034;&#33539;&#65292;&#30456;&#24403;&#20110;&#22312;&#20989;&#25968;&#20869;&#25913;&#21464;&#20102;reference&#25351;&#21521;&#65292;&#24182;&#27809;&#26377;&#23454;&#38469;&#25913;&#21464;&#21407;&#26469;array&#25351;&#21521;&#30340;object&#10;array = newArray[:]&#10;array = newArray</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param A: Given an integer array</span></span><br><span class="line">    <span class="comment"># @return: void</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        self.currentSize = len(A)</span><br><span class="line">        self.minheap = [<span class="number">0</span>] + A</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)//<span class="number">2</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            self.minHeapify(self.minheap, i)</span><br><span class="line">        A[:] = self.minheap[<span class="number">1</span>:]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minHeapify</span><span class="params">(self, L, index)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> index &gt; self.currentSize // <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> index*<span class="number">2</span>+<span class="number">1</span> &gt; self.currentSize <span class="keyword">or</span> L[index*<span class="number">2</span>] &lt; L[index*<span class="number">2</span>+<span class="number">1</span>]:</span><br><span class="line">            minChild = index*<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> L[index] &gt; L[minChild]:</span><br><span class="line">                L[index], L[minChild] = L[minChild], L[index]</span><br><span class="line">            self.minHeapify(L, index*<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            minChild = index*<span class="number">2</span>+<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> L[index] &gt; L[minChild]:</span><br><span class="line">                L[index], L[minChild] = L[minChild], L[index]</span><br><span class="line">            self.minHeapify(L, index*<span class="number">2</span>+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Heapify/"> #Heapify </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Priority-Queue/"> #Priority Queue </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/09/27/146-LRU-Cache/">
                 146 LRU Cache
               </a>
@@ -1015,117 +1111,6 @@
 
 
     
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/26/39-Combination-Sum-I/">
-                39 Combination Sum I
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-26
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/26/39-Combination-Sum-I/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/26/39-Combination-Sum-I/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给出一组候选数字(C)和目标数字(T),找到C中所有的组合，使找出的数字和为T。C中的数字可以无限制重复被选取。</p>
-</blockquote>
-<p>例如,给出候选数组<strong>[2,3,6,7]</strong>和目标数字7<br>所求的解为：<strong>[7]</strong> 和 <strong>[2,2,3]</strong> </p>
-<p><strong>注意</strong>： </p>
-<ul>
-<li>所有的数字(包括目标数字)均为正整数。</li>
-<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
-<li>解集不能包含重复的组合。 </li>
-</ul>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p>backtracking 在代码的实现上可以在使用<code>加了再还原</code>的方式，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path.append(candidates[i])&#10;self.helper(candidates, target - candidates[i], path, i, result)&#10;path.pop()</span><br></pre></td></tr></table></figure>
-<p>也可以直接把添加的步骤直接通过参数传递的方式，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>与permutation和subset的思考方式类似，DFS</p>
-</li>
-<li>每一次向下搜索时，起始位置都和上一次相同，因为可以取相同元素不止一次，即每次向下传入的<code>index</code></li>
-<li>For循环每次从<code>index</code>开始，避免返回到之前的元素</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        candidates.sort()</span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/Backtracking/"> #Backtracking </a>
-          
-            <a href="/tags/DFS/"> #DFS </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Sum/"> #Sum </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
   </div>
 
   
@@ -1164,7 +1149,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-count">127</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1230,7 +1215,7 @@
         <div class="copyright">
   
   &copy; &nbsp; 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>
