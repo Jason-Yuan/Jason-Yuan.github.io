@@ -125,112 +125,6 @@
           
           
             
-              <a class="post-title-link" href="/2015/10/20/98-Validate-Binary-Search-Tree/">
-                98 Validate Binary Search Tree
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-10-21
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LeetCode/">LeetCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/20/98-Validate-Binary-Search-Tree/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/20/98-Validate-Binary-Search-Tree/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个二叉树，判断它是否是合法的二叉查找树(BST)<br>一棵BST定义为：<br>节点的左子树中的值要<strong>严格小于</strong>该节点的值。<br>节点的右子树中的值要<strong>严格大于</strong>该节点的值。<br>左右子树也必须是二叉查找树。</p>
-</blockquote>
-<p>一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; / \&#10;&#160;2 &#160; 3&#10;&#160; &#160; /&#10;&#160;&#160; 4&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 5</span><br></pre></td></tr></table></figure></p>
-<p>上述这棵二叉树序列化为”{1,2,3,#,#,4,#,#,5}”.</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>BST的中序遍历结果是一个<strong>升序序列</strong><br>所以可以转化为数组，再遍历一遍数组，看是否升序。时间空间复杂度都是O(n)</li>
-<li>divide &amp; conquer<ul>
-<li>result每次返回一个区间的最大，最小</li>
-<li>conquer的时候判断左子树</li>
-</ul>
-</li>
-<li>递归判断<code>min &lt; left.val &lt; node.val &lt; right.val &lt; max</code></li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        self.inOrderToArray(root, res)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(res)):</span><br><span class="line">            <span class="keyword">if</span> res[i-<span class="number">1</span>] &gt;= res[i]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inOrderToArray</span><span class="params">(self, node, array)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> node:</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                self.inOrderToArray(node.left, array)</span><br><span class="line">            array.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                self.inOrderToArray(node.right, array)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        res, _, _ = self.Helper(root)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span>, - sys.maxint, sys.maxint</span><br><span class="line">        </span><br><span class="line">        left = self.Helper(root.left)</span><br><span class="line">        right = self.Helper(root.right)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> left[<span class="number">0</span>] <span class="keyword">or</span> <span class="keyword">not</span> right[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (root.left != <span class="keyword">None</span> <span class="keyword">and</span> left[<span class="number">1</span>] &gt;= root.val) <span class="keyword">or</span> (root.right != <span class="keyword">None</span> <span class="keyword">and</span> right[<span class="number">2</span>] &lt;= root.val):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span>, max(root.val, right[<span class="number">1</span>]), min(root.val, left[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.helper(root)  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, min=-float<span class="params">(<span class="string">"inf"</span>)</span>, max=float<span class="params">(<span class="string">"inf"</span>)</span>)</span>:</span></span><br><span class="line">	    <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">	    <span class="keyword">elif</span> root.left == <span class="keyword">None</span> <span class="keyword">and</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> root.val &gt; min <span class="keyword">and</span> root.val &lt; max</span><br><span class="line">	    <span class="keyword">elif</span> root.left == <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> self.helper(root.right, root.val, max) <span class="keyword">and</span> root.val &gt; min</span><br><span class="line">	    <span class="keyword">elif</span> root.right == <span class="keyword">None</span>:</span><br><span class="line">		    <span class="keyword">return</span> self.helper(root.left, min, root.val) <span class="keyword">and</span> root.val &lt; max</span><br><span class="line">	    <span class="keyword">return</span> self.helper(root.left, min, root.val) <span class="keyword">and</span> self.helper(root.right, root.val, max)</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/BST/"> #BST </a>
-          
-            <a href="/tags/DFS/"> #DFS </a>
-          
-            <a href="/tags/Divide-and-Conquer/"> #Divide and Conquer </a>
-          
-            <a href="/tags/LeetCode/"> #LeetCode </a>
-          
-            <a href="/tags/Recursion/"> #Recursion </a>
-          
-            <a href="/tags/Traversal/"> #Traversal </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="/2015/10/20/103-Binary-Tree-Zigzag-Level-Order-Traversal/">
                 103 Binary Tree Zigzag Level Order Traversal
               </a>
@@ -1109,6 +1003,103 @@
 
 
     
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/12/154-Find-Minimum-in-Rotated-Sorted-Array-II/">
+                154 Find Minimum in Rotated Sorted Array II
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-10-12
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LeetCode/">LeetCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/12/154-Find-Minimum-in-Rotated-Sorted-Array-II/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/12/154-Find-Minimum-in-Rotated-Sorted-Array-II/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>假设一个旋转排序的数组其起始位置是未知的（比如0 1 2 4 5 6 7 可能变成是4 5 6 7 0 1 2）。</p>
+</blockquote>
+<p>你需要找到其中最小的元素。<br>数组中可能存在重复的元素。<br>给出[4,4,5,6,7,0,1,2]  返回 0</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>与[Find Minimum in Rotated Sorted Array I]相比，本题中有<strong>重复元素</strong>，还是让<code>nums[mid]</code>和<code>nums[end]</code>比较，但要考虑<code>nums[mid] == mums[end]</code>的情况，此时 <code>end -= 1</code></li>
+<li>极端情况[1, 2, 2, 2, …..2]，<code>nums[mid]</code>和<code>mums[end]</code>一直相等，操作一直是<code>end -= 1</code>，所以时间复杂度变成O(n)</li>
+<li>所以方法二就是直接遍历一遍，维护一个最小值</li>
+<li>对于方法一，还可以想成在普通的binary search基础上，加入两个while循环<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">    mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">    <span class="comment"># 如果重复，start向后移动</span></span><br><span class="line">    <span class="keyword">while</span> nums[mid] == nums[start] <span class="keyword">and</span> start &lt; mid:</span><br><span class="line">        start += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 如果重复，end向前移动</span></span><br><span class="line">    <span class="keyword">while</span> nums[mid] == nums[end] <span class="keyword">and</span> end &gt; mid:</span><br><span class="line">        end -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> nums[mid] &gt; nums[end]:</span><br><span class="line">        start = mid</span><br><span class="line">    <span class="keyword">elif</span> nums[mid] &lt; nums[end]:</span><br><span class="line">        end = mid</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[end]:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; nums[end]:</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> min(nums[start], nums[end])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        min = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> item &lt; min:</span><br><span class="line">                min = item</span><br><span class="line">        <span class="keyword">return</span> min</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Array/"> #Array </a>
+          
+            <a href="/tags/Binary-Search/"> #Binary Search </a>
+          
+            <a href="/tags/LeetCode/"> #LeetCode </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
   </div>
 
   
@@ -1147,7 +1138,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

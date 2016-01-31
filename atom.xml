@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-31T00:53:55.000Z</updated>
+  <updated>2015-11-20T07:23:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,21 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[NICE]]></title>
-    <link href="http://yoursite.com/2016/01/30/NICE-1/"/>
-    <id>http://yoursite.com/2016/01/30/NICE-1/</id>
-    <published>2016-01-30T16:52:49.000Z</published>
-    <updated>2016-01-31T00:53:55.000Z</updated>
-    <content type="html"><![CDATA[<p>dflhaskljfksaldjfklsa</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>dflhaskljfksaldjfklsa</p>
-]]>
-    </summary>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[475 Binary Tree Maximum Path Sum II]]></title>
@@ -703,6 +688,40 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Sequence DP" scheme="http://yoursite.com/tags/Sequence-DP/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[63 Unique Paths II]]></title>
+    <link href="http://yoursite.com/2015/10/24/63-Unique-Paths-II/"/>
+    <id>http://yoursite.com/2015/10/24/63-Unique-Paths-II/</id>
+    <published>2015-10-25T02:18:09.000Z</published>
+    <updated>2015-10-25T09:18:49.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>现在考虑网格中有障碍物，那样将会有多少条不同的路径？<br>网格中的障碍和空位置分别用<strong>1</strong>和<strong>0</strong>来表示。</p>
+</blockquote>
+<p>如下所示在3x3的网格中有一个障碍物：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [0,0,0],&#10;&#160; [0,1,0],&#10;&#160; [0,0,0]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>一共有2条不同的路径从左上角到右下角。</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>同样是矩阵型动态规划 - Matrix DP</li>
+<li>对于有障碍物的地图来说，只需要把<strong>障碍物的坐标设为0即可</strong></li>
+<li>要注意对第一行和第一列的初始化，如果遇到障碍物第一行后面和第一列下面都是0</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(self, obstacleGrid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type obstacleGrid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> obstacleGrid <span class="keyword">or</span> <span class="keyword">not</span> obstacleGrid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(obstacleGrid)</span><br><span class="line">        n = len(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        flag1 = flag2 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m): </span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[j][<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">                flag1 = <span class="number">0</span></span><br><span class="line">            cache[j][<span class="number">0</span>] = flag1</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][i] == <span class="number">1</span>:</span><br><span class="line">                flag2 = <span class="number">0</span></span><br><span class="line">            cache[<span class="number">0</span>][i] = flag2</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                cache[j][i] = (cache[j - <span class="number">1</span>][i] + cache[j][i - <span class="number">1</span>]) <span class="keyword">if</span> obstacleGrid[j][i] == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="原题">原题</h1><blockquote>
+<p>现在考虑网格中有障碍物，那样将会有多少条不同的路径？<br>网格中的障碍和空位置分别用<strong>1</strong>和<strong>0</strong>来表示。</p>
+</blockquote>
+<p]]>
+    </summary>
+    
+      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Matrix DP" scheme="http://yoursite.com/tags/Matrix-DP/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     

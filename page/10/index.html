@@ -125,100 +125,6 @@
           
           
             
-              <a class="post-title-link" href="/2015/09/28/45-Maximum-Subarray-Difference/">
-                45 Maximum Subarray Difference
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          Posted on 2015-09-29
-        </span>
-
-        
-          <span class="post-category">
-            &nbsp; | &nbsp; In
-            
-              <a href="/categories/LintCode/">LintCode</a>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/09/28/45-Maximum-Subarray-Difference/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/28/45-Maximum-Subarray-Difference/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组，找出两个<strong>不重叠</strong>的子数组A和B，使两个子数组和的差的绝对值<strong>|SUM(A) - SUM(B)|</strong>最大。<br>返回这个最大的差值。</p>
-</blockquote>
-<p>给出数组<strong>[1, 2, -3, 1]</strong>，返回 6</p>
-<p>子数组最少包含一个数</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>类似题[Maximum Subarray II]</li>
-<li>枚举分割线，但本题每次要知道分割线左边和右边的<strong>最大/最小数组和</strong></li>
-<li>枚举一遍分割线，求max( abs(左最大-右最小), abs(左最小-右最大) )</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers</span><br><span class="line">    @return: An integer indicate the value of maximum difference between two</span><br><span class="line">             Subarrays</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxDiffSubArrays</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        size = len(nums)</span><br><span class="line">        leftMax, leftMin = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)], [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)]</span><br><span class="line">        rightMax, rightMin = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)], [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)]</span><br><span class="line">        maxRes, minRes, sum, minSum, maxSum = -sys.maxint - <span class="number">1</span>, sys.maxint, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">            sum += nums[i]</span><br><span class="line">            maxRes = max(maxRes, sum - minSum)</span><br><span class="line">            minSum = min(minSum, sum)</span><br><span class="line">            leftMax[i] = maxRes</span><br><span class="line">            minRes = min(minRes, sum - maxSum)</span><br><span class="line">            maxSum = max(maxSum, sum)</span><br><span class="line">            leftMin[i] = minRes</span><br><span class="line">            </span><br><span class="line">        maxRes, minRes, sum, minSum, maxSum = -sys.maxint - <span class="number">1</span>, sys.maxint, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            sum += nums[i]</span><br><span class="line">            maxRes = max(maxRes, sum - minSum)</span><br><span class="line">            minSum = min(minSum, sum)</span><br><span class="line">            rightMax[i] = maxRes</span><br><span class="line">            minRes = min(minRes, sum - maxSum)</span><br><span class="line">            maxSum = max(maxSum, sum)</span><br><span class="line">            rightMin[i] = minRes</span><br><span class="line">        </span><br><span class="line">        result = -sys.maxint - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size - <span class="number">1</span>):</span><br><span class="line">            result = max(result, abs(leftMax[i] - rightMin[i + <span class="number">1</span>]), abs(leftMin[i] - rightMax[i + <span class="number">1</span>]))</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Array/"> #Array </a>
-          
-            <a href="/tags/LintCode/"> #LintCode </a>
-          
-        </div>
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
               <a class="post-title-link" href="/2015/09/28/123-Best-Time-to-Buy-and-Sell-Stock-III/">
                 123 Best Time to Buy and Sell Stock III
               </a>
@@ -1066,6 +972,102 @@
 
 
     
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              <a class="post-title-link" href="/2015/09/27/130-Heapify/">
+                130 Heapify
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on 2015-09-27
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; In
+            
+              <a href="/categories/LintCode/">LintCode</a>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/09/27/130-Heapify/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/27/130-Heapify/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="原题">原题</h1><blockquote>
+<p>给出一个整数数组，堆化操作就是把它变成一个最小堆数组。<br>对于堆数组A，A[0]是堆的根，并对于每个A[i]，A [i <em> 2 + 1]是A[i]的左儿子并且A[i </em> 2 + 2]是A[i]的右儿子。</p>
+</blockquote>
+<p>给出<strong> [3,2,1,4,5]</strong>，返回<strong>[1,2,3,4,5] </strong>或者任何一个合法的堆数组</p>
+<h1 id="解题思路">解题思路</h1><ul>
+<li>minHeapify就相当于sift down函数，minHeapify函数可以写成recursion也可以写成while循环</li>
+<li>heapify就相当于buildMinHeap函数</li>
+<li>注意如果想要在函数中整体覆盖一个数组，Python的写法如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27491;&#30830;&#10;array[:] = newArray[:]&#10;# &#20004;&#20010;&#38169;&#35823;&#31034;&#33539;&#65292;&#30456;&#24403;&#20110;&#22312;&#20989;&#25968;&#20869;&#25913;&#21464;&#20102;reference&#25351;&#21521;&#65292;&#24182;&#27809;&#26377;&#23454;&#38469;&#25913;&#21464;&#21407;&#26469;array&#25351;&#21521;&#30340;object&#10;array = newArray[:]&#10;array = newArray</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param A: Given an integer array</span></span><br><span class="line">    <span class="comment"># @return: void</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        self.currentSize = len(A)</span><br><span class="line">        self.minheap = [<span class="number">0</span>] + A</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A)//<span class="number">2</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            self.minHeapify(self.minheap, i)</span><br><span class="line">        A[:] = self.minheap[<span class="number">1</span>:]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minHeapify</span><span class="params">(self, L, index)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> index &gt; self.currentSize // <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> index*<span class="number">2</span>+<span class="number">1</span> &gt; self.currentSize <span class="keyword">or</span> L[index*<span class="number">2</span>] &lt; L[index*<span class="number">2</span>+<span class="number">1</span>]:</span><br><span class="line">            minChild = index*<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> L[index] &gt; L[minChild]:</span><br><span class="line">                L[index], L[minChild] = L[minChild], L[index]</span><br><span class="line">            self.minHeapify(L, index*<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            minChild = index*<span class="number">2</span>+<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> L[index] &gt; L[minChild]:</span><br><span class="line">                L[index], L[minChild] = L[minChild], L[index]</span><br><span class="line">            self.minHeapify(L, index*<span class="number">2</span>+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Heapify/"> #Heapify </a>
+          
+            <a href="/tags/LintCode/"> #LintCode </a>
+          
+            <a href="/tags/Priority-Queue/"> #Priority Queue </a>
+          
+        </div>
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
   </div>
 
   
@@ -1104,7 +1106,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
