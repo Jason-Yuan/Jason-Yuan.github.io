@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -97,7 +97,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -321,20 +321,18 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数序列，找到最长上升子序列（LIS），返回LIS的长度。</p>
-</blockquote>
-<p>给出<strong>[5,4,1,2,3]</strong>，这个LIS是<strong>[1,2,3]</strong>，返回 3<br>给出<strong>[4,2,4,5,3,7]</strong>，这个LIS是<strong>[4,4,5,7]</strong>，返回 4</p>
-<p>最长上升子序列问题是在一个无序的给定序列中找到一个尽可能长的由低到高排列的子序列，这种子序列不一定是连续的或者唯一的。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>序列型动态规划 - Sequence DP</li>
-<li>判定条件：序列非集合，求最长</li>
-<li><code>cache[i]</code>表示以i结尾的最长子序列的长度</li>
-<li>每次遍历<code>0 ~ i-1</code>如果存在<code>nums[x] &lt; nums[i]</code>并且<code>cache[x] + 1 &gt; cache[i]</code>则更新</li>
-<li>for循环中维护一个<code>res</code>，即最大值</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: The integer array</span><br><span class="line">    @return: The length of LIS (longest increasing subsequence)</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestIncreasingSubsequence</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        cache = [<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> nums[j] &lt;= nums[i]:</span><br><span class="line">                    <span class="keyword">if</span> cache[j] + <span class="number">1</span> &gt; cache[i]:</span><br><span class="line">                        cache[i] = cache[j] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> cache[i] &gt; res:</span><br><span class="line">                res = cache[i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个整数序列，找到最长上升子序列（LIS），返回LIS的长度。
+
+给出[5,4,1,2,3]，这个LIS是[1,2,3]，返回 3给出[4,2,4,5,3,7]，这个LIS是[4,4,5,7]，返回 4
+最长上升子序列问题是在一个无序的给定序列中找到一个尽可能长的由低到高排列的子序列，这种
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/31/76-Longest-Increasing-Subsequence/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -452,27 +450,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个非负整数数组，你最初定位在数组的第一个位置。<br>数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　<br>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
-</blockquote>
-<p>给出数组A =<strong> [2,3,1,1,4]</strong>，最少到达数组最后一个位置的跳跃次数是2(从数组下标0跳一步到数组下标1，然后跳3步到数组的最后一个位置，一共跳跃2次)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>方法一：贪心(Greedy)<ul>
-<li>维护一个<code>farthest</code>变量，每次在遍历<code>start</code>到<code>end</code>之间的元素，尝试更新<code>farthest</code>变量</li>
-<li><code>start = end + 1</code></li>
-<li><code>end = farthest</code></li>
-<li>比较<code>end</code>时候大于数组长度，大于返回结果，否则<code>steps += 1</code></li>
-</ul>
-</li>
-<li>方法二：动态规划(领会思路，OJ会超时)<ul>
-<li>开辟一个<code>steps</code>数组长度与<code>input</code>数组相同，初始值为<code>maxint</code></li>
-<li><code>steps[0] = 0</code></li>
-<li><code>steps[i]</code>等于遍历<code>steps[0]</code> ~ <code>steps[i-1]</code>，如果存在<code>nums[x] + x &gt; i</code>，则更新<code>steps[i] = steps[x] + 1</code></li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一：贪心</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        start, end, steps = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> end &lt; len(nums) - <span class="number">1</span>:</span><br><span class="line">            steps += <span class="number">1</span></span><br><span class="line">            farthest = end</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(start, end + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> nums[i] + i &gt; farthest:</span><br><span class="line">                    farthest = nums[i] + i</span><br><span class="line">            start = end + <span class="number">1</span></span><br><span class="line">            end = farthest</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> steps</span><br><span class="line"><span class="comment"># 方法二：动态规划</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        steps = [sys.maxint <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        </span><br><span class="line">        steps[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> steps[j] != sys.maxint <span class="keyword">and</span> j + nums[j] &gt;= i:</span><br><span class="line">                    steps[i] = steps[j] + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> steps[len(nums) - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个非负整数数组，你最初定位在数组的第一个位置。数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+
+给出数组A = [2,3,1,1,4]，最少到达数组最后一个位置的跳跃次数是2(从数组下标0跳一步到数组下标1，然后跳3步到数组
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/31/45-Jump-Game-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -590,18 +578,18 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>有一些原木，现在想把这些木头切割成一些长度相同的小段木头，需要得到的小段的数目至少为 k。当然，我们希望得到的小段越长越好，你需要计算能够得到的小段木头的最大长度。</p>
-</blockquote>
-<p>有3根木头[232, 124, 456], k=7, 最大长度为114.</p>
-<p>木头长度的单位是厘米。原木的长度都是正整数，我们要求切割得到的小段木头的长度也要求是整数。无法切出要求至少 k 段的,则返回 0 即可。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>思路：<strong>Binary Search</strong></li>
-<li>问题又可以转化成在1和给的所有原木中最长的长度中间找一个合适的长度，使得把每段原木按此分段后得到的小段木头数目至少为k</li>
-<li>扩展，<strong>除法转化为二分法</strong>，求100除以5，相当于在0到100之间找一个数使得x<em>5小于等于100，(x+1)\</em>5大于100</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param L: Given n pieces of wood with length L[i]</span><br><span class="line">    @param k: An integer</span><br><span class="line">    return: The maximum length of the small pieces.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">woodCut</span><span class="params">(self, L, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> sum(L) &lt; k:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        start, end = <span class="number">1</span>, max(L)</span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            pieces = sum([l / mid <span class="keyword">for</span> l <span class="keyword">in</span> L])</span><br><span class="line">            <span class="keyword">if</span> pieces &gt;= k:</span><br><span class="line">                start = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                end = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> sum([l / end <span class="keyword">for</span> l <span class="keyword">in</span> L]) &gt; k:</span><br><span class="line">            <span class="keyword">return</span> end</span><br><span class="line">        <span class="keyword">return</span> start</span><br></pre></td></tr></table></figure>
-          
+          原题
+有一些原木，现在想把这些木头切割成一些长度相同的小段木头，需要得到的小段的数目至少为 k。当然，我们希望得到的小段越长越好，你需要计算能够得到的小段木头的最大长度。
+
+有3根木头[232, 124, 456], k=7, 最大长度为114.
+木头长度的单位是厘米。原木的长度都是正整数，我们要求
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/31/183-Wood-Cut/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -719,18 +707,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个无序的正数数组，找出其中没有出现的最小正整数。</p>
-</blockquote>
-<p>如果给出 [1,2,0], return 3 如果给出 [3,4,-1,1], return 2<br>只允许时间复杂度O(n)的算法，并且只能使用常数级别的空间。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>类似于<strong>桶排序的思路</strong>，对于每一个整数，我们按照一定的规则放到相应的位置上，最后再去检查如果指定位置的数不存在，即为没有出现的最小正整数</li>
-<li>规则：1放在array[0]，2放在array[1]，以此类推<br>对于[3, 4, -1, 1]，运行最终结果为[1, -1, 3, 4]所以检查到array[1]时，2不存在，2即为没有出现的最小正整数</li>
-<li>注意，遍历数组是，对于每一位要while循环至该位置的数字放到正确的位置为止<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> nums[i] &lt;= len(nums) <span class="keyword">and</span> nums[i] &gt; <span class="number">0</span> <span class="keyword">and</span> nums[nums[i] - <span class="number">1</span>] != nums[i]:</span><br><span class="line">    nums[nums[i] - <span class="number">1</span>], nums[i] = nums[i], nums[nums[i] - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstMissingPositive</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">while</span> nums[i] &lt;= len(nums) <span class="keyword">and</span> nums[i] &gt; <span class="number">0</span> <span class="keyword">and</span> nums[nums[i] - <span class="number">1</span>] != nums[i]:</span><br><span class="line">                nums[nums[i] - <span class="number">1</span>], nums[i] = nums[i], nums[nums[i] - <span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] != i + <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> len(nums) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个无序的正数数组，找出其中没有出现的最小正整数。
+
+如果给出 [1,2,0], return 3 如果给出 [3,4,-1,1], return 2只允许时间复杂度O(n)的算法，并且只能使用常数级别的空间。
+解题思路
+类似于桶排序的思路，对于每一个整数，我们按照一定的规则放到相应的位置
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/31/41-First-Missing-Positive/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -848,17 +837,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。</p>
-</blockquote>
-<p>对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="string">"ate"</span>, <span class="string">"eat"</span>,<span class="string">"tea"</span>],</span><br><span class="line">  [<span class="string">"nat"</span>,<span class="string">"tan"</span>],</span><br><span class="line">  [<span class="string">"bat"</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先，注意返回结果中，子字符串数组内要保持有序，所以第一步先把strs排序</li>
-<li>本题考察使用hashtable，与直接判断两个字符串是否是anagram不同，遍历一遍字符串数组，将<strong>排序的字符串作为key</strong>，把原始字符串作为value</li>
-<li>最后遍历hashtable生成结果</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type strs: List[str]</span><br><span class="line">        :rtype: List[List[str]]</span><br><span class="line">        """</span></span><br><span class="line">        strs.sort()</span><br><span class="line">        d = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">""</span>.join(sorted(str)) <span class="keyword">not</span> <span class="keyword">in</span> d:</span><br><span class="line">                d[<span class="string">""</span>.join(sorted(str))] = [str]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d[<span class="string">""</span>.join(sorted(str))].append(str)</span><br><span class="line">                </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> d.items():</span><br><span class="line">            res.append(value)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
+
+对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  ["ate", "e
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/31/49-Group-Anagrams/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -976,16 +965,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个非负整数数组，你最初定位在数组的第一个位置。　　　<br>数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　　<br>判断你是否能到达数组的最后一个位置。</p>
-</blockquote>
-<p>A =<strong> [2,3,1,1,4]</strong>，返回 true.<br>A =<strong> [3,2,1,0,4]</strong>，返回 false.</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>方法一：贪心法 greedy</li>
-<li>方法二：单序列型动态规划 - Sequence DP (因为题目中给的是序列而不是数组，注意两者的区别)，本题动归的方法不能过OJ</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一，贪心</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        farest = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i &lt;= farest <span class="keyword">and</span> nums[i] + i &gt; farest:</span><br><span class="line">                farest = nums[i] + i</span><br><span class="line">            <span class="keyword">if</span> farest &gt;= len(nums) - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二，动态规划</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        cache = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> cache[j] <span class="keyword">is</span> <span class="keyword">True</span> <span class="keyword">and</span> j + nums[j] &gt;= i:</span><br><span class="line">                    cache[i] == <span class="keyword">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> cache[len(nums) - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个非负整数数组，你最初定位在数组的第一个位置。　　　数组中的每个元素代表你在那个位置可以跳跃的最大长度。　　　　判断你是否能到达数组的最后一个位置。
+
+A = [2,3,1,1,4]，返回 true.A = [3,2,1,0,4]，返回 false.
+解题思路
+方法一：贪心法 greed
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/25/55-Jump-Game/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1103,19 +1095,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个数字三角形，找到从顶部到底部的最小路径和。每一步可以移动到下面一行的相邻数字上。</p>
-</blockquote>
-<p>比如，给出下列数字三角形：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">     [<span class="number">2</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">   [<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">3</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>从顶到底部的最小路径和为11 (<strong> 2 + 3 + 5 + 1 = 11</strong>)。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>矩阵型动态规划问题 - Matrix DP</li>
-<li>有两种解决方案，自顶向下或者自底向上</li>
-<li>下面代码采用自底向上的方法，cache[i][j]表明从最底层到i,j所用的最短距离是多少</li>
-<li><code>cache[i][j]</code>就等于<code>cache[i+1][j]</code>(左下角)与<code>cache[i+1][j+1]</code>(右下角)中最小的加上<code>triangle[i][j]</code>的值</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minimumTotal</span><span class="params">(self, triangle)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type triangle: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> triangle:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        m = len(triangle)</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            cache[m - <span class="number">1</span>][i] = triangle[m - <span class="number">1</span>][i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m - i):</span><br><span class="line">                cache[m - <span class="number">1</span> - i][j] = min(cache[m - i][j], cache[m - i][j + <span class="number">1</span>]) + triangle[m - <span class="number">1</span> - i][j]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个数字三角形，找到从顶部到底部的最小路径和。每一步可以移动到下面一行的相邻数字上。
+
+比如，给出下列数字三角形：123456[     [2],    [3,4],   [6,5,7],  [4,1,8,3]]
+从顶到底部的最小路径和为11 ( 2 + 3 + 5 + 1 = 11)。
+
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/25/120-Triangle/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1233,17 +1225,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个只含非负整数的m*n网格，找到一条从左上角到右下角的可以使数字和最小的路径。</p>
-</blockquote>
-<p>你在同一时间只能向下或者向右移动一步</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>矩阵型动态规划 - Matrix DP</li>
-<li>与Unique Paths I/II非常类似，不同的是每次要找最小value</li>
-<li>cache[i][j]表示从左上角到达i,j的数字和最小路径，它等于cache[i][j - 1]与cache[i - 1][j]的最小值，加上grid[i][j]的值</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minPathSum</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type grid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid <span class="keyword">or</span> <span class="keyword">not</span> grid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(grid)</span><br><span class="line">        n = len(grid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        sum1 = sum2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            sum1 += grid[<span class="number">0</span>][i]</span><br><span class="line">            cache[<span class="number">0</span>][i] = sum1</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">            sum2 += grid[j][<span class="number">0</span>]</span><br><span class="line">            cache[j][<span class="number">0</span>] = sum2</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">                cache[j][i] = min(cache[j - <span class="number">1</span>][i], cache[j][i - <span class="number">1</span>]) + grid[j][i]</span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个只含非负整数的m*n网格，找到一条从左上角到右下角的可以使数字和最小的路径。
+
+你在同一时间只能向下或者向右移动一步
+解题思路
+矩阵型动态规划 - Matrix DP
+与Unique Paths I/II非常类似，不同的是每次要找最小value
+cache[i][j]表示从左上角到达i
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/24/64-Minimum-Path-Sum/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1361,22 +1357,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>假设你正在爬楼梯，需要n步你才能到达顶部。但每次你只能爬一步或者两步，你能有多少种不同的方法爬到楼顶部？</p>
-</blockquote>
-<p>比如n=3，1+1+1=1+2=2+1=3，共有3中不同的方法<br>返回 3</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>本题本质和菲波那切数列问题非常相似</li>
-<li>单序列型动态规划问题 - Sequence DP</li>
-<li>cache[i]表示有i个台阶，能跳到第i个台阶的方案个数</li>
-<li>因为每次可以跳一步或者跳两步，所以cache[i]就等于下面的和<ul>
-<li>可以跳的i - 1的方案个数即cache[i - 1]</li>
-<li>可以跳到i - 2的方案个数即cache[i - 2]</li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        cache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        cache[<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n):</span><br><span class="line">            cache[i] = cache[i - <span class="number">1</span>] + cache[i - <span class="number">2</span>]</span><br><span class="line">        <span class="keyword">return</span> cache[n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+假设你正在爬楼梯，需要n步你才能到达顶部。但每次你只能爬一步或者两步，你能有多少种不同的方法爬到楼顶部？
+
+比如n=3，1+1+1=1+2=2+1=3，共有3中不同的方法返回 3
+解题思路
+本题本质和菲波那切数列问题非常相似
+单序列型动态规划问题 - Sequence DP
+cache[i]表
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/24/70-Climbing-Stairs/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1494,18 +1489,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>现在考虑网格中有障碍物，那样将会有多少条不同的路径？<br>网格中的障碍和空位置分别用<strong>1</strong>和<strong>0</strong>来表示。</p>
-</blockquote>
-<p>如下所示在3x3的网格中有一个障碍物：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">  [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">  [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>一共有2条不同的路径从左上角到右下角。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>同样是矩阵型动态规划 - Matrix DP</li>
-<li>对于有障碍物的地图来说，只需要把<strong>障碍物的坐标设为0即可</strong></li>
-<li>要注意对第一行和第一列的初始化，如果遇到障碍物第一行后面和第一列下面都是0</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(self, obstacleGrid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type obstacleGrid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> obstacleGrid <span class="keyword">or</span> <span class="keyword">not</span> obstacleGrid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(obstacleGrid)</span><br><span class="line">        n = len(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        flag1 = flag2 = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m): </span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[j][<span class="number">0</span>] == <span class="number">1</span>:</span><br><span class="line">                flag1 = <span class="number">0</span></span><br><span class="line">            cache[j][<span class="number">0</span>] = flag1</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">if</span> obstacleGrid[<span class="number">0</span>][i] == <span class="number">1</span>:</span><br><span class="line">                flag2 = <span class="number">0</span></span><br><span class="line">            cache[<span class="number">0</span>][i] = flag2</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                cache[j][i] = (cache[j - <span class="number">1</span>][i] + cache[j][i - <span class="number">1</span>]) <span class="keyword">if</span> obstacleGrid[j][i] == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+现在考虑网格中有障碍物，那样将会有多少条不同的路径？网格中的障碍和空位置分别用1和0来表示。
+
+如下所示在3x3的网格中有一个障碍物：12345[  [0,0,0],  [0,1,0],  [0,0,0]]
+一共有2条不同的路径从左上角到右下角。
+解题思路
+同样是矩阵型动态规划 - Matri
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/24/63-Unique-Paths-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1683,7 +1680,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

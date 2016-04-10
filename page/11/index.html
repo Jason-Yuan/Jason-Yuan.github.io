@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -97,7 +97,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -321,20 +321,16 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>为最近最少使用（LRU）缓存策略设计一个数据结构，它应该支持以下操作：获取数据（<strong>get</strong>）和写入数据（<strong>set</strong>）。<br>1.获取数据<strong>get(key)
-</strong>：如果缓存中存在key，则获取其数据值（通常是正数），否则返回-1。<br>2.写入数据<strong>set(key, value)</strong>：如果key还没有在缓存中，则写入其数据值。当缓存达到上限，它应该在写入新数据之前删除最近最少使用的数据用来腾出空闲位置。</p>
-</blockquote>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>第一过程中涉及membership的查询 -&gt; Hash Table</li>
-<li>第二过程中涉及一个个的<strong>增</strong>、<strong>删</strong> -&gt; Linked List (数组不适合，数组适合一批一批的增删)</li>
-<li><p>Linked List中的每个node要有next和prev属性，要同时记录Dummy(head)和tail</p>
-</li>
-<li><p>本解法采用的singly linked list所以<strong>hash表里面存的key指向的是前一个node</strong></p>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedNode</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, key=None, value=None, next=None)</span>:</span></span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line">        self.next = next</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type capacity: int</span><br><span class="line">        """</span></span><br><span class="line">        self.hash = &#123;&#125;</span><br><span class="line">        self.head = LinkedNode()</span><br><span class="line">        self.tail = self.head</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push_back</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        self.hash[node.key] = self.tail</span><br><span class="line">        self.tail.next = node</span><br><span class="line">        self.tail = node</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop_front</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">del</span> self.hash[self.head.next.key]</span><br><span class="line">        self.head.next = self.head.next.next</span><br><span class="line">        self.hash[self.head.next.key] = self.head</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># change "prev-&gt;node-&gt;next...-&gt;tail"</span></span><br><span class="line">    <span class="comment"># to "prev-&gt;next-&gt;...-&gt;tail-&gt;node"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kick</span><span class="params">(self, prev)</span>:</span></span><br><span class="line">        node = prev.next</span><br><span class="line">        <span class="keyword">if</span> node == self.tail:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        prev.next = node.next</span><br><span class="line">        <span class="keyword">if</span> node.next <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            self.hash[node.next.key] = prev</span><br><span class="line">            node.next = <span class="keyword">None</span></span><br><span class="line">        self.push_back(node)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.hash:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        self.kick(self.hash[key])</span><br><span class="line">        <span class="keyword">return</span> self.hash[key].next.value</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set</span><span class="params">(self, key, value)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type key: int</span><br><span class="line">        :type value: int</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.hash:</span><br><span class="line">            self.kick(self.hash[key])</span><br><span class="line">            self.hash[key].next.value = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.push_back(LinkedNode(key, value))</span><br><span class="line">            <span class="keyword">if</span> len(self.hash) &gt; self.capacity:</span><br><span class="line">                self.pop_front()</span><br></pre></td></tr></table></figure>
-          
+          原题
+为最近最少使用（LRU）缓存策略设计一个数据结构，它应该支持以下操作：获取数据（get）和写入数据（set）。1.获取数据get(key)
+：如果缓存中存在key，则获取其数据值（通常是正数），否则返回-1。2.写入数据set(key, value)：如果key还没有在缓存中，则写入其数据值。
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/27/146-LRU-Cache/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -452,17 +448,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个未排序的整数数组，找出最长连续序列的长度。</p>
-</blockquote>
-<p>给出数组<strong>[100, 4, 200, 1, 3, 2]</strong>，这个最长的连续序列是<strong> [1, 2, 3, 4]</strong>，返回所求长度 4<br>要求你的算法复杂度为O(n)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>从第一个数字100开始看我们希望知道100+1和100-1在不在数组中。对于这类会员查询的问题，首先想到hash表。O(1)时间复杂度查询。</li>
-<li>第一次遍历建立hash[100]=1, hash[4]=1 ……</li>
-<li>第二次遍历查询100+1和100-1，注意，比如通过4找到了1，2，3我们就可以把1，2，3删掉了，所以查询的过程中一边找一边删</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestConsecutive</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        map = &#123;&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> e <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> e <span class="keyword">not</span> <span class="keyword">in</span> map:</span><br><span class="line">                map[e] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        res = <span class="number">0</span>        </span><br><span class="line">        <span class="keyword">for</span> e <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> map[e] != -<span class="number">1</span>:</span><br><span class="line">                temp = map[e]</span><br><span class="line">                lg = sm = e</span><br><span class="line">                <span class="keyword">while</span> lg + <span class="number">1</span> <span class="keyword">in</span> map <span class="keyword">and</span> map[lg + <span class="number">1</span>] != -<span class="number">1</span>:</span><br><span class="line">                    temp += map[lg + <span class="number">1</span>]</span><br><span class="line">                    map[lg + <span class="number">1</span>] = -<span class="number">1</span></span><br><span class="line">                    lg += <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> sm - <span class="number">1</span> <span class="keyword">in</span> map <span class="keyword">and</span> map[sm - <span class="number">1</span>] != -<span class="number">1</span>:</span><br><span class="line">                    temp += map[sm - <span class="number">1</span>]</span><br><span class="line">                    map[sm - <span class="number">1</span>] = -<span class="number">1</span></span><br><span class="line">                    sm -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> temp &gt; res:</span><br><span class="line">                res = temp</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个未排序的整数数组，找出最长连续序列的长度。
+
+给出数组[100, 4, 200, 1, 3, 2]，这个最长的连续序列是 [1, 2, 3, 4]，返回所求长度 4要求你的算法复杂度为O(n)
+解题思路
+从第一个数字100开始看我们希望知道100+1和100-1在不在数组中。对于这类会
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/27/128-Longest-Consecutive-Sequence/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -580,15 +578,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。</p>
-</blockquote>
-<p>假设你有如下一哈希表：size=3, capacity=4<br>给出 [null, 21-&gt;9-&gt;null, 14-&gt;null, null]<br>返回 [null, 9-&gt;null, null, null, null, 21-&gt;null, 14-&gt;null, null]</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>第一步容量扩大一倍，loop之前hash表的所有listnode，逐个拷贝</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of ListNode</span><br><span class="line">class ListNode(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self, val, next=None):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = next</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param hashTable: A list of The first node of linked list</span><br><span class="line">    @return: A list of The first node of linked list which have twice size</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rehashing</span><span class="params">(self, hashTable)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(hashTable) &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> hashTable</span><br><span class="line">            </span><br><span class="line">        newcapacity = <span class="number">2</span> * len(hashTable)</span><br><span class="line">        newTable = [<span class="keyword">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(newcapacity)]</span><br><span class="line">        <span class="keyword">for</span> listNode <span class="keyword">in</span> hashTable:</span><br><span class="line">            <span class="keyword">while</span> listNode != <span class="keyword">None</span>:</span><br><span class="line">                newindex = (listNode.val % newcapacity + newcapacity) % newcapacity</span><br><span class="line">                <span class="keyword">if</span> newTable[newindex] == <span class="keyword">None</span>:</span><br><span class="line">                    newTable[newindex] = ListNode(listNode.val)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dummy = newTable[newindex]</span><br><span class="line">                    <span class="keyword">while</span> dummy.next != <span class="keyword">None</span>:</span><br><span class="line">                        dummy = dummy.next</span><br><span class="line">                    dummy.next = ListNode(listNode.val)</span><br><span class="line">                listNode = listNode.next</span><br><span class="line">        <span class="keyword">return</span> newTable</span><br></pre></td></tr></table></figure>
-          
+          原题
+哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。
+
+假设你有如下一哈希表：size=3, capacity=4给出 [null, 21-&gt;9-&gt;null, 14-&gt;null, nul
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/27/129-Rehashing/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -706,23 +706,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出的n个非负整数表示每个直方图的高度，每个直方图的宽均为1，在直方图中找到最大的矩形面积。</p>
-</blockquote>
-<p>给出 height = <strong>[2,1,5,6,2,3]</strong>，返回 <strong>10</strong> (5 * 2)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>DP一般是把n!/n^n/2^n优化到n^2/n^3，而本题暴力解法是n^2，我们希望优化到n，不是DP的强项</li>
-<li>n^2 -&gt; n （stack强项）</li>
-<li>求出把每个柱子当做最小的得到的面积 -&gt; 求出n个值，取min</li>
-<li><p>通过维护一个<strong>升序stack</strong>，实现 -&gt; 找到每个数左边第一个比它小的和右边第一个比它小的</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># push 2</span><br><span class="line">stack = [] -&gt; [2]</span><br><span class="line"># push 1 ,以为2 &gt; 1，所以pop 2以维持升序stack</span><br><span class="line"># 2左边第一个比它小的就是none，右边第一个比它小的就是1</span><br><span class="line">stack = [2] -&gt; [1]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Conditional Operator in Python</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Java version</span><br><span class="line">a &gt; 10 ? b : c</span><br><span class="line"># Python version</span><br><span class="line">b if a &gt; 10 else c</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">largestRectangleArea</span><span class="params">(self, height)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type height: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> height:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        stack = []</span><br><span class="line">        height.append(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(height)):</span><br><span class="line">            current = height[i]</span><br><span class="line">            <span class="keyword">while</span> len(stack) != <span class="number">0</span> <span class="keyword">and</span> current &lt;= height[stack[-<span class="number">1</span>]]:</span><br><span class="line">                h = height[stack.pop()]</span><br><span class="line">                w = i <span class="keyword">if</span> len(stack) == <span class="number">0</span> <span class="keyword">else</span> i - stack[-<span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">                res = max(res, h * w)</span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出的n个非负整数表示每个直方图的高度，每个直方图的宽均为1，在直方图中找到最大的矩形面积。
+
+给出 height = [2,1,5,6,2,3]，返回 10 (5 * 2)
+解题思路
+DP一般是把n!/n^n/2^n优化到n^2/n^3，而本题暴力解法是n^2，我们希望优化到n，不是DP的强
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/27/84-Largest-Rectangle-in-Histogram/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -840,17 +836,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个没有重复的整数数组，在此数组上建立最大树的定义如下：<br>1.根是数组中最大的数<br>2.左子树和右子树元素分别是被父节点元素切分开的子数组中的最大值<br>利用给定的数组构造最大树。</p>
-</blockquote>
-<p>给出数组 [2, 5, 6, 0, 3, 1]，构造的最大树如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">6</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">5</span>   <span class="number">3</span></span><br><span class="line"> /   / \</span><br><span class="line"><span class="number">2</span>   <span class="number">0</span>   <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>通过观察发现规律，对于每个node的父亲节点 = min(左边第一个比它大的，右边第一个比它大的)</li>
-<li>维护一个降序数组，可以实现对这个min的快速查找<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># stack = [2], push 5 因为 5 &gt; 2, 所以2是5的左儿子, pop 2</span></span><br><span class="line"><span class="comment"># stack = [], push 5</span></span><br><span class="line"><span class="comment"># stack = [5], push 6, 因为 6 &gt; 5，所以5是6的左儿子, pop 5</span></span><br><span class="line"><span class="comment"># stack = [], push 6</span></span><br><span class="line"><span class="comment"># stack = [6], push 0, 因为0 &lt; 6, stack = [6], 所以0是6的右儿子</span></span><br><span class="line"><span class="comment"># stack = [6, 0], push 3, 因为3 &gt; 0, 所以0是3的左儿子， pop 0</span></span><br><span class="line"><span class="comment"># stack = [6], 所以3是6的右儿子， push 3</span></span><br><span class="line"><span class="comment"># stack = [6, 3], push 1, 因为1 &lt; 3，所以1是3的右儿子</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param A: Given an integer array with no duplicates.</span></span><br><span class="line">    <span class="comment"># @return: The root of max tree.</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxTree</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        stack = []</span><br><span class="line">        <span class="keyword">for</span> element <span class="keyword">in</span> A:</span><br><span class="line">            node = TreeNode(element)</span><br><span class="line">            <span class="keyword">while</span> len(stack) != <span class="number">0</span> <span class="keyword">and</span> element &gt; stack[-<span class="number">1</span>].val:</span><br><span class="line">                node.left = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> len(stack) != <span class="number">0</span>:</span><br><span class="line">                stack[-<span class="number">1</span>].right = node</span><br><span class="line">            stack.append(node)</span><br><span class="line">        <span class="keyword">return</span> stack[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个没有重复的整数数组，在此数组上建立最大树的定义如下：1.根是数组中最大的数2.左子树和右子树元素分别是被父节点元素切分开的子数组中的最大值利用给定的数组构造最大树。
+
+给出数组 [2, 5, 6, 0, 3, 1]，构造的最大树如下：12345    6   / \  5   3 / 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/27/126-Max-Tree/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -968,14 +964,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>实现一个带有取最小值min方法的栈，min方法将返回当前栈中的最小值。你实现的栈将支持<strong>push</strong>，<strong>pop</strong>和<strong>min</strong>操作，所有操作要求都在O(1)时间内完成。</p>
-</blockquote>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>使用两个stack实现， 一个stack正常存储数值，另一个stack存储每次的最小值（保存最小值的变化序列）</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.minstack = []</span><br><span class="line">        self.stack = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type x: int</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line">        <span class="keyword">if</span> len(self.minstack) == <span class="number">0</span> <span class="keyword">or</span> self.minstack[-<span class="number">1</span>] &gt; x:</span><br><span class="line">            self.minstack.append(x)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.minstack.append(self.minstack[-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.minstack.pop()</span><br><span class="line">        <span class="keyword">return</span> self.stack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.stack[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.minstack[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+实现一个带有取最小值min方法的栈，min方法将返回当前栈中的最小值。你实现的栈将支持push，pop和min操作，所有操作要求都在O(1)时间内完成。
+
+解题思路
+使用两个stack实现， 一个stack正常存储数值，另一个stack存储每次的最小值（保存最小值的变化序列）
+
+完整代码123
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/27/155-Min-Stack/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1093,29 +1095,18 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出两个单词（start和end）和一个字典，找出所有从start到end的最短转换序列<br>比如：<br>1.每次只能改变一个字母。<br>2.变换过程中的中间单词必须在字典中出现。</p>
-</blockquote>
-<p>start = <strong>“hit”</strong><br>end = <strong>“cog”</strong><br>dict = <strong>[“hot”,”dot”,”dog”,”lot”,”log”]</strong></p>
-<p>返回<br>[<br>    [“hit”,”hot”,”dot”,”dog”,”cog”],<br>    [“hit”,”hot”,”lot”,”log”,”cog”]<br>  ]</p>
-<p><strong>注意</strong></p>
-<ul>
-<li>所有单词具有相同的长度。</li>
-<li>所有单词都只包含小写字母。</li>
-</ul>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先，善用一个条件，所有的单词<strong>长度相同</strong></li>
-<li><p>建立一个index，作用就是把去掉某一个位置的字母后，剩余部分相同的放入一个桶中。为了优化时间复杂度。比如</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"abcd" -&gt; (1, bcd) &lt;- "fbcd"</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>BFS一遍，确定为一个单词在图中的第几层</p>
-</li>
-<li>DFS一遍，找到每一个可行的路线。此时BFS的作用就是从第n层只能往n+1层走，以保证最短路径</li>
-<li>为什么使用<code>dict.get(key)</code>而不是<code>dict[key]</code>？<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以设定一个default value, 如果key不存在，就建立相应的key-value pair</span></span><br><span class="line">a = dictionary.get(<span class="string">"bogus"</span>, <span class="keyword">None</span>)   <span class="comment"># return None</span></span><br><span class="line">a = dictionary[<span class="string">"bogus"</span>]             <span class="comment"># raise KeyError</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildIndex</span><span class="params">(self, length, dict)</span>:</span></span><br><span class="line">        indexes = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            index = &#123;&#125;</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">                entry = word[:i] + word[i + <span class="number">1</span>:]</span><br><span class="line">                words = index.get(entry, [])</span><br><span class="line">                words.append(word)</span><br><span class="line">                index[entry] = words</span><br><span class="line">            indexes.append(index)</span><br><span class="line">        <span class="keyword">return</span> indexes</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNextWord</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            entry = word[:i] + word[i + <span class="number">1</span>:]</span><br><span class="line">            <span class="keyword">if</span> entry <span class="keyword">in</span> self.indexes[i]:</span><br><span class="line">                <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.indexes[i][entry]:</span><br><span class="line">                    <span class="keyword">if</span> nextWord != word:</span><br><span class="line">                        res.append(nextWord)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self, start, end)</span>:</span></span><br><span class="line">        self.distance = &#123;&#125;</span><br><span class="line">        self.distance[start] = <span class="number">0</span></span><br><span class="line">        q = Queue.Queue()</span><br><span class="line">        q.put(start)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            head = q.get()</span><br><span class="line">            <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.getNextWord(head):</span><br><span class="line">                <span class="keyword">if</span> nextWord <span class="keyword">not</span> <span class="keyword">in</span> self.distance:</span><br><span class="line">                    self.distance[nextWord] = self.distance[head] + <span class="number">1</span></span><br><span class="line">                    q.put(nextWord)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self, current, target, path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> current == target:</span><br><span class="line">            self.result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> self.getNextWord(current):</span><br><span class="line">            <span class="keyword">if</span> self.distance[word] - <span class="number">1</span> == self.distance[current]:</span><br><span class="line">                self.DFS(word, target, path + [word])</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLadders</span><span class="params">(self, beginWord, endWord, wordlist)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type beginWord: str</span><br><span class="line">        :type endWord: str</span><br><span class="line">        :type wordlist: Set[str]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> endWord <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> len(beginWord) != len(endWord):</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">not</span> <span class="keyword">in</span> wordlist <span class="keyword">or</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> wordlist:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        self.indexes = self.buildIndex(len(beginWord), wordlist)</span><br><span class="line">        self.BFS(beginWord, endWord)</span><br><span class="line">        </span><br><span class="line">        self.result = []</span><br><span class="line">        <span class="keyword">if</span> beginWord <span class="keyword">in</span> self.distance:</span><br><span class="line">            self.DFS(beginWord, endWord, [beginWord])</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> self.result</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出两个单词（start和end）和一个字典，找出所有从start到end的最短转换序列比如：1.每次只能改变一个字母。2.变换过程中的中间单词必须在字典中出现。
+
+start = “hit”end = “cog”dict = [“hot”,”dot”,”dog”,”lot”,”log”]
+返
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/26/126-Word-Ladder-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1233,30 +1224,17 @@
       
         
           
-            <h3 id="原题">原题</h3><blockquote>
-<p>给出两个单词（start和end）和一个字典，找到从start到end的最短转换序列<br>比如：<br>1.每次只能改变一个字母。<br>2.变换过程中的中间单词必须在字典中出现。</p>
-</blockquote>
-<p>start = <strong>“hit”</strong><br>end = <strong>“cog”</strong><br>dict = <strong> [“hot”,”dot”,”dog”,”lot”,”log”]</strong><br>一个最短的变换序列是<br><strong>“hit”</strong>-&gt;<strong>“hot” </strong>-&gt;<strong> “dot”</strong>-&gt;<strong> “dog”</strong>-&gt;<strong>“cog”</strong> 返回它的长度 5</p>
-<p><strong>注意</strong>:</p>
-<ul>
-<li>如果没有转换序列则返回0。</li>
-<li>所有单词具有相同的长度。</li>
-<li>所有单词都只包含小写字母。</li>
-</ul>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p>无向图求最短路 - BFS 中的<strong>level order</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 即每次count一下这一层的size()，然后遍历这一层</span></span><br><span class="line">size = q.qsize()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>题目中如果提到单词，要考虑到单词长度一般是有限的，进行优化</p>
-</li>
-<li>如何找通过一次改变可以形成的单词在不在字典中，假设单词长度为L，变量单词，每个位置可以有26种变换，所以O(L*26)，再check是否存在在字典中O(1)复杂度（更精确，应该是O(L)的复杂度）</li>
-<li>ord(‘a’) =&gt; 97 / chr(97) =&gt; a</li>
-<li>Java中的<code>HashSet&lt;xxx&gt;</code>可以用Python中的<code>Set()</code></li>
-<li>注意Python中string是immutable<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line">aToz = string.ascii_lowercase</span><br><span class="line"><span class="comment"># 'str' object does not support item assignment</span></span><br><span class="line">newWord[i] = <span class="string">'a'</span> </span><br><span class="line"><span class="comment"># 所以，换种方式</span></span><br><span class="line">newWord = current[:i] + <span class="string">'a'</span> + current[i+<span class="number">1</span>:]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNextWord</span><span class="params">(self, word, dict)</span>:</span></span><br><span class="line">        aToz = string.ascii_lowercase</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> aToz:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(word)):</span><br><span class="line">                <span class="keyword">if</span> word[j] == char:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                newWord = word[:j] + char + word[j+<span class="number">1</span>:]</span><br><span class="line">                <span class="keyword">if</span> newWord <span class="keyword">in</span> dict:</span><br><span class="line">                    res.append(newWord)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span><span class="params">(self, beginWord, endWord, wordList)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type beginWord: str</span><br><span class="line">        :type endWord: str</span><br><span class="line">        :type wordList: Set[str]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wordList:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        q = Queue.Queue()</span><br><span class="line">        visited = set()</span><br><span class="line">        q.put(beginWord)</span><br><span class="line">        visited.add(beginWord)</span><br><span class="line">        length = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> q.empty():</span><br><span class="line">            length += <span class="number">1</span></span><br><span class="line">            size = q.qsize()</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">                word = q.get()</span><br><span class="line">                <span class="keyword">for</span> nextWord <span class="keyword">in</span> self.getNextWord(word, wordList):</span><br><span class="line">                    <span class="keyword">if</span> nextWord <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line">                    <span class="keyword">if</span> nextWord == endWord:</span><br><span class="line">                        <span class="keyword">return</span> length</span><br><span class="line">                    q.put(nextWord)</span><br><span class="line">                    visited.add(nextWord)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+给出两个单词（start和end）和一个字典，找到从start到end的最短转换序列比如：1.每次只能改变一个字母。2.变换过程中的中间单词必须在字典中出现。
+
+start = “hit”end = “cog”dict =  [“hot”,”dot”,”dog”,”lot”,”log”]一个最
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/26/127-Word-Ladder-I/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1374,26 +1352,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一组候选数字(C)和目标数字(T),找出C中所有的组合，使组合中数字的和为T。C中每个数字在每个组合中只能使用一次。</p>
-</blockquote>
-<p>给出一个例子，候选数字集合为<strong>[10,1,6,7,2,1,5] </strong> 和目标数字 <strong>8
-</strong><br>解集为：<strong>[[1,7], [1,2,5], [2,6], [1,1,6]]</strong> </p>
-<p><strong>注意</strong>： </p>
-<ul>
-<li>所有的数字(包括目标数字)均为正整数。</li>
-<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
-<li>解集不能包含重复的组合。 </li>
-</ul>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>Backtracking, DFS</li>
-<li>与permutation和subset解题思路类似</li>
-<li>在<code>combination sum I</code>的基础上，此题关键在于candidate中可能出现重复元素，所以使用<code>prev</code>参数每次check一下<code>candidates[i] == prev</code>的话就<code>continue</code><br>因为如果candidates = [1(a), 1(b), 2, 3], target = 4<br>结果可能会出现 [1(a), 3], [1(b), 3] 所以如果加上判断后<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prev = <span class="number">1</span>(a)</span><br><span class="line">candidates[i] = a(b)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>此时会<code>continue</code></p>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        prev = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> prev != -<span class="number">1</span> <span class="keyword">and</span> prev == candidates[i]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path+[candidates[i]], i+<span class="number">1</span>, result)</span><br><span class="line">            prev = candidates[i]</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum2</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">        candidates.sort()    </span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一组候选数字(C)和目标数字(T),找出C中所有的组合，使组合中数字的和为T。C中每个数字在每个组合中只能使用一次。
+
+给出一个例子，候选数字集合为[10,1,6,7,2,1,5]  和目标数字 8
+解集为：[[1,7], [1,2,5], [2,6], [1,1,6]] 
+注意： 
+
+所
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/26/40-Combination-Sum-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1511,29 +1484,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一组候选数字(C)和目标数字(T),找到C中所有的组合，使找出的数字和为T。C中的数字可以无限制重复被选取。</p>
-</blockquote>
-<p>例如,给出候选数组<strong>[2,3,6,7]</strong>和目标数字7<br>所求的解为：<strong>[7]</strong> 和 <strong>[2,2,3]</strong> </p>
-<p><strong>注意</strong>： </p>
-<ul>
-<li>所有的数字(包括目标数字)均为正整数。</li>
-<li>元素组合(<em>a</em>1, <em>a</em>2, … , <em>a</em>k)必须是非降序(ie, <em>a</em>1 ≤ <em>a</em>2 ≤ … ≤ <em>a</em>k)。</li>
-<li>解集不能包含重复的组合。 </li>
-</ul>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p>backtracking 在代码的实现上可以在使用<code>加了再还原</code>的方式，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path.append(candidates[i])</span><br><span class="line">self.helper(candidates, target - candidates[i], path, i, result)</span><br><span class="line">path.pop()</span><br></pre></td></tr></table></figure>
-<p>也可以直接把添加的步骤直接通过参数传递的方式，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>与permutation和subset的思考方式类似，DFS</p>
-</li>
-<li>每一次向下搜索时，起始位置都和上一次相同，因为可以取相同元素不止一次，即每次向下传入的<code>index</code></li>
-<li>For循环每次从<code>index</code>开始，避免返回到之前的元素</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span><span class="params">(self, candidates, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type candidates: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> candidates:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        candidates.sort()</span><br><span class="line">        self.helper(candidates, target, [], <span class="number">0</span>, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, candidates, target, path, index, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            result.append(path[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(candidates)):</span><br><span class="line">            <span class="keyword">if</span> candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            self.helper(candidates, target - candidates[i], path + [candidates[i]], i, result)</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一组候选数字(C)和目标数字(T),找到C中所有的组合，使找出的数字和为T。C中的数字可以无限制重复被选取。
+
+例如,给出候选数组[2,3,6,7]和目标数字7所求的解为：[7] 和 [2,2,3] 
+注意： 
+
+所有的数字(包括目标数字)均为正整数。
+元素组合(a1, a2, … , a
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/26/39-Combination-Sum-I/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1711,7 +1676,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -97,7 +97,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -321,17 +321,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组，找到一个和最接近于零的子数组。返回第一个和最有一个指数。你的代码应该返回满足要求的子数组的起始位置和结束位置。</p>
-</blockquote>
-<p>给出<strong>[-3, 1, 1, -3, 5]</strong>，返回<strong>[0, 2]</strong>，<strong>[1, 3]</strong>，<strong>[1, 1]</strong>，<strong>[2, 2]</strong>或者<strong>[0, 4]</strong></p>
-<p>O(nlogn)的时间复杂度</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先建立一个pair类，便于记录前n项和与对应的index。因为后面要对sum数组排序，结果又要返回index</li>
-<li>loop一遍有序的sum数组，维护一个Closest变量，有更小的就更新</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, sum, index)</span>:</span></span><br><span class="line">        self.sum = sum</span><br><span class="line">        self.index = index</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers</span><br><span class="line">    @return: A list of integers includes the index of the first number </span><br><span class="line">             and the index of the last number</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subarraySumClosest</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        length = len(nums)</span><br><span class="line">        <span class="keyword">if</span> length == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">            </span><br><span class="line">        sums = [Pair(<span class="number">0</span>, <span class="number">0</span>)]</span><br><span class="line">        prev = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, length + <span class="number">1</span>):</span><br><span class="line">            sums.append(Pair(prev + nums[i - <span class="number">1</span>], i))</span><br><span class="line">            prev = sums[i].sum</span><br><span class="line">            </span><br><span class="line">        sums = sorted(sums, key=<span class="keyword">lambda</span> pair : pair.sum)</span><br><span class="line">        Closest = sys.maxint</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, length + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> Closest &gt; sums[i].sum - sums[i - <span class="number">1</span>].sum:</span><br><span class="line">                Closest = sums[i].sum - sums[i - <span class="number">1</span>].sum</span><br><span class="line">                res = []</span><br><span class="line">                tmp = [sums[i].index - <span class="number">1</span>, sums[i - <span class="number">1</span>].index - <span class="number">1</span>]</span><br><span class="line">                tmp.sort()</span><br><span class="line">                res.append(tmp[<span class="number">0</span>] + <span class="number">1</span>)</span><br><span class="line">                res.append(tmp[<span class="number">1</span>])</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个整数数组，找到一个和最接近于零的子数组。返回第一个和最有一个指数。你的代码应该返回满足要求的子数组的起始位置和结束位置。
+
+给出[-3, 1, 1, -3, 5]，返回[0, 2]，[1, 3]，[1, 1]，[2, 2]或者[0, 4]
+O(nlogn)的时间复杂度
+解题思路
+首先建
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/02/139-Subarray-Sum-Closest/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -449,16 +452,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个有n个对象（包括k种不同的颜色，并按照1到k进行编号）的数组，将对象进行分类使相同颜色的对象相邻，并按照1,2，…k的顺序进行排序。</p>
-</blockquote>
-<p>给出colors=[3, 2, 2, 1, 4]，k=4, 你的代码应该在原地操作使得数组变成[1, 2, 2, 3, 4]</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>方法1: Count sort, 扫两遍，需要O(k)的空间</li>
-<li>这道题原数组还要<strong>重复利用作为bucket数组</strong>!!! 首先for循环遍历一遍原来的数组，如果扫到a[i]，首先检查a[a[i]]是否为正数，如果是把a[a[i]]移动a[i]存放起来，然后把a[a[i]]记为-1(表示该位置是一个计数器，计1)。 如果a[a[i]]是负数，那么说明这一个地方曾经已经计数了，那么把a[a[i]]计数减一，并把color[i] 设置为0 （表示此处已经计算过），然后重复向下遍历下一个数，这样遍历原数组所有的元素过后，数组a里面实际上存储的每种颜色的计数，然后我们倒着再输出每种颜色就可以得到我们排序后的数组。<br>例子(按以上步骤运算)：<br>3 2 2 1 4<br>2 2 -1 1 4<br>2 -1 -1 1 4<br>0 -2 -1 1 4<br>-1 -2 -1 0 4<br>-1 -2 -1 -1 0</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param colors: A list of integer</span><br><span class="line">    @param k: An integer</span><br><span class="line">    @return: nothing</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortColors2</span><span class="params">(self, colors, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> colors:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(colors)):</span><br><span class="line">            <span class="keyword">while</span> colors[i] &gt; <span class="number">0</span>:</span><br><span class="line">                num = colors[i]</span><br><span class="line">                <span class="keyword">if</span> colors[num - <span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                    colors[i] = colors[num - <span class="number">1</span>]</span><br><span class="line">                    colors[num - <span class="number">1</span>] = -<span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> colors[num - <span class="number">1</span>] &lt;= <span class="number">0</span>:</span><br><span class="line">                    colors[num - <span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">                    colors[i] = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        index = len(colors) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            temp = colors[i]</span><br><span class="line">            <span class="keyword">while</span> temp &lt; <span class="number">0</span>:</span><br><span class="line">                colors[index] = i + <span class="number">1</span></span><br><span class="line">                temp += <span class="number">1</span></span><br><span class="line">                index -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个有n个对象（包括k种不同的颜色，并按照1到k进行编号）的数组，将对象进行分类使相同颜色的对象相邻，并按照1,2，…k的顺序进行排序。
+
+给出colors=[3, 2, 2, 1, 4]，k=4, 你的代码应该在原地操作使得数组变成[1, 2, 2, 3, 4]
+解题思路
+方法1: Co
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/02/143-Sort-Color-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -576,21 +582,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个包含红，白，蓝且长度为n的数组，将数组元素进行分类使同颜色的元素相邻，并按照红、白、蓝的顺序进行排序。<br>我们可以使用整数0，1和2分别代表红，白，蓝。</p>
-</blockquote>
-<p>一个相当直接的解决方案是使用计数排序扫描2遍的算法。<br>首先，迭代数组计算0,1,2出现的次数，然后依次用0,1,2出现的次数去覆盖数组。<br>你否能想出一个仅使用常数级额外空间复杂度且只扫描遍历一遍数组的算法？</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p>最直接的想法是类似于桶排序，先loop一遍计算每种颜色的个数，再一遍从0-&gt;2按照相应个数重新生成数组，如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span> </span><br><span class="line">    nums[:] = [<span class="number">0</span>]*nums.count(<span class="number">0</span>) + [<span class="number">1</span>]*nums.count(<span class="number">1</span>) + [<span class="number">2</span>]*nums.count(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>本题，根据要求，一遍扫描 -&gt; 拿到一个元素，就应该知道该放的位置</p>
-</li>
-<li>借助快速排序中partition思想，把1当作pivot元对数组进行划分，使0在数组的左边，2在数组的右边，1在数组的中间。</li>
-<li>记录红色index=0，蓝色index=n，loop数组，每次判断颜色，红色则与红色index交换，蓝色与蓝色index交换，黄色不变      </li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: void Do not return anything, modify nums in-place instead.</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        redIndex, blueIndex = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= blueIndex:</span><br><span class="line">            <span class="keyword">if</span> nums[i] == <span class="number">0</span>:</span><br><span class="line">                nums[i], nums[redIndex] = nums[redIndex], nums[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                redIndex += <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">elif</span> nums[i] == <span class="number">2</span>:</span><br><span class="line">                nums[i], nums[blueIndex] = nums[blueIndex], nums[i]</span><br><span class="line">                blueIndex -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个包含红，白，蓝且长度为n的数组，将数组元素进行分类使同颜色的元素相邻，并按照红、白、蓝的顺序进行排序。我们可以使用整数0，1和2分别代表红，白，蓝。
+
+一个相当直接的解决方案是使用计数排序扫描2遍的算法。首先，迭代数组计算0,1,2出现的次数，然后依次用0,1,2出现的次数去覆盖数组。
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/02/75-Sort-Colors/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -708,16 +710,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给一个包含n个数的整数数组S，在S中找到所有使得和为给定整数target的四元组(a, b, c, d)。</p>
-</blockquote>
-<p>例如，对于给定的整数数组S=<strong>[1, 0, -1, 0, -2, 2]</strong>和<strong>target=0</strong>. 满足要求的四元组集合为：<br><strong>(-1, 0, 0, 1)</strong><br><strong>(-2, -1, 1, 2)</strong><br><strong>(-2, 0, 0, 2)</strong></p>
-<p>四元组(a, b, c, d)中，需要满足a &lt;= b &lt;= c &lt;= d<br>答案中不可以包含重复的四元组</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>从2Sum, 3Sum一路演变而来，可以转化为连个for循环+2Sum解决</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fourSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, len(nums)):</span><br><span class="line">                <span class="keyword">if</span> j != i + <span class="number">1</span> <span class="keyword">and</span> nums[j] == nums[j - <span class="number">1</span>]:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">                left, right = j + <span class="number">1</span>, len(nums) - <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                    sum = nums[i] + nums[j] + nums[left] + nums[right]</span><br><span class="line">                    <span class="keyword">if</span> sum &lt; target:</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> sum &gt; target:</span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        res.append([nums[i], nums[j], nums[left], nums[right]])</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> nums[left] == nums[left - <span class="number">1</span>]:</span><br><span class="line">                            left += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> nums[right] == nums[right + <span class="number">1</span>]:</span><br><span class="line">                            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给一个包含n个数的整数数组S，在S中找到所有使得和为给定整数target的四元组(a, b, c, d)。
+
+例如，对于给定的整数数组S=[1, 0, -1, 0, -2, 2]和target=0. 满足要求的四元组集合为：(-1, 0, 0, 1)(-2, -1, 1, 2)(-2, 0, 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/01/18-4Sum/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -835,17 +838,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给一个包含n个整数的数组S, 找到和与给定整数target最接近的三元组，返回这三个数的和。</p>
-</blockquote>
-<p>例如S = <strong>[-1, 2, 1, -4]</strong> and target = <strong>1</strong>.  和最接近1的三元组是 <strong>-1 + 2 + 1 = 2</strong>.</p>
-<p>只需要返回三元组之和，无需返回三元组本身</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>题目要求找到x+y+z最接近target，我们可以遍历x，然后将题目转化为2Sum Closest，即找到y+z最接近target-x</li>
-<li>对于2Sum Closest，同样是使用<strong>对撞型指针</strong>，不断维护一个<strong>closest sum</strong></li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        closest = sys.maxint</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                Sum = sortNum[i] + sortNum[left] + sortNum[right]</span><br><span class="line">                <span class="keyword">if</span> Sum == target:</span><br><span class="line">                    <span class="keyword">return</span> Sum</span><br><span class="line">                <span class="keyword">elif</span> Sum &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                closest = Sum <span class="keyword">if</span> abs(Sum - target) &lt; abs(closest - target) <span class="keyword">else</span> closest </span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> closest</span><br></pre></td></tr></table></figure>
-          
+          原题
+给一个包含n个整数的数组S, 找到和与给定整数target最接近的三元组，返回这三个数的和。
+
+例如S = [-1, 2, 1, -4] and target = 1.  和最接近1的三元组是 -1 + 2 + 1 = 2.
+只需要返回三元组之和，无需返回三元组本身
+解题思路
+题目要求找到x+
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/01/16-3Sum-Closest/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -963,21 +969,18 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个有n个整数的数组S，在S中找到三个整数a, b, c，找到所有使得a + b + c = 0的三元组。</p>
-</blockquote>
-<p>如<strong>S = {-1 0 1 2 -1 -4}</strong>, 你需要返回的三元组集合的是：<br><strong>(-1, 0, 1)</strong><br><strong>(-1, -1, 2)</strong></p>
-<p>在三元组(a, b, c)，要求a &lt;= b &lt;= c。<br>结果不能包含重复的三元组。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先，数组排序!!!</li>
-<li>遍历数组, 每次check当前数值current往后能不能找到两个数的和等于-current</li>
-<li><strong>两个指针</strong>中对撞型指针的问题</li>
-<li>排序O(nlgn)+遍历O(n^2)，最终时间复杂度O(n^2)</li>
-<li><strong>注意</strong>有几个地方的代码是为了去掉重复结果<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> sortNum[i] == sortNum[i - <span class="number">1</span>]:</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line"><span class="comment"># 每次left++ 或者 right--之后要记得检查left&lt;right这个条件</span></span><br><span class="line"><span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[left] == sortNum[left - <span class="number">1</span>]:</span><br><span class="line">    left += <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[right] == sortNum[right + <span class="number">1</span>]:</span><br><span class="line">    right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: List[List[int]]</span><br><span class="line">        """</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        sortNum = sorted(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sortNum)):</span><br><span class="line">            <span class="keyword">if</span> i != <span class="number">0</span> <span class="keyword">and</span> sortNum[i] == sortNum[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            target = - sortNum[i]</span><br><span class="line">            left, right = i + <span class="number">1</span>, len(sortNum) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                <span class="keyword">if</span> sortNum[left] + sortNum[right] == target:</span><br><span class="line">                    res.append([sortNum[i], sortNum[left], sortNum[right]])</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[left] == sortNum[left - <span class="number">1</span>]:</span><br><span class="line">                        left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> sortNum[right] == sortNum[right + <span class="number">1</span>]:</span><br><span class="line">                        right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> sortNum[left] + sortNum[right] &gt; target:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个有n个整数的数组S，在S中找到三个整数a, b, c，找到所有使得a + b + c = 0的三元组。
+
+如S = {-1 0 1 2 -1 -4}, 你需要返回的三元组集合的是：(-1, 0, 1)(-1, -1, 2)
+在三元组(a, b, c)，要求a &lt;= b &lt;=
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/01/15-3Sum/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1095,23 +1098,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个整数数组nums和一个整数k。划分数组（即移动数组nums中的元素），使得：<br>所有小于k的元素移到左边<br>所有大于等于k的元素移到右边<br>返回数组划分的位置，即数组中第一个位置i，满足nums[i]大于等于k。</p>
-</blockquote>
-<p>给出数组nums=<strong>[3,2,2,1]</strong>和 k=2，返回 1</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>非常相似的题[Partition Array by Odd and Even]</li>
-<li>正宗<strong>两个指针</strong>中对撞型指针的问题</li>
-<li>最外层大while循环，终止条件是两根指针对撞</li>
-<li>内层循环，分三步走<ul>
-<li>左边如果小于K, left++</li>
-<li>右边如果大于等于K, right–</li>
-<li>最后停下时如果left &lt;= right, swap </li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: The integer array you should partition</span><br><span class="line">    @param k: As description</span><br><span class="line">    @return: The index after partition</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        <span class="comment"># you should partition the nums by k</span></span><br><span class="line">        <span class="comment"># and return the partition index as description</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] &lt; k:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] &gt;= k:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">                nums[left],  nums[right] = nums[right], nums[left]</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> left</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个整数数组nums和一个整数k。划分数组（即移动数组nums中的元素），使得：所有小于k的元素移到左边所有大于等于k的元素移到右边返回数组划分的位置，即数组中第一个位置i，满足nums[i]大于等于k。
+
+给出数组nums=[3,2,2,1]和 k=2，返回 1
+解题思路
+非常相似的题[
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/29/31-Partition-Array/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1229,23 +1228,23 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>分割一个整数数组，使得奇数在前偶数在后。</p>
-</blockquote>
-<p>给定 [1, 2, 3, 4]，返回 [1, 3, 2, 4]。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>非常相似的题[Partition Array]</li>
-<li>正宗<strong>两个指针</strong>中对撞型指针的问题</li>
-<li>最外层大while循环，终止条件是两根指针对撞</li>
-<li>内层循环，分三步走<ul>
-<li>左边如果是奇数, left++</li>
-<li>右边如果是偶数, right–</li>
-<li>最后停下时如果left &lt;= right, swap</li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param nums: a list of integers</span></span><br><span class="line">    <span class="comment"># @return: nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> nums</span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[left] % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> left &lt;= right <span class="keyword">and</span> nums[right] % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> left &lt;= right:</span><br><span class="line">                nums[left], nums[right] = nums[right], nums[left]</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+分割一个整数数组，使得奇数在前偶数在后。
+
+给定 [1, 2, 3, 4]，返回 [1, 3, 2, 4]。
+解题思路
+非常相似的题[Partition Array]
+正宗两个指针中对撞型指针的问题
+最外层大while循环，终止条件是两根指针对撞
+内层循环，分三步走
+左边如果是奇数, left
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/29/373-Partition-Array-by-Odd-and-Even/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1363,20 +1362,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>找出一个序列中乘积最大的连续子序列（至少包含一个数）。</p>
-</blockquote>
-<p>比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。</p>
-<h2 id="解题思路">解题思路</h2><ul>
-<li>动态规划求解</li>
-<li><p>维护两个数组maxCache和minCache, 每次判断下一个数的正负</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是正数 </span></span><br><span class="line">maxCache = max(maxCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">minCache[i] = min(minCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line"><span class="comment"># 如果是负数</span></span><br><span class="line">maxCache[i] = max(maxCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">minCache[i] = min(minCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>result变量去维护一个最大值</p>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProduct</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        maxCache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        minCache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        </span><br><span class="line">        minCache[<span class="number">0</span>] = maxCache[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        result = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            minCache[i] = maxCache[i] = nums[i]</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">0</span>:</span><br><span class="line">                maxCache[i] = max(maxCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">                minCache[i] = min(minCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; <span class="number">0</span>:</span><br><span class="line">                maxCache[i] = max(maxCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">                minCache[i] = min(minCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">            </span><br><span class="line">            result = max(result, maxCache[i])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-          
+          原题
+找出一个序列中乘积最大的连续子序列（至少包含一个数）。
+
+比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。
+解题思路
+动态规划求解
+维护两个数组maxCache和minCache, 每次判断下一个数的正负
+123456# 如果是正数 maxCache = max
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/29/152-Maximum-Product-Subarray/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1494,18 +1494,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个整数数组，找出两个<strong>不重叠</strong>的子数组A和B，使两个子数组和的差的绝对值<strong>|SUM(A) - SUM(B)|</strong>最大。<br>返回这个最大的差值。</p>
-</blockquote>
-<p>给出数组<strong>[1, 2, -3, 1]</strong>，返回 6</p>
-<p>子数组最少包含一个数</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>类似题[Maximum Subarray II]</li>
-<li>枚举分割线，但本题每次要知道分割线左边和右边的<strong>最大/最小数组和</strong></li>
-<li>枚举一遍分割线，求max( abs(左最大-右最小), abs(左最小-右最大) )</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param nums: A list of integers</span><br><span class="line">    @return: An integer indicate the value of maximum difference between two</span><br><span class="line">             Subarrays</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxDiffSubArrays</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        size = len(nums)</span><br><span class="line">        leftMax, leftMin = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)], [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)]</span><br><span class="line">        rightMax, rightMin = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)], [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(size)]</span><br><span class="line">        maxRes, minRes, sum, minSum, maxSum = -sys.maxint - <span class="number">1</span>, sys.maxint, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size):</span><br><span class="line">            sum += nums[i]</span><br><span class="line">            maxRes = max(maxRes, sum - minSum)</span><br><span class="line">            minSum = min(minSum, sum)</span><br><span class="line">            leftMax[i] = maxRes</span><br><span class="line">            minRes = min(minRes, sum - maxSum)</span><br><span class="line">            maxSum = max(maxSum, sum)</span><br><span class="line">            leftMin[i] = minRes</span><br><span class="line">            </span><br><span class="line">        maxRes, minRes, sum, minSum, maxSum = -sys.maxint - <span class="number">1</span>, sys.maxint, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            sum += nums[i]</span><br><span class="line">            maxRes = max(maxRes, sum - minSum)</span><br><span class="line">            minSum = min(minSum, sum)</span><br><span class="line">            rightMax[i] = maxRes</span><br><span class="line">            minRes = min(minRes, sum - maxSum)</span><br><span class="line">            maxSum = max(maxSum, sum)</span><br><span class="line">            rightMin[i] = minRes</span><br><span class="line">        </span><br><span class="line">        result = -sys.maxint - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(size - <span class="number">1</span>):</span><br><span class="line">            result = max(result, abs(leftMax[i] - rightMin[i + <span class="number">1</span>]), abs(leftMin[i] - rightMax[i + <span class="number">1</span>]))</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个整数数组，找出两个不重叠的子数组A和B，使两个子数组和的差的绝对值|SUM(A) - SUM(B)|最大。返回这个最大的差值。
+
+给出数组[1, 2, -3, 1]，返回 6
+子数组最少包含一个数
+解题思路
+类似题[Maximum Subarray II]
+枚举分割线，但本题每次要知道
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/28/45-Maximum-Subarray-Difference/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1683,7 +1686,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 

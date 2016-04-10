@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -97,7 +97,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -321,17 +321,23 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>已知一颗二叉树，找到从根节点到任意节点的最大路径和</p>
-</blockquote>
-<p>已知下面一颗二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>返回4. (1-&gt;3)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>Divide and Conquer</li>
-<li>借助一个helper函数，从根节点向下分裂，每一层返回左右儿子中的最大值与当前节点的值，层层递归</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.left, this.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root the root of binary tree.</span><br><span class="line">    @return an integer</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxPathSum2</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.helper(root)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        left = self.helper(root.left)</span><br><span class="line">        right = self.helper(root.right)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> max(left, right) + root.val</span><br></pre></td></tr></table></figure>
-          
+          原题
+已知一颗二叉树，找到从根节点到任意节点的最大路径和
+
+已知下面一颗二叉树123  1 / \2   3
+返回4. (1-&gt;3)
+解题思路
+Divide and Conquer
+借助一个helper函数，从根节点向下分裂，每一层返回左右儿子中的最大值与当前节点的值，层层递归
+
+完整代码12
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/19/475-Binary-Tree-Maximum-Path-Sum-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -449,18 +455,17 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>Given a list of words and an integer k, return the top k frequent words in the list.</p>
-</blockquote>
-<p>给出<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[ </span><br><span class="line"><span class="string">"yes"</span>, <span class="string">"lint"</span>, <span class="string">"code"</span>, </span><br><span class="line"><span class="string">"yes"</span>, <span class="string">"code"</span>, <span class="string">"baby"</span>, </span><br><span class="line"><span class="string">"you"</span>, <span class="string">"baby"</span>, <span class="string">"chrome"</span>, </span><br><span class="line"><span class="string">"safari"</span>, <span class="string">"lint"</span>, <span class="string">"code"</span>, </span><br><span class="line"><span class="string">"body"</span>, <span class="string">"lint"</span>, <span class="string">"code"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>当k=3时，返回[“code”, “lint”, “baby”]<br>当k=4时，返回[“code”, “lint”, “baby”, “yes”]</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先使用hash table统计词频，建立一个存有<strong>（单词，词频）结构</strong>的数组</li>
-<li>自定义<strong>（单词，词频）结构</strong>的比较方式</li>
-<li>快速排序，然后取出前K个，得到结果</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;string[]&#125; words a list of string</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; k an integer</span></span><br><span class="line">    <span class="comment"># @return &#123;string[]&#125; a list of string</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">topKFrequentWords</span><span class="params">(self, words, k)</span>:</span></span><br><span class="line">        map = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> map:</span><br><span class="line">                map[word] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                map[word] += <span class="number">1</span></span><br><span class="line">        temp = []</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> map.items():</span><br><span class="line">            temp.append((value, key))</span><br><span class="line">        temp.sort(cmp=self.cmp)</span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">            result.append(temp[i][<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cmp</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">0</span>] &gt; b[<span class="number">0</span>] <span class="keyword">or</span> a[<span class="number">0</span>] == b[<span class="number">0</span>] <span class="keyword">and</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> a[<span class="number">0</span>] == b[<span class="number">0</span>] <span class="keyword">and</span> a[<span class="number">1</span>] == b[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+Given a list of words and an integer k, return the top k frequent words in the list.
+
+给出1234567[ "yes", "lint", "code", "yes", "code", "baby", "you
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/12/471-Top-K-Frequent-Words/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -578,17 +583,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>设计一个算法，找出只含素因子2，3，5 的第 k 大的数。<br>符合条件的数如：1, 2, 3, 4, 5, 6, 8, 9, 10, 12……</p>
-</blockquote>
-<p>如果k=4， 返回 4<br>挑战<br>要求时间复杂度为O(nlogn)或者O(n)</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>动态规划</li>
-<li>每一个丑数都是由某一个比它小得丑数乘以2，3或者5得到的</li>
-<li>res数组记录前k个丑数</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        res = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        res[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        i2 = i3 = i5 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            nextUglyNumber = min(min(res[i2] * <span class="number">2</span>, res[i3] * <span class="number">3</span>), res[i5] * <span class="number">5</span>)</span><br><span class="line">            <span class="keyword">if</span> nextUglyNumber == res[i2] * <span class="number">2</span>:</span><br><span class="line">                i2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> nextUglyNumber == res[i3] * <span class="number">3</span>:</span><br><span class="line">                i3 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> nextUglyNumber == res[i5] * <span class="number">5</span>:</span><br><span class="line">                i5 += <span class="number">1</span></span><br><span class="line">            res[i] = nextUglyNumber</span><br><span class="line">        <span class="keyword">return</span> res[n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-          
+          原题
+设计一个算法，找出只含素因子2，3，5 的第 k 大的数。符合条件的数如：1, 2, 3, 4, 5, 6, 8, 9, 10, 12……
+
+如果k=4， 返回 4挑战要求时间复杂度为O(nlogn)或者O(n)
+解题思路
+动态规划
+每一个丑数都是由某一个比它小得丑数乘以2，3或者5得到的
+r
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/12/264-Ugly-Number-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -706,23 +715,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>在数组中找到第k大的元素</p>
-</blockquote>
-<p>给出数组<strong>[9,3,2,4,8]</strong>，第三大的元素是4<br>给出数组<strong>[1,2,3,4,5]</strong>第一大的元素是5，第二大的元素是4，第三大的元素是3，以此类推</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>寻找第<code>k</code>大的数字可以转化为寻找第<code>n+1-k</code>小的数字，进而想到<strong>Quick Select</strong></li>
-<li>Quick Select算法的基本思路与Quick Sort类似，重点是<strong>partition</strong></li>
-<li>基本思想，随机选取一个pivot，小于的放左边，大于等于的放右边，返回pivot的位置<ul>
-<li>如果<code>pivot == k</code>，则正好找到了第k小的元素</li>
-<li>如果<code>pivot &gt; k</code>，则第k小的元素存在于pivot左边</li>
-<li>如果<code>pivot &lt; k</code>，则第k小的元素存在于pivot右边</li>
-</ul>
-</li>
-<li>时间复杂度：O(<em>n</em> logn) (in quicksort), O(n) (in quickselect)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthLargest</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="comment"># convert the kth largest to smallest</span></span><br><span class="line">        <span class="keyword">return</span> self.findKthSmallest(nums, len(nums)+<span class="number">1</span>-k)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthSmallest</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> nums:</span><br><span class="line">            pos = self.partition(nums, <span class="number">0</span>, len(nums)-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> k &gt; pos+<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> self.findKthSmallest(nums[pos+<span class="number">1</span>:], k-pos-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">elif</span> k &lt; pos+<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> self.findKthSmallest(nums[:pos], k)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[pos]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># choose the right-most element as pivot   </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(self, nums, l, r)</span>:</span></span><br><span class="line">        low = l</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> nums[l] &lt; nums[r]:</span><br><span class="line">                nums[l], nums[low] = nums[low], nums[l]</span><br><span class="line">                low += <span class="number">1</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        nums[low], nums[r] = nums[r], nums[low]</span><br><span class="line">        <span class="keyword">return</span> low</span><br></pre></td></tr></table></figure>
-          
+          原题
+在数组中找到第k大的元素
+
+给出数组[9,3,2,4,8]，第三大的元素是4给出数组[1,2,3,4,5]第一大的元素是5，第二大的元素是4，第三大的元素是3，以此类推
+解题思路
+寻找第k大的数字可以转化为寻找第n+1-k小的数字，进而想到Quick Select
+Quick Select算法
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/12/215-Kth-Largest-Element-in-an-Array/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -840,21 +846,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出两个字符串，找到最长公共子序列(LCS)，返回LCS的长度。</p>
-</blockquote>
-<p>给出<strong>“ABCD”</strong> 和 <strong>“EDCA”</strong>，这个LCS是 <strong>“A”</strong> (或 D或C)，返回1<br>给出<strong> “ABCD”</strong> 和 <strong>“EACB”</strong>，这个LCS是<strong>“AC”</strong>返回 2</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><strong>双序列型动态规划</strong> - Two Sequence DP</li>
-<li><code>cache[i][j]</code>表示第一个字符串的前i个字符和第二个字符串的前j个字符的最长公共子序列的长度</li>
-<li>状态转移方程：<ul>
-<li>如果<code>str1[i] != str2[j]</code><br>cache[i][j] = max(cache[i][j - 1], cache[i - 1][j])</li>
-<li>如果<code>str1[i] != str2[j]</code><br>cache[i - 1][j - 1] + 1</li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param A, B: Two strings.</span><br><span class="line">    @return: The length of longest common subsequence of A and B.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubsequence</span><span class="params">(self, A, B)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A <span class="keyword">or</span> <span class="keyword">not</span> B:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A) + <span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(B) + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(B) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(A) + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> A[j - <span class="number">1</span>] == B[i - <span class="number">1</span>]:</span><br><span class="line">                    cache[i][j] = cache[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    cache[i][j] = max(cache[i][j - <span class="number">1</span>], cache[i - <span class="number">1</span>][j])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> cache[len(B)][len(A)]</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出两个字符串，找到最长公共子序列(LCS)，返回LCS的长度。
+
+给出“ABCD” 和 “EDCA”，这个LCS是 “A” (或 D或C)，返回1给出 “ABCD” 和 “EACB”，这个LCS是“AC”返回 2
+解题思路
+双序列型动态规划 - Two Sequence DP
+cache[i
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/02/77-Longest-Common-Subsequence/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -972,17 +977,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>根据前序遍历和中序遍历树构造二叉树.</p>
-</blockquote>
-<p>给出中序遍历：[1,2,3]和前序遍历：[2,1,3]. 返回如下的树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>你可以假设树中不存在相同数值的节点</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>本题与通过中序和后序遍历构造二叉树类似，同样是递归解决</li>
-<li>前序遍历数组的第一个值为根节点，根据这个值可以将中序遍历数组分成左右两部分，分别为左子树和右子树</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder, inorder)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type preorder: List[int]</span><br><span class="line">        :type inorder: List[int]</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> inorder:</span><br><span class="line">            index = inorder.index(preorder[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">del</span> preorder[<span class="number">0</span>]</span><br><span class="line">            root = TreeNode(inorder[index])</span><br><span class="line">            root.left = self.buildTree(preorder, inorder[:index])</span><br><span class="line">            root.right = self.buildTree(preorder, inorder[index + <span class="number">1</span>:])</span><br><span class="line">            <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-          
+          原题
+根据前序遍历和中序遍历树构造二叉树.
+
+给出中序遍历：[1,2,3]和前序遍历：[2,1,3]. 返回如下的树:123  2 / \1   3
+你可以假设树中不存在相同数值的节点
+解题思路
+本题与通过中序和后序遍历构造二叉树类似，同样是递归解决
+前序遍历数组的第一个值为根节点，根据这个值可以将
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/02/105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1100,18 +1109,21 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>中序遍历和后序遍历树构造二叉树</p>
-</blockquote>
-<p>给出树的中序遍历： [1,2,3] 和后序遍历： [1,3,2]<br>返回如下的树：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> /  \</span><br><span class="line"><span class="number">1</span>    <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>你可以假设树中不存在相同数值的节点</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先明确，前序+后序遍历的组合不能还原一棵二叉树</li>
-<li>后序遍历的最后一个点是根节点，参照此根节点可以将中序遍历数组分成左右两部分，分别为左子树和右子树</li>
-<li>依据以上思路递归重建二叉树 </li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, inorder, postorder)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type inorder: List[int]</span><br><span class="line">        :type postorder: List[int]</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> inorder:</span><br><span class="line">            index = inorder.index(postorder.pop())</span><br><span class="line">            root = TreeNode(inorder[index])</span><br><span class="line">            root.right = self.buildTree(inorder[index+<span class="number">1</span>:], postorder)</span><br><span class="line">            root.left = self.buildTree(inorder[:index], postorder)</span><br><span class="line">            <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-          
+          原题
+中序遍历和后序遍历树构造二叉树
+
+给出树的中序遍历： [1,2,3] 和后序遍历： [1,3,2]返回如下的树：123  2 /  \1    3
+你可以假设树中不存在相同数值的节点
+解题思路
+首先明确，前序+后序遍历的组合不能还原一棵二叉树
+后序遍历的最后一个点是根节点，参照此根节点可以将中
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/02/106-Construct-Binary-Tree-from-Inorder-and-Postorder-Traversal/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1229,24 +1241,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个字符串s，将s分割成一些子串，使每个子串都是回文。<br>返回s符合要求的的最少分割次数。</p>
-</blockquote>
-<p>比如，给出字符串s =<strong> “aab”</strong>，<br>返回 1， 因为进行一次分割可以将字符串s分割成[“aa”,”b”]这样两个回文子串</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>序列型动态规划 - Sequence DP</li>
-<li>cache[i]表示前i个字符组成的字符串需要最少cut几次保证子串都是回文串(或能被分割成多少个回文串 - 1)</li>
-<li>初始化cache[i] = i -1</li>
-<li>cache[0] = -1 (因为前0个字符串被分割成0个回文串，0 - 1 = -1)</li>
-<li>状态转移方程：cache[i] = min(cache[j] + 1)<br>满足条件的j应该是<ul>
-<li>j &lt; i</li>
-<li>j+1 ~ i 这一段是回文串</li>
-</ul>
-</li>
-<li>对于判断某一段是否是回文串，使用<strong>区间型动态规划</strong>可以将时间复杂度从O(n)优化到O(1)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minCut</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        IsPalindrome = self.getIsPalindrome(s)</span><br><span class="line">        cache = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s) + <span class="number">1</span>):</span><br><span class="line">            cache[i] = i - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> IsPalindrome[j][i - <span class="number">1</span>]:</span><br><span class="line">                    cache[i] = min(cache[i], cache[j] + <span class="number">1</span>)</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> cache[len(s)]</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getIsPalindrome</span><span class="params">(self, str)</span>:</span></span><br><span class="line">        IsPalindrome = [[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str))] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str))]</span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize (0, 0), (1, 1)......</span><br><span class="line">        and (0, 1), (1, 2)......</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str)):</span><br><span class="line">            IsPalindrome[i][i] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str) - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> str[i] == str[i + <span class="number">1</span>]:</span><br><span class="line">                IsPalindrome[i][i + <span class="number">1</span>] = <span class="keyword">True</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> length <span class="keyword">in</span> range(<span class="number">2</span>, len(str)):</span><br><span class="line">            <span class="keyword">for</span> start <span class="keyword">in</span> range(<span class="number">0</span>, len(str) - length):</span><br><span class="line">                IsPalindrome[start][start + length] = \</span><br><span class="line">                IsPalindrome[start + <span class="number">1</span>][start + length - <span class="number">1</span>] <span class="keyword">and</span> str[start] == str[start + length]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> IsPalindrome</span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个字符串s，将s分割成一些子串，使每个子串都是回文。返回s符合要求的的最少分割次数。
+
+比如，给出字符串s = “aab”，返回 1， 因为进行一次分割可以将字符串s分割成[“aa”,”b”]这样两个回文子串
+解题思路
+序列型动态规划 - Sequence DP
+cache[i]表示前i
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/01/132-Palindrome-Partitioning-II/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1364,17 +1372,20 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给定一个字符串，判断其是否为一个回文串。只包含字母和数字，忽略大小写。</p>
-</blockquote>
-<p>“A man, a plan, a canal: Panama” 是一个回文。<br>“race a car” 不是一个回文。<br>在这个题目中，我们将空字符串判定为有效回文。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>两个指针的问题，<strong>对撞型指针</strong></li>
-<li>一个从前往后，一个从后往前，判断如果不是数字或者字母则跳过<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是数字或者字母返回 true</span></span><br><span class="line"><span class="string">"test"</span>.isalnum()</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        l, r = <span class="number">0</span>, len(s) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> <span class="keyword">not</span> s[l].isalnum():</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> <span class="keyword">not</span> s[r].isalnum():</span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> s[l].lower() != s[r].lower():</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-          
+          原题
+给定一个字符串，判断其是否为一个回文串。只包含字母和数字，忽略大小写。
+
+“A man, a plan, a canal: Panama” 是一个回文。“race a car” 不是一个回文。在这个题目中，我们将空字符串判定为有效回文。
+解题思路
+两个指针的问题，对撞型指针
+一个从前往后，一个
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/01/125-Valid-Palidrome/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1492,21 +1503,19 @@
       
         
           
-            <h1 id="原题">原题</h1><blockquote>
-<p>给出一个字符串s和一个词典，判断字符串s是否可以被空格切分成一个或多个出现在字典中的单词。</p>
-</blockquote>
-<p>给出<br>s = <strong>“leetcode”</strong><br>dict = <strong>[“leet”,”code”]</strong><br>返回 true 因为<strong>“leetcode”</strong>可以被空格切分成<strong>“leet code”</strong></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>动态规划是一种解决问题的思想 - 大规模问题的结果，是由小规模问题的结果运算得来的</li>
-<li><strong>动态规划不等同于递归，动态规划思想可以由递归来实现</strong></li>
-<li>DP初始化时一般要有个<code>1</code>或者<code>true</code></li>
-<li>本题属于序列型动态规划 - Sequence DP</li>
-<li><code>cache[i]</code>表示前<code>i</code>个字符能不能被<code>dict</code>完美划分</li>
-<li>判断<code>cache[i]</code>，则需要遍历<code>0~i</code>中是否存在一个<code>j</code>，使得<code>cache[j]=true</code>而且<code>j+1~i</code>存在于<code>dict</code>中</li>
-<li>本题还有一个值得注意的地方，<strong>一定要考虑到单词长度是有上限的！</strong>，所以每次不需要遍历<code>0~i</code>而是<code>x~i</code>(i-x为单词最大长度)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s, wordDict)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :type wordDict: Set[str]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wordDict:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        maxLength = self.getMaxLength(wordDict)</span><br><span class="line">        cache = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s) + <span class="number">1</span>):</span><br><span class="line">            j = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> j &lt;= maxLength <span class="keyword">and</span> j &lt;= i:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> cache[i - j]:</span><br><span class="line">                    j += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> s[i - j:i] <span class="keyword">in</span> wordDict:</span><br><span class="line">                    cache[i] = <span class="keyword">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[len(s)]</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMaxLength</span><span class="params">(self, dict)</span>:</span></span><br><span class="line">        maxLength = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">            maxLength = max(len(word), maxLength)</span><br><span class="line">        <span class="keyword">return</span> maxLength</span><br></pre></td></tr></table></figure>
-          
+          原题
+给出一个字符串s和一个词典，判断字符串s是否可以被空格切分成一个或多个出现在字典中的单词。
+
+给出s = “leetcode”dict = [“leet”,”code”]返回 true 因为“leetcode”可以被空格切分成“leet code”
+解题思路
+动态规划是一种解决问题的思想 - 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/01/139-Word-Break/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1684,7 +1693,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
