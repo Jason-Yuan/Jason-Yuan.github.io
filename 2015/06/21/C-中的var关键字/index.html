@@ -90,7 +90,7 @@ int a = “hello world”;  // 显示类型的(explicitly typed)var a = “hello
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="声明变量的时候，可以有下面两种方式
 int a = “hello world”;  // 显示类型的(explicitly typed)var a = “hello world”;  // 隐式类型的(implicitly typed)">
-<meta property="og:updated_time" content="2015-07-23T07:14:13.000Z">
+<meta property="og:updated_time" content="2016-04-10T00:23:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C#中的var关键字">
 <meta name="twitter:description" content="声明变量的时候，可以有下面两种方式
@@ -333,7 +333,7 @@ int a = “hello world”;  // 显示类型的(explicitly typed)var a = “hello
 </li>
 </ul>
 <hr>
-<h1 id="建议在能够明确类型的时候，要使用具体类型。那么为什么还要出现var呢">建议在能够明确类型的时候，要使用具体类型。那么为什么还要出现<code>var</code>呢</h1><p>首先， 如果我定义了这样一个<strong>类</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Person &#10;&#123;&#10;    public Person()&#10;    public Person(string lastname, string first name)&#10;    &#123;&#10;        LastName = lastName;&#10;        FirstName = firstName;&#10;    &#125;&#10;&#10;    public string LastName &#123; get; set; &#125;&#10;    public string FirstName &#123; get; set; &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="建议在能够明确类型的时候，要使用具体类型。那么为什么还要出现var呢">建议在能够明确类型的时候，要使用具体类型。那么为什么还要出现<code>var</code>呢</h1><p>首先， 如果我定义了这样一个<strong>类</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class Person &#10;&#123;&#10;    public Person()&#10;    public Person(string lastname, string first name)&#10;    &#123;&#10;        LastName = lastName;&#10;        FirstName = firstName;&#10;    &#125;&#10;&#10;    public string LastName &#123; get; set; &#125;&#10;    public string FirstName &#123; get; set; &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>我可以通过下面两种方法创建<strong>实例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#20256;&#32479;&#26041;&#24335;&#10;Person person1 = new Person();&#10;person1.FirstName = &#34;Andrew&#34;;&#10;person1.LastName = &#34;Chen&#34;;&#10;Console.WriteLine(person1.FirstName + &#34; &#34; + person1.LastName);&#10;&#10;// &#23545;&#35937;&#21021;&#22987;&#21270;&#22120;(Object initializer)&#10;Person person2 = new Person &#123;FirstName = &#34;Andrew&#34;, LastName = &#34;Chen&#34;&#125;;&#10;Console.WriteLine(person2.FirstName + &#34; &#34; + person2.LastName);</span><br></pre></td></tr></table></figure></p>
 <p>Note: 对象与集合初始化器(Object and Collection Initializers)，是C# 3.0新语言特性和改进</p>
 <p>如果我们要创建一个<strong>匿名类</strong>呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#21311;&#21517;&#31867;&#65292;&#25105;&#20204;&#19981;&#30693;&#36947;presenter&#30340;&#31867;&#22411;&#10;// &#27809;&#26377;var&#20851;&#38190;&#23383;&#65292;&#25968;&#25454;&#26159;&#26080;&#27861;&#23384;&#36142;&#30340;&#10;var presenter = new &#123; FirstName = &#34;Andrew&#34;, Age = 43, Topic = &#34;Introduction&#34;&#125;&#65307;</span><br></pre></td></tr></table></figure></p>
