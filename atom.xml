@@ -52,11 +52,11 @@
     <link href="http://yoursite.com/2015/11/12/471-Top-K-Frequent-Words/"/>
     <id>http://yoursite.com/2015/11/12/471-Top-K-Frequent-Words/</id>
     <published>2015-11-13T00:08:22.000Z</published>
-    <updated>2015-11-13T08:09:14.000Z</updated>
+    <updated>2016-04-10T00:29:58.000Z</updated>
     <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
 <p>Given a list of words and an integer k, return the top k frequent words in the list.</p>
 </blockquote>
-<p>给出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ &#10;&#34;yes&#34;, &#34;lint&#34;, &#34;code&#34;, &#10;&#34;yes&#34;, &#34;code&#34;, &#34;baby&#34;, &#10;&#34;you&#34;, &#34;baby&#34;, &#34;chrome&#34;, &#10;&#34;safari&#34;, &#34;lint&#34;, &#34;code&#34;, &#10;&#34;body&#34;, &#34;lint&#34;, &#34;code&#34;&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>给出<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[ </span><br><span class="line"><span class="string">"yes"</span>, <span class="string">"lint"</span>, <span class="string">"code"</span>, </span><br><span class="line"><span class="string">"yes"</span>, <span class="string">"code"</span>, <span class="string">"baby"</span>, </span><br><span class="line"><span class="string">"you"</span>, <span class="string">"baby"</span>, <span class="string">"chrome"</span>, </span><br><span class="line"><span class="string">"safari"</span>, <span class="string">"lint"</span>, <span class="string">"code"</span>, </span><br><span class="line"><span class="string">"body"</span>, <span class="string">"lint"</span>, <span class="string">"code"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>当k=3时，返回[“code”, “lint”, “baby”]<br>当k=4时，返回[“code”, “lint”, “baby”, “yes”]</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>首先使用hash table统计词频，建立一个存有<strong>（单词，词频）结构</strong>的数组</li>
