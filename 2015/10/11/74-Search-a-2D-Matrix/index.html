@@ -85,10 +85,10 @@
 <meta name="description" content="原题
 写出一个高效的算法来搜索 m × n矩阵中的值。这个矩阵具有以下特性：每行中的整数从左到右是排序的。每行的第一个数大于上一行的最后一个整数。
 
-1[&amp;#10;  [1, 3, 5, 7],&amp;#10;  [10, 11, 16, 20],&amp;#10;  [23, 30, 34, 50]&amp;#10;]
+12345[  [1, 3, 5, 7],  [10, 11, 16, 20],  [23, 30, 34, 50]]
 给出 target = 3，返回 true
 解题思路
-首先可以把这个二维数组看成一维数组，3 *">
+首先可以把这个二维数组看成一维数组，3 * 4 的矩阵可以看成一个12个数的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="74 Search a 2D Matrix">
 <meta property="og:url" content="http://yoursite.com/2015/10/11/74-Search-a-2D-Matrix/index.html">
@@ -96,20 +96,20 @@
 <meta property="og:description" content="原题
 写出一个高效的算法来搜索 m × n矩阵中的值。这个矩阵具有以下特性：每行中的整数从左到右是排序的。每行的第一个数大于上一行的最后一个整数。
 
-1[&amp;#10;  [1, 3, 5, 7],&amp;#10;  [10, 11, 16, 20],&amp;#10;  [23, 30, 34, 50]&amp;#10;]
+12345[  [1, 3, 5, 7],  [10, 11, 16, 20],  [23, 30, 34, 50]]
 给出 target = 3，返回 true
 解题思路
-首先可以把这个二维数组看成一维数组，3 *">
-<meta property="og:updated_time" content="2015-10-12T21:17:01.000Z">
+首先可以把这个二维数组看成一维数组，3 * 4 的矩阵可以看成一个12个数的">
+<meta property="og:updated_time" content="2016-04-10T01:29:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="74 Search a 2D Matrix">
 <meta name="twitter:description" content="原题
 写出一个高效的算法来搜索 m × n矩阵中的值。这个矩阵具有以下特性：每行中的整数从左到右是排序的。每行的第一个数大于上一行的最后一个整数。
 
-1[&amp;#10;  [1, 3, 5, 7],&amp;#10;  [10, 11, 16, 20],&amp;#10;  [23, 30, 34, 50]&amp;#10;]
+12345[  [1, 3, 5, 7],  [10, 11, 16, 20],  [23, 30, 34, 50]]
 给出 target = 3，返回 true
 解题思路
-首先可以把这个二维数组看成一维数组，3 *">
+首先可以把这个二维数组看成一维数组，3 * 4 的矩阵可以看成一个12个数的">
 
 
 
@@ -336,7 +336,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>写出一个高效的算法来搜索 m × n矩阵中的值。<br>这个矩阵具有以下特性：<br>每行中的整数从左到右是排序的。<br>每行的第一个数大于上一行的最后一个整数。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [1, 3, 5, 7],&#10;  [10, 11, 16, 20],&#10;  [23, 30, 34, 50]&#10;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>],</span><br><span class="line">  [<span class="number">10</span>, <span class="number">11</span>, <span class="number">16</span>, <span class="number">20</span>],</span><br><span class="line">  [<span class="number">23</span>, <span class="number">30</span>, <span class="number">34</span>, <span class="number">50</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>给出 target = 3，返回 true</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li><p>首先可以把这个二维数组看成一维数组，3 * 4 的矩阵可以看成一个12个数的一维数组，所以对于50的坐标为(2,3)，可以看成第array[11]</p>

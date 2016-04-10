@@ -85,7 +85,11 @@
 <meta name="description" content="原题
 给一个用字符串表示的表达式数组，求出这个表达式的值。
 
-对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：1[&amp;#10;  &amp;#34;2&amp;#34;, &amp;#34;*&amp;#34;, &amp;#34;6&amp;#34;, &amp;#34;-&amp;#34;, &amp;#34;(&amp;#34;,&amp;#10;  &amp;#34;23&amp;#34;, &amp;#34;+&amp;#34;, &amp;#34;7&amp;#34;, &amp;#34;)&amp;#34;, &amp;#3">
+对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：12345[  &quot;2&quot;, &quot;*&quot;, &quot;6&quot;, &quot;-&quot;, &quot;(&quot;,  &quot;23&quot;, &quot;+&quot;, &quot;7&quot;, &quot;)&quot;, &quot;/&quot;,  (&quot;, &quot;1&quot;, &quot;+&quot;, &quot;2&quot;, &quot;)&quot;]
+其值为 2
+解题思路
+str与int相互转化
+12num = int(&quot;15&quot;) // num = 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="368 Expression Evaluation">
 <meta property="og:url" content="http://yoursite.com/2015/10/10/368-Expression-Evaluation/index.html">
@@ -93,14 +97,22 @@
 <meta property="og:description" content="原题
 给一个用字符串表示的表达式数组，求出这个表达式的值。
 
-对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：1[&amp;#10;  &amp;#34;2&amp;#34;, &amp;#34;*&amp;#34;, &amp;#34;6&amp;#34;, &amp;#34;-&amp;#34;, &amp;#34;(&amp;#34;,&amp;#10;  &amp;#34;23&amp;#34;, &amp;#34;+&amp;#34;, &amp;#34;7&amp;#34;, &amp;#34;)&amp;#34;, &amp;#3">
-<meta property="og:updated_time" content="2015-10-11T01:06:45.000Z">
+对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：12345[  &quot;2&quot;, &quot;*&quot;, &quot;6&quot;, &quot;-&quot;, &quot;(&quot;,  &quot;23&quot;, &quot;+&quot;, &quot;7&quot;, &quot;)&quot;, &quot;/&quot;,  (&quot;, &quot;1&quot;, &quot;+&quot;, &quot;2&quot;, &quot;)&quot;]
+其值为 2
+解题思路
+str与int相互转化
+12num = int(&quot;15&quot;) // num = 1">
+<meta property="og:updated_time" content="2016-04-10T01:27:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="368 Expression Evaluation">
 <meta name="twitter:description" content="原题
 给一个用字符串表示的表达式数组，求出这个表达式的值。
 
-对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：1[&amp;#10;  &amp;#34;2&amp;#34;, &amp;#34;*&amp;#34;, &amp;#34;6&amp;#34;, &amp;#34;-&amp;#34;, &amp;#34;(&amp;#34;,&amp;#10;  &amp;#34;23&amp;#34;, &amp;#34;+&amp;#34;, &amp;#34;7&amp;#34;, &amp;#34;)&amp;#34;, &amp;#3">
+对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：12345[  &quot;2&quot;, &quot;*&quot;, &quot;6&quot;, &quot;-&quot;, &quot;(&quot;,  &quot;23&quot;, &quot;+&quot;, &quot;7&quot;, &quot;)&quot;, &quot;/&quot;,  (&quot;, &quot;1&quot;, &quot;+&quot;, &quot;2&quot;, &quot;)&quot;]
+其值为 2
+解题思路
+str与int相互转化
+12num = int(&quot;15&quot;) // num = 1">
 
 
 
@@ -327,11 +339,11 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给一个用字符串表示的表达式数组，求出这个表达式的值。</p>
 </blockquote>
-<p>对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  &#34;2&#34;, &#34;*&#34;, &#34;6&#34;, &#34;-&#34;, &#34;(&#34;,&#10;  &#34;23&#34;, &#34;+&#34;, &#34;7&#34;, &#34;)&#34;, &#34;/&#34;,&#10;  (&#34;, &#34;1&#34;, &#34;+&#34;, &#34;2&#34;, &#34;)&#34;&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>对于表达式 (2*6-(23+7)/(1+2)), 对应的数组为：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  "2", "*", "6", "-", "(",</span><br><span class="line">  "23", "+", "7", ")", "/",</span><br><span class="line">  (", "1", "+", "2", ")"</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>其值为 2</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li><p>str与int相互转化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = int(&#34;15&#34;) // num = 15&#10;s = str(num) // s = &#34;15&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = int(<span class="string">"15"</span>) // num = <span class="number">15</span></span><br><span class="line">s = str(num) // s = <span class="string">"15"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>表达式 -&gt; 建立表达式树</p>
 </li>

@@ -85,10 +85,10 @@
 <meta name="description" content="原题
 给出 n  m 个非负整数，代表一张X轴上每个区域为 1 \ 1 的 2D 海拔图, 计算这个海拔图最多能接住多少（面积）雨水。
 
-例如，给定一个 5*4 的矩阵：1[12,13,0,12],&amp;#10;[13,4,13,12],&amp;#10;[13,8,10,12],&amp;#10;[12,13,12,12],&amp;#10;[13,13,13,13]
+例如，给定一个 5*4 的矩阵：12345[12,13,0,12],[13,4,13,12],[13,8,10,12],[12,13,12,12],[13,13,13,13]
 返回 14.
 解题思路
-维护一个最小堆，保存最外面一圈">
+维护一个最小堆，保存最外面一圈的高度，因为最矮的格子决定了水能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="364 Trapping Rain Water II">
 <meta property="og:url" content="http://yoursite.com/2015/10/06/364-Trapping-Rain-Water-II/index.html">
@@ -96,20 +96,20 @@
 <meta property="og:description" content="原题
 给出 n  m 个非负整数，代表一张X轴上每个区域为 1 \ 1 的 2D 海拔图, 计算这个海拔图最多能接住多少（面积）雨水。
 
-例如，给定一个 5*4 的矩阵：1[12,13,0,12],&amp;#10;[13,4,13,12],&amp;#10;[13,8,10,12],&amp;#10;[12,13,12,12],&amp;#10;[13,13,13,13]
+例如，给定一个 5*4 的矩阵：12345[12,13,0,12],[13,4,13,12],[13,8,10,12],[12,13,12,12],[13,13,13,13]
 返回 14.
 解题思路
-维护一个最小堆，保存最外面一圈">
-<meta property="og:updated_time" content="2015-10-07T09:30:15.000Z">
+维护一个最小堆，保存最外面一圈的高度，因为最矮的格子决定了水能">
+<meta property="og:updated_time" content="2016-04-10T01:27:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="364 Trapping Rain Water II">
 <meta name="twitter:description" content="原题
 给出 n  m 个非负整数，代表一张X轴上每个区域为 1 \ 1 的 2D 海拔图, 计算这个海拔图最多能接住多少（面积）雨水。
 
-例如，给定一个 5*4 的矩阵：1[12,13,0,12],&amp;#10;[13,4,13,12],&amp;#10;[13,8,10,12],&amp;#10;[12,13,12,12],&amp;#10;[13,13,13,13]
+例如，给定一个 5*4 的矩阵：12345[12,13,0,12],[13,4,13,12],[13,8,10,12],[12,13,12,12],[13,13,13,13]
 返回 14.
 解题思路
-维护一个最小堆，保存最外面一圈">
+维护一个最小堆，保存最外面一圈的高度，因为最矮的格子决定了水能">
 
 
 
@@ -336,7 +336,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给出 n <em> m 个非负整数，代表一张X轴上每个区域为 1 \</em> 1 的 2D 海拔图, 计算这个海拔图最多能接住多少（面积）雨水。</p>
 </blockquote>
-<p>例如，给定一个 5*4 的矩阵：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[12,13,0,12],&#10;[13,4,13,12],&#10;[13,8,10,12],&#10;[12,13,12,12],&#10;[13,13,13,13]</span><br></pre></td></tr></table></figure></p>
+<p>例如，给定一个 5*4 的矩阵：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">12</span>,<span class="number">13</span>,<span class="number">0</span>,<span class="number">12</span>],</span><br><span class="line">[<span class="number">13</span>,<span class="number">4</span>,<span class="number">13</span>,<span class="number">12</span>],</span><br><span class="line">[<span class="number">13</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>],</span><br><span class="line">[<span class="number">12</span>,<span class="number">13</span>,<span class="number">12</span>,<span class="number">12</span>],</span><br><span class="line">[<span class="number">13</span>,<span class="number">13</span>,<span class="number">13</span>,<span class="number">13</span>]</span><br></pre></td></tr></table></figure></p>
 <p>返回 14.</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>维护一个最小堆，保存最外面一圈的高度，因为最矮的格子决定了水能存放多少</li>

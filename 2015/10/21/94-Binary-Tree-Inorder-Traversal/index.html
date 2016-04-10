@@ -85,12 +85,14 @@
 <meta name="description" content="原题
 给出一棵二叉树,返回其中序遍历
 
-给出二叉树 {1,#,2,3}1&amp;#160;&amp;#160; 1&amp;#10;&amp;#160; &amp;#160; \&amp;#10;&amp;#160;&amp;#160; &amp;#160; 2&amp;#10;&amp;#160; &amp;#160; /&amp;#10;&amp;#160;&amp;#160; 3
+给出二叉树 {1,#,2,3}12345   1    \     2    /   3
 返回 [1,3,2]
 解题思路
 方法一：递归，定义helper函数
 方法二：Divide &amp;amp; Conquer
-方法二：非">
+方法二：非递归
+(操作一)每一次从当前节点开始(第一次是root节点)遍历至最左节点，一次入栈。
+(操作二)pop出栈一个node，node.val加入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="94 Binary Tree Inorder Traversal">
 <meta property="og:url" content="http://yoursite.com/2015/10/21/94-Binary-Tree-Inorder-Traversal/index.html">
@@ -98,24 +100,28 @@
 <meta property="og:description" content="原题
 给出一棵二叉树,返回其中序遍历
 
-给出二叉树 {1,#,2,3}1&amp;#160;&amp;#160; 1&amp;#10;&amp;#160; &amp;#160; \&amp;#10;&amp;#160;&amp;#160; &amp;#160; 2&amp;#10;&amp;#160; &amp;#160; /&amp;#10;&amp;#160;&amp;#160; 3
+给出二叉树 {1,#,2,3}12345   1    \     2    /   3
 返回 [1,3,2]
 解题思路
 方法一：递归，定义helper函数
 方法二：Divide &amp;amp; Conquer
-方法二：非">
-<meta property="og:updated_time" content="2015-10-22T09:59:19.000Z">
+方法二：非递归
+(操作一)每一次从当前节点开始(第一次是root节点)遍历至最左节点，一次入栈。
+(操作二)pop出栈一个node，node.val加入">
+<meta property="og:updated_time" content="2016-04-10T01:31:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="94 Binary Tree Inorder Traversal">
 <meta name="twitter:description" content="原题
 给出一棵二叉树,返回其中序遍历
 
-给出二叉树 {1,#,2,3}1&amp;#160;&amp;#160; 1&amp;#10;&amp;#160; &amp;#160; \&amp;#10;&amp;#160;&amp;#160; &amp;#160; 2&amp;#10;&amp;#160; &amp;#160; /&amp;#10;&amp;#160;&amp;#160; 3
+给出二叉树 {1,#,2,3}12345   1    \     2    /   3
 返回 [1,3,2]
 解题思路
 方法一：递归，定义helper函数
 方法二：Divide &amp;amp; Conquer
-方法二：非">
+方法二：非递归
+(操作一)每一次从当前节点开始(第一次是root节点)遍历至最左节点，一次入栈。
+(操作二)pop出栈一个node，node.val加入">
 
 
 
@@ -342,7 +348,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树,返回其中序遍历</p>
 </blockquote>
-<p>给出二叉树 {1,#,2,3}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 2&#10;&#160; &#160; /&#10;&#160;&#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>给出二叉树 {1,#,2,3}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">1</span></span><br><span class="line">    \</span><br><span class="line">     <span class="number">2</span></span><br><span class="line">    /</span><br><span class="line">   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>返回 [1,3,2]</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>方法一：递归，定义helper函数</li>

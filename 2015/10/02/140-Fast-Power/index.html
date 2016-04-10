@@ -110,7 +110,7 @@
 
 典型divide &amp;amp; conquer
 需要注意对n=0, n=1, n&amp;lt;0情况的分">
-<meta property="og:updated_time" content="2015-10-03T10:37:04.000Z">
+<meta property="og:updated_time" content="2016-04-10T01:24:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="140 Fast Power">
 <meta name="twitter:description" content="原题
@@ -354,7 +354,7 @@
 <p>例如 2^31 % 3 = 2<br>例如 100^1000 % 1000 = 0</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li><p>本题主要利用了整数求模的一些特性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a * b) % p = ((a % p) * (b % p)) % p</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a * b) % p = ((a % p) * (b % p)) % p</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>所以求解n次方可以转化为n/2次方….</p>
 </li>

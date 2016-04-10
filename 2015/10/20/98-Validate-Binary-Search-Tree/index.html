@@ -85,7 +85,10 @@
 <meta name="description" content="原题
 给定一个二叉树，判断它是否是合法的二叉查找树(BST)一棵BST定义为：节点的左子树中的值要严格小于该节点的值。节点的右子树中的值要严格大于该节点的值。左右子树也必须是二叉查找树。
 
-一个例子：1&amp;#160;&amp;#160; 1&amp;#10;&amp;#160; / \&amp;#10;&amp;#160;2 &amp;#160; 3&amp;#10;&amp;#160; &amp;#160; /&amp;#10;&amp;#160;&amp;#160; 4&amp;#10;&amp;#160">
+一个例子：1234567   1  / \ 2   3    /   4    \     5
+上述这棵二叉树序列化为”{1,2,3,#,#,4,#,#,5}”.
+解题思路
+BST的中序遍历结果是一个升序序列所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="98 Validate Binary Search Tree">
 <meta property="og:url" content="http://yoursite.com/2015/10/20/98-Validate-Binary-Search-Tree/index.html">
@@ -93,14 +96,20 @@
 <meta property="og:description" content="原题
 给定一个二叉树，判断它是否是合法的二叉查找树(BST)一棵BST定义为：节点的左子树中的值要严格小于该节点的值。节点的右子树中的值要严格大于该节点的值。左右子树也必须是二叉查找树。
 
-一个例子：1&amp;#160;&amp;#160; 1&amp;#10;&amp;#160; / \&amp;#10;&amp;#160;2 &amp;#160; 3&amp;#10;&amp;#160; &amp;#160; /&amp;#10;&amp;#160;&amp;#160; 4&amp;#10;&amp;#160">
-<meta property="og:updated_time" content="2015-10-21T09:54:04.000Z">
+一个例子：1234567   1  / \ 2   3    /   4    \     5
+上述这棵二叉树序列化为”{1,2,3,#,#,4,#,#,5}”.
+解题思路
+BST的中序遍历结果是一个升序序列所">
+<meta property="og:updated_time" content="2016-04-10T01:31:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="98 Validate Binary Search Tree">
 <meta name="twitter:description" content="原题
 给定一个二叉树，判断它是否是合法的二叉查找树(BST)一棵BST定义为：节点的左子树中的值要严格小于该节点的值。节点的右子树中的值要严格大于该节点的值。左右子树也必须是二叉查找树。
 
-一个例子：1&amp;#160;&amp;#160; 1&amp;#10;&amp;#160; / \&amp;#10;&amp;#160;2 &amp;#160; 3&amp;#10;&amp;#160; &amp;#160; /&amp;#10;&amp;#160;&amp;#160; 4&amp;#10;&amp;#160">
+一个例子：1234567   1  / \ 2   3    /   4    \     5
+上述这棵二叉树序列化为”{1,2,3,#,#,4,#,#,5}”.
+解题思路
+BST的中序遍历结果是一个升序序列所">
 
 
 
@@ -327,7 +336,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给定一个二叉树，判断它是否是合法的二叉查找树(BST)<br>一棵BST定义为：<br>节点的左子树中的值要<strong>严格小于</strong>该节点的值。<br>节点的右子树中的值要<strong>严格大于</strong>该节点的值。<br>左右子树也必须是二叉查找树。</p>
 </blockquote>
-<p>一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; / \&#10;&#160;2 &#160; 3&#10;&#160; &#160; /&#10;&#160;&#160; 4&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 5</span><br></pre></td></tr></table></figure></p>
+<p>一个例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">1</span></span><br><span class="line">  / \</span><br><span class="line"> <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">    /</span><br><span class="line">   <span class="number">4</span></span><br><span class="line">    \</span><br><span class="line">     <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 <p>上述这棵二叉树序列化为”{1,2,3,#,#,4,#,#,5}”.</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>BST的中序遍历结果是一个<strong>升序序列</strong><br>所以可以转化为数组，再遍历一遍数组，看是否升序。时间空间复杂度都是O(n)</li>

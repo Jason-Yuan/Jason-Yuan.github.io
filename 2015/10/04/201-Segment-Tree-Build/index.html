@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
 线段树是一棵二叉树，他的每个节点包含了两个额外的属性start和end用于表示该节点所代表的区间。start和end都是整数，并按照如下的方式赋值:根节点的 start 和 end 由 build 方法所给出。对于节点 A 的左儿子，有 start=A.left, end=(A.left + A.right) / 2。对于节点 A 的右儿子，有 start=(A.left + A.right">
-<meta property="og:updated_time" content="2015-10-05T08:20:41.000Z">
+<meta property="og:updated_time" content="2016-04-10T01:25:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="201 Segment Tree Build">
 <meta name="twitter:description" content="原题
@@ -321,7 +321,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>线段树是一棵二叉树，他的每个节点包含了两个额外的属性start和end用于表示该节点所代表的区间。start和end都是整数，并按照如下的方式赋值:<br>根节点的 start 和 end 由 build 方法所给出。<br>对于节点 A 的左儿子，有 start=A.left, end=(A.left + A.right) / 2。<br>对于节点 A 的右儿子，有 start=(A.left + A.right) / 2 + 1, end=A.right。<br>如果 start 等于 end, 那么该节点是叶子节点，不再有左右儿子。<br>实现一个 build 方法，接受 start 和 end 作为参数, 然后构造一个代表区间 [start, end] 的线段树，返回这棵线段树的根。</p>
 </blockquote>
-<p>比如给定start=1, end=6，对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [1,  6]&#10;             /        \&#10;      [1,  3]           [4,  6]&#10;      /     \           /     \&#10;   [1, 2]  [3,3]     [4, 5]   [6,6]&#10;   /    \           /     \&#10;[1,1]   [2,2]     [4,4]   [5,5]</span><br></pre></td></tr></table></figure></p>
+<p>比如给定start=1, end=6，对应的线段树为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">               [<span class="number">1</span>,  <span class="number">6</span>]</span><br><span class="line">             /        \</span><br><span class="line">      [<span class="number">1</span>,  <span class="number">3</span>]           [<span class="number">4</span>,  <span class="number">6</span>]</span><br><span class="line">      /     \           /     \</span><br><span class="line">   [<span class="number">1</span>, <span class="number">2</span>]  [<span class="number">3</span>,<span class="number">3</span>]     [<span class="number">4</span>, <span class="number">5</span>]   [<span class="number">6</span>,<span class="number">6</span>]</span><br><span class="line">   /    \           /     \</span><br><span class="line">[<span class="number">1</span>,<span class="number">1</span>]   [<span class="number">2</span>,<span class="number">2</span>]     [<span class="number">4</span>,<span class="number">4</span>]   [<span class="number">5</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
 <p>线段树(又称区间树), 是一种高级数据结构，他可以支持这样的一些操作:</p>
 <ul>
 <li>查找给定的点包含在了哪些区间内</li>

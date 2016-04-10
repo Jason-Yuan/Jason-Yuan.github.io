@@ -324,7 +324,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>已知一颗二叉树，找到从根节点到任意节点的最大路径和</p>
 </blockquote>
-<p>已知下面一颗二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 1&#10;&#160;/ \&#10;2 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>已知下面一颗二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>返回4. (1-&gt;3)</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>Divide and Conquer</li>
@@ -975,7 +975,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>根据前序遍历和中序遍历树构造二叉树.</p>
 </blockquote>
-<p>给出中序遍历：[1,2,3]和前序遍历：[2,1,3]. 返回如下的树:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 2&#10;&#160;/ \&#10;1 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>给出中序遍历：[1,2,3]和前序遍历：[2,1,3]. 返回如下的树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>你可以假设树中不存在相同数值的节点</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>本题与通过中序和后序遍历构造二叉树类似，同样是递归解决</li>
@@ -1103,7 +1103,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>中序遍历和后序遍历树构造二叉树</p>
 </blockquote>
-<p>给出树的中序遍历： [1,2,3] 和后序遍历： [1,3,2]<br>返回如下的树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 2&#10;&#160;/ &#160;\&#10;1 &#160; &#160;3</span><br></pre></td></tr></table></figure></p>
+<p>给出树的中序遍历： [1,2,3] 和后序遍历： [1,3,2]<br>返回如下的树：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> /  \</span><br><span class="line"><span class="number">1</span>    <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>你可以假设树中不存在相同数值的节点</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>首先明确，前序+后序遍历的组合不能还原一棵二叉树</li>

@@ -100,7 +100,7 @@
 解题思路
 没有重复的元素是重要信息，有重复下面方法不成立
 排序数组">
-<meta property="og:updated_time" content="2015-10-12T10:32:56.000Z">
+<meta property="og:updated_time" content="2016-04-10T01:27:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="33 Search in Rotated Sorted Array">
 <meta name="twitter:description" content="原题
@@ -340,7 +340,7 @@
 <h1 id="解题思路">解题思路</h1><ul>
 <li><strong>没有重复的元素</strong>是重要信息，有重复下面方法不成立</li>
 <li><p>排序数组 =&gt; binary search =&gt; 每次扔掉一半，找中间的数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">      /|&#10;    /  |&#10;  /    |&#10;______|_____&#10;       |    /&#10;       |  /&#10;       | /</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">      /|</span><br><span class="line">    /  |</span><br><span class="line">  /    |</span><br><span class="line">______|_____</span><br><span class="line">       |    /</span><br><span class="line">       |  /</span><br><span class="line">       | /</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>分情况讨论Mid落在左上区间还是右下区间，然后再分别讨论target跟Mid的关系</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums[mid] &gt; nums[start]:</span><br><span class="line">    <span class="comment"># mid 在左上</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># mid 在右下</span></span><br></pre></td></tr></table></figure>

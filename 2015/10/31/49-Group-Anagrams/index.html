@@ -85,7 +85,9 @@
 <meta name="description" content="原题
 给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
 
-对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回1[&amp;#10;&amp;#160; [&amp;#34;ate&amp;#34;, &amp;#34;eat&amp;#34;,&amp;#34;tea&amp;#34;],&amp;#10;&amp;#16">
+对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],  [&quot;nat&quot;,&quot;tan&quot;],  [&quot;bat&quot;]]
+解题思路
+首先，注意返回">
 <meta property="og:type" content="article">
 <meta property="og:title" content="49 Group Anagrams">
 <meta property="og:url" content="http://yoursite.com/2015/10/31/49-Group-Anagrams/index.html">
@@ -93,14 +95,18 @@
 <meta property="og:description" content="原题
 给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
 
-对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回1[&amp;#10;&amp;#160; [&amp;#34;ate&amp;#34;, &amp;#34;eat&amp;#34;,&amp;#34;tea&amp;#34;],&amp;#10;&amp;#16">
-<meta property="og:updated_time" content="2015-11-01T00:46:37.000Z">
+对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],  [&quot;nat&quot;,&quot;tan&quot;],  [&quot;bat&quot;]]
+解题思路
+首先，注意返回">
+<meta property="og:updated_time" content="2016-04-10T01:29:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="49 Group Anagrams">
 <meta name="twitter:description" content="原题
 给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
 
-对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回1[&amp;#10;&amp;#160; [&amp;#34;ate&amp;#34;, &amp;#34;eat&amp;#34;,&amp;#34;tea&amp;#34;],&amp;#10;&amp;#16">
+对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],  [&quot;nat&quot;,&quot;tan&quot;],  [&quot;bat&quot;]]
+解题思路
+首先，注意返回">
 
 
 
@@ -327,7 +333,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。</p>
 </blockquote>
-<p>对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [&#34;ate&#34;, &#34;eat&#34;,&#34;tea&#34;],&#10;&#160; [&#34;nat&#34;,&#34;tan&#34;],&#10;&#160; [&#34;bat&#34;]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="string">"ate"</span>, <span class="string">"eat"</span>,<span class="string">"tea"</span>],</span><br><span class="line">  [<span class="string">"nat"</span>,<span class="string">"tan"</span>],</span><br><span class="line">  [<span class="string">"bat"</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>首先，注意返回结果中，子字符串数组内要保持有序，所以第一步先把strs排序</li>
 <li>本题考察使用hashtable，与直接判断两个字符串是否是anagram不同，遍历一遍字符串数组，将<strong>排序的字符串作为key</strong>，把原始字符串作为value</li>

@@ -85,11 +85,14 @@
 <meta name="description" content="原题
 给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的距离。
 
-给出一棵如下的二叉树1&amp;#160; 1&amp;#10;&amp;#160;/ \&amp;#160;&amp;#10;2 &amp;#160; 3&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 4 &amp;#160; 5
+给出一棵如下的二叉树12345  1 / \ 2   3   / \  4   5
 这个二叉树的最大深度为3.
 解题思路
 Divide &amp;amp; Conquer
-整个树的树高取决于左子树与右子树的树高中">
+整个树的树高取决于左子树与右子树的树高中的最大值+1
+整个问题被划分为求左子树树高和右子树树高
+
+完整代码12345678910111213141516">
 <meta property="og:type" content="article">
 <meta property="og:title" content="104 Maximum Depth of Binary Tree">
 <meta property="og:url" content="http://yoursite.com/2015/10/20/104-Maximum-Depth-of-Binary-Tree/index.html">
@@ -97,22 +100,28 @@ Divide &amp;amp; Conquer
 <meta property="og:description" content="原题
 给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的距离。
 
-给出一棵如下的二叉树1&amp;#160; 1&amp;#10;&amp;#160;/ \&amp;#160;&amp;#10;2 &amp;#160; 3&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 4 &amp;#160; 5
+给出一棵如下的二叉树12345  1 / \ 2   3   / \  4   5
 这个二叉树的最大深度为3.
 解题思路
 Divide &amp;amp; Conquer
-整个树的树高取决于左子树与右子树的树高中">
-<meta property="og:updated_time" content="2015-10-21T06:41:31.000Z">
+整个树的树高取决于左子树与右子树的树高中的最大值+1
+整个问题被划分为求左子树树高和右子树树高
+
+完整代码12345678910111213141516">
+<meta property="og:updated_time" content="2016-04-10T01:21:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="104 Maximum Depth of Binary Tree">
 <meta name="twitter:description" content="原题
 给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的距离。
 
-给出一棵如下的二叉树1&amp;#160; 1&amp;#10;&amp;#160;/ \&amp;#160;&amp;#10;2 &amp;#160; 3&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 4 &amp;#160; 5
+给出一棵如下的二叉树12345  1 / \ 2   3   / \  4   5
 这个二叉树的最大深度为3.
 解题思路
 Divide &amp;amp; Conquer
-整个树的树高取决于左子树与右子树的树高中">
+整个树的树高取决于左子树与右子树的树高中的最大值+1
+整个问题被划分为求左子树树高和右子树树高
+
+完整代码12345678910111213141516">
 
 
 
@@ -339,7 +348,7 @@ Divide &amp;amp; Conquer
         <h1 id="原题">原题</h1><blockquote>
 <p>给定一个二叉树，找出其最大深度。<br>二叉树的深度为根节点到最远叶子节点的距离。</p>
 </blockquote>
-<p>给出一棵如下的二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 1&#10;&#160;/ \&#160;&#10;2 &#160; 3&#10;&#160;&#160; / \&#10;&#160; 4 &#160; 5</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵如下的二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \ </span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">4</span>   <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 <p>这个二叉树的最大深度为3.</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>Divide &amp; Conquer</li>

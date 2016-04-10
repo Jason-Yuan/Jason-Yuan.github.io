@@ -85,8 +85,8 @@
 <meta name="description" content="原题
 Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
 
-Given tree = [2,1] and node = 1:1  2&amp;#10; /&amp;#10;1
-return node 2.Given tree = [2,1,3] and node = 2:">
+Given tree = [2,1] and node = 1:123  2 /1
+return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
 <meta property="og:type" content="article">
 <meta property="og:title" content="285 Inorder Successor in BST">
 <meta property="og:url" content="http://yoursite.com/2015/10/04/285-Inorder-Successor-in-BST/index.html">
@@ -94,16 +94,16 @@ return node 2.Given tree = [2,1,3] and node = 2:">
 <meta property="og:description" content="原题
 Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
 
-Given tree = [2,1] and node = 1:1  2&amp;#10; /&amp;#10;1
-return node 2.Given tree = [2,1,3] and node = 2:">
-<meta property="og:updated_time" content="2015-10-22T08:26:55.000Z">
+Given tree = [2,1] and node = 1:123  2 /1
+return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
+<meta property="og:updated_time" content="2016-04-10T01:27:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="285 Inorder Successor in BST">
 <meta name="twitter:description" content="原题
 Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
 
-Given tree = [2,1] and node = 1:1  2&amp;#10; /&amp;#10;1
-return node 2.Given tree = [2,1,3] and node = 2:">
+Given tree = [2,1] and node = 1:123  2 /1
+return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
 
 
 
@@ -330,8 +330,8 @@ return node 2.Given tree = [2,1,3] and node = 2:">
         <h1 id="原题">原题</h1><blockquote>
 <p>Given a binary search tree and a node in it, find the in-order successor of that node in the BST.</p>
 </blockquote>
-<p>Given tree = [2,1] and node = 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; /&#10;1</span><br></pre></td></tr></table></figure></p>
-<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; / \&#10;1   3</span><br></pre></td></tr></table></figure></p>
+<p>Given tree = [2,1] and node = 1:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> /</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>return node 3.</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>successor变量记录<strong>root</strong>的父亲结点，当while循环结束时，如果原本的root = None或者p不存在与BST中(那么此刻root = None)，都返回None</li>

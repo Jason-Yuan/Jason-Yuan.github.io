@@ -85,7 +85,7 @@
 <meta name="description" content="原题
 给定两个值 k1 和 k2（k1 &amp;lt; k2）和一个二叉查找树的根节点。找到树中所有值在 k1 到 k2 范围内的节点。即打印所有x (k1 &amp;lt;= x &amp;lt;= k2) 其中 x 是二叉查找树的中的节点值。返回所有升序的节点值。
 
-如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].1&amp;#160; &amp;#160; 20&amp;#10;&amp;#160;&amp;#">
+如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].12345    20   /  \  8   22 / \">
 <meta property="og:type" content="article">
 <meta property="og:title" content="11 Search Range In Binary Search Tree">
 <meta property="og:url" content="http://yoursite.com/2015/10/20/11-Search-Range-In-Binary-Search-Tree/index.html">
@@ -93,14 +93,14 @@
 <meta property="og:description" content="原题
 给定两个值 k1 和 k2（k1 &amp;lt; k2）和一个二叉查找树的根节点。找到树中所有值在 k1 到 k2 范围内的节点。即打印所有x (k1 &amp;lt;= x &amp;lt;= k2) 其中 x 是二叉查找树的中的节点值。返回所有升序的节点值。
 
-如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].1&amp;#160; &amp;#160; 20&amp;#10;&amp;#160;&amp;#">
-<meta property="og:updated_time" content="2015-10-21T10:15:12.000Z">
+如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].12345    20   /  \  8   22 / \">
+<meta property="og:updated_time" content="2016-04-10T01:22:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11 Search Range In Binary Search Tree">
 <meta name="twitter:description" content="原题
 给定两个值 k1 和 k2（k1 &amp;lt; k2）和一个二叉查找树的根节点。找到树中所有值在 k1 到 k2 范围内的节点。即打印所有x (k1 &amp;lt;= x &amp;lt;= k2) 其中 x 是二叉查找树的中的节点值。返回所有升序的节点值。
 
-如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].1&amp;#160; &amp;#160; 20&amp;#10;&amp;#160;&amp;#">
+如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].12345    20   /  \  8   22 / \">
 
 
 
@@ -327,7 +327,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给定两个值 k1 和 k2（k1 &lt; k2）和一个二叉查找树的根节点。找到树中所有值在 k1 到 k2 范围内的节点。即打印所有x (k1 &lt;= x &lt;= k2) 其中 x 是二叉查找树的中的节点值。返回所有升序的节点值。</p>
 </blockquote>
-<p>如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 20&#10;&#160;&#160; /&#160; \&#10;&#160; 8 &#160; 22&#10;&#160;/ \&#10;4 &#160; 12</span><br></pre></td></tr></table></figure></p>
+<p>如果有 k1 = 10 和 k2 = 22, 你的程序应该返回 [12, 20, 22].<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">20</span></span><br><span class="line">   /  \</span><br><span class="line">  <span class="number">8</span>   <span class="number">22</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">4</span>   <span class="number">12</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>方法一：暴力解法，DFS遍历所有节点，符合要求的加入result中，最后result排序，返回</li>
 <li>方法二：同样是DFS遍历，但加入判断，相当于剪枝。<ul>

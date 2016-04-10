@@ -85,11 +85,12 @@
 <meta name="description" content="原题
 现在考虑网格中有障碍物，那样将会有多少条不同的路径？网格中的障碍和空位置分别用1和0来表示。
 
-如下所示在3x3的网格中有一个障碍物：1[&amp;#10;&amp;#160; [0,0,0],&amp;#10;&amp;#160; [0,1,0],&amp;#10;&amp;#160; [0,0,0]&amp;#10;]
+如下所示在3x3的网格中有一个障碍物：12345[  [0,0,0],  [0,1,0],  [0,0,0]]
 一共有2条不同的路径从左上角到右下角。
 解题思路
 同样是矩阵型动态规划 - Matrix DP
-对于有障碍物的地图来说，只需">
+对于有障碍物的地图来说，只需要把障碍物的坐标设为0即可
+要注意对第一行和第一列的初始化，如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="63 Unique Paths II">
 <meta property="og:url" content="http://yoursite.com/2015/10/24/63-Unique-Paths-II/index.html">
@@ -97,22 +98,24 @@
 <meta property="og:description" content="原题
 现在考虑网格中有障碍物，那样将会有多少条不同的路径？网格中的障碍和空位置分别用1和0来表示。
 
-如下所示在3x3的网格中有一个障碍物：1[&amp;#10;&amp;#160; [0,0,0],&amp;#10;&amp;#160; [0,1,0],&amp;#10;&amp;#160; [0,0,0]&amp;#10;]
+如下所示在3x3的网格中有一个障碍物：12345[  [0,0,0],  [0,1,0],  [0,0,0]]
 一共有2条不同的路径从左上角到右下角。
 解题思路
 同样是矩阵型动态规划 - Matrix DP
-对于有障碍物的地图来说，只需">
-<meta property="og:updated_time" content="2015-10-25T09:18:49.000Z">
+对于有障碍物的地图来说，只需要把障碍物的坐标设为0即可
+要注意对第一行和第一列的初始化，如">
+<meta property="og:updated_time" content="2016-04-10T01:29:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="63 Unique Paths II">
 <meta name="twitter:description" content="原题
 现在考虑网格中有障碍物，那样将会有多少条不同的路径？网格中的障碍和空位置分别用1和0来表示。
 
-如下所示在3x3的网格中有一个障碍物：1[&amp;#10;&amp;#160; [0,0,0],&amp;#10;&amp;#160; [0,1,0],&amp;#10;&amp;#160; [0,0,0]&amp;#10;]
+如下所示在3x3的网格中有一个障碍物：12345[  [0,0,0],  [0,1,0],  [0,0,0]]
 一共有2条不同的路径从左上角到右下角。
 解题思路
 同样是矩阵型动态规划 - Matrix DP
-对于有障碍物的地图来说，只需">
+对于有障碍物的地图来说，只需要把障碍物的坐标设为0即可
+要注意对第一行和第一列的初始化，如">
 
 
 
@@ -339,7 +342,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>现在考虑网格中有障碍物，那样将会有多少条不同的路径？<br>网格中的障碍和空位置分别用<strong>1</strong>和<strong>0</strong>来表示。</p>
 </blockquote>
-<p>如下所示在3x3的网格中有一个障碍物：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [0,0,0],&#10;&#160; [0,1,0],&#10;&#160; [0,0,0]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>如下所示在3x3的网格中有一个障碍物：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">  [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">  [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>一共有2条不同的路径从左上角到右下角。</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>同样是矩阵型动态规划 - Matrix DP</li>

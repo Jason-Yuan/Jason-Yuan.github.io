@@ -451,7 +451,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>线段树是一棵二叉树，他的每个节点包含了两个额外的属性start和end用于表示该节点所代表的区间。start和end都是整数，并按照如下的方式赋值:<br>根节点的 start 和 end 由 build 方法所给出。<br>对于节点 A 的左儿子，有 start=A.left, end=(A.left + A.right) / 2。<br>对于节点 A 的右儿子，有 start=(A.left + A.right) / 2 + 1, end=A.right。<br>如果 start 等于 end, 那么该节点是叶子节点，不再有左右儿子。<br>实现一个 build 方法，接受 start 和 end 作为参数, 然后构造一个代表区间 [start, end] 的线段树，返回这棵线段树的根。</p>
 </blockquote>
-<p>比如给定start=1, end=6，对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [1,  6]&#10;             /        \&#10;      [1,  3]           [4,  6]&#10;      /     \           /     \&#10;   [1, 2]  [3,3]     [4, 5]   [6,6]&#10;   /    \           /     \&#10;[1,1]   [2,2]     [4,4]   [5,5]</span><br></pre></td></tr></table></figure></p>
+<p>比如给定start=1, end=6，对应的线段树为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">               [<span class="number">1</span>,  <span class="number">6</span>]</span><br><span class="line">             /        \</span><br><span class="line">      [<span class="number">1</span>,  <span class="number">3</span>]           [<span class="number">4</span>,  <span class="number">6</span>]</span><br><span class="line">      /     \           /     \</span><br><span class="line">   [<span class="number">1</span>, <span class="number">2</span>]  [<span class="number">3</span>,<span class="number">3</span>]     [<span class="number">4</span>, <span class="number">5</span>]   [<span class="number">6</span>,<span class="number">6</span>]</span><br><span class="line">   /    \           /     \</span><br><span class="line">[<span class="number">1</span>,<span class="number">1</span>]   [<span class="number">2</span>,<span class="number">2</span>]     [<span class="number">4</span>,<span class="number">4</span>]   [<span class="number">5</span>,<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
 <p>线段树(又称区间树), 是一种高级数据结构，他可以支持这样的一些操作:</p>
 <ul>
 <li>查找给定的点包含在了哪些区间内</li>
@@ -582,7 +582,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>对于一个数组，我们可以对其建立一棵线段树, 每个结点存储一个额外的值count来代表这个结点所指代的数组区间内的元素个数. (数组中并不一定每个位置上都有元素)<br>实现一个query的方法，该方法接受三个参数root, start和end, 分别代表线段树的根节点和需要查询的区间，找到数组中在区间[start, end]内的元素个数。</p>
 </blockquote>
-<p>对于数组 [0, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">                  [0, 3, count=3]&#10;                  /             \&#10;       [0,1,count=1]             [2,3,count=2]&#10;       /         \               /            \&#10;[0,0,count=1] [1,1,count=0] [2,2,count=1], [3,3,count=1]</span><br></pre></td></tr></table></figure></p>
+<p>对于数组 [0, 2, 3], 对应的线段树为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">                  [<span class="number">0</span>, <span class="number">3</span>, count=<span class="number">3</span>]</span><br><span class="line">                  /             \</span><br><span class="line">       [<span class="number">0</span>,<span class="number">1</span>,count=<span class="number">1</span>]             [<span class="number">2</span>,<span class="number">3</span>,count=<span class="number">2</span>]</span><br><span class="line">       /         \               /            \</span><br><span class="line">[<span class="number">0</span>,<span class="number">0</span>,count=<span class="number">1</span>] [<span class="number">1</span>,<span class="number">1</span>,count=<span class="number">0</span>] [<span class="number">2</span>,<span class="number">2</span>,count=<span class="number">1</span>], [<span class="number">3</span>,<span class="number">3</span>,count=<span class="number">1</span>]</span><br></pre></td></tr></table></figure></p>
 <p>query(1, 1), return 0<br>query(1, 2), return 1<br>query(2, 3), return 2<br>query(0, 2), return 2</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>本题为<strong>值型线段树</strong>的Query</li>
@@ -714,7 +714,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>对于一个有n个数的整数数组，在对应的线段树中, 根节点所代表的区间为0-n-1, 每个节点有一个额外的属性max，值为该节点所代表的数组区间start到end内的最大值。<br>为SegmentTree设计一个query的方法，接受3个参数root, start和end，线段树root所代表的数组中子区间[start, end]内的最大值。</p>
 </blockquote>
-<p>对于数组 [1, 4, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [0, 3, max=4]&#10;              /             \&#10;       [0,1,max=4]        [2,3,max=3]&#10;       /         \        /         \&#10;[0,0,max=1] [1,1,max=4] [2,2,max=2], [3,3,max=3]</span><br></pre></td></tr></table></figure></p>
+<p>对于数组 [1, 4, 2, 3], 对应的线段树为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">               [<span class="number">0</span>, <span class="number">3</span>, max=<span class="number">4</span>]</span><br><span class="line">              /             \</span><br><span class="line">       [<span class="number">0</span>,<span class="number">1</span>,max=<span class="number">4</span>]        [<span class="number">2</span>,<span class="number">3</span>,max=<span class="number">3</span>]</span><br><span class="line">       /         \        /         \</span><br><span class="line">[<span class="number">0</span>,<span class="number">0</span>,max=<span class="number">1</span>] [<span class="number">1</span>,<span class="number">1</span>,max=<span class="number">4</span>] [<span class="number">2</span>,<span class="number">2</span>,max=<span class="number">2</span>], [<span class="number">3</span>,<span class="number">3</span>,max=<span class="number">3</span>]</span><br></pre></td></tr></table></figure></p>
 <p>query(root, 1, 1), return 4<br>query(root, 1, 2), return 4<br>query(root, 2, 3), return 3<br>query(root, 0, 2), return 4</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>本题为<strong>下标型线段树</strong>的Query</li>
@@ -846,8 +846,8 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>Given a binary search tree and a node in it, find the in-order successor of that node in the BST.</p>
 </blockquote>
-<p>Given tree = [2,1] and node = 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; /&#10;1</span><br></pre></td></tr></table></figure></p>
-<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  2&#10; / \&#10;1   3</span><br></pre></td></tr></table></figure></p>
+<p>Given tree = [2,1] and node = 1:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> /</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>return node 3.</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>successor变量记录<strong>root</strong>的父亲结点，当while循环结束时，如果原本的root = None或者p不存在与BST中(那么此刻root = None)，都返回None</li>
@@ -1498,7 +1498,7 @@
 <p>例如 2^31 % 3 = 2<br>例如 100^1000 % 1000 = 0</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li><p>本题主要利用了整数求模的一些特性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a * b) % p = ((a % p) * (b % p)) % p</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a * b) % p = ((a % p) * (b % p)) % p</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>所以求解n次方可以转化为n/2次方….</p>
 </li>

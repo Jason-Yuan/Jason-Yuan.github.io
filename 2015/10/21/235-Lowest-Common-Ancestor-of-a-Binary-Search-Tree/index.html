@@ -85,9 +85,11 @@
 <meta name="description" content="原题
 给定一棵平衡二叉树(BST)，找到两个节点的最近公共父节点(LCA)。最近公共祖先是两个节点的公共的祖先节点且具有最大深度。
 
-对于下面这棵二叉树1&amp;#160; 4&amp;#10;&amp;#160;/ \&amp;#10;3 &amp;#160; 7&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 5 &amp;#160; 6
+对于下面这棵二叉树12345  4 / \3   7   / \  5   6
 LCA(3, 5) = 4LCA(5, 6) = 7LCA(6, 7) = 7
-解题">
+解题思路
+与本题类似的题是把BST换成普通的二叉树，方法为divide &amp;amp; conquer
+对于本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="235 Lowest Common Ancestor of a Binary Search Tree">
 <meta property="og:url" content="http://yoursite.com/2015/10/21/235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree/index.html">
@@ -95,18 +97,22 @@ LCA(3, 5) = 4LCA(5, 6) = 7LCA(6, 7) = 7
 <meta property="og:description" content="原题
 给定一棵平衡二叉树(BST)，找到两个节点的最近公共父节点(LCA)。最近公共祖先是两个节点的公共的祖先节点且具有最大深度。
 
-对于下面这棵二叉树1&amp;#160; 4&amp;#10;&amp;#160;/ \&amp;#10;3 &amp;#160; 7&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 5 &amp;#160; 6
+对于下面这棵二叉树12345  4 / \3   7   / \  5   6
 LCA(3, 5) = 4LCA(5, 6) = 7LCA(6, 7) = 7
-解题">
-<meta property="og:updated_time" content="2015-10-22T08:19:43.000Z">
+解题思路
+与本题类似的题是把BST换成普通的二叉树，方法为divide &amp;amp; conquer
+对于本">
+<meta property="og:updated_time" content="2016-04-10T01:26:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="235 Lowest Common Ancestor of a Binary Search Tree">
 <meta name="twitter:description" content="原题
 给定一棵平衡二叉树(BST)，找到两个节点的最近公共父节点(LCA)。最近公共祖先是两个节点的公共的祖先节点且具有最大深度。
 
-对于下面这棵二叉树1&amp;#160; 4&amp;#10;&amp;#160;/ \&amp;#10;3 &amp;#160; 7&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 5 &amp;#160; 6
+对于下面这棵二叉树12345  4 / \3   7   / \  5   6
 LCA(3, 5) = 4LCA(5, 6) = 7LCA(6, 7) = 7
-解题">
+解题思路
+与本题类似的题是把BST换成普通的二叉树，方法为divide &amp;amp; conquer
+对于本">
 
 
 
@@ -333,7 +339,7 @@ LCA(3, 5) = 4LCA(5, 6) = 7LCA(6, 7) = 7
         <h1 id="原题">原题</h1><blockquote>
 <p>给定一棵平衡二叉树(BST)，找到两个节点的最近公共父节点(LCA)。<br>最近公共祖先是两个节点的公共的祖先节点且具有最大深度。</p>
 </blockquote>
-<p>对于下面这棵二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 4&#10;&#160;/ \&#10;3 &#160; 7&#10;&#160;&#160; / \&#10;&#160; 5 &#160; 6</span><br></pre></td></tr></table></figure></p>
+<p>对于下面这棵二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">4</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">3</span>   <span class="number">7</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">5</span>   <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
 <p>LCA(3, 5) = 4<br>LCA(5, 6) = 7<br>LCA(6, 7) = 7</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>与本题类似的题是把BST换成普通的二叉树，方法为divide &amp; conquer</li>

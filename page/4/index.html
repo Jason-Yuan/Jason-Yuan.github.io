@@ -324,8 +324,8 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，返回其节点值的锯齿形层次遍历（先从左往右，下一层再从右往左，层与层之间交替进行） </p>
 </blockquote>
-<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 3&#10;&#160;&#160; / \&#10;&#160; 9&#160; 20&#10;&#160; &#160; /&#160; \&#10;&#160;&#160; 15 &#160; 7</span><br></pre></td></tr></table></figure></p>
-<p>返回其锯齿形的层次遍历为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [3],&#10;&#160; [20,9],&#10;&#160; [15,7]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span></span><br><span class="line">    /  \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
+<p>返回其锯齿形的层次遍历为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">3</span>],</span><br><span class="line">  [<span class="number">20</span>,<span class="number">9</span>],</span><br><span class="line">  [<span class="number">15</span>,<span class="number">7</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>相似题[Binary Tree Level Order Traversal]和[Binary Tree Level Order Traversal II]</li>
 <li>同样是一个queue实现BFS，只是在处理temp结果的时候每次改变顺序，借助一个<code>flag</code>变量</li>
@@ -452,7 +452,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）</p>
 </blockquote>
-<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 3&#10;&#160;&#160; / \&#10;&#160; 9&#160; 20&#10;&#160; &#160; /&#160; \&#10;&#160;&#160; 15 &#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span></span><br><span class="line">    /  \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
 <p>按照从下往上的层次遍历为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [15,7],&#10;&#160; [9,20],&#10;&#160; [3]&#10;]</span><br></pre></td></tr></table></figure></p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>本题与[Binary Tree Level Order Traversal I]一样，同样使用一个queue解决，只是在生成result的时候不是<code>append</code>而是<code>insert(0, temp)</code></li>
@@ -580,8 +580,8 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，返回其节点值的层次遍历（逐层从左往右访问）</p>
 </blockquote>
-<p>给一棵二叉树 {3,9,20,#,#,15,7} ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 3&#10;&#160;/ \&#10;9&#160; 20&#10;&#160; /&#160; \&#10;&#160;15 &#160; 7</span><br></pre></td></tr></table></figure></p>
-<p>返回他的分层遍历结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [3],&#10;&#160; [9,20],&#10;&#160; [15,7]&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>给一棵二叉树 {3,9,20,#,#,15,7} ：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">3</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">9</span>  <span class="number">20</span></span><br><span class="line">  /  \</span><br><span class="line"> <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
+<p>返回他的分层遍历结果：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">3</span>],</span><br><span class="line">  [<span class="number">9</span>,<span class="number">20</span>],</span><br><span class="line">  [<span class="number">15</span>,<span class="number">7</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>实现方式有三种<ul>
 <li>两个queue</li>
@@ -713,7 +713,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）</p>
 </blockquote>
-<p>给出一棵二叉树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; &#160; &#160; 1&#10;&#160; &#160; &#160; / \&#10;&#160;&#160; &#160; 2 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵二叉树：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">       <span class="number">1</span></span><br><span class="line">      / \</span><br><span class="line">     <span class="number">2</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>返回 6</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>首先，想一个简化版(single path)，找从<code>root</code>到任意点得最大值。类似于maxDepth，每次加<code>root.val</code>而不再是<code>+1</code></li>
@@ -847,7 +847,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给定一个二叉树,确定它是高度平衡的。对于这个问题,一棵高度平衡的二叉树的定义是：一棵二叉树中每个节点的两个子树的深度相差不会超过1。 </p>
 </blockquote>
-<p>给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A)&#160; 3&#160; &#160; &#160; &#160; &#160; &#160; B)&#160; &#160; 3&#160;&#10;&#160;&#160; / \&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; \&#10;&#160; 9&#160; 20 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 20&#10;&#160; &#160; /&#160; \&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; / \&#10;&#160;&#160; 15 &#160; 7&#160; &#160; &#160; &#160; &#160; &#160; &#160; 15&#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A)  <span class="number">3</span>            B)    <span class="number">3</span> </span><br><span class="line">   / \                  \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span>                 <span class="number">20</span></span><br><span class="line">    /  \                / \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span>              <span class="number">15</span>  <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
 <p>二叉树A是高度平衡的二叉树，但是B不是</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>一般BST的问题，首先往divide &amp; conquer的思路去想</li>
@@ -981,7 +981,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给定一个二叉树，找出其最大深度。<br>二叉树的深度为根节点到最远叶子节点的距离。</p>
 </blockquote>
-<p>给出一棵如下的二叉树<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; 1&#10;&#160;/ \&#160;&#10;2 &#160; 3&#10;&#160;&#160; / \&#10;&#160; 4 &#160; 5</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵如下的二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \ </span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">4</span>   <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 <p>这个二叉树的最大深度为3.</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>Divide &amp; Conquer</li>
@@ -1110,7 +1110,7 @@
             <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，返回其节点值的前序遍历。</p>
 </blockquote>
-<p>给出一棵二叉树 {1,#,2,3}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; 1&#10;&#160; &#160; \&#10;&#160;&#160; &#160; 2&#10;&#160; &#160; /&#10;&#160;&#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵二叉树 {1,#,2,3}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">1</span></span><br><span class="line">    \</span><br><span class="line">     <span class="number">2</span></span><br><span class="line">    /</span><br><span class="line">   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>返回 [1,2,3]</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>helper函数中<code>if root:</code>即表明root如果不是None，就进行父/左/右的添加</li>
@@ -1373,7 +1373,7 @@
 </blockquote>
 <p>给出 n=5<br>调用isBadVersion(3)，得到false<br>调用isBadVersion(5)，得到true<br>调用isBadVersion(4)，得到true<br>此时我们可以断定4是第一个错误的版本号</p>
 <h1 id="解题思路">解题思路</h1><ul>
-<li>相当于找第一个target元素，例如找第一个1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000001111111111111111</span><br></pre></td></tr></table></figure>
+<li>相当于找第一个target元素，例如找第一个1<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000001111111111111111</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The isBadVersion API is already defined for you.</span></span><br><span class="line"><span class="comment"># @param version, an integer</span></span><br><span class="line"><span class="comment"># @return a bool</span></span><br><span class="line"><span class="comment"># def isBadVersion(version):</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstBadVersion</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        start, end = <span class="number">0</span>, n</span><br><span class="line">        <span class="keyword">while</span> start + <span class="number">1</span> &lt; end:</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> isBadVersion(mid):</span><br><span class="line">                end = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start = mid</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> isBadVersion(start):</span><br><span class="line">            <span class="keyword">return</span> start</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> end</span><br></pre></td></tr></table></figure>

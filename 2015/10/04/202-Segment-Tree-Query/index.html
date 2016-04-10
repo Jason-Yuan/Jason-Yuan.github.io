@@ -94,7 +94,7 @@
 对于一个有n个数的整数数组，在对应的线段树中, 根节点所代表的区间为0-n-1, 每个节点有一个额外的属性max，值为该节点所代表的数组区间start到end内的最大值。为SegmentTree设计一个query的方法，接受3个参数root, start和end，线段树root所代表的数组中子区间[start, end]内的最大值。
 
 对于数组 [1, 4, 2, 3], 对应的线段树为：1">
-<meta property="og:updated_time" content="2015-10-05T09:13:35.000Z">
+<meta property="og:updated_time" content="2016-04-10T01:25:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="202 Segment Tree Query">
 <meta name="twitter:description" content="原题
@@ -327,7 +327,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>对于一个有n个数的整数数组，在对应的线段树中, 根节点所代表的区间为0-n-1, 每个节点有一个额外的属性max，值为该节点所代表的数组区间start到end内的最大值。<br>为SegmentTree设计一个query的方法，接受3个参数root, start和end，线段树root所代表的数组中子区间[start, end]内的最大值。</p>
 </blockquote>
-<p>对于数组 [1, 4, 2, 3], 对应的线段树为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">               [0, 3, max=4]&#10;              /             \&#10;       [0,1,max=4]        [2,3,max=3]&#10;       /         \        /         \&#10;[0,0,max=1] [1,1,max=4] [2,2,max=2], [3,3,max=3]</span><br></pre></td></tr></table></figure></p>
+<p>对于数组 [1, 4, 2, 3], 对应的线段树为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">               [<span class="number">0</span>, <span class="number">3</span>, max=<span class="number">4</span>]</span><br><span class="line">              /             \</span><br><span class="line">       [<span class="number">0</span>,<span class="number">1</span>,max=<span class="number">4</span>]        [<span class="number">2</span>,<span class="number">3</span>,max=<span class="number">3</span>]</span><br><span class="line">       /         \        /         \</span><br><span class="line">[<span class="number">0</span>,<span class="number">0</span>,max=<span class="number">1</span>] [<span class="number">1</span>,<span class="number">1</span>,max=<span class="number">4</span>] [<span class="number">2</span>,<span class="number">2</span>,max=<span class="number">2</span>], [<span class="number">3</span>,<span class="number">3</span>,max=<span class="number">3</span>]</span><br></pre></td></tr></table></figure></p>
 <p>query(root, 1, 1), return 4<br>query(root, 1, 2), return 4<br>query(root, 2, 3), return 3<br>query(root, 0, 2), return 4</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>本题为<strong>下标型线段树</strong>的Query</li>

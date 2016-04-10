@@ -104,7 +104,7 @@
 
 所有的数字(包括目标数字)均为正整数。
 元素组合(a1, a2, … , ak)必须是非降序(ie,">
-<meta property="og:updated_time" content="2015-09-26T23:38:43.000Z">
+<meta property="og:updated_time" content="2016-04-10T01:29:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="40 Combination Sum II">
 <meta name="twitter:description" content="原题
@@ -353,7 +353,7 @@
 <h1 id="解题思路">解题思路</h1><ul>
 <li>Backtracking, DFS</li>
 <li>与permutation和subset解题思路类似</li>
-<li>在<code>combination sum I</code>的基础上，此题关键在于candidate中可能出现重复元素，所以使用<code>prev</code>参数每次check一下<code>candidates[i] == prev</code>的话就<code>continue</code><br>因为如果candidates = [1(a), 1(b), 2, 3], target = 4<br>结果可能会出现 [1(a), 3], [1(b), 3] 所以如果加上判断后<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prev = 1(a)&#10;candidates[i] = a(b)</span><br></pre></td></tr></table></figure>
+<li>在<code>combination sum I</code>的基础上，此题关键在于candidate中可能出现重复元素，所以使用<code>prev</code>参数每次check一下<code>candidates[i] == prev</code>的话就<code>continue</code><br>因为如果candidates = [1(a), 1(b), 2, 3], target = 4<br>结果可能会出现 [1(a), 3], [1(b), 3] 所以如果加上判断后<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prev = <span class="number">1</span>(a)</span><br><span class="line">candidates[i] = a(b)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>此时会<code>continue</code></p>

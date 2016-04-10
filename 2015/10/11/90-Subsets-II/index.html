@@ -85,10 +85,10 @@
 <meta name="description" content="原题
 给定一个可能具有重复数字的列表，返回其所有可能的子集
 
-如果S = [1,2,2]，一个可能的答案为：1[&amp;#10;  [2],&amp;#10;  [1],&amp;#10;  [1,2,2],&amp;#10;  [2,2],&amp;#10;  [1,2],&amp;#10;  []&amp;#10;]
+如果S = [1,2,2]，一个可能的答案为：12345678[  [2],  [1],  [1,2,2],  [2,2],  [1,2],  []]
 子集中的每个元素都是非降序的两个子集间的顺序是无关紧要的解集中不能包含重复子集
 解题思路
-对于每次层，如果current == p">
+对于每次层，如果current == previous则跳过12if i != pos and">
 <meta property="og:type" content="article">
 <meta property="og:title" content="90 Subsets II">
 <meta property="og:url" content="http://yoursite.com/2015/10/11/90-Subsets-II/index.html">
@@ -96,20 +96,20 @@
 <meta property="og:description" content="原题
 给定一个可能具有重复数字的列表，返回其所有可能的子集
 
-如果S = [1,2,2]，一个可能的答案为：1[&amp;#10;  [2],&amp;#10;  [1],&amp;#10;  [1,2,2],&amp;#10;  [2,2],&amp;#10;  [1,2],&amp;#10;  []&amp;#10;]
+如果S = [1,2,2]，一个可能的答案为：12345678[  [2],  [1],  [1,2,2],  [2,2],  [1,2],  []]
 子集中的每个元素都是非降序的两个子集间的顺序是无关紧要的解集中不能包含重复子集
 解题思路
-对于每次层，如果current == p">
-<meta property="og:updated_time" content="2015-10-12T00:33:09.000Z">
+对于每次层，如果current == previous则跳过12if i != pos and">
+<meta property="og:updated_time" content="2016-04-10T01:31:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="90 Subsets II">
 <meta name="twitter:description" content="原题
 给定一个可能具有重复数字的列表，返回其所有可能的子集
 
-如果S = [1,2,2]，一个可能的答案为：1[&amp;#10;  [2],&amp;#10;  [1],&amp;#10;  [1,2,2],&amp;#10;  [2,2],&amp;#10;  [1,2],&amp;#10;  []&amp;#10;]
+如果S = [1,2,2]，一个可能的答案为：12345678[  [2],  [1],  [1,2,2],  [2,2],  [1,2],  []]
 子集中的每个元素都是非降序的两个子集间的顺序是无关紧要的解集中不能包含重复子集
 解题思路
-对于每次层，如果current == p">
+对于每次层，如果current == previous则跳过12if i != pos and">
 
 
 
@@ -336,7 +336,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给定一个可能具有重复数字的列表，返回其所有可能的子集</p>
 </blockquote>
-<p>如果S = [1,2,2]，一个可能的答案为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;  [2],&#10;  [1],&#10;  [1,2,2],&#10;  [2,2],&#10;  [1,2],&#10;  []&#10;]</span><br></pre></td></tr></table></figure></p>
+<p>如果S = [1,2,2]，一个可能的答案为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">2</span>],</span><br><span class="line">  [<span class="number">1</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>],</span><br><span class="line">  [<span class="number">2</span>,<span class="number">2</span>],</span><br><span class="line">  [<span class="number">1</span>,<span class="number">2</span>],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>子集中的每个元素都是非降序的<br>两个子集间的顺序是无关紧要的<br>解集中不能包含重复子集</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>对于每次层，如果current == previous则跳过<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> i != pos <span class="keyword">and</span> List[i] == List[i - <span class="number">1</span>]:</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>

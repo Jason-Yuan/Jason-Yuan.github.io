@@ -94,7 +94,7 @@
 表达树是一个二叉树的结构，用于衡量特定的表达。所有表达树的叶子都有一个数字字符串值。而所有表达树的非叶子都有另一个操作字符串值。给定一个表达数组，请构造该表达的表达树，并返回该表达树的根。
 
 对于 (2*6-(23+7)/(1+2)) 的表达（可表示为 [“2” “*” “6” “-“ “(“ “23” “+” “7” “)” “/“ “(“ “1” “+” “2” “)”]). 其表达树如">
-<meta property="og:updated_time" content="2015-10-09T09:46:53.000Z">
+<meta property="og:updated_time" content="2016-04-10T01:27:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="367 Expression Tree Build">
 <meta name="twitter:description" content="原题
@@ -327,7 +327,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>表达树是一个二叉树的结构，用于衡量特定的表达。所有表达树的叶子都有一个数字字符串值。而所有表达树的非叶子都有另一个操作字符串值。<br>给定一个表达数组，请构造该表达的表达树，并返回该表达树的根。</p>
 </blockquote>
-<p>对于 <code>(2*6-(23+7)/(1+2))</code> 的表达（可表示为 [“2” “*” “6” “-“ “(“ “23” “+” “7” “)” “/“ “(“ “1” “+” “2” “)”]). 其表达树如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">            [ - ]&#10;         /          \&#10;    [ * ]              [ / ]&#10;  /     \           /         \&#10;[ 2 ]  [ 6 ]      [ + ]        [ + ]&#10;                 /    \       /      \&#10;               [ 23 ][ 7 ] [ 1 ]   [ 2 ]</span><br></pre></td></tr></table></figure></p>
+<p>对于 <code>(2*6-(23+7)/(1+2))</code> 的表达（可表示为 [“2” “*” “6” “-“ “(“ “23” “+” “7” “)” “/“ “(“ “1” “+” “2” “)”]). 其表达树如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">            [ - ]</span><br><span class="line">         /          \</span><br><span class="line">    [ * ]              [ / ]</span><br><span class="line">  /     \           /         \</span><br><span class="line">[ <span class="number">2</span> ]  [ <span class="number">6</span> ]      [ + ]        [ + ]</span><br><span class="line">                 /    \       /      \</span><br><span class="line">               [ <span class="number">23</span> ][ <span class="number">7</span> ] [ <span class="number">1</span> ]   [ <span class="number">2</span> ]</span><br></pre></td></tr></table></figure></p>
 <p>在构造该表达树后，你只需返回根节点[-]。</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>首先定义一个<code>MyTreeNode</code>，对于每一个符号或者数字，附上一个val，以便于之后evaluate它，来建立树</li>

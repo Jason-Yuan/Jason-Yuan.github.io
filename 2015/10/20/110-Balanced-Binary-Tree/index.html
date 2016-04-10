@@ -85,7 +85,7 @@
 <meta name="description" content="原题
 给定一个二叉树,确定它是高度平衡的。对于这个问题,一棵高度平衡的二叉树的定义是：一棵二叉树中每个节点的两个子树的深度相差不会超过1。 
 
-给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}1A)&amp;#160; 3&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; B)&amp;#160; &amp;#160; 3&amp;#160;&amp;#10;&amp;#160">
+给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}12345A)  3            B)    3    / \                  \  9  20                 20    /">
 <meta property="og:type" content="article">
 <meta property="og:title" content="110 Balanced Binary Tree">
 <meta property="og:url" content="http://yoursite.com/2015/10/20/110-Balanced-Binary-Tree/index.html">
@@ -93,14 +93,14 @@
 <meta property="og:description" content="原题
 给定一个二叉树,确定它是高度平衡的。对于这个问题,一棵高度平衡的二叉树的定义是：一棵二叉树中每个节点的两个子树的深度相差不会超过1。 
 
-给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}1A)&amp;#160; 3&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; B)&amp;#160; &amp;#160; 3&amp;#160;&amp;#10;&amp;#160">
-<meta property="og:updated_time" content="2015-10-21T06:58:22.000Z">
+给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}12345A)  3            B)    3    / \                  \  9  20                 20    /">
+<meta property="og:updated_time" content="2016-04-10T01:22:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="110 Balanced Binary Tree">
 <meta name="twitter:description" content="原题
 给定一个二叉树,确定它是高度平衡的。对于这个问题,一棵高度平衡的二叉树的定义是：一棵二叉树中每个节点的两个子树的深度相差不会超过1。 
 
-给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}1A)&amp;#160; 3&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; B)&amp;#160; &amp;#160; 3&amp;#160;&amp;#10;&amp;#160">
+给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}12345A)  3            B)    3    / \                  \  9  20                 20    /">
 
 
 
@@ -327,7 +327,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给定一个二叉树,确定它是高度平衡的。对于这个问题,一棵高度平衡的二叉树的定义是：一棵二叉树中每个节点的两个子树的深度相差不会超过1。 </p>
 </blockquote>
-<p>给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A)&#160; 3&#160; &#160; &#160; &#160; &#160; &#160; B)&#160; &#160; 3&#160;&#10;&#160;&#160; / \&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; \&#10;&#160; 9&#160; 20 &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 20&#10;&#160; &#160; /&#160; \&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; / \&#10;&#160;&#160; 15 &#160; 7&#160; &#160; &#160; &#160; &#160; &#160; &#160; 15&#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>给出二叉树 A={3,9,20,#,#,15,7}, B={3,#,20,15,7}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A)  <span class="number">3</span>            B)    <span class="number">3</span> </span><br><span class="line">   / \                  \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span>                 <span class="number">20</span></span><br><span class="line">    /  \                / \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span>              <span class="number">15</span>  <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
 <p>二叉树A是高度平衡的二叉树，但是B不是</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>一般BST的问题，首先往divide &amp; conquer的思路去想</li>

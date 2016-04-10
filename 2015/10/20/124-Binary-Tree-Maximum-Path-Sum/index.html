@@ -85,10 +85,11 @@
 <meta name="description" content="原题
 给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）
 
-给出一棵二叉树：1&amp;#160;&amp;#160; &amp;#160; &amp;#160; 1&amp;#10;&amp;#160; &amp;#160; &amp;#160; / \&amp;#10;&amp;#160;&amp;#160; &amp;#160; 2 &amp;#160; 3
+给出一棵二叉树：123       1      / \     2   3
 返回 6
 解题思路
-首先，想一个简化版(single path)">
+首先，想一个简化版(single path)，找从root到任意点得最大值。类似于maxDepth，每次加root.val而不再是+1
+求单路的时候，如果root加左儿子">
 <meta property="og:type" content="article">
 <meta property="og:title" content="124 Binary Tree Maximum Path Sum">
 <meta property="og:url" content="http://yoursite.com/2015/10/20/124-Binary-Tree-Maximum-Path-Sum/index.html">
@@ -96,20 +97,22 @@
 <meta property="og:description" content="原题
 给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）
 
-给出一棵二叉树：1&amp;#160;&amp;#160; &amp;#160; &amp;#160; 1&amp;#10;&amp;#160; &amp;#160; &amp;#160; / \&amp;#10;&amp;#160;&amp;#160; &amp;#160; 2 &amp;#160; 3
+给出一棵二叉树：123       1      / \     2   3
 返回 6
 解题思路
-首先，想一个简化版(single path)">
-<meta property="og:updated_time" content="2015-10-21T07:49:33.000Z">
+首先，想一个简化版(single path)，找从root到任意点得最大值。类似于maxDepth，每次加root.val而不再是+1
+求单路的时候，如果root加左儿子">
+<meta property="og:updated_time" content="2016-04-10T01:22:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="124 Binary Tree Maximum Path Sum">
 <meta name="twitter:description" content="原题
 给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）
 
-给出一棵二叉树：1&amp;#160;&amp;#160; &amp;#160; &amp;#160; 1&amp;#10;&amp;#160; &amp;#160; &amp;#160; / \&amp;#10;&amp;#160;&amp;#160; &amp;#160; 2 &amp;#160; 3
+给出一棵二叉树：123       1      / \     2   3
 返回 6
 解题思路
-首先，想一个简化版(single path)">
+首先，想一个简化版(single path)，找从root到任意点得最大值。类似于maxDepth，每次加root.val而不再是+1
+求单路的时候，如果root加左儿子">
 
 
 
@@ -336,7 +339,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，寻找一条路径使其路径和最大，路径可以在任一节点中开始和结束（路径和为两个节点之间所在路径上的节点权值之和）</p>
 </blockquote>
-<p>给出一棵二叉树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160;&#160; &#160; &#160; 1&#10;&#160; &#160; &#160; / \&#10;&#160;&#160; &#160; 2 &#160; 3</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵二叉树：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">       <span class="number">1</span></span><br><span class="line">      / \</span><br><span class="line">     <span class="number">2</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>返回 6</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>首先，想一个简化版(single path)，找从<code>root</code>到任意点得最大值。类似于maxDepth，每次加<code>root.val</code>而不再是<code>+1</code></li>

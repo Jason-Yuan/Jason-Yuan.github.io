@@ -85,7 +85,8 @@
 <meta name="description" content="原题
 给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）
 
-给出一棵二叉树 {3,9,20,#,#,15,7}1&amp;#160; &amp;#160; 3&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 9&amp;#160; 20&amp;#10;&amp;#160; &amp;#160; /&amp;#160; \&amp;#10;&amp;#160;&amp;#160; 15 &amp;#160;">
+给出一棵二叉树 {3,9,20,#,#,15,7}12345    3   / \  9  20    /  \   15   7
+按照从下往上的层次遍历为：1[&amp;#10;&amp;#160; [15,7],&amp;#10;&amp;#160; [9,20],&amp;#10;&amp;#160; [3]&amp;#10;]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="107 Binary Tree Level Order Traversal II">
 <meta property="og:url" content="http://yoursite.com/2015/10/20/107-Binary-Tree-Level-Order-Traversal-II/index.html">
@@ -93,14 +94,16 @@
 <meta property="og:description" content="原题
 给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）
 
-给出一棵二叉树 {3,9,20,#,#,15,7}1&amp;#160; &amp;#160; 3&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 9&amp;#160; 20&amp;#10;&amp;#160; &amp;#160; /&amp;#160; \&amp;#10;&amp;#160;&amp;#160; 15 &amp;#160;">
-<meta property="og:updated_time" content="2015-10-21T08:39:04.000Z">
+给出一棵二叉树 {3,9,20,#,#,15,7}12345    3   / \  9  20    /  \   15   7
+按照从下往上的层次遍历为：1[&amp;#10;&amp;#160; [15,7],&amp;#10;&amp;#160; [9,20],&amp;#10;&amp;#160; [3]&amp;#10;]">
+<meta property="og:updated_time" content="2016-04-10T01:22:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="107 Binary Tree Level Order Traversal II">
 <meta name="twitter:description" content="原题
 给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）
 
-给出一棵二叉树 {3,9,20,#,#,15,7}1&amp;#160; &amp;#160; 3&amp;#10;&amp;#160;&amp;#160; / \&amp;#10;&amp;#160; 9&amp;#160; 20&amp;#10;&amp;#160; &amp;#160; /&amp;#160; \&amp;#10;&amp;#160;&amp;#160; 15 &amp;#160;">
+给出一棵二叉树 {3,9,20,#,#,15,7}12345    3   / \  9  20    /  \   15   7
+按照从下往上的层次遍历为：1[&amp;#10;&amp;#160; [15,7],&amp;#10;&amp;#160; [9,20],&amp;#10;&amp;#160; [3]&amp;#10;]">
 
 
 
@@ -327,7 +330,7 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给出一棵二叉树，返回其节点值从底向上的层次序遍历（按从叶节点所在层到根节点所在的层遍历，然后逐层从左往右遍历）</p>
 </blockquote>
-<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#160; &#160; 3&#10;&#160;&#160; / \&#10;&#160; 9&#160; 20&#10;&#160; &#160; /&#160; \&#10;&#160;&#160; 15 &#160; 7</span><br></pre></td></tr></table></figure></p>
+<p>给出一棵二叉树 {3,9,20,#,#,15,7}<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span></span><br><span class="line">    /  \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
 <p>按照从下往上的层次遍历为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#10;&#160; [15,7],&#10;&#160; [9,20],&#10;&#160; [3]&#10;]</span><br></pre></td></tr></table></figure></p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>本题与[Binary Tree Level Order Traversal I]一样，同样使用一个queue解决，只是在生成result的时候不是<code>append</code>而是<code>insert(0, temp)</code></li>
