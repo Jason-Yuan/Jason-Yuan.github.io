@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-11T03:52:46.000Z</updated>
+  <updated>2016-05-02T03:10:19.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Virtualenv搭建python虚拟环境]]></title>
+    <link href="http://yoursite.com/2016/05/01/Virtualenv%E6%90%AD%E5%BB%BApython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
+    <id>http://yoursite.com/2016/05/01/Virtualenv搭建python虚拟环境/</id>
+    <published>2016-05-01T20:08:39.000Z</published>
+    <updated>2016-05-02T03:10:19.000Z</updated>
+    <content type="html"><![CDATA[<p>来自<strong>Virtualenv</strong>官方的定义</p>
+<blockquote>
+<p>Virtualenv是一个可以为我们创建独立的python运行环境的工具</p>
+</blockquote>
+<h1 id="安装_Virtualenv">安装 Virtualenv</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#23433;&#35013;&#10;pip install virtualenv&#10;// &#21319;&#32423;&#29256;&#26412;&#10;pip install --upgrade virtualenv</span><br></pre></td></tr></table></figure>
+<h1 id="创建一个虚拟环境">创建一个虚拟环境</h1><p>假定虚拟环境的名字是<code>newEnv</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv newEnv&#10;New python executable in /Users/boyuan/newEnv/bin/python&#10;Installing setuptools, pip, wheel...done.</span><br></pre></td></tr></table></figure></p>
+<p>若想要指定Python3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv -p python3 newEnv</span><br></pre></td></tr></table></figure></p>
+<p>查看newEnv文件夹中的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ cd newEnv&#10;boyuan: ~ $ ls&#10;bin&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; include&#160; &#160; &#160; &#160; &#160; &#160; lib&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; pip-selfcheck.json</span><br></pre></td></tr></table></figure></p>
+<h1 id="激活虚拟环境">激活虚拟环境</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ source newEnv/bin/activate</span><br></pre></td></tr></table></figure>
+<p>激活后会发现最左边显示当前环境名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $</span><br></pre></td></tr></table></figure></p>
+<p>查看当前环境中的依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $ pip list&#10;pip (8.1.1)&#10;setuptools (20.10.1)&#10;wheel (0.29.0)&#10;(newEnv) boyuan: ~ $</span><br></pre></td></tr></table></figure></p>
+<p>依据当前环境中的依赖包生成requirements.txt文档<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $: pip freeze &#62; requirements.txt</span><br></pre></td></tr></table></figure></p>
+<p>依据requirements.txt文档重建环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $: pip install -r &#60; requirements.txt</span><br></pre></td></tr></table></figure></p>
+<h1 id="关闭虚拟环境">关闭虚拟环境</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $ deactivate&#10;boyuan: ~ $</span><br></pre></td></tr></table></figure>
+<h1 id="删除虚拟环境">删除虚拟环境</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ rm -rf newEnv</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>来自<strong>Virtualenv</strong>官方的定义</p>
+<blockquote>
+<p>Virtualenv是一个可以为我们创建独立的python运行环境的工具</p>
+</blockquote>
+<h1 id="安装_Virtualenv">安装 V]]>
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="Virtual Environment" scheme="http://yoursite.com/tags/Virtual-Environment/"/>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Python中的模块(Module)]]></title>
@@ -699,44 +736,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Matrix DP" scheme="http://yoursite.com/tags/Matrix-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[70 Climbing Stairs]]></title>
-    <link href="http://yoursite.com/2015/10/24/70-Climbing-Stairs/"/>
-    <id>http://yoursite.com/2015/10/24/70-Climbing-Stairs/</id>
-    <published>2015-10-25T03:20:40.000Z</published>
-    <updated>2015-10-25T10:21:19.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>假设你正在爬楼梯，需要n步你才能到达顶部。但每次你只能爬一步或者两步，你能有多少种不同的方法爬到楼顶部？</p>
-</blockquote>
-<p>比如n=3，1+1+1=1+2=2+1=3，共有3中不同的方法<br>返回 3</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>本题本质和菲波那切数列问题非常相似</li>
-<li>单序列型动态规划问题 - Sequence DP</li>
-<li>cache[i]表示有i个台阶，能跳到第i个台阶的方案个数</li>
-<li>因为每次可以跳一步或者跳两步，所以cache[i]就等于下面的和<ul>
-<li>可以跳的i - 1的方案个数即cache[i - 1]</li>
-<li>可以跳到i - 2的方案个数即cache[i - 2]</li>
-</ul>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">climbStairs</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        cache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        cache[<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n):</span><br><span class="line">            cache[i] = cache[i - <span class="number">1</span>] + cache[i - <span class="number">2</span>]</span><br><span class="line">        <span class="keyword">return</span> cache[n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>假设你正在爬楼梯，需要n步你才能到达顶部。但每次你只能爬一步或者两步，你能有多少种不同的方法爬到楼顶部？</p>
-</blockquote>
-<p>比如n=3，1+1+1=1+2=2+1=3，共有3中不同的方法]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Sequence DP" scheme="http://yoursite.com/tags/Sequence-DP/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
