@@ -98,7 +98,7 @@ Virtualenv是一个可以为我们创建独立的python运行环境的工具
 
 安装 Virtualenv1// &amp;#23433;&amp;#35013;&amp;#10;pip install virtualenv&amp;#10;// &amp;#21319;&amp;#32423;&amp;#29256;&amp;#26412;&amp;#10;pip install --upgrade virtualenv
 创建一个虚">
-<meta property="og:updated_time" content="2016-05-02T03:10:19.000Z">
+<meta property="og:updated_time" content="2016-05-02T03:12:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Virtualenv搭建python虚拟环境">
 <meta name="twitter:description" content="来自Virtualenv官方的定义
@@ -334,9 +334,9 @@ Virtualenv是一个可以为我们创建独立的python运行环境的工具
 <blockquote>
 <p>Virtualenv是一个可以为我们创建独立的python运行环境的工具</p>
 </blockquote>
-<h1 id="安装_Virtualenv">安装 Virtualenv</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#23433;&#35013;&#10;pip install virtualenv&#10;// &#21319;&#32423;&#29256;&#26412;&#10;pip install --upgrade virtualenv</span><br></pre></td></tr></table></figure>
-<h1 id="创建一个虚拟环境">创建一个虚拟环境</h1><p>假定虚拟环境的名字是<code>newEnv</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv newEnv&#10;New python executable in /Users/boyuan/newEnv/bin/python&#10;Installing setuptools, pip, wheel...done.</span><br></pre></td></tr></table></figure></p>
-<p>若想要指定Python3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv -p python3 newEnv</span><br></pre></td></tr></table></figure></p>
+<h1 id="安装_Virtualenv">安装 Virtualenv</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#23433;&#35013;&#10;pip install virtualenv&#10;// &#21319;&#32423;&#29256;&#26412;&#10;pip install --upgrade virtualenv</span><br></pre></td></tr></table></figure>
+<h1 id="创建一个虚拟环境">创建一个虚拟环境</h1><p>假定虚拟环境的名字是<code>newEnv</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv newEnv&#10;New python executable in /Users/boyuan/newEnv/bin/python&#10;Installing setuptools, pip, wheel...done.</span><br></pre></td></tr></table></figure></p>
+<p>若想要指定Python3<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv -p python3 newEnv</span><br></pre></td></tr></table></figure></p>
 <p>查看newEnv文件夹中的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ cd newEnv&#10;boyuan: ~ $ ls&#10;bin&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; include&#160; &#160; &#160; &#160; &#160; &#160; lib&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; pip-selfcheck.json</span><br></pre></td></tr></table></figure></p>
 <h1 id="激活虚拟环境">激活虚拟环境</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ source newEnv/bin/activate</span><br></pre></td></tr></table></figure>
 <p>激活后会发现最左边显示当前环境名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $</span><br></pre></td></tr></table></figure></p>
