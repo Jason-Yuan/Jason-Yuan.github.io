@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-02T03:15:56.000Z</updated>
+  <updated>2016-05-14T06:41:47.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,101 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[C#中的?和??]]></title>
+    <link href="http://yoursite.com/2016/05/13/C-%E4%B8%AD%E7%9A%84-%E5%92%8C/"/>
+    <id>http://yoursite.com/2016/05/13/C-中的-和/</id>
+    <published>2016-05-13T23:40:38.000Z</published>
+    <updated>2016-05-14T06:41:47.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<blockquote>
+<p>单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!<br>双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public int? para;&#10;//public int para;&#22914;&#26524;&#19981;&#27880;&#37322;&#25481;&#27492;&#34892;,&#32780;&#25226;&#19978;&#19968;&#34892;&#27880;&#37322;&#25481;&#30340;&#35805;,&#19979;&#38754;&#20250;&#25253;&#38169;!&#10;public int par()&#10;&#123;&#10;    return this.para ?? 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>值类型后面加问号表示可为空null(Nullable 结构) </p>
+<p>Nullable是.NET 2.0中新提供的一种用于标明一个值类型是否可以为空的技术。</p>
+<ul>
+<li>例：<code>public int? age;</code> 等同 <code>Nullable&lt;int&gt;</code></li>
+</ul>
+<p>对于一个类型，如果既可以给它分配一个值，也可以给它分配空引用null（表示没有任何值），我们就说这个类型是可空的。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int? num = null;   //&#27491;&#30830;&#10;int num = null;    //&#38169;&#35823;</span><br></pre></td></tr></table></figure>
+<p>Nullable 结构支持 将值类型 扩展为可以为null，但不支持 在引用类型 上使用，因为引用类型本身就是可空的。</p>
+<p>设置值的写法 Arg = value;</p>
+<p>获取值的写法 Arg.Value;</p>
+<p>判断非空的写法 Arg.HasValue </p>
+<p>语法 <strong>T?</strong> 是Nullable<t>的简写，此处的 <strong>T</strong> 为值类型。</t></p>
+<h1 id="概念">概念</h1><p><strong>GUID</strong>： 即Globally Unique Identifier（全球唯一标识符） 也称作 UUID(Universally Unique IDentifier) 。 GUID是一个通过特定算法产生的二进制长度为128位的数字标识符，用于指示产品的唯一性。GUID 主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的标识符。<br>在 Windows 平台上，GUID 广泛应用于微软的产品中，用于标识如如注册表项、类及接口标识、数据库、系统目录等对象。<br><strong>格式</strong><br>GUID 的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”，其中每个 x 是 0-9 或 a-f 范围内的一个32位十六进制数。例如：6F9619FF-8B86-D011-B42D-00C04FC964FF 即为有效的 GUID 值。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<blockquote>
+<p>单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!<br>双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!</p>
+</blockquote>
+<figure class]]>
+    </summary>
+    
+      <category term="C#" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="Take a Bite" scheme="http://yoursite.com/tags/Take-a-Bite/"/>
+    
+      <category term="C#" scheme="http://yoursite.com/categories/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用C#中BackgroundWorker]]></title>
+    <link href="http://yoursite.com/2016/05/13/%E4%BD%BF%E7%94%A8C-%E4%B8%ADBackgroundWorker/"/>
+    <id>http://yoursite.com/2016/05/13/使用C-中BackgroundWorker/</id>
+    <published>2016-05-13T23:34:36.000Z</published>
+    <updated>2016-05-14T06:39:19.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<h1 id="使用前提">使用前提</h1><p>在WPF程序中，有一些比较耗时的后台操作时，比如向远程服务器请求数据，或者通过TCP/IP为某台设备提供升级固件服务等等。为了防止这类操作freeze用户界面，造成用户体验下降，即程序假死的状况出现。一种常见的，更user friendly的方式是，提供一个进度条窗口，提示用户该操作的完成进度。并提供取消操作的选项。</p>
+<p>C#中的<a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.backgroundworker(v=vs.110" target="_blank" rel="external"> BackgroundWorker Class </a>.aspx)则是执行该任务的最佳选择。</p>
+<blockquote>
+<p>The BackgroundWorker class allows you to run an operation on a separate, dedicated thread. Time-consuming operations like downloads and database transactions can cause your user interface (UI) to seem as though it has stopped responding while they are running. When you want a responsive UI and you are faced with long delays associated with such operations, theBackgroundWorker class provides a convenient solution.<br><strong>-MSDN</strong></p>
+</blockquote>
+<h1 id="关于_BackgroundWorker_类">关于 BackgroundWorker 类</h1><p><strong>主要属性</strong></p>
+<ul>
+<li><code>CancellationPending</code> - 只读属性，default值为false，执行CancelAsync方法后，值为true。表明应用程序请求了取消后台操作。</li>
+<li><code>IsBusy</code> - 如果后台异步操作开始执行，值为true，否则为false</li>
+<li><code>WorkerReportProgress</code> - 如果BackgroundWorker支持后台操作进程更新，设置值为true，default值为false</li>
+</ul>
+<p><strong>主要事件</strong></p>
+<ul>
+<li><code>DoWork</code></li>
+<li><code>ProgressChanged</code></li>
+<li><code>RunWorkerCompleted</code><br>不要再DoWork事件处理程序中对UI线程中的对象进行操作，操作应该放在ProgressChanged和RunWorkerCompleted的事件处理程序中。</li>
+</ul>
+<p><strong>主要方法</strong> </p>
+<ul>
+<li><code>RunWorkerAsync()</code> - 执行后台操作，激发DoWork事件</li>
+<li><code>ReportProgress()</code>- 激发ProgressChanged事件</li>
+<li><code>CancelAsync()</code> - 提交终止后台操作的请求，并将CancellationPending属性值设为true。在程序其他地方要定时检查CancellationPending属性的值，作出相应操作，比如<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (worker.CancellationPending)</span><br><span class="line">&#123;</span><br><span class="line">    e.Cancel = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="示例程序">示例程序</h1><p>XAML<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Window x:Class=&#34;BackgroundWorkerExample.MainWindow&#34;  &#10;        xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;  &#10;        xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;  &#10;        Title=&#34;MainWindow&#34; Height=&#34;150&#34; Width=&#34;300&#34;&#62;&#10;    &#60;StackPanel&#62;&#10;        &#60;ProgressBar Name=&#34;progressBar&#34; Height=&#34;20&#34; Width=&#34;250&#34; Margin=&#34;10&#34;&#62;&#60;/ProgressBar&#62;&#10;        &#60;TextBox Name=&#34;textBox&#34; Width=&#34;50&#34; Height=&#34;20&#34; HorizontalAlignment=&#34;Center&#34;&#62;&#60;/TextBox&#62;&#10;        &#60;Button Name=&#34;btnProcess&#34; Width=&#34;100&#34; Click=&#34;btnProcess_Click&#34; Margin=&#34;5&#34;&#62;Start&#60;/Button&#62;&#10;        &#60;Button Name=&#34;btnCancel&#34; Width=&#34;100&#34; Click=&#34;btnCancel_Click&#34; Margin=&#34;5&#34;&#62;Cancel&#60;/Button&#62;&#10;    &#60;/StackPanel&#62;&#10;&#60;/Window&#62;</span><br></pre></td></tr></table></figure></p>
+<p>C#<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">BackgroundWorkerExample</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> Interaction logic for MainWindow.xaml</span></span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">    &#123;</span><br><span class="line">        BackgroundWorker bgworker = <span class="keyword">new</span> BackgroundWorker();</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>(<span class="params"></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line"></span><br><span class="line">            bgworker.WorkerReportsProgress = <span class="keyword">true</span>;</span><br><span class="line">            bgworker.WorkerSupportsCancellation = <span class="keyword">true</span>;</span><br><span class="line">            bgworker.DoWork += bgworker_DoWork;</span><br><span class="line">            bgworker.ProgressChanged += bgworker_ProgressChanged;</span><br><span class="line">            bgworker.RunWorkerCompleted += bgworker_RunWorkerCompleted;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">bgworker_DoWork</span>(<span class="params"><span class="keyword">object</span> sender, DoWorkEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            BackgroundWorker worker = sender <span class="keyword">as</span> BackgroundWorker;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (worker.CancellationPending)</span><br><span class="line">                &#123;</span><br><span class="line">                    e.Cancel = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    worker.ReportProgress(i);</span><br><span class="line">                    Thread.Sleep(<span class="number">100</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">bgworker_ProgressChanged</span>(<span class="params"><span class="keyword">object</span> sender, ProgressChangedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            progressBar.Value = e.ProgressPercentage;</span><br><span class="line">            textBox.Text = e.ProgressPercentage.ToString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">bgworker_RunWorkerCompleted</span>(<span class="params"><span class="keyword">object</span> sender, RunWorkerCompletedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            progressBar.Value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (e.Cancelled)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(<span class="string">"Background task has been canceled"</span>, <span class="string">"info"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(<span class="string">"Background task finished"</span>, <span class="string">"info"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnProcess_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!bgworker.IsBusy)</span><br><span class="line">            &#123;</span><br><span class="line">                bgworker.RunWorkerAsync();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnCancel_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            bgworker.CancelAsync();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="演示">演示</h1><p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-443b315fdb50853d_zpsfha7r8iw.gif" alt="BackgroundWorkerExample.gif"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<h1 id="使用前提">使用前提</h1><p>在WPF程序中，有一些比较耗时的后台操作时，比如向远程服务器请求数据，或者通过TCP/IP为某台设备提供升级固件服务等等。为了防止这类操作freeze用户界面，造成用户体验下降，即程序假死的状况出现。一种常见的，更us]]>
+    </summary>
+    
+      <category term="C#" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="Multi-threading" scheme="http://yoursite.com/tags/Multi-threading/"/>
+    
+      <category term="Take a Bite" scheme="http://yoursite.com/tags/Take-a-Bite/"/>
+    
+      <category term="WPF" scheme="http://yoursite.com/tags/WPF/"/>
+    
+      <category term="thread" scheme="http://yoursite.com/tags/thread/"/>
+    
+      <category term="C#" scheme="http://yoursite.com/categories/C/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Virtualenv搭建python虚拟环境]]></title>
@@ -667,75 +762,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Sequence DP" scheme="http://yoursite.com/tags/Sequence-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[120 Triangle]]></title>
-    <link href="http://yoursite.com/2015/10/25/120-Triangle/"/>
-    <id>http://yoursite.com/2015/10/25/120-Triangle/</id>
-    <published>2015-10-26T03:02:53.000Z</published>
-    <updated>2016-04-10T01:22:36.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个数字三角形，找到从顶部到底部的最小路径和。每一步可以移动到下面一行的相邻数字上。</p>
-</blockquote>
-<p>比如，给出下列数字三角形：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">     [<span class="number">2</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">   [<span class="number">6</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">  [<span class="number">4</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">3</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>从顶到底部的最小路径和为11 (<strong> 2 + 3 + 5 + 1 = 11</strong>)。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>矩阵型动态规划问题 - Matrix DP</li>
-<li>有两种解决方案，自顶向下或者自底向上</li>
-<li>下面代码采用自底向上的方法，cache[i][j]表明从最底层到i,j所用的最短距离是多少</li>
-<li><code>cache[i][j]</code>就等于<code>cache[i+1][j]</code>(左下角)与<code>cache[i+1][j+1]</code>(右下角)中最小的加上<code>triangle[i][j]</code>的值</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minimumTotal</span><span class="params">(self, triangle)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type triangle: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> triangle:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        m = len(triangle)</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            cache[m - <span class="number">1</span>][i] = triangle[m - <span class="number">1</span>][i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(m - i):</span><br><span class="line">                cache[m - <span class="number">1</span> - i][j] = min(cache[m - i][j], cache[m - i][j + <span class="number">1</span>]) + triangle[m - <span class="number">1</span> - i][j]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个数字三角形，找到从顶部到底部的最小路径和。每一步可以移动到下面一行的相邻数字上。</p>
-</blockquote>
-<p>比如，给出下列数字三角形：<br><figure class="highlig]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Matrix DP" scheme="http://yoursite.com/tags/Matrix-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[64 Minimum Path Sum]]></title>
-    <link href="http://yoursite.com/2015/10/24/64-Minimum-Path-Sum/"/>
-    <id>http://yoursite.com/2015/10/24/64-Minimum-Path-Sum/</id>
-    <published>2015-10-25T03:32:25.000Z</published>
-    <updated>2015-10-25T10:33:02.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个只含非负整数的m*n网格，找到一条从左上角到右下角的可以使数字和最小的路径。</p>
-</blockquote>
-<p>你在同一时间只能向下或者向右移动一步</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>矩阵型动态规划 - Matrix DP</li>
-<li>与Unique Paths I/II非常类似，不同的是每次要找最小value</li>
-<li>cache[i][j]表示从左上角到达i,j的数字和最小路径，它等于cache[i][j - 1]与cache[i - 1][j]的最小值，加上grid[i][j]的值</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minPathSum</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type grid: List[List[int]]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> grid <span class="keyword">or</span> <span class="keyword">not</span> grid[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        m = len(grid)</span><br><span class="line">        n = len(grid[<span class="number">0</span>])</span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m)]</span><br><span class="line">        sum1 = sum2 = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            sum1 += grid[<span class="number">0</span>][i]</span><br><span class="line">            cache[<span class="number">0</span>][i] = sum1</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">            sum2 += grid[j][<span class="number">0</span>]</span><br><span class="line">            cache[j][<span class="number">0</span>] = sum2</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">                cache[j][i] = min(cache[j - <span class="number">1</span>][i], cache[j][i - <span class="number">1</span>]) + grid[j][i]</span><br><span class="line">        <span class="keyword">return</span> cache[m - <span class="number">1</span>][n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个只含非负整数的m*n网格，找到一条从左上角到右下角的可以使数字和最小的路径。</p>
-</blockquote>
-<p>你在同一时间只能向下或者向右移动一步</p>
-<h1 id="解题思路">解题思路]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Matrix DP" scheme="http://yoursite.com/tags/Matrix-DP/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
