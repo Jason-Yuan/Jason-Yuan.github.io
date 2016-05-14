@@ -84,20 +84,20 @@
 
 <meta name="description" content="单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!
 
-1public int? para;&amp;#10;//public int para;&amp;#22914;&amp;#26524;&amp;#19981;&amp;#27880;&amp;#37322;&amp;#25481;&amp;#27492;&amp;#34892;,&amp;#32780;&amp;">
+123456public int? para;//public int para;如果不注释掉此行,而把上一行注释掉的话,下面会报错!public int par()&amp;#123;    return this.para ?? 0;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C#中的?和??">
 <meta property="og:url" content="http://yoursite.com/2016/05/13/C-中的-和/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!
 
-1public int? para;&amp;#10;//public int para;&amp;#22914;&amp;#26524;&amp;#19981;&amp;#27880;&amp;#37322;&amp;#25481;&amp;#27492;&amp;#34892;,&amp;#32780;&amp;">
-<meta property="og:updated_time" content="2016-05-14T06:41:47.000Z">
+123456public int? para;//public int para;如果不注释掉此行,而把上一行注释掉的话,下面会报错!public int par()&amp;#123;    return this.para ?? 0;">
+<meta property="og:updated_time" content="2016-05-14T06:45:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C#中的?和??">
 <meta name="twitter:description" content="单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!
 
-1public int? para;&amp;#10;//public int para;&amp;#22914;&amp;#26524;&amp;#19981;&amp;#27880;&amp;#37322;&amp;#25481;&amp;#27492;&amp;#34892;,&amp;#32780;&amp;">
+123456public int? para;//public int para;如果不注释掉此行,而把上一行注释掉的话,下面会报错!public int par()&amp;#123;    return this.para ?? 0;">
 
 
 
@@ -325,14 +325,14 @@
 <blockquote>
 <p>单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!<br>双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public int? para;&#10;//public int para;&#22914;&#26524;&#19981;&#27880;&#37322;&#25481;&#27492;&#34892;,&#32780;&#25226;&#19978;&#19968;&#34892;&#27880;&#37322;&#25481;&#30340;&#35805;,&#19979;&#38754;&#20250;&#25253;&#38169;!&#10;public int par()&#10;&#123;&#10;    return this.para ?? 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>? para;</span><br><span class="line"><span class="comment">//public int para;如果不注释掉此行,而把上一行注释掉的话,下面会报错!</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">par</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.para ?? <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>值类型后面加问号表示可为空null(Nullable 结构) </p>
 <p>Nullable是.NET 2.0中新提供的一种用于标明一个值类型是否可以为空的技术。</p>
 <ul>
 <li>例：<code>public int? age;</code> 等同 <code>Nullable&lt;int&gt;</code></li>
 </ul>
 <p>对于一个类型，如果既可以给它分配一个值，也可以给它分配空引用null（表示没有任何值），我们就说这个类型是可空的。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int? num = null;   //&#27491;&#30830;&#10;int num = null;    //&#38169;&#35823;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>? num = <span class="keyword">null</span>;   <span class="comment">//正确</span></span><br><span class="line"><span class="keyword">int</span> num = <span class="keyword">null</span>;    <span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
 <p>Nullable 结构支持 将值类型 扩展为可以为null，但不支持 在引用类型 上使用，因为引用类型本身就是可空的。</p>
 <p>设置值的写法 Arg = value;</p>
 <p>获取值的写法 Arg.Value;</p>
