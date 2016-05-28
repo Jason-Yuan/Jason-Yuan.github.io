@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-20T06:56:03.000Z</updated>
+  <updated>2016-05-28T08:35:02.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,118 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[469 Identical Binary Tree]]></title>
+    <link href="http://yoursite.com/2016/05/27/469-Identical-Binary-Tree/"/>
+    <id>http://yoursite.com/2016/05/27/469-Identical-Binary-Tree/</id>
+    <published>2016-05-28T01:34:08.000Z</published>
+    <updated>2016-05-28T08:35:02.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>检查两棵二叉树是否等价。等价的意思是说，首先两棵二叉树必须拥有相同的结构，并且每个对应位置上的节点上的数都相等。</p>
+</blockquote>
+<p>样例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>             <span class="number">1</span></span><br><span class="line">   / \           / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span>   <span class="keyword">and</span>   <span class="number">2</span>   <span class="number">2</span></span><br><span class="line"> /             /</span><br><span class="line"><span class="number">4</span>             <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>就是两棵等价的二叉树。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>             <span class="number">1</span></span><br><span class="line">   / \           / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span>   <span class="keyword">and</span>   <span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> /               \</span><br><span class="line"><span class="number">4</span>                 <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>就不是等价的。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>如果两棵树都是None，认为是等价的</li>
+<li>Recursion - 递归求解，分治的思路，如果<code>a.val == b.val</code>，则只需考虑左右子树是不是Identical Binary Tree</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.left, this.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param a, b, the root of binary trees.</span><br><span class="line">    @return true if they are identical, or false.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIdentical</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> b <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">and</span> b <span class="keyword">and</span> a.val == b.val:</span><br><span class="line">            <span class="keyword">return</span> self.isIdentical(a.left, b.left) <span class="keyword">and</span> self.isIdentical(a.right, b.right)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>检查两棵二叉树是否等价。等价的意思是说，首先两棵二叉树必须拥有相同的结构，并且每个对应位置上的节点上的数都相等。</p>
+</blockquote>
+<p>样例<br><figure class="highli]]>
+    </summary>
+    
+      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
+    
+      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[470 Tweaked Identical Binary Tree]]></title>
+    <link href="http://yoursite.com/2016/05/27/470-Tweaked-Identical-Binary-Tree/"/>
+    <id>http://yoursite.com/2016/05/27/470-Tweaked-Identical-Binary-Tree/</id>
+    <published>2016-05-28T01:32:42.000Z</published>
+    <updated>2016-05-28T08:33:48.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>检查两棵二叉树是否在经过若干次扭转后可以等价。扭转的定义是，交换任意节点的左右子树。等价的定义是，两棵二叉树必须为相同的结构，并且对应位置上的节点的值要相等。<br>注意：你可以假设二叉树中不会有重复的节点值。</p>
+</blockquote>
+<p>样例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>             <span class="number">1</span></span><br><span class="line">   / \           / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span>   <span class="keyword">and</span>   <span class="number">3</span>   <span class="number">2</span></span><br><span class="line"> /                   \</span><br><span class="line"><span class="number">4</span>                     <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>是扭转后可等价的二叉树。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>             <span class="number">1</span></span><br><span class="line">   / \           / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span>   <span class="keyword">and</span>   <span class="number">3</span>   <span class="number">2</span></span><br><span class="line"> /             /</span><br><span class="line"><span class="number">4</span>             <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>就不是扭转后可以等价的二叉树。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>Recursion - 递归求解，分治的思路。</li>
+<li>注意，题目中说的是经过若干次扭转后可以等价，所以不要忘记考虑完全identical的情况，某一个节点的左右子树翻转一次对称，反转两次还原。</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.left, this.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param a, b, the root of binary trees.</span><br><span class="line">    @return true if they are tweaked identical, or false.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isTweakedIdentical</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> b <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">and</span> b <span class="keyword">and</span> a.val == b.val:</span><br><span class="line">            <span class="keyword">return</span> self.isTweakedIdentical(a.left, b.right) <span class="keyword">and</span> \</span><br><span class="line">                    self.isTweakedIdentical(a.right, b.left) <span class="keyword">or</span> \</span><br><span class="line">                    self.isTweakedIdentical(a.left, b.left) <span class="keyword">and</span> \</span><br><span class="line">                    self.isTweakedIdentical(a.right, b.right)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>检查两棵二叉树是否在经过若干次扭转后可以等价。扭转的定义是，交换任意节点的左右子树。等价的定义是，两棵二叉树必须为相同的结构，并且对应位置上的节点的值要相等。<br>注意：你可以假设二叉树中不会有重复的节点值。]]>
+    </summary>
+    
+      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
+    
+      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[376 Binary Tree Path Sum]]></title>
+    <link href="http://yoursite.com/2016/05/27/376-Binary-Tree-Path-Sum/"/>
+    <id>http://yoursite.com/2016/05/27/376-Binary-Tree-Path-Sum/</id>
+    <published>2016-05-27T22:36:31.000Z</published>
+    <updated>2016-05-28T05:38:44.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个二叉树，找出所有路径中各节点相加总和等于给定 目标值<br> 的路径。<br>一个有效的路径，指的是从根节点到叶节点的路径。</p>
+</blockquote>
+<p>给定一个二叉树，和目标值 = 5<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">4</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">4</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>DFS - 递归求解 </li>
+<li>类似于求subset的思路，维护一个path，从根节点向下分别沿左右子树搜索。在确保当前节点不为空的情况下，求剩余值<code>remaining = target - root.val</code><ul>
+<li>如果剩余值为0 - 把当前的path加入到result中</li>
+<li>如果剩余值不为0 - 继续向下朝左右子树寻找，target传入remaining的值</li>
+</ul>
+</li>
+<li>注意每次path要加入root.val，但是每次返回上一层要pop出去刚刚加入的值，或者换一种方式<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    self.helper(root.left, remaining, result, path+[root.val])</span><br><span class="line">    self.helper(root.right, remaining, result, path+[root.val])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.left, self.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;TreeNode&#125; root the root of binary tree</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; target an integer</span></span><br><span class="line">    <span class="comment"># @return &#123;int[][]&#125; all valid paths</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">binaryTreePathSum</span><span class="params">(self, root, target)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        res = []</span><br><span class="line">        self.helper(root, target, res, [])</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, target, result, path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> root:</span><br><span class="line">            remaining = target - root.val</span><br><span class="line">            <span class="keyword">if</span> remaining == <span class="number">0</span>:</span><br><span class="line">                result.append(path+[root.val])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                path.append(root.val)</span><br><span class="line">                self.helper(root.left, remaining, result, path)</span><br><span class="line">                self.helper(root.right, remaining, result, path)</span><br><span class="line">                path.pop()</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个二叉树，找出所有路径中各节点相加总和等于给定 目标值<br> 的路径。<br>一个有效的路径，指的是从根节点到叶节点的路径。</p>
+</blockquote>
+<p>给定一个二叉树，和目标值 = 5<]]>
+    </summary>
+    
+      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[C#中的Indexer索引器]]></title>
@@ -650,116 +762,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[132 Palindrome Partitioning II]]></title>
-    <link href="http://yoursite.com/2015/11/01/132-Palindrome-Partitioning-II/"/>
-    <id>http://yoursite.com/2015/11/01/132-Palindrome-Partitioning-II/</id>
-    <published>2015-11-02T02:37:44.000Z</published>
-    <updated>2015-11-02T10:39:04.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个字符串s，将s分割成一些子串，使每个子串都是回文。<br>返回s符合要求的的最少分割次数。</p>
-</blockquote>
-<p>比如，给出字符串s =<strong> “aab”</strong>，<br>返回 1， 因为进行一次分割可以将字符串s分割成[“aa”,”b”]这样两个回文子串</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>序列型动态规划 - Sequence DP</li>
-<li>cache[i]表示前i个字符组成的字符串需要最少cut几次保证子串都是回文串(或能被分割成多少个回文串 - 1)</li>
-<li>初始化cache[i] = i -1</li>
-<li>cache[0] = -1 (因为前0个字符串被分割成0个回文串，0 - 1 = -1)</li>
-<li>状态转移方程：cache[i] = min(cache[j] + 1)<br>满足条件的j应该是<ul>
-<li>j &lt; i</li>
-<li>j+1 ~ i 这一段是回文串</li>
-</ul>
-</li>
-<li>对于判断某一段是否是回文串，使用<strong>区间型动态规划</strong>可以将时间复杂度从O(n)优化到O(1)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minCut</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        IsPalindrome = self.getIsPalindrome(s)</span><br><span class="line">        cache = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s) + <span class="number">1</span>):</span><br><span class="line">            cache[i] = i - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">                <span class="keyword">if</span> IsPalindrome[j][i - <span class="number">1</span>]:</span><br><span class="line">                    cache[i] = min(cache[i], cache[j] + <span class="number">1</span>)</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> cache[len(s)]</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getIsPalindrome</span><span class="params">(self, str)</span>:</span></span><br><span class="line">        IsPalindrome = [[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str))] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str))]</span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize (0, 0), (1, 1)......</span><br><span class="line">        and (0, 1), (1, 2)......</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str)):</span><br><span class="line">            IsPalindrome[i][i] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(str) - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> str[i] == str[i + <span class="number">1</span>]:</span><br><span class="line">                IsPalindrome[i][i + <span class="number">1</span>] = <span class="keyword">True</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> length <span class="keyword">in</span> range(<span class="number">2</span>, len(str)):</span><br><span class="line">            <span class="keyword">for</span> start <span class="keyword">in</span> range(<span class="number">0</span>, len(str) - length):</span><br><span class="line">                IsPalindrome[start][start + length] = \</span><br><span class="line">                IsPalindrome[start + <span class="number">1</span>][start + length - <span class="number">1</span>] <span class="keyword">and</span> str[start] == str[start + length]</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> IsPalindrome</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个字符串s，将s分割成一些子串，使每个子串都是回文。<br>返回s符合要求的的最少分割次数。</p>
-</blockquote>
-<p>比如，给出字符串s =<strong> “aab”</strong>]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Sequence DP" scheme="http://yoursite.com/tags/Sequence-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[125 Valid Palidrome]]></title>
-    <link href="http://yoursite.com/2015/11/01/125-Valid-Palidrome/"/>
-    <id>http://yoursite.com/2015/11/01/125-Valid-Palidrome/</id>
-    <published>2015-11-02T01:11:30.000Z</published>
-    <updated>2015-11-02T09:13:23.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个字符串，判断其是否为一个回文串。只包含字母和数字，忽略大小写。</p>
-</blockquote>
-<p>“A man, a plan, a canal: Panama” 是一个回文。<br>“race a car” 不是一个回文。<br>在这个题目中，我们将空字符串判定为有效回文。</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>两个指针的问题，<strong>对撞型指针</strong></li>
-<li>一个从前往后，一个从后往前，判断如果不是数字或者字母则跳过<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是数字或者字母返回 true</span></span><br><span class="line"><span class="string">"test"</span>.isalnum()</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        l, r = <span class="number">0</span>, len(s) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> <span class="keyword">not</span> s[l].isalnum():</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> l &lt; r <span class="keyword">and</span> <span class="keyword">not</span> s[r].isalnum():</span><br><span class="line">                r -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> s[l].lower() != s[r].lower():</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">            r -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给定一个字符串，判断其是否为一个回文串。只包含字母和数字，忽略大小写。</p>
-</blockquote>
-<p>“A man, a plan, a canal: Panama” 是一个回文。<br>“race]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[139 Word Break]]></title>
-    <link href="http://yoursite.com/2015/11/01/139-Word-Break/"/>
-    <id>http://yoursite.com/2015/11/01/139-Word-Break/</id>
-    <published>2015-11-02T00:51:09.000Z</published>
-    <updated>2015-11-02T08:52:24.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给出一个字符串s和一个词典，判断字符串s是否可以被空格切分成一个或多个出现在字典中的单词。</p>
-</blockquote>
-<p>给出<br>s = <strong>“leetcode”</strong><br>dict = <strong>[“leet”,”code”]</strong><br>返回 true 因为<strong>“leetcode”</strong>可以被空格切分成<strong>“leet code”</strong></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>动态规划是一种解决问题的思想 - 大规模问题的结果，是由小规模问题的结果运算得来的</li>
-<li><strong>动态规划不等同于递归，动态规划思想可以由递归来实现</strong></li>
-<li>DP初始化时一般要有个<code>1</code>或者<code>true</code></li>
-<li>本题属于序列型动态规划 - Sequence DP</li>
-<li><code>cache[i]</code>表示前<code>i</code>个字符能不能被<code>dict</code>完美划分</li>
-<li>判断<code>cache[i]</code>，则需要遍历<code>0~i</code>中是否存在一个<code>j</code>，使得<code>cache[j]=true</code>而且<code>j+1~i</code>存在于<code>dict</code>中</li>
-<li>本题还有一个值得注意的地方，<strong>一定要考虑到单词长度是有上限的！</strong>，所以每次不需要遍历<code>0~i</code>而是<code>x~i</code>(i-x为单词最大长度)</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wordBreak</span><span class="params">(self, s, wordDict)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :type wordDict: Set[str]</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wordDict:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        maxLength = self.getMaxLength(wordDict)</span><br><span class="line">        cache = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)]</span><br><span class="line">        cache[<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s) + <span class="number">1</span>):</span><br><span class="line">            j = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> j &lt;= maxLength <span class="keyword">and</span> j &lt;= i:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> cache[i - j]:</span><br><span class="line">                    j += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> s[i - j:i] <span class="keyword">in</span> wordDict:</span><br><span class="line">                    cache[i] = <span class="keyword">True</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[len(s)]</span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMaxLength</span><span class="params">(self, dict)</span>:</span></span><br><span class="line">        maxLength = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> dict:</span><br><span class="line">            maxLength = max(len(word), maxLength)</span><br><span class="line">        <span class="keyword">return</span> maxLength</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>给出一个字符串s和一个词典，判断字符串s是否可以被空格切分成一个或多个出现在字典中的单词。</p>
-</blockquote>
-<p>给出<br>s = <strong>“leetcode”</strong><]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Sequence DP" scheme="http://yoursite.com/tags/Sequence-DP/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
