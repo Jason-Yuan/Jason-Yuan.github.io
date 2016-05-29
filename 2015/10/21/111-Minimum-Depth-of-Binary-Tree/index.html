@@ -85,11 +85,13 @@
 <meta name="description" content="原题
 给定一个二叉树，找出其最小深度。二叉树的最小深度为根节点到最近叶子节点的距离。
 
-给出一棵如下的二叉树:12345        1     /     \    2       3          /    \        4      5
+给出一棵如下的二叉树:12345      1     / \     2   3       /  \      4    5
 这个二叉树的最小深度为 2
 解题思路
 一定要注意定义，比如下面这棵树的最小深度是3不是1
-11&amp;#10; \&amp;#10;  2&amp;#10;   \&amp;#">
+123451 \  2   \    3
+
+方法和找最大深度一样，Divide &amp;amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="111 Minimum Depth of Binary Tree">
 <meta property="og:url" content="http://yoursite.com/2015/10/21/111-Minimum-Depth-of-Binary-Tree/index.html">
@@ -97,22 +99,26 @@
 <meta property="og:description" content="原题
 给定一个二叉树，找出其最小深度。二叉树的最小深度为根节点到最近叶子节点的距离。
 
-给出一棵如下的二叉树:12345        1     /     \    2       3          /    \        4      5
+给出一棵如下的二叉树:12345      1     / \     2   3       /  \      4    5
 这个二叉树的最小深度为 2
 解题思路
 一定要注意定义，比如下面这棵树的最小深度是3不是1
-11&amp;#10; \&amp;#10;  2&amp;#10;   \&amp;#">
-<meta property="og:updated_time" content="2016-04-10T01:22:31.000Z">
+123451 \  2   \    3
+
+方法和找最大深度一样，Divide &amp;amp;">
+<meta property="og:updated_time" content="2016-05-29T00:54:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="111 Minimum Depth of Binary Tree">
 <meta name="twitter:description" content="原题
 给定一个二叉树，找出其最小深度。二叉树的最小深度为根节点到最近叶子节点的距离。
 
-给出一棵如下的二叉树:12345        1     /     \    2       3          /    \        4      5
+给出一棵如下的二叉树:12345      1     / \     2   3       /  \      4    5
 这个二叉树的最小深度为 2
 解题思路
 一定要注意定义，比如下面这棵树的最小深度是3不是1
-11&amp;#10; \&amp;#10;  2&amp;#10;   \&amp;#">
+123451 \  2   \    3
+
+方法和找最大深度一样，Divide &amp;amp;">
 
 
 
@@ -339,11 +345,11 @@
         <h1 id="原题">原题</h1><blockquote>
 <p>给定一个二叉树，找出其最小深度。<br>二叉树的最小深度为根节点到最近叶子节点的距离。</p>
 </blockquote>
-<p>给出一棵如下的二叉树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        <span class="number">1</span></span><br><span class="line">     /     \ </span><br><span class="line">   <span class="number">2</span>       <span class="number">3</span></span><br><span class="line">          /    \</span><br><span class="line">        <span class="number">4</span>      <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
+<p>给出一棵如下的二叉树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      <span class="number">1</span></span><br><span class="line">     / \ </span><br><span class="line">    <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">       /  \</span><br><span class="line">      <span class="number">4</span>    <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
 <p>这个二叉树的最小深度为 2</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li><p><strong>一定要注意定义</strong>，比如下面这棵树的最小深度是<strong>3</strong>不是<strong>1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#10; \&#10;  2&#10;   \&#10;    3</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"> \</span><br><span class="line">  <span class="number">2</span></span><br><span class="line">   \</span><br><span class="line">    <span class="number">3</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>方法和找最大深度一样，Divide &amp; Conquer<br>只需要判断如果左右儿子中又None，则返回非None的儿子的高度+1</p>
 </li>
