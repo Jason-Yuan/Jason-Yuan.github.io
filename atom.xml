@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-28T09:17:45.000Z</updated>
+  <updated>2016-05-29T00:34:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[467 Complete Binary Tree]]></title>
+    <link href="http://yoursite.com/2016/05/28/467-Complete-Binary-Tree/"/>
+    <id>http://yoursite.com/2016/05/28/467-Complete-Binary-Tree/</id>
+    <published>2016-05-28T17:32:57.000Z</published>
+    <updated>2016-05-29T00:34:06.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>检查一棵二叉树是不是完全二叉树。完全二叉树是指一棵树除了最后一层，其它层上节点都有左右孩子，最后一层上，所有节点都必须尽量靠左。</p>
+</blockquote>
+<p>样例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> /</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>是完全二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> \</span><br><span class="line">  <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>不是完全二叉树</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>理清思路：<ul>
+<li>满二叉树：每个节点都有0或是2个孩子。</li>
+<li>完全二叉树：所有的叶子都拥有同的深度，所有的内部节点拥有 2个孩子</li>
+</ul>
+</li>
+<li>BFS - 广度优先搜索，对于一棵树，层层遍历，把每层的节点从左向右依此加入Stack，然后把Stack上层的<code>None</code>弹出，最后检查如果Stack中还有<code>None</code>说明不是Complete Tree</li>
+<li>比如上面的不完全二叉树生成的数组为[1, 2, 3, None, 4, None, None]，将右侧None弹出后为[1, 2, 3, None, 4]，循环查找，发现还有None存在，所以是不完全二叉树</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.left, this.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root, the root of binary tree.</span><br><span class="line">    @return true if it is a complete binary tree, or false.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isComplete</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        list = [root]</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> index &lt; len(list):</span><br><span class="line">            <span class="keyword">if</span> list[index]:</span><br><span class="line">                list.append(list[index].left)</span><br><span class="line">                list.append(list[index].right)</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">while</span> list[-<span class="number">1</span>] <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            list.pop()</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> list:</span><br><span class="line">            <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>检查一棵二叉树是不是完全二叉树。完全二叉树是指一棵树除了最后一层，其它层上节点都有左右孩子，最后一层上，所有节点都必须尽量靠左。</p>
+</blockquote>
+<p>样例<br><figure class]]>
+    </summary>
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[101 Symmetric Tree]]></title>
@@ -729,41 +768,6 @@
       <category term="Two Sequence DP" scheme="http://yoursite.com/tags/Two-Sequence-DP/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[105 Construct Binary Tree from Preorder and Inorder Traversal]]></title>
-    <link href="http://yoursite.com/2015/11/02/105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/"/>
-    <id>http://yoursite.com/2015/11/02/105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/</id>
-    <published>2015-11-02T16:15:56.000Z</published>
-    <updated>2016-04-10T01:22:01.000Z</updated>
-    <content type="html"><![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>根据前序遍历和中序遍历树构造二叉树.</p>
-</blockquote>
-<p>给出中序遍历：[1,2,3]和前序遍历：[2,1,3]. 返回如下的树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>你可以假设树中不存在相同数值的节点</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>本题与通过中序和后序遍历构造二叉树类似，同样是递归解决</li>
-<li>前序遍历数组的第一个值为根节点，根据这个值可以将中序遍历数组分成左右两部分，分别为左子树和右子树</li>
-</ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, preorder, inorder)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type preorder: List[int]</span><br><span class="line">        :type inorder: List[int]</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> inorder:</span><br><span class="line">            index = inorder.index(preorder[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">del</span> preorder[<span class="number">0</span>]</span><br><span class="line">            root = TreeNode(inorder[index])</span><br><span class="line">            root.left = self.buildTree(preorder, inorder[:index])</span><br><span class="line">            root.right = self.buildTree(preorder, inorder[index + <span class="number">1</span>:])</span><br><span class="line">            <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="原题">原题</h1><blockquote>
-<p>根据前序遍历和中序遍历树构造二叉树.</p>
-</blockquote>
-<p>给出中序遍历：[1,2,3]和前序遍历：[2,1,3]. 返回如下的树:<br><figure class="highlight ]]>
-    </summary>
-    
-      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
-    
-      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
