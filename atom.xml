@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-01T09:26:51.000Z</updated>
+  <updated>2016-06-02T08:06:14.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,48 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[79 Longest Common Substring]]></title>
+    <link href="http://yoursite.com/2016/06/01/79-Longest-Common-Substring/"/>
+    <id>http://yoursite.com/2016/06/01/79-Longest-Common-Substring/</id>
+    <published>2016-06-02T01:04:45.000Z</published>
+    <updated>2016-06-02T08:06:14.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出两个字符串，找到最长公共子串，并返回其长度。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出A=<strong>“ABCD”
+</strong>，B=<strong>“CBCE”</strong>，返回 2</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>典型的双序列行动态规划 - Two Sequence DP</li>
+<li>不同于Longest Common Subsequence, 本题是substring，string要求是连续的，sequence可以是不连续的</li>
+<li>本题的状态表示类似于Longest Increasing Subsequence</li>
+<li>cache[i][j]表示string1的前i个字符和string2的前j个字符的LCS，注意<strong>必须以i/j结尾</strong></li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/424375-66d6d2de1756c444.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="cache"></p>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param A, B: Two string.</span></span><br><span class="line">    <span class="comment"># @return: the length of the longest common substring.</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubstring</span><span class="params">(self, A, B)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A <span class="keyword">or</span> <span class="keyword">not</span> B:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(A) + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(B) + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(B) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(A) + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> A[j - <span class="number">1</span>] == B[i - <span class="number">1</span>]:</span><br><span class="line">                    cache[i][j] = cache[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                res = max(res, cache[i][j])</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出两个字符串，找到最长公共子串，并返回其长度。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出A=<strong>“ABCD”
+</strong>，B=<stro]]>
+    </summary>
+    
+      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Two Sequence DP" scheme="http://yoursite.com/tags/Two-Sequence-DP/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[72 Edit Distance]]></title>
     <link href="http://yoursite.com/2016/05/31/72-Edit-Distance/"/>
     <id>http://yoursite.com/2016/05/31/72-Edit-Distance/</id>
     <published>2016-06-01T02:25:32.000Z</published>
-    <updated>2016-06-01T09:26:51.000Z</updated>
+    <updated>2016-06-01T09:27:57.000Z</updated>
     <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>给出两个单词word1和word2，计算出将word1转换为word2的最少操作次数。<br>你总共三种操作方法：</p>
 <ul>
@@ -31,7 +68,7 @@
 <p><strong>样例</strong><br>给出 work1=”mart” 和 work2=”karma”<br>返回 3</p>
 <h3 id="解题思路">解题思路</h3><ul>
 <li>上面的例子 mart =&gt; kart =&gt; karm =&gt; karma</li>
-<li>求<strong>最少</strong>步骤 + 给出两个字符串 =&gt; Dynamic Programing (Two Sequence DP)</li>
+<li>求<strong>最少</strong>步骤 + 给出两个字符串 =&gt; Dynamic Programming (Two Sequence DP)</li>
 <li>状态：cache[i][j] 表示字符串a[1]-a[i]转换为b[1]-b[i]的编辑距离，在一个二维矩阵中cache[i][j]只与其<strong>左上</strong>，<strong>左</strong>和<strong>上</strong>三个位置的值有关，分别是cache[i - 1][j - 1], cache[i][j - 1]和cache[i - 1][j]</li>
 <li>当word1[i] == word2[j]的时候：<code>cache[j][i] = min(cache[j - 1][i - 1], cache[j - 1][i] + 1, cache[j][i - 1] + 1)</code></li>
 <li>不等于的时候 <code>cache[j][i] = min(cache[j - 1][i - 1], cache[j - 1][i], cache[j][i - 1]) + 1</code></li>
@@ -48,7 +85,7 @@
 <li>替换]]>
     </summary>
     
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
+      <category term="Dynamic Programming" scheme="http://yoursite.com/tags/Dynamic-Programming/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
@@ -740,55 +777,6 @@
       <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
       <category term="Virtual Environment" scheme="http://yoursite.com/tags/Virtual-Environment/"/>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Python中的模块(Module)]]></title>
-    <link href="http://yoursite.com/2016/04/10/Python%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9D%97-Module/"/>
-    <id>http://yoursite.com/2016/04/10/Python中的模块-Module/</id>
-    <published>2016-04-10T20:50:56.000Z</published>
-    <updated>2016-04-11T03:52:46.000Z</updated>
-    <content type="html"><![CDATA[<p>与在控制台输入python程序，执行命令相比。当我们的程序变得越来越长的时候，我们希望可以在文本编辑器(如sublime text, notepad++)中编写python程序，因为这样的话，我们的程序可以保存为python脚本。但是随着程序的复杂度不断上升，我们希望可以把一个python脚本根据一定的功能分割成多个不同的python module。这样做的好处主要有两个：</p>
-<ul>
-<li>程序看起来结构更加清晰，易于维护，因为不同的文件可以同时由不同的程序员同时维护，分工合作。</li>
-<li>如果某个module或者整个package具有较强的复用性，其他的脚本甚至其他的project可以直接引用，避免了重复造轮子。</li>
-</ul>
-<p>这样，我们就引出了python中module和package的概念，可以说python当今十分流行的原因之一就是极为丰富的第三方模块，可以让我在完成很多任务的时候，避免了一切从零开始。当然，python本身也提供了十分强大全面的标准库 - <a href="https://docs.python.org/2/library/" target="_blank" rel="external">Python Standard Library</a></p>
-<p>类似于c++中的<code>include</code>, PHP中的<code>require</code>。在python中导入模块有两种方式<code>import</code>和<code>from ... import ...</code>，下面我们通过<code>test.py</code>和<code>example.py</code>来举例说明。</p>
-<p>test.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"Hello"</span></span><br><span class="line">b = <span class="string">"World"</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Hello, World"</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="当两个文件在同一个子目录下">当两个文件在同一个子目录下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- project</span><br><span class="line">  |-- test.py</span><br><span class="line">  `-- example.py</span><br></pre></td></tr></table></figure>
-<p>如果我想要在example.py中使用test模块，有下面三种方法：</p>
-<ul>
-<li>第一种方法</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test</span><br><span class="line"></span><br><span class="line">test.Hello()  <span class="comment"># "Hello, World"</span></span><br><span class="line">print(test.a) <span class="comment"># "Hello"</span></span><br></pre></td></tr></table></figure>
-<p>使用时必须遵守<code>module_name.xxx</code>的格式，此方法将整个文件都包括进来</p>
-<ul>
-<li>第二种方法</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">Hello()  <span class="comment"># "Hello, World"</span></span><br><span class="line">print(a) <span class="comment"># "Hello"</span></span><br></pre></td></tr></table></figure>
-<p>使用第二种方法时，不再需要遵守第一种的格式，<code>*</code>表示import everything（但这种方式不会导入以下划线开头的名称），通常导致代码非常难读，不赞成使用。相应的应对方法就是通过使用<code>__all__</code>变量来限制。比如更改 <code>test.py</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__all__ = [<span class="string">"a"</span>, <span class="string">"b"</span>]</span><br><span class="line">a = <span class="string">"Hello"</span></span><br><span class="line">b = <span class="string">"World"</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Hello, World"</span>)</span><br></pre></td></tr></table></figure>
-<p>这样的话，<code>import *</code>将<strong>不能</strong>引入<code>Hello</code>方法</p>
-<ul>
-<li>第三种方法<br>在import的时候就声明具体要引入的内容</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Hello</span><br><span class="line"></span><br><span class="line">Hello()  <span class="comment"># "Hello, World"</span></span><br></pre></td></tr></table></figure>
-<h2 id="当主程序所在目录是模块所在目录的父(或祖辈)目录">当主程序所在目录是模块所在目录的父(或祖辈)目录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- project</span><br><span class="line">  |-- module</span><br><span class="line">  |  `--test.py</span><br><span class="line">  `-- example.py</span><br></pre></td></tr></table></figure>
-<p>如果要在<code>example.py</code>中使用<code>test</code>模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> module.test <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module.test</span><br></pre></td></tr></table></figure></p>
-<p>但要注意必须在module文件夹中添加<code>__init__.py</code>文件，文件可以为空。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>与在控制台输入python程序，执行命令相比。当我们的程序变得越来越长的时候，我们希望可以在文本编辑器(如sublime text, notepad++)中编写python程序，因为这样的话，我们的程序可以保存为python脚本。但是随着程序的复杂度不断上升，我们希望可以把]]>
-    </summary>
-    
-      <category term="Module" scheme="http://yoursite.com/tags/Module/"/>
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
