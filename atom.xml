@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-02T08:06:14.000Z</updated>
+  <updated>2016-06-04T08:29:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[使用C#中的Dispatcher]]></title>
+    <link href="http://yoursite.com/2016/06/03/%E4%BD%BF%E7%94%A8C-%E4%B8%AD%E7%9A%84Dispatcher/"/>
+    <id>http://yoursite.com/2016/06/03/使用C-中的Dispatcher/</id>
+    <published>2016-06-04T01:28:24.000Z</published>
+    <updated>2016-06-04T08:29:01.000Z</updated>
+    <content type="html"><![CDATA[<p>之前的文章说过了<a href="http://www.jianshu.com/p/b89f39c5f803" target="_blank" rel="external">如何使用BackgroundWorker</a>，今天要说的是WPF程序员处理多线程的另外一个方式 - Dispatcher</p>
+<p>当我们打开一个WPF应用程序即开启了一个进程，该进程中至少包含两个线程。</p>
+<ul>
+<li>一个线程用于处理呈现：隐藏在后台运行</li>
+<li>一个线程用于管理用户界面：接收输入、处理事件、绘制屏幕以及运行应用程序代码。即UI线程。</li>
+</ul>
+<p>在UI线程中有一个Dispatcher对象，管理每一个需要执行的工作项。Dispatcher会根据每个工作项的优先级排队。向Dispatcher列队中添加工作项时可指定10个不同的级别。那么问题来了，如果遇到耗时操作的时候，该操作如果依旧发生在UI线程中，Dispatcher 列队中其他的需要执行的工作项都要等待，从而造成界面假死的现象。为了加快响应速度，提高用户体验，我们应该尽量保证Dispatcher 列队中工作项要<strong>小</strong>。所以，对于耗时操作，我们应该开辟一个新的子线程去处理，在操作完成后，通过向UI线程的Dispatcher列队注册工作项，来通知UI线程更新结果。</p>
+<p>Dispatcher提供两个注册工作项的方法：Invoke 和 BeginInvoke。这两个方法均调度一个委托来执行。Invoke 是同步调用，也就是说，直到 UI 线程实际执行完该委托它才返回。BeginInvoke是异步的，将立即返回。</p>
+<ul>
+<li>Dispatcher实际上并不是多线程</li>
+<li>子线程不能直接修改UI线程，必须通过向UI线程中的Dispatcher注册工作项来完成</li>
+<li>Dispatcher 是单例模式，暴露了一个静态的CurrentDispatcher方法用于获得当前线程的Dispatcher</li>
+<li>每一个UI线程都至少有一个Dispatcher，一个Dispatcher只能在一个线程中执行工作。</li>
+<li>开启新线程的方法很多，比如delegate.BeginInvoke()的方式开启的新线程。<blockquote>
+<p>Delegate.Invoke: Executes synchronously, on the same thread.<br>Delegate.BeginInvoke: Executes asynchronously, on a threadpool thread.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="示例程序">示例程序</h3><p>XAML<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;Window x:Class=&#34;DispatcherExample.MainWindow&#34;&#10;        xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;&#10;        xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;&#10;        Title=&#34;MainWindow&#34; Height=&#34;160&#34; Width=&#34;300&#34;&#62;&#10;    &#60;StackPanel&#62;&#10;        &#60;ProgressBar Name=&#34;progressBar&#34; Height=&#34;20&#34; Width=&#34;250&#34; Margin=&#34;10&#34;&#62;&#60;/ProgressBar&#62;&#10;        &#60;TextBox Name=&#34;textBox&#34; Width=&#34;50&#34; Height=&#34;20&#34; HorizontalAlignment=&#34;Center&#34;&#62;&#60;/TextBox&#62;&#10;        &#60;Button Name=&#34;btnProcess&#34; Width=&#34;100&#34; Click=&#34;btnProcess_Click&#34; Margin=&#34;5&#34;&#62;Start&#60;/Button&#62;&#10;        &#60;Button Name=&#34;btnCancel&#34; Width=&#34;100&#34; Click=&#34;btnCancel_Click&#34; Margin=&#34;5&#34;&#62;Cancel&#60;/Button&#62;&#10;    &#60;/StackPanel&#62;&#10;&#60;/Window&#62;</span><br></pre></td></tr></table></figure></p>
+<p>C#<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">DispatcherExample</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> Interaction logic for MainWindow.xaml</span></span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>(<span class="params"></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Thread taskThread;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnProcess_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            taskThread = <span class="keyword">new</span> Thread(DoTask);</span><br><span class="line">            taskThread.Start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnCancel_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            taskThread.Abort();</span><br><span class="line">            MessageBox.Show(<span class="string">"Background task finished normally"</span>, <span class="string">"info"</span>);</span><br><span class="line">            <span class="keyword">this</span>.progressBar.Value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">this</span>.textBox.Text = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DoTask</span>(<span class="params"></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            Int64 InputNum = (Int64)<span class="number">100</span>;</span><br><span class="line">            <span class="keyword">for</span> (Int64 i = <span class="number">0</span>; i &lt; InputNum; i++)</span><br><span class="line">			&#123;</span><br><span class="line">                Thread.Sleep(<span class="number">100</span>);</span><br><span class="line">			    <span class="keyword">this</span>.Dispatcher.BeginInvoke((Action)<span class="keyword">delegate</span>()</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">this</span>.progressBar.Value = i;</span><br><span class="line">                    <span class="keyword">this</span>.textBox.Text = i.ToString();</span><br><span class="line">                &#125;);</span><br><span class="line">			&#125;</span><br><span class="line">            MessageBox.Show(<span class="string">"Background task has been canceled"</span>, <span class="string">"info"</span>);</span><br><span class="line">            <span class="keyword">this</span>.Dispatcher.BeginInvoke((Action)<span class="keyword">delegate</span>()</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">this</span>.progressBar.Value = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">this</span>.textBox.Text = <span class="keyword">null</span>;</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="演示">演示</h3><p><img src="http://upload-images.jianshu.io/upload_images/424375-cb2af30c9dd0131c.gif?imageMogr2/auto-orient/strip" alt="DispatcherExample.gif"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>之前的文章说过了<a href="http://www.jianshu.com/p/b89f39c5f803" target="_blank" rel="external">如何使用BackgroundWorker</a>，今天要说的是WPF程序员处理多线程的另外一个方式 ]]>
+    </summary>
+    
+      <category term="C#" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="C#学习笔记" scheme="http://yoursite.com/tags/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Multi-threading" scheme="http://yoursite.com/tags/Multi-threading/"/>
+    
+      <category term="WPF" scheme="http://yoursite.com/tags/WPF/"/>
+    
+      <category term="thread" scheme="http://yoursite.com/tags/thread/"/>
+    
+      <category term="C#" scheme="http://yoursite.com/categories/C/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[79 Longest Common Substring]]></title>
@@ -742,43 +788,6 @@
       <category term="thread" scheme="http://yoursite.com/tags/thread/"/>
     
       <category term="C#" scheme="http://yoursite.com/categories/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Virtualenv搭建python虚拟环境]]></title>
-    <link href="http://yoursite.com/2016/05/01/Virtualenv%E6%90%AD%E5%BB%BApython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
-    <id>http://yoursite.com/2016/05/01/Virtualenv搭建python虚拟环境/</id>
-    <published>2016-05-01T20:08:39.000Z</published>
-    <updated>2016-05-02T03:15:56.000Z</updated>
-    <content type="html"><![CDATA[<p>来自<strong>Virtualenv</strong>官方的定义</p>
-<blockquote>
-<p>Virtualenv是一个可以为我们创建独立的python运行环境的工具</p>
-</blockquote>
-<h1 id="安装_Virtualenv">安装 Virtualenv</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 安装</span><br><span class="line">pip install virtualenv</span><br><span class="line">// 升级版本</span><br><span class="line">pip install --upgrade virtualenv</span><br></pre></td></tr></table></figure>
-<h1 id="创建一个虚拟环境">创建一个虚拟环境</h1><p>假定虚拟环境的名字是<code>newEnv</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv newEnv</span><br><span class="line">New python executable <span class="keyword">in</span> /Users/boyuan/newEnv/bin/python</span><br><span class="line">Installing setuptools, pip, wheel...done.</span><br></pre></td></tr></table></figure></p>
-<p>若想要指定Python3<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ virtualenv -p python3 newEnv</span><br></pre></td></tr></table></figure></p>
-<p>查看newEnv文件夹中的内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ <span class="built_in">cd</span> newEnv</span><br><span class="line">boyuan: ~ $ ls</span><br><span class="line">bin                include            lib                pip-selfcheck.json</span><br></pre></td></tr></table></figure></p>
-<h1 id="激活虚拟环境">激活虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ <span class="built_in">source</span> newEnv/bin/activate</span><br></pre></td></tr></table></figure>
-<p>激活后会发现最左边显示当前环境名称<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $</span><br></pre></td></tr></table></figure></p>
-<p>查看当前环境中的依赖包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $ pip list</span><br><span class="line">pip (<span class="number">8.1</span>.<span class="number">1</span>)</span><br><span class="line">setuptools (<span class="number">20.10</span>.<span class="number">1</span>)</span><br><span class="line">wheel (<span class="number">0.29</span>.<span class="number">0</span>)</span><br><span class="line">(newEnv) boyuan: ~ $</span><br></pre></td></tr></table></figure></p>
-<p>依据当前环境中的依赖包生成requirements.txt文档<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $: pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure></p>
-<p>依据requirements.txt文档重建环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $: pip install -r &lt; requirements.txt</span><br></pre></td></tr></table></figure></p>
-<h1 id="关闭虚拟环境">关闭虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(newEnv) boyuan: ~ $ deactivate</span><br><span class="line">boyuan: ~ $</span><br></pre></td></tr></table></figure>
-<h1 id="删除虚拟环境">删除虚拟环境</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boyuan: ~ $ rm -rf newEnv</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>来自<strong>Virtualenv</strong>官方的定义</p>
-<blockquote>
-<p>Virtualenv是一个可以为我们创建独立的python运行环境的工具</p>
-</blockquote>
-<h1 id="安装_Virtualenv">安装 V]]>
-    </summary>
-    
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
-    
-      <category term="Virtual Environment" scheme="http://yoursite.com/tags/Virtual-Environment/"/>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
   </entry>
   
