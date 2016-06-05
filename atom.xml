@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-05T03:30:28.000Z</updated>
+  <updated>2016-06-05T07:30:16.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[115 Distinct Subsequence]]></title>
+    <link href="http://yoursite.com/2016/06/04/115-Distinct-Subsequence/"/>
+    <id>http://yoursite.com/2016/06/04/115-Distinct-Subsequence/</id>
+    <published>2016-06-05T00:17:23.000Z</published>
+    <updated>2016-06-05T07:30:16.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出字符串S和字符串T，计算S的不同的子序列中T出现的个数。<br>子序列字符串是原始字符串通过删除一些(或零个)产生的一个新的字符串，并且对剩下的字符的相对位置没有影响。(比如，<strong>“ACE”</strong>是<strong>“ABCDE”</strong>的子序列字符串,而<strong>“AEC”</strong>不是)。 </p>
+</blockquote>
+<p><strong>样例</strong><br>给出S = <strong>“rabbbit”</strong>, T =<strong> “rabbit”</strong><br>返回 3</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>典型动态规划 - Two Sequence DP</li>
+<li>状态cache[i][j]表示 S前i位的不同子序列中有几个和T的前j位相同</li>
+<li>初始化<ul>
+<li>cache[0][0] = 1 T和S都是空串，空串在空串中出现1次</li>
+<li>cache[0][j] = 1 T是空串，S只有一种子序列(空串)可以匹配</li>
+<li>cache[i][0] = 0 S是空串，T不是空串，S没有子序列可以匹配</li>
+</ul>
+</li>
+<li><p>状态转移方程</p>
+<ul>
+<li>当S[j] != T[i]的时候， cache[i][j] = cache[i][j - 1] //<strong>“ABCD”匹配”AC”的方式至少有”ABC”匹配”AC”那么多种</strong></li>
+<li>当S[j] == T[i]的时候，还要加上cache[i - 1][j - 1]那么多种匹配方式</li>
+</ul>
+</li>
+<li><p>如果状态转移方程比较难想，可以先画图找规律</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/424375-d5fc78358fd3a564.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Screenshot at Jun 05 00-07-26.png"></p>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numDistinct</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :type t: str</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        cache = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s) + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(t) + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s) + <span class="number">1</span>):</span><br><span class="line">            cache[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(t) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(s) + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> s[j - <span class="number">1</span>] == t[i - <span class="number">1</span>]:</span><br><span class="line">                    cache[i][j] = cache[i][j - <span class="number">1</span>] + cache[i - <span class="number">1</span>][j - <span class="number">1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    cache[i][j] = cache[i][j - <span class="number">1</span>]</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> cache[len(t)][len(s)]</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出字符串S和字符串T，计算S的不同的子序列中T出现的个数。<br>子序列字符串是原始字符串通过删除一些(或零个)产生的一个新的字符串，并且对剩下的字符的相对位置没有影响。(比如，<strong>“ACE”</]]>
+    </summary>
+    
+      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Two Sequence DP" scheme="http://yoursite.com/tags/Two-Sequence-DP/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[97 Interleaving String]]></title>
@@ -737,47 +782,6 @@
       <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[C#中的?和??]]></title>
-    <link href="http://yoursite.com/2016/05/13/C-%E4%B8%AD%E7%9A%84-%E5%92%8C/"/>
-    <id>http://yoursite.com/2016/05/13/C-中的-和/</id>
-    <published>2016-05-13T23:40:38.000Z</published>
-    <updated>2016-05-20T06:56:05.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<blockquote>
-<p>单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!<br>双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>? para;</span><br><span class="line"><span class="comment">//public int para;如果不注释掉此行,而把上一行注释掉的话,下面会报错!</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">par</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.para ?? <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>值类型后面加问号表示可为空null(Nullable 结构) </p>
-<p>Nullable是.NET 2.0中新提供的一种用于标明一个值类型是否可以为空的技术。</p>
-<ul>
-<li>例：<code>public int? age;</code> 等同 <code>Nullable&lt;int&gt;</code></li>
-</ul>
-<p>对于一个类型，如果既可以给它分配一个值，也可以给它分配空引用null（表示没有任何值），我们就说这个类型是可空的。  </p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>? num = <span class="keyword">null</span>;   <span class="comment">//正确</span></span><br><span class="line"><span class="keyword">int</span> num = <span class="keyword">null</span>;    <span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
-<p>Nullable 结构支持 将值类型 扩展为可以为null，但不支持 在引用类型 上使用，因为引用类型本身就是可空的。</p>
-<p>设置值的写法 Arg = value;</p>
-<p>获取值的写法 Arg.Value;</p>
-<p>判断非空的写法 Arg.HasValue </p>
-<p>语法 <strong>T?</strong> 是Nullable<t>的简写，此处的 <strong>T</strong> 为值类型。</t></p>
-<h1 id="概念">概念</h1><p><strong>GUID</strong>： 即Globally Unique Identifier（全球唯一标识符） 也称作 UUID(Universally Unique IDentifier) 。 GUID是一个通过特定算法产生的二进制长度为128位的数字标识符，用于指示产品的唯一性。GUID 主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的标识符。<br>在 Windows 平台上，GUID 广泛应用于微软的产品中，用于标识如如注册表项、类及接口标识、数据库、系统目录等对象。<br><strong>格式</strong><br>GUID 的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”，其中每个 x 是 0-9 或 a-f 范围内的一个32位十六进制数。例如：6F9619FF-8B86-D011-B42D-00C04FC964FF 即为有效的 GUID 值。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<blockquote>
-<p>单问号—用于给变量设初值的时候,给变量(int类型)赋值为null,而不是0!<br>双问号—用于判断并赋值,先判断当前变量是否为null,如果是就可以赋一个新值,否则跳过!</p>
-</blockquote>
-<figure class]]>
-    </summary>
-    
-      <category term="C#" scheme="http://yoursite.com/tags/C/"/>
-    
-      <category term="C#学习笔记" scheme="http://yoursite.com/tags/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="C#" scheme="http://yoursite.com/categories/C/"/>
     
   </entry>
   
