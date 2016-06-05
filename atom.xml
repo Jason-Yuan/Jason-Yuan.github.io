@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-04T08:29:01.000Z</updated>
+  <updated>2016-06-05T03:30:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[97 Interleaving String]]></title>
+    <link href="http://yoursite.com/2016/06/04/97-Interleaving-String/"/>
+    <id>http://yoursite.com/2016/06/04/97-Interleaving-String/</id>
+    <published>2016-06-04T20:29:31.000Z</published>
+    <updated>2016-06-05T03:30:28.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。</p>
+</blockquote>
+<p><strong>样例</strong><br>比如 s1 =<strong> “aabcc”</strong> s2 =<strong> “dbbca”</strong></p>
+<ul>
+<li>当 s3 = <strong>“aadbbcbcac”</strong>，返回  true.</li>
+<li>当 s3 = <strong>“aadbbbaccc”</strong>， 返回 false.</li>
+</ul>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>典型序列型动态规划，Two Sequence DP</li>
+<li>状态cache[i][j]表示，s1的前i个字符和s2的前j个字符是否能交叉构成s3的前i+j个字符</li>
+<li>初始化：<ul>
+<li>cache[0][0] = True 因为两个空字符串可以组成空字符串</li>
+<li>边界情况是一个字符串为空，初始化只需判断另一个字符串和目标字符串前x为是否相等</li>
+<li>递推关系 cache[i][j] = (s1[i] == s3[i+j] and cache[i-1][j]) or (s2[j] == s3[i+j] and cache[i][j-1])</li>
+</ul>
+</li>
+<li>最后说一个小小的简化程序的trick<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> something &gt; <span class="number">0</span> <span class="keyword">and</span> others &lt; <span class="number">0</span>:</span><br><span class="line">    x = <span class="keyword">True</span></span><br><span class="line"><span class="comment"># 直接可以写成</span></span><br><span class="line">x = something &gt; <span class="number">0</span> <span class="keyword">and</span> others &lt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isInterleave</span><span class="params">(self, s1, s2, s3)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s1: str</span><br><span class="line">        :type s2: str</span><br><span class="line">        :type s3: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(s3) != len(s1) + len(s2):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            </span><br><span class="line">        cache = [[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s1) + <span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s2) + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        cache[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s1) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> cache[<span class="number">0</span>][i -<span class="number">1</span>] <span class="keyword">and</span> s1[i - <span class="number">1</span>] == s3[i - <span class="number">1</span>]:</span><br><span class="line">                cache[<span class="number">0</span>][i] = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(s2) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> cache[j - <span class="number">1</span>][<span class="number">0</span>] <span class="keyword">and</span> s2[j - <span class="number">1</span>] == s3[j - <span class="number">1</span>]:</span><br><span class="line">                cache[j][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(s2) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s1) + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> (cache[j - <span class="number">1</span>][i] <span class="keyword">and</span> s2[j - <span class="number">1</span>] == s3[j + i - <span class="number">1</span>]) <span class="keyword">or</span> (cache[j][i - <span class="number">1</span>] <span class="keyword">and</span> s1[i - <span class="number">1</span>] == s3[j + i - <span class="number">1</span>]):</span><br><span class="line">                    cache[j][i] = <span class="keyword">True</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[len(s2)][len(s1)]</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。</p>
+</blockquote>
+<p><strong>样例</strong><br>比如 s1 =<strong> “aabcc”</s]]>
+    </summary>
+    
+      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Two Sequence DP" scheme="http://yoursite.com/tags/Two-Sequence-DP/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[使用C#中的Dispatcher]]></title>
@@ -732,60 +776,6 @@
       <category term="C#" scheme="http://yoursite.com/tags/C/"/>
     
       <category term="C#学习笔记" scheme="http://yoursite.com/tags/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="C#" scheme="http://yoursite.com/categories/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[使用C#中BackgroundWorker]]></title>
-    <link href="http://yoursite.com/2016/05/13/%E4%BD%BF%E7%94%A8C-%E4%B8%ADBackgroundWorker/"/>
-    <id>http://yoursite.com/2016/05/13/使用C-中BackgroundWorker/</id>
-    <published>2016-05-13T23:34:36.000Z</published>
-    <updated>2016-05-20T06:56:02.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<h1 id="使用前提">使用前提</h1><p>在WPF程序中，有一些比较耗时的后台操作时，比如向远程服务器请求数据，或者通过TCP/IP为某台设备提供升级固件服务等等。为了防止这类操作freeze用户界面，造成用户体验下降，即程序假死的状况出现。一种常见的，更user friendly的方式是，提供一个进度条窗口，提示用户该操作的完成进度。并提供取消操作的选项。</p>
-<p>C#中的<a href="https://msdn.microsoft.com/en-us/library/system.componentmodel.backgroundworker(v=vs.110" target="_blank" rel="external"> BackgroundWorker Class </a>.aspx)则是执行该任务的最佳选择。</p>
-<blockquote>
-<p>The BackgroundWorker class allows you to run an operation on a separate, dedicated thread. Time-consuming operations like downloads and database transactions can cause your user interface (UI) to seem as though it has stopped responding while they are running. When you want a responsive UI and you are faced with long delays associated with such operations, theBackgroundWorker class provides a convenient solution.<br><strong>-MSDN</strong></p>
-</blockquote>
-<h1 id="关于_BackgroundWorker_类">关于 BackgroundWorker 类</h1><p><strong>主要属性</strong></p>
-<ul>
-<li><code>CancellationPending</code> - 只读属性，default值为false，执行CancelAsync方法后，值为true。表明应用程序请求了取消后台操作。</li>
-<li><code>IsBusy</code> - 如果后台异步操作开始执行，值为true，否则为false</li>
-<li><code>WorkerReportProgress</code> - 如果BackgroundWorker支持后台操作进程更新，设置值为true，default值为false</li>
-</ul>
-<p><strong>主要事件</strong></p>
-<ul>
-<li><code>DoWork</code></li>
-<li><code>ProgressChanged</code></li>
-<li><code>RunWorkerCompleted</code><br>不要再DoWork事件处理程序中对UI线程中的对象进行操作，操作应该放在ProgressChanged和RunWorkerCompleted的事件处理程序中。</li>
-</ul>
-<p><strong>主要方法</strong> </p>
-<ul>
-<li><code>RunWorkerAsync()</code> - 执行后台操作，激发DoWork事件</li>
-<li><code>ReportProgress()</code>- 激发ProgressChanged事件</li>
-<li><code>CancelAsync()</code> - 提交终止后台操作的请求，并将CancellationPending属性值设为true。在程序其他地方要定时检查CancellationPending属性的值，作出相应操作，比如<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (worker.CancellationPending)</span><br><span class="line">&#123;</span><br><span class="line">    e.Cancel = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="示例程序">示例程序</h1><p>XAML<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">Window</span> <span class="attribute">x:Class</span>=<span class="value">"BackgroundWorkerExample.MainWindow"</span>  </span><br><span class="line">        <span class="attribute">xmlns</span>=<span class="value">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span>  </span><br><span class="line">        <span class="attribute">xmlns:x</span>=<span class="value">"http://schemas.microsoft.com/winfx/2006/xaml"</span>  </span><br><span class="line">        <span class="attribute">Title</span>=<span class="value">"MainWindow"</span> <span class="attribute">Height</span>=<span class="value">"150"</span> <span class="attribute">Width</span>=<span class="value">"300"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">StackPanel</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">ProgressBar</span> <span class="attribute">Name</span>=<span class="value">"progressBar"</span> <span class="attribute">Height</span>=<span class="value">"20"</span> <span class="attribute">Width</span>=<span class="value">"250"</span> <span class="attribute">Margin</span>=<span class="value">"10"</span>&gt;</span><span class="tag">&lt;/<span class="title">ProgressBar</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">TextBox</span> <span class="attribute">Name</span>=<span class="value">"textBox"</span> <span class="attribute">Width</span>=<span class="value">"50"</span> <span class="attribute">Height</span>=<span class="value">"20"</span> <span class="attribute">HorizontalAlignment</span>=<span class="value">"Center"</span>&gt;</span><span class="tag">&lt;/<span class="title">TextBox</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">Button</span> <span class="attribute">Name</span>=<span class="value">"btnProcess"</span> <span class="attribute">Width</span>=<span class="value">"100"</span> <span class="attribute">Click</span>=<span class="value">"btnProcess_Click"</span> <span class="attribute">Margin</span>=<span class="value">"5"</span>&gt;</span>Start<span class="tag">&lt;/<span class="title">Button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">Button</span> <span class="attribute">Name</span>=<span class="value">"btnCancel"</span> <span class="attribute">Width</span>=<span class="value">"100"</span> <span class="attribute">Click</span>=<span class="value">"btnCancel_Click"</span> <span class="attribute">Margin</span>=<span class="value">"5"</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="title">Button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">StackPanel</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">Window</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>C#<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">BackgroundWorkerExample</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> Interaction logic for MainWindow.xaml</span></span><br><span class="line">    <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainWindow</span> : <span class="title">Window</span></span><br><span class="line">    &#123;</span><br><span class="line">        BackgroundWorker bgworker = <span class="keyword">new</span> BackgroundWorker();</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MainWindow</span>(<span class="params"></span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line"></span><br><span class="line">            bgworker.WorkerReportsProgress = <span class="keyword">true</span>;</span><br><span class="line">            bgworker.WorkerSupportsCancellation = <span class="keyword">true</span>;</span><br><span class="line">            bgworker.DoWork += bgworker_DoWork;</span><br><span class="line">            bgworker.ProgressChanged += bgworker_ProgressChanged;</span><br><span class="line">            bgworker.RunWorkerCompleted += bgworker_RunWorkerCompleted;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">bgworker_DoWork</span>(<span class="params"><span class="keyword">object</span> sender, DoWorkEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            BackgroundWorker worker = sender <span class="keyword">as</span> BackgroundWorker;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (worker.CancellationPending)</span><br><span class="line">                &#123;</span><br><span class="line">                    e.Cancel = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    worker.ReportProgress(i);</span><br><span class="line">                    Thread.Sleep(<span class="number">100</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">bgworker_ProgressChanged</span>(<span class="params"><span class="keyword">object</span> sender, ProgressChangedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            progressBar.Value = e.ProgressPercentage;</span><br><span class="line">            textBox.Text = e.ProgressPercentage.ToString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">bgworker_RunWorkerCompleted</span>(<span class="params"><span class="keyword">object</span> sender, RunWorkerCompletedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            progressBar.Value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (e.Cancelled)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(<span class="string">"Background task has been canceled"</span>, <span class="string">"info"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(<span class="string">"Background task finished"</span>, <span class="string">"info"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnProcess_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!bgworker.IsBusy)</span><br><span class="line">            &#123;</span><br><span class="line">                bgworker.RunWorkerAsync();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnCancel_Click</span>(<span class="params"><span class="keyword">object</span> sender, RoutedEventArgs e</span>)</span><br><span class="line">        </span>&#123;</span><br><span class="line">            bgworker.CancelAsync();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="演示">演示</h1><p><img src="http://i781.photobucket.com/albums/yy93/Jason__Yuan/424375-443b315fdb50853d_zpsfha7r8iw.gif" alt="BackgroundWorkerExample.gif"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<h1 id="使用前提">使用前提</h1><p>在WPF程序中，有一些比较耗时的后台操作时，比如向远程服务器请求数据，或者通过TCP/IP为某台设备提供升级固件服务等等。为了防止这类操作freeze用户界面，造成用户体验下降，即程序假死的状况出现。一种常见的，更us]]>
-    </summary>
-    
-      <category term="C#" scheme="http://yoursite.com/tags/C/"/>
-    
-      <category term="C#学习笔记" scheme="http://yoursite.com/tags/C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="Multi-threading" scheme="http://yoursite.com/tags/Multi-threading/"/>
-    
-      <category term="WPF" scheme="http://yoursite.com/tags/WPF/"/>
-    
-      <category term="thread" scheme="http://yoursite.com/tags/thread/"/>
     
       <category term="C#" scheme="http://yoursite.com/categories/C/"/>
     
