@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-06T03:40:00.000Z</updated>
+  <updated>2016-06-06T08:30:14.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[23 Merge k Sorted Lists]]></title>
+    <link href="http://yoursite.com/2016/06/05/23-Merge-k-Sorted-Lists/"/>
+    <id>http://yoursite.com/2016/06/05/23-Merge-k-Sorted-Lists/</id>
+    <published>2016-06-06T01:29:15.000Z</published>
+    <updated>2016-06-06T08:30:14.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>合并k个排序链表，并且返回合并后的排序链表。尝试分析和描述其复杂度。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出3个排序链表<strong>[2-&gt;4-&gt;null, null, -1-&gt;null]</strong>，返回 <strong>-1-&gt;2-&gt;4-&gt;null</strong></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>方法一：两两合并，最终合并成一个linked list，返回结果<ul>
+<li>相当于8-&gt;4-&gt;2-&gt;1, 一共logk层，每层都是n个节点(n表示k个链表的节点总和)，所以时间复杂度是O(nlogk)</li>
+<li>实现上可以采用递归，divide and conquer的思想把合并k个链表分成两个合并k/2个链表的任务，一直划分，知道任务中只剩一个链表或者两个链表。</li>
+<li>也可以采用非递归的方式</li>
+</ul>
+</li>
+<li>方法二：维护一个k个大小的min heap<ul>
+<li>每次取出最小的数O(1)，并且插入一个新的数O(logk)，一共操作n次，所以时间复杂度是O(nlogk)</li>
+<li>如果不使用min heap，而是通过for循环每次找到最小，一次操作是O(k)，所以总的时间复杂度是O(nk)</li>
+</ul>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一 递归</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type lists: List[ListNode]</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> lists == [] <span class="keyword">or</span> lists == [[]]:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> self.helper(lists)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, lists)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(lists) &lt;= <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> lists[<span class="number">0</span>]</span><br><span class="line">        left = self.helper(lists[:len(lists) / <span class="number">2</span>])</span><br><span class="line">        right = self.helper(lists[len(lists) / <span class="number">2</span>:])</span><br><span class="line">        <span class="keyword">return</span> self.merge(left, right)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, head1, head2)</span>:</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        tail = dummy</span><br><span class="line">        <span class="keyword">while</span> head1 <span class="keyword">and</span> head2:</span><br><span class="line">            <span class="keyword">if</span> head1.val &lt; head2.val:</span><br><span class="line">                tail.next = head1</span><br><span class="line">                head1 = head1.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tail.next = head2</span><br><span class="line">                head2 = head2.next</span><br><span class="line">            tail = tail.next</span><br><span class="line">        <span class="keyword">if</span> head1:</span><br><span class="line">            tail.next = head1</span><br><span class="line">        <span class="keyword">if</span> head2:</span><br><span class="line">            tail.next = head2</span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二 非递归</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type lists: List[ListNode]</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> lists:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> len(lists) &gt; <span class="number">1</span>:</span><br><span class="line">            new_lists = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(lists) - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">                merge_list = self.merge(lists[i], lists[i + <span class="number">1</span>])</span><br><span class="line">                new_lists.append(merge_list)</span><br><span class="line">            <span class="keyword">if</span> len(lists) % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">                new_lists.append(lists[len(lists) - <span class="number">1</span>])</span><br><span class="line">                </span><br><span class="line">            lists = new_lists</span><br><span class="line">        <span class="keyword">return</span> lists[<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, head1, head2)</span>:</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        tail = dummy</span><br><span class="line">        <span class="keyword">while</span> head1 <span class="keyword">and</span> head2:</span><br><span class="line">            <span class="keyword">if</span> head1.val &lt; head2.val:</span><br><span class="line">                tail.next = head1</span><br><span class="line">                head1 = head1.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tail.next = head2</span><br><span class="line">                head2 = head2.next</span><br><span class="line">            tail = tail.next</span><br><span class="line">        <span class="keyword">if</span> head1:</span><br><span class="line">            tail.next = head1</span><br><span class="line">        <span class="keyword">if</span> head2:</span><br><span class="line">            tail.next = head2</span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 方法三 k个数的min heap</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type lists: List[ListNode]</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        heap = []</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> lists:</span><br><span class="line">            <span class="keyword">if</span> node: </span><br><span class="line">                heap.append((node.val, node))</span><br><span class="line">        heapq.heapify(heap)</span><br><span class="line">        head = ListNode(<span class="number">0</span>)</span><br><span class="line">        curr = head</span><br><span class="line">        <span class="keyword">while</span> heap:</span><br><span class="line">            pop = heapq.heappop(heap)</span><br><span class="line">            curr.next = ListNode(pop[<span class="number">0</span>])</span><br><span class="line">            curr = curr.next</span><br><span class="line">            <span class="keyword">if</span> pop[<span class="number">1</span>].next: </span><br><span class="line">                heapq.heappush(heap, (pop[<span class="number">1</span>].next.val, pop[<span class="number">1</span>].next))</span><br><span class="line">        <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>合并k个排序链表，并且返回合并后的排序链表。尝试分析和描述其复杂度。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出3个排序链表<strong>[2-&gt;4-&]]>
+    </summary>
+    
+      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
+    
+      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[109 Convert Sorted List to Binary Search Tree]]></title>
@@ -746,42 +791,6 @@
       <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[469 Identical Binary Tree]]></title>
-    <link href="http://yoursite.com/2016/05/27/469-Identical-Binary-Tree/"/>
-    <id>http://yoursite.com/2016/05/27/469-Identical-Binary-Tree/</id>
-    <published>2016-05-28T01:34:08.000Z</published>
-    <updated>2016-05-28T08:35:02.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>检查两棵二叉树是否等价。等价的意思是说，首先两棵二叉树必须拥有相同的结构，并且每个对应位置上的节点上的数都相等。</p>
-</blockquote>
-<p>样例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>             <span class="number">1</span></span><br><span class="line">   / \           / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">2</span>   <span class="keyword">and</span>   <span class="number">2</span>   <span class="number">2</span></span><br><span class="line"> /             /</span><br><span class="line"><span class="number">4</span>             <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
-<p>就是两棵等价的二叉树。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span>             <span class="number">1</span></span><br><span class="line">   / \           / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">3</span>   <span class="keyword">and</span>   <span class="number">2</span>   <span class="number">3</span></span><br><span class="line"> /               \</span><br><span class="line"><span class="number">4</span>                 <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
-<p>就不是等价的。</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>如果两棵树都是None，认为是等价的</li>
-<li>Recursion - 递归求解，分治的思路，如果<code>a.val == b.val</code>，则只需考虑左右子树是不是Identical Binary Tree</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of TreeNode:</span><br><span class="line">class TreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.left, this.right = None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param a, b, the root of binary trees.</span><br><span class="line">    @return true if they are identical, or false.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isIdentical</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> b <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> a <span class="keyword">and</span> b <span class="keyword">and</span> a.val == b.val:</span><br><span class="line">            <span class="keyword">return</span> self.isIdentical(a.left, b.left) <span class="keyword">and</span> self.isIdentical(a.right, b.right)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>检查两棵二叉树是否等价。等价的意思是说，首先两棵二叉树必须拥有相同的结构，并且每个对应位置上的节点上的数都相等。</p>
-</blockquote>
-<p>样例<br><figure class="highli]]>
-    </summary>
-    
-      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
-    
-      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
     
   </entry>
   
