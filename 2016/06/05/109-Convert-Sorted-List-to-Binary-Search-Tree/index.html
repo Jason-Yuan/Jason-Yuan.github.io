@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hash,LeetCode,String," />
+  <meta name="keywords" content="DFS,LeetCode,Linked List," />
 
 
 
@@ -83,30 +83,33 @@
 
 
 <meta name="description" content="原题
-给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
+给出一个所有元素以升序排序的单链表，将它转换成一棵高度平衡的二分查找树
 
-对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],  [&quot;nat&quot;,&quot;tan&quot;],  [&quot;bat&quot;]]
 解题思路
-首先，注意返回">
+跟二叉树相关 - 分治法，递归求解
+链表问题，有序链表，如果将节点中的所有值都存入数组，本题目可以转化为Convert Sorted Array to Binary Search Tree，时间复杂度是O(n)，前序构建二叉树
+数组访问任意一个元素时间复杂度是O(1)，而链表不行。如果在链表上每次查找中点，总">
 <meta property="og:type" content="article">
-<meta property="og:title" content="49 Group Anagrams">
-<meta property="og:url" content="http://yoursite.com/2015/10/31/49-Group-Anagrams/index.html">
+<meta property="og:title" content="109 Convert Sorted List to Binary Search Tree">
+<meta property="og:url" content="http://yoursite.com/2016/06/05/109-Convert-Sorted-List-to-Binary-Search-Tree/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
+给出一个所有元素以升序排序的单链表，将它转换成一棵高度平衡的二分查找树
 
-对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],  [&quot;nat&quot;,&quot;tan&quot;],  [&quot;bat&quot;]]
 解题思路
-首先，注意返回">
-<meta property="og:updated_time" content="2016-04-10T01:29:37.000Z">
+跟二叉树相关 - 分治法，递归求解
+链表问题，有序链表，如果将节点中的所有值都存入数组，本题目可以转化为Convert Sorted Array to Binary Search Tree，时间复杂度是O(n)，前序构建二叉树
+数组访问任意一个元素时间复杂度是O(1)，而链表不行。如果在链表上每次查找中点，总">
+<meta property="og:updated_time" content="2016-06-06T03:40:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="49 Group Anagrams">
+<meta name="twitter:title" content="109 Convert Sorted List to Binary Search Tree">
 <meta name="twitter:description" content="原题
-给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。
+给出一个所有元素以升序排序的单链表，将它转换成一棵高度平衡的二分查找树
 
-对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]返回12345[  [&quot;ate&quot;, &quot;eat&quot;,&quot;tea&quot;],  [&quot;nat&quot;,&quot;tan&quot;],  [&quot;bat&quot;]]
 解题思路
-首先，注意返回">
+跟二叉树相关 - 分治法，递归求解
+链表问题，有序链表，如果将节点中的所有值都存入数组，本题目可以转化为Convert Sorted Array to Binary Search Tree，时间复杂度是O(n)，前序构建二叉树
+数组访问任意一个元素时间复杂度是O(1)，而链表不行。如果在链表上每次查找中点，总">
 
 
 
@@ -124,7 +127,7 @@
   };
 </script>
 
-  <title> 49 Group Anagrams | Code Chemistry </title>
+  <title> 109 Convert Sorted List to Binary Search Tree | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -264,7 +267,7 @@
             
             
               
-                49 Group Anagrams
+                109 Convert Sorted List to Binary Search Tree
               
             
           </h1>
@@ -276,8 +279,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-10-31T10:43:31-07:00" content="2015-10-31">
-              2015-10-31
+            <time itemprop="dateCreated" datetime="2016-06-05T13:38:38-07:00" content="2016-06-05">
+              2016-06-05
             </time>
           </span>
 
@@ -306,8 +309,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/31/49-Group-Anagrams/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/31/49-Group-Anagrams/" itemprop="commentsCount"></span>
+                <a href="/2016/06/05/109-Convert-Sorted-List-to-Binary-Search-Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/109-Convert-Sorted-List-to-Binary-Search-Tree/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,16 +333,20 @@
       
 
       
-        <h1 id="原题">原题</h1><blockquote>
-<p>给出一个字符串数组S，找到其中所有的乱序字符串(Anagram)。如果一个字符串是乱序字符串，那么他存在一个字母集合相同，但顺序不同的字符串也在S中。</p>
+        <h3 id="原题">原题</h3><blockquote>
+<p>给出一个所有元素以升序排序的单链表，将它转换成一棵高度平衡的二分查找树</p>
 </blockquote>
-<p>对于字符串数组 [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]<br>返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="string">"ate"</span>, <span class="string">"eat"</span>,<span class="string">"tea"</span>],</span><br><span class="line">  [<span class="string">"nat"</span>,<span class="string">"tan"</span>],</span><br><span class="line">  [<span class="string">"bat"</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>首先，注意返回结果中，子字符串数组内要保持有序，所以第一步先把strs排序</li>
-<li>本题考察使用hashtable，与直接判断两个字符串是否是anagram不同，遍历一遍字符串数组，将<strong>排序的字符串作为key</strong>，把原始字符串作为value</li>
-<li>最后遍历hashtable生成结果</li>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>跟二叉树相关 - 分治法，递归求解</li>
+<li>链表问题，有序链表，如果将节点中的所有值都存入数组，本题目可以转化为Convert Sorted Array to Binary Search Tree，时间复杂度是O(n)，前序构建二叉树</li>
+<li>数组访问任意一个元素时间复杂度是O(1)，而链表不行。如果在链表上每次查找中点，总时间复杂度O(nlogn)<ul>
+<li>构建树的层数 - logn</li>
+<li>每一次找中点 - O(n)</li>
 </ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">groupAnagrams</span><span class="params">(self, strs)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type strs: List[str]</span><br><span class="line">        :rtype: List[List[str]]</span><br><span class="line">        """</span></span><br><span class="line">        strs.sort()</span><br><span class="line">        d = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> str <span class="keyword">in</span> strs:</span><br><span class="line">            <span class="keyword">if</span> <span class="string">""</span>.join(sorted(str)) <span class="keyword">not</span> <span class="keyword">in</span> d:</span><br><span class="line">                d[<span class="string">""</span>.join(sorted(str))] = [str]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d[<span class="string">""</span>.join(sorted(str))].append(str)</span><br><span class="line">                </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> d.items():</span><br><span class="line">            res.append(value)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+</li>
+<li>另外一种优化O(nlogn) =&gt; O(n)，因为对于BST来说，中序遍历的结果就是一个从小到大的有序序列。所以尝试通过遍历一个有序的linked list，利用类似中序遍历的方式构建BST。从下到上构建这棵树，用一个current变量记录链表的当前节点。sortedListToBSTHelper的定义是：将current指针开头的，从start到end的linked list转变为BST，每次current指针指向下一个node。</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortedListToBST</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        self.current = head</span><br><span class="line">        size = self.getListLength(head)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.sortedListToBSTHelper(size)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getListLength</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        size = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            size += <span class="number">1</span></span><br><span class="line">            head = head.next</span><br><span class="line">        <span class="keyword">return</span> size</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortedListToBSTHelper</span><span class="params">(self, size)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> size &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        left = self.sortedListToBSTHelper(size / <span class="number">2</span>)</span><br><span class="line">        root = TreeNode(self.current.val)</span><br><span class="line">        self.current = self.current.next</span><br><span class="line">        right = self.sortedListToBSTHelper(size - <span class="number">1</span> - size / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        root.left = left</span><br><span class="line">        root.right = right</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -359,11 +366,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hash/" rel="tag">#Hash</a>
+            <a href="/tags/DFS/" rel="tag">#DFS</a>
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/String/" rel="tag">#String</a>
+            <a href="/tags/Linked-List/" rel="tag">#Linked List</a>
           
         </div>
       
@@ -372,17 +379,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/25/55-Jump-Game/" rel="next" title="55 Jump Game">
-                <i class="fa fa-chevron-left"></i> 55 Jump Game
+              <a href="/2016/06/05/108-Convert-Sorted-Array-to-Binary-Search-Tree/" rel="next" title="108 Convert Sorted Array to Binary Search Tree">
+                <i class="fa fa-chevron-left"></i> 108 Convert Sorted Array to Binary Search Tree
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/31/41-First-Missing-Positive/" rel="prev" title="41 First Missing Positive">
-                41 First Missing Positive <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,7 +544,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -669,9 +672,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2015/10/31/49-Group-Anagrams/';
-      var disqus_title = '49 Group Anagrams';
-      var disqus_url = 'http://yoursite.com/2015/10/31/49-Group-Anagrams/';
+      var disqus_identifier = '2016/06/05/109-Convert-Sorted-List-to-Binary-Search-Tree/';
+      var disqus_title = '109 Convert Sorted List to Binary Search Tree';
+      var disqus_url = 'http://yoursite.com/2016/06/05/109-Convert-Sorted-List-to-Binary-Search-Tree/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
