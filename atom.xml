@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-07T08:26:52.000Z</updated>
+  <updated>2016-06-10T06:01:58.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[203 Remove Linked List Elements]]></title>
+    <link href="http://yoursite.com/2016/06/09/203-Remove-Linked-List-Elements/"/>
+    <id>http://yoursite.com/2016/06/09/203-Remove-Linked-List-Elements/</id>
+    <published>2016-06-09T23:01:08.000Z</published>
+    <updated>2016-06-10T06:01:58.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>删除链表中等于给定值val的所有节点。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出链表 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;5-&gt;3, 和 val = 3, 你需要返回删除3之后的链表：1-&gt;2-&gt;4-&gt;5。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>最基础的链表操作，由于第一个节点可能被删除，所以借助Dummy Node</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElements</span><span class="params">(self, head, val)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :type val: int</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> head <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummy.next = head</span><br><span class="line">        current = dummy</span><br><span class="line">        <span class="keyword">while</span> current.next != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">if</span> current.next.val == val:</span><br><span class="line">                current.next = current.next.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                current = current.next</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>删除链表中等于给定值val的所有节点。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出链表 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;5-&gt;]]>
+    </summary>
+    
+      <category term="Dummy Node" scheme="http://yoursite.com/tags/Dummy-Node/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[142 Linked List Cycle II]]></title>
@@ -727,40 +758,6 @@
       <category term="BST" scheme="http://yoursite.com/tags/BST/"/>
     
       <category term="Binary Search Tree" scheme="http://yoursite.com/tags/Binary-Search-Tree/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[474 Lowest Common Ancestor II]]></title>
-    <link href="http://yoursite.com/2016/05/29/474-Lowest-Common-Ancestor-II/"/>
-    <id>http://yoursite.com/2016/05/29/474-Lowest-Common-Ancestor-II/</id>
-    <published>2016-05-29T19:01:48.000Z</published>
-    <updated>2016-05-30T02:02:36.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给一棵二叉树和二叉树中的两个节点，找到这两个节点的最近公共祖先LCA。</p>
-<p>两个节点的最近公共祖先，是指两个节点的所有父亲节点中（包括这两个节点），离这两个节点最近的公共的节点。</p>
-<p>每个节点除了左右儿子指针以外，还包含一个父亲指针parent，指向自己的父亲。</p>
-</blockquote>
-<p>对于下面的这棵二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">4</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">3</span>   <span class="number">7</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">5</span>   <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
-<p>LCA(3, 5) = 4<br>LCA(5, 6) = 7<br>LCA(6, 7) = 7</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>根据p，一路向上找到所有的parent，得到一个list</li>
-<li>根据q，一路向上找到所有的parent，得到一个list</li>
-<li>从左向右看两个list，最先一样的node即为公共祖先</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of ParentTreeNode:</span><br><span class="line">class ParentTreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.parent, this.left, this.right = None, None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root: The root of the tree</span><br><span class="line">    @param A and B: Two node in the tree</span><br><span class="line">    @return: The lowest common ancestor of A and B</span><br><span class="line">    """</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lowestCommonAncestorII</span><span class="params">(self, root, p, q)</span>:</span></span><br><span class="line">        list = []</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            list.append(p)</span><br><span class="line">            p = p.parent</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            <span class="keyword">if</span> q <span class="keyword">in</span> list:</span><br><span class="line">                <span class="keyword">return</span> q</span><br><span class="line">            q = q.parent</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给一棵二叉树和二叉树中的两个节点，找到这两个节点的最近公共祖先LCA。</p>
-<p>两个节点的最近公共祖先，是指两个节点的所有父亲节点中（包括这两个节点），离这两个节点最近的公共的节点。</p>
-<p>每个节]]>
-    </summary>
-    
-      <category term="Binary Tree" scheme="http://yoursite.com/tags/Binary-Tree/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
     
