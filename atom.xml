@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-12T06:04:21.000Z</updated>
+  <updated>2016-06-12T21:44:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[147 Insertion Sort List]]></title>
+    <link href="http://yoursite.com/2016/06/12/147-Insertion-Sort-List/"/>
+    <id>http://yoursite.com/2016/06/12/147-Insertion-Sort-List/</id>
+    <published>2016-06-12T14:43:54.000Z</published>
+    <updated>2016-06-12T21:44:28.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>用插入排序对链表排序</p>
+</blockquote>
+<p><strong>样例</strong><br>Given 1-&gt;3-&gt;2-&gt;0-&gt;null, return 0-&gt;1-&gt;2-&gt;3-&gt;null</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>写一个helper函数，根据一个head和一个Node，可以将Node插入到一段linked list中升序排列的正确位置</li>
+<li>一个current指针来遍历要排序的链表，<strong>需要记录一个last值，否则会超时</strong><ul>
+<li>如果current &gt;= last，current继续前进</li>
+<li>如果current &lt; last，利用helper函数把current插入到前面</li>
+</ul>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertionSortList</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummy.next = head</span><br><span class="line">        last = head.val</span><br><span class="line">        <span class="keyword">while</span> head.next != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">if</span> head.next.val &gt;= last:</span><br><span class="line">                last = head.next.val</span><br><span class="line">                head = head.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.insert(dummy, ListNode(head.next.val))</span><br><span class="line">                head.next = head.next.next</span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, head, node)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> head.next != <span class="keyword">None</span> <span class="keyword">and</span> head.next.val &lt;= node.val:</span><br><span class="line">            head = head.next</span><br><span class="line">        node.next = head.next</span><br><span class="line">        head.next = node</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>用插入排序对链表排序</p>
+</blockquote>
+<p><strong>样例</strong><br>Given 1-&gt;3-&gt;2-&gt;0-&gt;null, return 0-&gt;1]]>
+    </summary>
+    
+      <category term="Insertion Sort" scheme="http://yoursite.com/tags/Insertion-Sort/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[24 Swap Nodes in Pairs]]></title>
@@ -670,50 +706,6 @@
     <summary type="html">
     <![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>给出字符串S和字符串T，计算S的不同的子序列中T出现的个数。<br>子序列字符串是原始字符串通过删除一些(或零个)产生的一个新的字符串，并且对剩下的字符的相对位置没有影响。(比如，<strong>“ACE”</]]>
-    </summary>
-    
-      <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Two Sequence DP" scheme="http://yoursite.com/tags/Two-Sequence-DP/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[97 Interleaving String]]></title>
-    <link href="http://yoursite.com/2016/06/04/97-Interleaving-String/"/>
-    <id>http://yoursite.com/2016/06/04/97-Interleaving-String/</id>
-    <published>2016-06-04T20:29:31.000Z</published>
-    <updated>2016-06-05T03:30:28.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。</p>
-</blockquote>
-<p><strong>样例</strong><br>比如 s1 =<strong> “aabcc”</strong> s2 =<strong> “dbbca”</strong></p>
-<ul>
-<li>当 s3 = <strong>“aadbbcbcac”</strong>，返回  true.</li>
-<li>当 s3 = <strong>“aadbbbaccc”</strong>， 返回 false.</li>
-</ul>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>典型序列型动态规划，Two Sequence DP</li>
-<li>状态cache[i][j]表示，s1的前i个字符和s2的前j个字符是否能交叉构成s3的前i+j个字符</li>
-<li>初始化：<ul>
-<li>cache[0][0] = True 因为两个空字符串可以组成空字符串</li>
-<li>边界情况是一个字符串为空，初始化只需判断另一个字符串和目标字符串前x为是否相等</li>
-<li>递推关系 cache[i][j] = (s1[i] == s3[i+j] and cache[i-1][j]) or (s2[j] == s3[i+j] and cache[i][j-1])</li>
-</ul>
-</li>
-<li>最后说一个小小的简化程序的trick<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> something &gt; <span class="number">0</span> <span class="keyword">and</span> others &lt; <span class="number">0</span>:</span><br><span class="line">    x = <span class="keyword">True</span></span><br><span class="line"><span class="comment"># 直接可以写成</span></span><br><span class="line">x = something &gt; <span class="number">0</span> <span class="keyword">and</span> others &lt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isInterleave</span><span class="params">(self, s1, s2, s3)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s1: str</span><br><span class="line">        :type s2: str</span><br><span class="line">        :type s3: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(s3) != len(s1) + len(s2):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            </span><br><span class="line">        cache = [[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s1) + <span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(s2) + <span class="number">1</span>)]</span><br><span class="line">        </span><br><span class="line">        cache[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s1) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> cache[<span class="number">0</span>][i -<span class="number">1</span>] <span class="keyword">and</span> s1[i - <span class="number">1</span>] == s3[i - <span class="number">1</span>]:</span><br><span class="line">                cache[<span class="number">0</span>][i] = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(s2) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> cache[j - <span class="number">1</span>][<span class="number">0</span>] <span class="keyword">and</span> s2[j - <span class="number">1</span>] == s3[j - <span class="number">1</span>]:</span><br><span class="line">                cache[j][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(s2) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(s1) + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> (cache[j - <span class="number">1</span>][i] <span class="keyword">and</span> s2[j - <span class="number">1</span>] == s3[j + i - <span class="number">1</span>]) <span class="keyword">or</span> (cache[j][i - <span class="number">1</span>] <span class="keyword">and</span> s1[i - <span class="number">1</span>] == s3[j + i - <span class="number">1</span>]):</span><br><span class="line">                    cache[j][i] = <span class="keyword">True</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> cache[len(s2)][len(s1)]</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给出三个字符串:s1、s2、s3，判断s3是否由s1和s2交叉构成。</p>
-</blockquote>
-<p><strong>样例</strong><br>比如 s1 =<strong> “aabcc”</s]]>
     </summary>
     
       <category term="Dynamic Programing" scheme="http://yoursite.com/tags/Dynamic-Programing/"/>
