@@ -327,11 +327,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[372 Delete Node in the Middle of the Singly Linked List]]></title>
-    <link href="http://yoursite.com/2016/06/11/372-Delete-Node-in-the-Middle-of-the-Singly-Linked-List/"/>
-    <id>http://yoursite.com/2016/06/11/372-Delete-Node-in-the-Middle-of-the-Singly-Linked-List/</id>
+    <title><![CDATA[237 Delete Node in a Linked List]]></title>
+    <link href="http://yoursite.com/2016/06/11/237-Delete-Node-in-a-Linked-List/"/>
+    <id>http://yoursite.com/2016/06/11/237-Delete-Node-in-a-Linked-List/</id>
     <published>2016-06-11T16:18:42.000Z</published>
-    <updated>2016-06-11T23:19:32.000Z</updated>
+    <updated>2016-06-13T07:09:26.000Z</updated>
     <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>给定一个单链表中的一个等待被删除的节点(非表头或表尾)。请在在O(1)时间复杂度删除该链表节点。</p>
 </blockquote>
@@ -347,11 +347,11 @@
 <p><strong>样例</strong><br>给定 1-&gt;2-&]]>
     </summary>
     
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
       <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
     
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
