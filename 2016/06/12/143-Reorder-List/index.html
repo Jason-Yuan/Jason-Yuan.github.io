@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BST,LeetCode," />
+  <meta name="keywords" content="LeetCode,Linked List," />
 
 
 
@@ -83,27 +83,33 @@
 
 
 <meta name="description" content="原题
-Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
+给定一个单链表L: L0→L1→…→Ln-1→Ln,重新排列后为：L0→Ln→L1→Ln-1→L2→Ln-2→…必须在不改变节点值的情况下进行原地操作。
 
-Given tree = [2,1] and node = 1:123  2 /1
-return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
+样例给出链表 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;null，重新排列后为1-&amp;gt;4-&amp;gt;2-&amp;gt;3-&amp;gt;null。
+解题思路
+把题目分解成一个个小的任务
+首先根据1-&amp;gt;2-&amp;gt;3-&amp;gt;4，找中点，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="285 Inorder Successor in BST">
-<meta property="og:url" content="http://yoursite.com/2015/10/04/285-Inorder-Successor-in-BST/index.html">
+<meta property="og:title" content="143 Reorder List">
+<meta property="og:url" content="http://yoursite.com/2016/06/12/143-Reorder-List/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
+给定一个单链表L: L0→L1→…→Ln-1→Ln,重新排列后为：L0→Ln→L1→Ln-1→L2→Ln-2→…必须在不改变节点值的情况下进行原地操作。
 
-Given tree = [2,1] and node = 1:123  2 /1
-return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
-<meta property="og:updated_time" content="2016-05-30T02:51:01.000Z">
+样例给出链表 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;null，重新排列后为1-&amp;gt;4-&amp;gt;2-&amp;gt;3-&amp;gt;null。
+解题思路
+把题目分解成一个个小的任务
+首先根据1-&amp;gt;2-&amp;gt;3-&amp;gt;4，找中点，">
+<meta property="og:updated_time" content="2016-06-13T07:25:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="285 Inorder Successor in BST">
+<meta name="twitter:title" content="143 Reorder List">
 <meta name="twitter:description" content="原题
-Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
+给定一个单链表L: L0→L1→…→Ln-1→Ln,重新排列后为：L0→Ln→L1→Ln-1→L2→Ln-2→…必须在不改变节点值的情况下进行原地操作。
 
-Given tree = [2,1] and node = 1:123  2 /1
-return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
+样例给出链表 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;null，重新排列后为1-&amp;gt;4-&amp;gt;2-&amp;gt;3-&amp;gt;null。
+解题思路
+把题目分解成一个个小的任务
+首先根据1-&amp;gt;2-&amp;gt;3-&amp;gt;4，找中点，">
 
 
 
@@ -121,7 +127,7 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
   };
 </script>
 
-  <title> 285 Inorder Successor in BST | Code Chemistry </title>
+  <title> 143 Reorder List | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -261,7 +267,7 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
             
             
               
-                285 Inorder Successor in BST
+                143 Reorder List
               
             
           </h1>
@@ -273,8 +279,8 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-10-04T11:37:58-07:00" content="2015-10-04">
-              2015-10-04
+            <time itemprop="dateCreated" datetime="2016-06-12T17:24:36-07:00" content="2016-06-13">
+              2016-06-13
             </time>
           </span>
 
@@ -303,8 +309,8 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/04/285-Inorder-Successor-in-BST/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/04/285-Inorder-Successor-in-BST/" itemprop="commentsCount"></span>
+                <a href="/2016/06/12/143-Reorder-List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/12/143-Reorder-List/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,18 +333,17 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
       
 
       
-        <h1 id="原题">原题</h1><blockquote>
-<p>Given a binary search tree and a node in it, find the in-order successor of that node in the BST.</p>
+        <h3 id="原题">原题</h3><blockquote>
+<p>给定一个单链表L: <em>L</em>0→<em>L</em>1→…→<em>L</em>n-1→<em>L</em>n,<br>重新排列后为：<em>L</em>0→<em>L</em>n→<em>L</em>1→<em>L</em>n-1→<em>L</em>2→<em>L</em>n-2→…<br>必须在不改变节点值的情况下进行原地操作。</p>
 </blockquote>
-<p>Given tree = [2,1] and node = 1:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> /</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>return node 2.<br>Given tree = [2,1,3] and node = 2:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>return node 3.</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>successor变量记录<strong>root</strong>的父亲结点，当while循环结束时，如果原本的root = None或者p不存在与BST中(那么此刻root = None)，都返回None</li>
-<li>找到p之后，如果p没有右儿子，则第一个比它大的数字就是刚刚记录的successor</li>
-<li>找到p之后，如果有右儿子，则找到右子树中的<strong>最左边的值</strong>(最小值)</li>
+<p><strong>样例</strong><br>给出链表 1-&gt;2-&gt;3-&gt;4-&gt;null，重新排列后为1-&gt;4-&gt;2-&gt;3-&gt;null。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>把题目分解成一个个小的任务</li>
+<li>首先根据1-&gt;2-&gt;3-&gt;4，找中点，然后得到两个链表1-&gt;2和3-&gt;4</li>
+<li>翻转第二个链表得到1-&gt;2和4-&gt;3</li>
+<li>最后合并两个链表得到1-&gt;4-&gt;2-&gt;3</li>
 </ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root &lt;TreeNode&gt;: The root of the BST.</span><br><span class="line">    @param p &lt;TreeNode&gt;: You need find the successor node of p.</span><br><span class="line">    @return &lt;TreeNode&gt;: Successor of p.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorderSuccessor</span><span class="params">(self, root, p)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        successor = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> p.right:</span><br><span class="line">            successor = p.right</span><br><span class="line">            <span class="keyword">while</span> successor.left:</span><br><span class="line">                successor = successor.left</span><br><span class="line">            <span class="keyword">return</span> successor</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> root.val != p.val:</span><br><span class="line">                <span class="keyword">if</span> root.val &gt; p.val:</span><br><span class="line">                    successor = root</span><br><span class="line">                    root = root.left</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    root = root.right</span><br><span class="line">            <span class="keyword">return</span> successor</span><br></pre></td></tr></table></figure>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reorderList</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :rtype: void Do not return anything, modify head in-place instead.</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> head == <span class="keyword">None</span> <span class="keyword">or</span> head.next == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        mid = self.findMiddle(head)</span><br><span class="line">        tail = self.reverse(mid.next)</span><br><span class="line">        mid.next = <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        self.merge(head, tail)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        newHead = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">while</span> head != <span class="keyword">None</span>:</span><br><span class="line">            temp = head.next</span><br><span class="line">            head.next = newHead</span><br><span class="line">            newHead = head</span><br><span class="line">            head = temp</span><br><span class="line">        <span class="keyword">return</span> newHead</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, head1, head2)</span>:</span></span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">while</span> head1 != <span class="keyword">None</span> <span class="keyword">and</span> head2 != <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">if</span> index % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                dummy.next = head1</span><br><span class="line">                head1 = head1.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dummy.next = head2</span><br><span class="line">                head2 = head2.next</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">            dummy = dummy.next</span><br><span class="line">        <span class="keyword">if</span> head1:</span><br><span class="line">            dummy.next = head1</span><br><span class="line">        <span class="keyword">if</span> head2:</span><br><span class="line">            dummy.next = head2</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMiddle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        slow, fast = head, head.next</span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">        <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -358,9 +363,9 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
       
         <div class="post-tags">
           
-            <a href="/tags/BST/" rel="tag">#BST</a>
-          
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+            <a href="/tags/Linked-List/" rel="tag">#Linked List</a>
           
         </div>
       
@@ -369,17 +374,13 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/04/43-Maximum-Subarray-III/" rel="next" title="43 Maximum Subarray III">
-                <i class="fa fa-chevron-left"></i> 43 Maximum Subarray III
+              <a href="/2016/06/12/234-Palindrome-Linked-List/" rel="next" title="234 Palindrome Linked List">
+                <i class="fa fa-chevron-left"></i> 234 Palindrome Linked List
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/04/202-Segment-Tree-Query/" rel="prev" title="202 Segment Tree Query">
-                202 Segment Tree Query <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -538,7 +539,7 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -666,9 +667,9 @@ return node 2.Given tree = [2,1,3] and node = 2:123  2 /">
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2015/10/04/285-Inorder-Successor-in-BST/';
-      var disqus_title = '285 Inorder Successor in BST';
-      var disqus_url = 'http://yoursite.com/2015/10/04/285-Inorder-Successor-in-BST/';
+      var disqus_identifier = '2016/06/12/143-Reorder-List/';
+      var disqus_title = '143 Reorder List';
+      var disqus_url = 'http://yoursite.com/2016/06/12/143-Reorder-List/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
