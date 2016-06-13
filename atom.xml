@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-13T07:25:18.000Z</updated>
+  <updated>2016-06-13T07:34:31.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[61 Rotate List]]></title>
+    <link href="http://yoursite.com/2016/06/12/61-Rotate-List/"/>
+    <id>http://yoursite.com/2016/06/12/61-Rotate-List/</id>
+    <published>2016-06-13T00:34:08.000Z</published>
+    <updated>2016-06-13T07:34:31.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个链表，旋转链表，使得每个节点向右移动k个位置，其中k是一个非负数。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出链表<strong>1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;null</strong>和k=2<br>返回<strong>4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;null</strong></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>分解问题，各个击破</li>
+<li>首先找到链表的尾部，并且计算长度</li>
+<li>找到需要旋转的起点位置</li>
+<li>最后做出相应的连接，旋转链表</li>
+<li>注意移动的位置实际是<strong>(k % len)</strong></li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotateRight</span><span class="params">(self, head, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># find the tail</span></span><br><span class="line">        tail = head</span><br><span class="line">        len = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> tail.next != <span class="keyword">None</span>:</span><br><span class="line">            tail = tail.next</span><br><span class="line">            len += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> k % len == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">            </span><br><span class="line">        <span class="comment"># find the rotate place</span></span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k % len):</span><br><span class="line">            fast = fast.next</span><br><span class="line">        <span class="keyword">while</span> fast.next != <span class="keyword">None</span>:</span><br><span class="line">            fast = fast.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">            </span><br><span class="line">        tail.next = head</span><br><span class="line">        head = slow.next</span><br><span class="line">        slow.next = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个链表，旋转链表，使得每个节点向右移动k个位置，其中k是一个非负数。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出链表<strong>1-&gt;2-&gt]]>
+    </summary>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[143 Reorder List]]></title>
@@ -628,42 +661,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[108 Convert Sorted Array to Binary Search Tree]]></title>
-    <link href="http://yoursite.com/2016/06/05/108-Convert-Sorted-Array-to-Binary-Search-Tree/"/>
-    <id>http://yoursite.com/2016/06/05/108-Convert-Sorted-Array-to-Binary-Search-Tree/</id>
-    <published>2016-06-05T20:07:46.000Z</published>
-    <updated>2016-06-06T03:09:04.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给一个排序数组（从小到大），将其转换为一棵高度最小的排序二叉树。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出数组 [1,2,3,4,5,6,7], 返回<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     <span class="number">4</span></span><br><span class="line">   /   \</span><br><span class="line">  <span class="number">2</span>     <span class="number">6</span></span><br><span class="line"> / \    / \</span><br><span class="line"><span class="number">1</span>   <span class="number">3</span>  <span class="number">5</span>   <span class="number">7</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>根据排序数组构建查找二叉树，分治的思想，每次向下递归构建左右子树</li>
-<li>时间复杂度O(n) 可以简单想每个元素被访问到了几次</li>
-<li>空间复杂度O(logn) 递归的栈的大小</li>
-<li>相似题目Convert Sorted List to Binary Search Tree</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortedArrayToBST</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: TreeNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> nums:</span><br><span class="line">            <span class="keyword">return</span> self.buildTree(nums, <span class="number">0</span>, len(nums) - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildTree</span><span class="params">(self, nums, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt; end:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        root = TreeNode(nums[(start + end) / <span class="number">2</span>])</span><br><span class="line">        root.left = self.buildTree(nums, start, (start + end) / <span class="number">2</span> - <span class="number">1</span>)</span><br><span class="line">        root.right = self.buildTree(nums, (start + end) / <span class="number">2</span> + <span class="number">1</span>, end)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给一个排序数组（从小到大），将其转换为一棵高度最小的排序二叉树。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出数组 [1,2,3,4,5,6,7], 返回<br>]]>
-    </summary>
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="Binary Search Tree" scheme="http://yoursite.com/tags/Binary-Search-Tree/"/>
-    
-      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
