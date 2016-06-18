@@ -48,11 +48,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[547 Intersection of Two Arrays]]></title>
-    <link href="http://yoursite.com/2016/06/13/547-Intersection-of-Two-Arrays/"/>
-    <id>http://yoursite.com/2016/06/13/547-Intersection-of-Two-Arrays/</id>
+    <title><![CDATA[349 Intersection of Two Arrays]]></title>
+    <link href="http://yoursite.com/2016/06/13/349-Intersection-of-Two-Arrays/"/>
+    <id>http://yoursite.com/2016/06/13/349-Intersection-of-Two-Arrays/</id>
     <published>2016-06-13T23:46:57.000Z</published>
-    <updated>2016-06-18T08:35:29.000Z</updated>
+    <updated>2016-06-18T08:38:50.000Z</updated>
     <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>返回两个数组的交</p>
 </blockquote>
@@ -74,9 +74,9 @@
     
       <category term="Hash Map" scheme="http://yoursite.com/tags/Hash-Map/"/>
     
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
