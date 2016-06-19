@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-19T23:03:57.000Z</updated>
+  <updated>2016-06-19T23:28:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[1 Two Sum]]></title>
+    <link href="http://yoursite.com/2016/06/19/1-Two-Sum/"/>
+    <id>http://yoursite.com/2016/06/19/1-Two-Sum/</id>
+    <published>2016-06-19T16:27:40.000Z</published>
+    <updated>2016-06-19T23:28:06.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给一个整数数组，找到两个数使得他们的和等于一个给定的数target。<br>你需要实现的函数twoSum需要返回这两个数的下标, 并且第一个下标小于第二个下标。注意这里下标的范围是1到n，不是以0开头。</p>
+</blockquote>
+<p>numbers=[2, 7, 11, 15],  target=9, return [1, 2]</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>对撞型指针</li>
+<li>由于要返回下标，所以先建立一个hash map储存每个值得下标</li>
+<li>两个指针分别从数组的头跟尾向中间扫描，如果两个数的和等于target则回到hash map中找到相应最小的下标返回，否则相应的移动头指针或者尾指针，知道两个指针相撞，结束</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :type target: int</span><br><span class="line">        :rtype: List[int]</span><br><span class="line">        """</span></span><br><span class="line">        index = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">            <span class="keyword">if</span> num <span class="keyword">not</span> <span class="keyword">in</span> index:</span><br><span class="line">                index[num] = [i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                index[num].append(i)</span><br><span class="line">                </span><br><span class="line">        sortedNums = sorted(nums)</span><br><span class="line">        i, j = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">if</span> sortedNums[i] + sortedNums[j] == target:</span><br><span class="line">                <span class="keyword">if</span> sortedNums[i] == sortedNums[j]:</span><br><span class="line">                    <span class="keyword">return</span> [index[sortedNums[i]][<span class="number">0</span>], index[sortedNums[i]][<span class="number">1</span>]]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res = [index[sortedNums[i]][<span class="number">0</span>], index[sortedNums[j]][<span class="number">0</span>]]</span><br><span class="line">                    <span class="keyword">return</span> sorted(res)</span><br><span class="line">            <span class="keyword">elif</span> sortedNums[i] + sortedNums[j] &gt; target:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给一个整数数组，找到两个数使得他们的和等于一个给定的数target。<br>你需要实现的函数twoSum需要返回这两个数的下标, 并且第一个下标小于第二个下标。注意这里下标的范围是1到n，不是以0开头。</p>]]>
+    </summary>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[533 Two Sum Closest]]></title>
@@ -616,38 +647,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[142 Linked List Cycle II]]></title>
-    <link href="http://yoursite.com/2016/06/06/142-Linked-List-Cycle-II/"/>
-    <id>http://yoursite.com/2016/06/06/142-Linked-List-Cycle-II/</id>
-    <published>2016-06-07T01:26:03.000Z</published>
-    <updated>2016-06-07T08:26:52.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定一个链表，如果链表中存在环，则返回到链表中环的起始节点的值，如果没有环，返回null。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 <strong>-21-&gt;10-&gt;4-&gt;5, tail connects to node index 1</strong>，返回<strong>10</strong></p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>首先跟Linked List Cycle一样，还是快慢指针，从头开始走，如果没有相遇快指针就走到尾了，则说明没有环，返回NULL</li>
-<li>如果相遇了，把慢指针<strong>重新放到</strong>开头，快慢指针一起<strong>一步一步走</strong>再次相遇即是环的入口，不要问我为什么…想知道的可以去看一下数学证明</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectCycle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        slow, fast = head, head</span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            <span class="keyword">if</span> slow == fast:</span><br><span class="line">                slow = head</span><br><span class="line">                <span class="keyword">while</span> slow != fast:</span><br><span class="line">                    slow = slow.next</span><br><span class="line">                    fast = fast.next</span><br><span class="line">                <span class="keyword">return</span> slow</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定一个链表，如果链表中存在环，则返回到链表中环的起始节点的值，如果没有环，返回null。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 <strong>-21-]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
