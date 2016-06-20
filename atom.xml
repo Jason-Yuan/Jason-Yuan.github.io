@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-20T08:27:36.000Z</updated>
+  <updated>2016-06-20T09:09:56.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[49 Sort Letters by Case]]></title>
+    <link href="http://yoursite.com/2016/06/19/49-Sort-Letters-by-Case/"/>
+    <id>http://yoursite.com/2016/06/19/49-Sort-Letters-by-Case/</id>
+    <published>2016-06-20T02:09:04.000Z</published>
+    <updated>2016-06-20T09:09:56.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个只包含字母的字符串，按照先小写字母后大写字母的顺序进行排序。</p>
+</blockquote>
+<p>给出<strong>“abAcD”</strong>，一个可能的答案为<strong>“acbAD”</strong></p>
+<p>小写字母或者大写字母他们之间不一定要保持在原始字符串中的相对位置。<br>在原地扫描一遍完成</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>Two Pointers  - 对撞型指针问题</li>
+<li>做指针和右指针指向的字母，可能出现四种情况需要考虑：<ul>
+<li>左：小写 | 右：小写 ====&gt; 左指针左移</li>
+<li>左：大写 | 右：小写 ====&gt; 交换字母</li>
+<li>左：大写 | 右：大写 ====&gt; 右指针右移</li>
+<li>左：小写 | 右：小写 ====&gt; 左指针左移，右指针右移</li>
+</ul>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param chars: The letters array you should sort.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortLetters</span><span class="params">(self, chars)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> chars <span class="keyword">or</span> len(chars) &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> chars</span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(chars) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            <span class="keyword">if</span> ord(chars[left]) &lt; <span class="number">96</span> <span class="keyword">and</span> ord(chars[right]) &gt; <span class="number">96</span>:</span><br><span class="line">                chars[left], chars[right] = chars[right], chars[left]</span><br><span class="line">            <span class="keyword">elif</span> ord(chars[left]) &lt; <span class="number">96</span> <span class="keyword">and</span> ord(chars[right]) &lt; <span class="number">96</span>:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> ord(chars[left]) &gt; <span class="number">96</span> <span class="keyword">and</span> ord(chars[right]) &gt; <span class="number">96</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left += <span class="number">1</span> </span><br><span class="line">                right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个只包含字母的字符串，按照先小写字母后大写字母的顺序进行排序。</p>
+</blockquote>
+<p>给出<strong>“abAcD”</strong>，一个可能的答案为<strong>“acbAD]]>
+    </summary>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="String" scheme="http://yoursite.com/tags/String/"/>
+    
+      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[4 Median of two Sorted Arrays]]></title>
@@ -630,35 +671,6 @@
       <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[237 Delete Node in a Linked List]]></title>
-    <link href="http://yoursite.com/2016/06/11/237-Delete-Node-in-a-Linked-List/"/>
-    <id>http://yoursite.com/2016/06/11/237-Delete-Node-in-a-Linked-List/</id>
-    <published>2016-06-11T16:18:42.000Z</published>
-    <updated>2016-06-13T07:09:26.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定一个单链表中的一个等待被删除的节点(非表头或表尾)。请在在O(1)时间复杂度删除该链表节点。</p>
-</blockquote>
-<p><strong>样例</strong><br>给定 1-&gt;2-&gt;3-&gt;4，和节点 3，删除 3 之后，链表应该变为 1-&gt;2-&gt;4。</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>复制要删除的节点下一个节点的值给要删除的节点，把当前节点的next指针指向下一个节点的next指针指向的节点</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of ListNode</span><br><span class="line">class ListNode(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self, val, next=None):</span><br><span class="line">        self.val = val</span><br><span class="line">        self.next = next</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param node: the node in the list should be deleted</span></span><br><span class="line">    <span class="comment"># @return: nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteNode</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        <span class="comment"># write your code here</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> node.next <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        node.val = node.next.val</span><br><span class="line">        node.next = node.next.next</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定一个单链表中的一个等待被删除的节点(非表头或表尾)。请在在O(1)时间复杂度删除该链表节点。</p>
-</blockquote>
-<p><strong>样例</strong><br>给定 1-&gt;2-&]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   

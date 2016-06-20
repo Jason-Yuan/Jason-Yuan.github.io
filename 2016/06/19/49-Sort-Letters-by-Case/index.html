@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Array,Dynamic Programing,LeetCode," />
+  <meta name="keywords" content="Array,LintCode,String,Two Pointers," />
 
 
 
@@ -83,42 +83,42 @@
 
 
 <meta name="description" content="原题
-找出一个序列中乘积最大的连续子序列（至少包含一个数）。
+给定一个只包含字母的字符串，按照先小写字母后大写字母的顺序进行排序。
 
-比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。
+给出“abAcD”，一个可能的答案为“acbAD”
+小写字母或者大写字母他们之间不一定要保持在原始字符串中的相对位置。在原地扫描一遍完成
 解题思路
-动态规划求解
-维护两个数组maxCache和minCache, 每次判断下一个数的正负
-maxCache[i]表示以i结尾的最大的值
-minCache[i]表示以结尾的最小的值
-123456# 如果是正数 maxCache = max(maxC">
+Two Pointers  - 对撞型指针问题
+做指针和右指针指向的字母，可能出现四种情况需要考虑：
+左：小写 | 右：小写 ====&amp;gt; 左指针左移
+左：大写 | 右：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="152 Maximum Product Subarray">
-<meta property="og:url" content="http://yoursite.com/2015/09/29/152-Maximum-Product-Subarray/index.html">
+<meta property="og:title" content="49 Sort Letters by Case">
+<meta property="og:url" content="http://yoursite.com/2016/06/19/49-Sort-Letters-by-Case/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-找出一个序列中乘积最大的连续子序列（至少包含一个数）。
+给定一个只包含字母的字符串，按照先小写字母后大写字母的顺序进行排序。
 
-比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。
+给出“abAcD”，一个可能的答案为“acbAD”
+小写字母或者大写字母他们之间不一定要保持在原始字符串中的相对位置。在原地扫描一遍完成
 解题思路
-动态规划求解
-维护两个数组maxCache和minCache, 每次判断下一个数的正负
-maxCache[i]表示以i结尾的最大的值
-minCache[i]表示以结尾的最小的值
-123456# 如果是正数 maxCache = max(maxC">
-<meta property="og:updated_time" content="2016-06-20T08:57:00.000Z">
+Two Pointers  - 对撞型指针问题
+做指针和右指针指向的字母，可能出现四种情况需要考虑：
+左：小写 | 右：小写 ====&amp;gt; 左指针左移
+左：大写 | 右：">
+<meta property="og:updated_time" content="2016-06-20T09:09:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="152 Maximum Product Subarray">
+<meta name="twitter:title" content="49 Sort Letters by Case">
 <meta name="twitter:description" content="原题
-找出一个序列中乘积最大的连续子序列（至少包含一个数）。
+给定一个只包含字母的字符串，按照先小写字母后大写字母的顺序进行排序。
 
-比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。
+给出“abAcD”，一个可能的答案为“acbAD”
+小写字母或者大写字母他们之间不一定要保持在原始字符串中的相对位置。在原地扫描一遍完成
 解题思路
-动态规划求解
-维护两个数组maxCache和minCache, 每次判断下一个数的正负
-maxCache[i]表示以i结尾的最大的值
-minCache[i]表示以结尾的最小的值
-123456# 如果是正数 maxCache = max(maxC">
+Two Pointers  - 对撞型指针问题
+做指针和右指针指向的字母，可能出现四种情况需要考虑：
+左：小写 | 右：小写 ====&amp;gt; 左指针左移
+左：大写 | 右：">
 
 
 
@@ -136,7 +136,7 @@ minCache[i]表示以结尾的最小的值
   };
 </script>
 
-  <title> 152 Maximum Product Subarray | Code Chemistry </title>
+  <title> 49 Sort Letters by Case | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -276,7 +276,7 @@ minCache[i]表示以结尾的最小的值
             
             
               
-                152 Maximum Product Subarray
+                49 Sort Letters by Case
               
             
           </h1>
@@ -288,8 +288,8 @@ minCache[i]表示以结尾的最小的值
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-09-29T17:40:58-07:00" content="2015-09-30">
-              2015-09-30
+            <time itemprop="dateCreated" datetime="2016-06-19T19:09:04-07:00" content="2016-06-20">
+              2016-06-20
             </time>
           </span>
 
@@ -302,8 +302,8 @@ minCache[i]表示以结尾的最小的值
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/LintCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LintCode</span>
                   </a>
                 </span>
 
@@ -318,8 +318,8 @@ minCache[i]表示以结尾的最小的值
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/29/152-Maximum-Product-Subarray/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/152-Maximum-Product-Subarray/" itemprop="commentsCount"></span>
+                <a href="/2016/06/19/49-Sort-Letters-by-Case/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/19/49-Sort-Letters-by-Case/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,21 +342,22 @@ minCache[i]表示以结尾的最小的值
       
 
       
-        <h1 id="原题">原题</h1><blockquote>
-<p>找出一个序列中乘积最大的连续子序列（至少包含一个数）。</p>
+        <h3 id="原题">原题</h3><blockquote>
+<p>给定一个只包含字母的字符串，按照先小写字母后大写字母的顺序进行排序。</p>
 </blockquote>
-<p>比如, 序列 [2,3,-2,4]中乘积最大的子序列为 [2,3]，其乘积为6。</p>
-<h2 id="解题思路">解题思路</h2><ul>
-<li>动态规划求解</li>
-<li>维护两个数组maxCache和minCache, 每次判断下一个数的正负</li>
-<li>maxCache[i]表示以i结尾的最大的值</li>
-<li><p>minCache[i]表示以结尾的最小的值</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是正数 </span></span><br><span class="line">maxCache = max(maxCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">minCache[i] = min(minCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line"><span class="comment"># 如果是负数</span></span><br><span class="line">maxCache[i] = max(maxCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">minCache[i] = min(minCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>result变量去维护一个最大值</p>
+<p>给出<strong>“abAcD”</strong>，一个可能的答案为<strong>“acbAD”</strong></p>
+<p>小写字母或者大写字母他们之间不一定要保持在原始字符串中的相对位置。<br>在原地扫描一遍完成</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>Two Pointers  - 对撞型指针问题</li>
+<li>做指针和右指针指向的字母，可能出现四种情况需要考虑：<ul>
+<li>左：小写 | 右：小写 ====&gt; 左指针左移</li>
+<li>左：大写 | 右：小写 ====&gt; 交换字母</li>
+<li>左：大写 | 右：大写 ====&gt; 右指针右移</li>
+<li>左：小写 | 右：小写 ====&gt; 左指针左移，右指针右移</li>
+</ul>
 </li>
 </ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProduct</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        maxCache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        minCache = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums))]</span><br><span class="line">        </span><br><span class="line">        minCache[<span class="number">0</span>] = maxCache[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        result = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            minCache[i] = maxCache[i] = nums[i]</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">0</span>:</span><br><span class="line">                maxCache[i] = max(maxCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">                minCache[i] = min(minCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">            <span class="keyword">elif</span> nums[i] &lt; <span class="number">0</span>:</span><br><span class="line">                maxCache[i] = max(maxCache[i], minCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">                minCache[i] = min(minCache[i], maxCache[i - <span class="number">1</span>] * nums[i])</span><br><span class="line">            </span><br><span class="line">            result = max(result, maxCache[i])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param chars: The letters array you should sort.</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortLetters</span><span class="params">(self, chars)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> chars <span class="keyword">or</span> len(chars) &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> chars</span><br><span class="line">            </span><br><span class="line">        left, right = <span class="number">0</span>, len(chars) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            <span class="keyword">if</span> ord(chars[left]) &lt; <span class="number">96</span> <span class="keyword">and</span> ord(chars[right]) &gt; <span class="number">96</span>:</span><br><span class="line">                chars[left], chars[right] = chars[right], chars[left]</span><br><span class="line">            <span class="keyword">elif</span> ord(chars[left]) &lt; <span class="number">96</span> <span class="keyword">and</span> ord(chars[right]) &lt; <span class="number">96</span>:</span><br><span class="line">                right -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> ord(chars[left]) &gt; <span class="number">96</span> <span class="keyword">and</span> ord(chars[right]) &gt; <span class="number">96</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left += <span class="number">1</span> </span><br><span class="line">                right -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -378,9 +379,11 @@ minCache[i]表示以结尾的最小的值
           
             <a href="/tags/Array/" rel="tag">#Array</a>
           
-            <a href="/tags/Dynamic-Programing/" rel="tag">#Dynamic Programing</a>
+            <a href="/tags/LintCode/" rel="tag">#LintCode</a>
           
-            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+            <a href="/tags/String/" rel="tag">#String</a>
+          
+            <a href="/tags/Two-Pointers/" rel="tag">#Two Pointers</a>
           
         </div>
       
@@ -389,17 +392,13 @@ minCache[i]表示以结尾的最小的值
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/28/45-Maximum-Subarray-Difference/" rel="next" title="45 Maximum Subarray Difference">
-                <i class="fa fa-chevron-left"></i> 45 Maximum Subarray Difference
+              <a href="/2016/06/19/4-Median-of-two-Sorted-Arrays/" rel="next" title="4 Median of two Sorted Arrays">
+                <i class="fa fa-chevron-left"></i> 4 Median of two Sorted Arrays
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/09/29/373-Partition-Array-by-Odd-and-Even/" rel="prev" title="373 Partition Array by Odd and Even">
-                373 Partition Array by Odd and Even <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,7 +557,7 @@ minCache[i]表示以结尾的最小的值
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">1.1.</span> <span class="nav-text">解题思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码"><span class="nav-number">2.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -686,9 +685,9 @@ minCache[i]表示以结尾的最小的值
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2015/09/29/152-Maximum-Product-Subarray/';
-      var disqus_title = '152 Maximum Product Subarray';
-      var disqus_url = 'http://yoursite.com/2015/09/29/152-Maximum-Product-Subarray/';
+      var disqus_identifier = '2016/06/19/49-Sort-Letters-by-Case/';
+      var disqus_title = '49 Sort Letters by Case';
+      var disqus_url = 'http://yoursite.com/2016/06/19/49-Sort-Letters-by-Case/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
