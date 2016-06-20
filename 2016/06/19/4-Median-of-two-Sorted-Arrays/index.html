@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Binary Tree,Divide and Conquer,LeetCode," />
+  <meta name="keywords" content="Array,LeetCode," />
 
 
 
@@ -83,42 +83,30 @@
 
 
 <meta name="description" content="原题
-给定一个二叉树，找出其最小深度。二叉树的最小深度为根节点到最近叶子节点的距离。
+两个排序的数组A和B分别含有m和n个数，找到两个排序数组的中位数，要求时间复杂度应为O(log (m+n))。
 
-给出一棵如下的二叉树:12345      1     / \     2   3       /  \      4    5
-这个二叉树的最小深度为 2
+样例给出数组A = [1,2,3,4,5,6] B = [2,3,4,5]，中位数3.5给出数组A = [1,2,3] B = [4,5]，中位数 3
 解题思路
-一定要注意定义，比如下面这棵树的最小深度是3不是1
-123451 \  2   \    3
-
-方法和找最大深度一样，Divide &amp;amp;">
+根据题目要求的时间复杂度是O(log(m+n))可知，必须要有个类似于binary search一样，每次操作可以扔一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="111 Minimum Depth of Binary Tree">
-<meta property="og:url" content="http://yoursite.com/2015/10/21/111-Minimum-Depth-of-Binary-Tree/index.html">
+<meta property="og:title" content="4 Median of two Sorted Arrays">
+<meta property="og:url" content="http://yoursite.com/2016/06/19/4-Median-of-two-Sorted-Arrays/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-给定一个二叉树，找出其最小深度。二叉树的最小深度为根节点到最近叶子节点的距离。
+两个排序的数组A和B分别含有m和n个数，找到两个排序数组的中位数，要求时间复杂度应为O(log (m+n))。
 
-给出一棵如下的二叉树:12345      1     / \     2   3       /  \      4    5
-这个二叉树的最小深度为 2
+样例给出数组A = [1,2,3,4,5,6] B = [2,3,4,5]，中位数3.5给出数组A = [1,2,3] B = [4,5]，中位数 3
 解题思路
-一定要注意定义，比如下面这棵树的最小深度是3不是1
-123451 \  2   \    3
-
-方法和找最大深度一样，Divide &amp;amp;">
-<meta property="og:updated_time" content="2016-05-29T00:54:13.000Z">
+根据题目要求的时间复杂度是O(log(m+n))可知，必须要有个类似于binary search一样，每次操作可以扔一">
+<meta property="og:updated_time" content="2016-06-20T08:27:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="111 Minimum Depth of Binary Tree">
+<meta name="twitter:title" content="4 Median of two Sorted Arrays">
 <meta name="twitter:description" content="原题
-给定一个二叉树，找出其最小深度。二叉树的最小深度为根节点到最近叶子节点的距离。
+两个排序的数组A和B分别含有m和n个数，找到两个排序数组的中位数，要求时间复杂度应为O(log (m+n))。
 
-给出一棵如下的二叉树:12345      1     / \     2   3       /  \      4    5
-这个二叉树的最小深度为 2
+样例给出数组A = [1,2,3,4,5,6] B = [2,3,4,5]，中位数3.5给出数组A = [1,2,3] B = [4,5]，中位数 3
 解题思路
-一定要注意定义，比如下面这棵树的最小深度是3不是1
-123451 \  2   \    3
-
-方法和找最大深度一样，Divide &amp;amp;">
+根据题目要求的时间复杂度是O(log(m+n))可知，必须要有个类似于binary search一样，每次操作可以扔一">
 
 
 
@@ -136,7 +124,7 @@
   };
 </script>
 
-  <title> 111 Minimum Depth of Binary Tree | Code Chemistry </title>
+  <title> 4 Median of two Sorted Arrays | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -276,7 +264,7 @@
             
             
               
-                111 Minimum Depth of Binary Tree
+                4 Median of two Sorted Arrays
               
             
           </h1>
@@ -288,8 +276,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-10-21T18:40:09-07:00" content="2015-10-22">
-              2015-10-22
+            <time itemprop="dateCreated" datetime="2016-06-19T18:27:04-07:00" content="2016-06-20">
+              2016-06-20
             </time>
           </span>
 
@@ -318,8 +306,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/21/111-Minimum-Depth-of-Binary-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/21/111-Minimum-Depth-of-Binary-Tree/" itemprop="commentsCount"></span>
+                <a href="/2016/06/19/4-Median-of-two-Sorted-Arrays/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/19/4-Median-of-two-Sorted-Arrays/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,19 +330,26 @@
       
 
       
-        <h1 id="原题">原题</h1><blockquote>
-<p>给定一个二叉树，找出其最小深度。<br>二叉树的最小深度为根节点到最近叶子节点的距离。</p>
+        <h3 id="原题">原题</h3><blockquote>
+<p>两个排序的数组A和B分别含有m和n个数，找到两个排序数组的中位数，要求时间复杂度应为O(log (m+n))。</p>
 </blockquote>
-<p>给出一棵如下的二叉树:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      <span class="number">1</span></span><br><span class="line">     / \ </span><br><span class="line">    <span class="number">2</span>   <span class="number">3</span></span><br><span class="line">       /  \</span><br><span class="line">      <span class="number">4</span>    <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
-<p>这个二叉树的最小深度为 2</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li><p><strong>一定要注意定义</strong>，比如下面这棵树的最小深度是<strong>3</strong>不是<strong>1</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"> \</span><br><span class="line">  <span class="number">2</span></span><br><span class="line">   \</span><br><span class="line">    <span class="number">3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法和找最大深度一样，Divide &amp; Conquer<br>只需要判断如果左右儿子中又None，则返回非None的儿子的高度+1</p>
-</li>
+<p><strong>样例</strong><br>给出数组A =<strong> [1,2,3,4,5,6]</strong> B = <strong>[2,3,4,5]</strong>，中位数3.5<br>给出数组A = <strong>[1,2,3]</strong> B = <strong>[4,5]</strong>，中位数 3</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>根据题目要求的时间复杂度是O(log(m+n))可知，必须要有个类似于binary search一样，每次操作可以扔一半。</li>
+<li>如果数组A和B一个含有n个元素，那么,<ul>
+<li>如果n是奇数，则中位数是合并数组的第n/2+1个数</li>
+<li>如果n是偶数，则中位数是合并数组的第n/2个数和n/2+1个数的平均数</li>
 </ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">None</span> <span class="keyword">in</span> [root.left, root.right]:</span><br><span class="line">            <span class="keyword">return</span> max(self.minDepth(root.left), self.minDepth(root.right)) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> min(self.minDepth(root.left), self.minDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>最后为题转化为如何求两个排序数组的第k大的数，时间复杂度为O(log(m+n))</li>
+<li>思路：每次找A的k/2的位置和B的k/2的位置的数与相比较<ul>
+<li>如果A[k/2] &lt; B[k/2]，则扔掉A的前k/2个数，因为第k大的数一定不在其中。找第k大的数转化为，在剩下的A数组和B数组中找第k/2大的数</li>
+<li>如果A[k/2] &gt;= B[k/2]，则扔掉B的前k/2个数，因为第k大的数一定不在其中。找第k大的数转化为，在剩下的B数组和A数组中找第k/2大的数</li>
+</ul>
+</li>
+<li><strong>注意</strong>：如果要求返回float类型，要<code>/ 2.0</code>而不是<code>/ 2</code></li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span><span class="params">(self, nums1, nums2)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums1: List[int]</span><br><span class="line">        :type nums2: List[int]</span><br><span class="line">        :rtype: float</span><br><span class="line">        """</span></span><br><span class="line">        n = len(nums1) + len(nums2)</span><br><span class="line">        <span class="keyword">if</span> n % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> self.findKthNum(nums1, nums2, n / <span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (self.findKthNum(nums1, nums2, n / <span class="number">2</span>) + self.findKthNum(nums1, nums2, n / <span class="number">2</span> + <span class="number">1</span>)) / <span class="number">2.0</span></span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findKthNum</span><span class="params">(self, nums1, nums2, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(nums1) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> nums2[k - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">elif</span> len(nums2) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> nums1[k -<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">elif</span> k == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> min(nums1[<span class="number">0</span>], nums2[<span class="number">0</span>])</span><br><span class="line">        </span><br><span class="line">        a = nums1[k / <span class="number">2</span> - <span class="number">1</span>] <span class="keyword">if</span> k / <span class="number">2</span> &lt;= len(nums1) <span class="keyword">else</span> <span class="keyword">None</span></span><br><span class="line">        b = nums2[k / <span class="number">2</span> - <span class="number">1</span>] <span class="keyword">if</span> k / <span class="number">2</span> &lt;= len(nums2) <span class="keyword">else</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> b <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> (a <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> a &lt; b):</span><br><span class="line">            <span class="keyword">return</span> self.findKthNum(nums1[k / <span class="number">2</span>:], nums2, k - k / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.findKthNum(nums1, nums2[k / <span class="number">2</span>:], k - k / <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -374,9 +369,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
-          
-            <a href="/tags/Divide-and-Conquer/" rel="tag">#Divide and Conquer</a>
+            <a href="/tags/Array/" rel="tag">#Array</a>
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
@@ -387,17 +380,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/21/236-Lowest-Common-Ancestor-of-a-Binary-Tree/" rel="next" title="236 Lowest Common Ancestor of a Binary Tree">
-                <i class="fa fa-chevron-left"></i> 236 Lowest Common Ancestor of a Binary Tree
+              <a href="/2016/06/19/1-Two-Sum/" rel="next" title="1 Two Sum">
+                <i class="fa fa-chevron-left"></i> 1 Two Sum
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/21/85-Insert-Node-in-a-Binary-Search-Tree/" rel="prev" title="85 Insert Node in a Binary Search Tree">
-                85 Insert Node in a Binary Search Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +545,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -684,9 +673,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2015/10/21/111-Minimum-Depth-of-Binary-Tree/';
-      var disqus_title = '111 Minimum Depth of Binary Tree';
-      var disqus_url = 'http://yoursite.com/2015/10/21/111-Minimum-Depth-of-Binary-Tree/';
+      var disqus_identifier = '2016/06/19/4-Median-of-two-Sorted-Arrays/';
+      var disqus_title = '4 Median of two Sorted Arrays';
+      var disqus_url = 'http://yoursite.com/2016/06/19/4-Median-of-two-Sorted-Arrays/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
