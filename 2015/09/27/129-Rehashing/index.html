@@ -83,24 +83,18 @@
 
 
 <meta name="description" content="原题
-哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。
-
-假设你有如下一哈希表：size=3, capacity=4给出 [null, 21-&amp;gt;9-&amp;gt;null, 14-&amp;gt;null, null]返回 [null, 9-&amp;gt;null, null, null, null, 21-&amp;gt;n">
+哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。假设你有如下一哈希表：size=3, capacity=41[null, 21, 14, null]&amp;#10;       &amp;#8595;    &amp;#8595;&amp;#10;       9   null&amp;#10;       &amp;#8595;&amp;#10;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="129 Rehashing">
 <meta property="og:url" content="http://yoursite.com/2015/09/27/129-Rehashing/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。
-
-假设你有如下一哈希表：size=3, capacity=4给出 [null, 21-&amp;gt;9-&amp;gt;null, 14-&amp;gt;null, null]返回 [null, 9-&amp;gt;null, null, null, null, 21-&amp;gt;n">
-<meta property="og:updated_time" content="2016-06-26T06:20:59.000Z">
+哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。假设你有如下一哈希表：size=3, capacity=41[null, 21, 14, null]&amp;#10;       &amp;#8595;    &amp;#8595;&amp;#10;       9   null&amp;#10;       &amp;#8595;&amp;#10;">
+<meta property="og:updated_time" content="2016-06-26T22:08:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="129 Rehashing">
 <meta name="twitter:description" content="原题
-哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。
-
-假设你有如下一哈希表：size=3, capacity=4给出 [null, 21-&amp;gt;9-&amp;gt;null, 14-&amp;gt;null, null]返回 [null, 9-&amp;gt;null, null, null, null, 21-&amp;gt;n">
+哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。假设你有如下一哈希表：size=3, capacity=41[null, 21, 14, null]&amp;#10;       &amp;#8595;    &amp;#8595;&amp;#10;       9   null&amp;#10;       &amp;#8595;&amp;#10;">
 
 
 
@@ -325,9 +319,11 @@
 
       
         <h1 id="原题">原题</h1><blockquote>
-<p>哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。</p>
+<p>哈希表容量的大小在一开始是不确定的。如果哈希表存储的元素太多（如超过容量的十分之一），我们应该将哈希表容量扩大一倍，并将所有的哈希值重新安排。假设你有如下一哈希表：<br>size=3, capacity=4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[null, 21, 14, null]&#10;       &#8595;    &#8595;&#10;       9   null&#10;       &#8595;&#10;      null</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>假设你有如下一哈希表：size=3, capacity=4<br>给出 [null, 21-&gt;9-&gt;null, 14-&gt;null, null]<br>返回 [null, 9-&gt;null, null, null, null, 21-&gt;null, 14-&gt;null, null]</p>
+<p>哈希函数为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int hashcode(int key, int capacity) &#123;&#10;    return key % capacity;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里有三个数字9，14，21，其中21和9共享同一个位置因为它们有相同的哈希值1(21 % 4 = 9 % 4 = 1)。我们将它们存储在同一个链表中。<br>重建哈希表，将容量扩大一倍，我们将会得到：<br>size=3, capacity=8<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index:   0    1    2    3     4    5    6   7&#10;hash : [null, 9, null, null, null, 21, 14, null]</span><br></pre></td></tr></table></figure></p>
+<p>给定一个哈希表，返回重哈希后的哈希表。</p>
 <h1 id="解题思路">解题思路</h1><ul>
 <li>当哈希表的size不够大的时候，动态增加哈希表的大小</li>
 <li>第一步容量扩大一倍，loop之前hash表的所有listnode，逐个拷贝</li>
