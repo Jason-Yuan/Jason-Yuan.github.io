@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-26T23:58:46.000Z</updated>
+  <updated>2016-06-27T00:13:12.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[232 Implement Queue using Stacks]]></title>
+    <link href="http://yoursite.com/2016/06/26/232-Implement-Queue-using-Stacks/"/>
+    <id>http://yoursite.com/2016/06/26/232-Implement-Queue-using-Stacks/</id>
+    <published>2016-06-26T17:12:41.000Z</published>
+    <updated>2016-06-27T00:13:12.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>正如标题所述，你需要使用两个栈来实现队列的一些操作。<br>队列应支持push(element)，pop() 和 top()，其中pop是弹出队列中的第一个(最前面的)元素。<br>pop和top方法都应该返回第一个元素的值。</p>
+</blockquote>
+<p><strong>样例</strong><br>比如push(1), pop(), push(2), push(3), top(), pop()，<br>你应该返回1，2和2</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>使用两个stack就可以实现queue的API</li>
+<li>每次push就push到stack1</li>
+<li>每次pop或者top，则看stack2是否为空，若为空，则将stack1中的元素pop出来并push到stack2<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stack1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">pop <span class="number">3</span></span><br><span class="line">stack2 = [<span class="number">3</span>]</span><br><span class="line">pop <span class="number">2</span></span><br><span class="line">stack2 = [<span class="number">3</span>, <span class="number">2</span>]</span><br><span class="line">pop <span class="number">1</span></span><br><span class="line">stack2 = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] <span class="comment">#真正的pop/top操作在stack2上执行</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.stack1 = []</span><br><span class="line">        self.stack2 = []</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type x: int</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        self.stack1.append(x)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: nothing</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.stack2:</span><br><span class="line">            <span class="keyword">while</span> self.stack1:</span><br><span class="line">                self.stack2.append(self.stack1.pop())</span><br><span class="line">        <span class="keyword">return</span> self.stack2.pop()</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peek</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.stack2:</span><br><span class="line">            <span class="keyword">while</span> self.stack1:</span><br><span class="line">                self.stack2.append(self.stack1.pop())</span><br><span class="line">        <span class="keyword">return</span> self.stack2[-<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">empty</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> len(self.stack1) == <span class="number">0</span> <span class="keyword">and</span> len(self.stack2) == <span class="number">0</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>正如标题所述，你需要使用两个栈来实现队列的一些操作。<br>队列应支持push(element)，pop() 和 top()，其中pop是弹出队列中的第一个(最前面的)元素。<br>pop和top方法都应该返回]]>
+    </summary>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Queue" scheme="http://yoursite.com/tags/Queue/"/>
+    
+      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[486 Merge k Sorted Arrays]]></title>
@@ -687,36 +719,6 @@
       <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2 Add Two Numbers]]></title>
-    <link href="http://yoursite.com/2016/06/12/2-Add-Two-Numbers/"/>
-    <id>http://yoursite.com/2016/06/12/2-Add-Two-Numbers/</id>
-    <published>2016-06-12T15:40:48.000Z</published>
-    <updated>2016-06-12T22:41:21.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>你有两个用链表代表的整数，其中每个节点包含一个数字。数字存储按照在原来整数中相反的顺序，使得第一个数字位于链表的开头。写出一个函数将两个整数相加，用链表形式返回和。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出两个链表 3-&gt;1-&gt;5-&gt;null和5-&gt;9-&gt;2-&gt;null，返回 8-&gt;0-&gt;8-&gt;null</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>简单的链表操作，注意声明一个carry来记录进位的结果</li>
-<li>最后要记得check如果carry == 1的情况，否则9-&gt;9 + 1 = 0-&gt;0</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1, l2)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type l1: ListNode</span><br><span class="line">        :type l2: ListNode</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        carry = <span class="number">0</span></span><br><span class="line">        Dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        head = Dummy</span><br><span class="line">        <span class="keyword">while</span> l1 != <span class="keyword">None</span> <span class="keyword">and</span> l2 != <span class="keyword">None</span>:</span><br><span class="line">            sum = (l1.val + l2.val + carry) % <span class="number">10</span></span><br><span class="line">            carry = <span class="number">1</span> <span class="keyword">if</span> (l1.val + l2.val + carry) &gt; <span class="number">9</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            head.next = ListNode(sum)</span><br><span class="line">            head = head.next</span><br><span class="line">            l1 = l1.next</span><br><span class="line">            l2 = l2.next</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> l1 != <span class="keyword">None</span>:</span><br><span class="line">            sum = (l1.val + carry) % <span class="number">10</span></span><br><span class="line">            carry = <span class="number">1</span> <span class="keyword">if</span> l1.val + carry &gt; <span class="number">9</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            head.next = ListNode(sum)</span><br><span class="line">            l1 = l1.next</span><br><span class="line">            head = head.next</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> l2 != <span class="keyword">None</span>:</span><br><span class="line">            sum = (l2.val + carry) % <span class="number">10</span></span><br><span class="line">            carry = <span class="number">1</span> <span class="keyword">if</span> l2.val + carry &gt; <span class="number">9</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            head.next = ListNode(sum)</span><br><span class="line">            l2 = l2.next</span><br><span class="line">            head = head.next</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> carry:</span><br><span class="line">            head.next = ListNode(carry)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> Dummy.next</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>你有两个用链表代表的整数，其中每个节点包含一个数字。数字存储按照在原来整数中相反的顺序，使得第一个数字位于链表的开头。写出一个函数将两个整数相加，用链表形式返回和。</p>
-</blockquote>
-<p><]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
