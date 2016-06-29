@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Module,Python," />
+  <meta name="keywords" content="Linked List,LintCode,Queue," />
 
 
 
@@ -82,22 +82,31 @@
 
 
 
-<meta name="description" content="与在控制台输入python程序，执行命令相比。当我们的程序变得越来越长的时候，我们希望可以在文本编辑器(如sublime text, notepad++)中编写python程序，因为这样的话，我们的程序可以保存为python脚本。但是随着程序的复杂度不断上升，我们希望可以把一个python脚本根据一定的功能分割成多个不同的python module。这样做的好处主要有两个：
+<meta name="description" content="原题
+实现一个双端队列
 
-程序看起来结构更加清">
+样例1push_front(1)&amp;#10;push_back(2)&amp;#10;pop_back() // return 2&amp;#10;pop_back() // return 1&amp;#10;push_back(3)&amp;#10;push_back(4)&amp;#10;pop_front() // return 3&amp;#10;pop_front() // return 4
+解题思路
+自己构建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python中的模块(Module)">
-<meta property="og:url" content="http://yoursite.com/2016/04/10/Python中的模块-Module/index.html">
+<meta property="og:title" content="493 [Implement Queue by Linked List II">
+<meta property="og:url" content="http://yoursite.com/2016/06/28/493-Implement-Queue-by-Linked-List-II/index.html">
 <meta property="og:site_name" content="Code Chemistry">
-<meta property="og:description" content="与在控制台输入python程序，执行命令相比。当我们的程序变得越来越长的时候，我们希望可以在文本编辑器(如sublime text, notepad++)中编写python程序，因为这样的话，我们的程序可以保存为python脚本。但是随着程序的复杂度不断上升，我们希望可以把一个python脚本根据一定的功能分割成多个不同的python module。这样做的好处主要有两个：
+<meta property="og:description" content="原题
+实现一个双端队列
 
-程序看起来结构更加清">
-<meta property="og:updated_time" content="2016-04-11T03:52:46.000Z">
+样例1push_front(1)&amp;#10;push_back(2)&amp;#10;pop_back() // return 2&amp;#10;pop_back() // return 1&amp;#10;push_back(3)&amp;#10;push_back(4)&amp;#10;pop_front() // return 3&amp;#10;pop_front() // return 4
+解题思路
+自己构建">
+<meta property="og:updated_time" content="2016-06-29T06:17:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python中的模块(Module)">
-<meta name="twitter:description" content="与在控制台输入python程序，执行命令相比。当我们的程序变得越来越长的时候，我们希望可以在文本编辑器(如sublime text, notepad++)中编写python程序，因为这样的话，我们的程序可以保存为python脚本。但是随着程序的复杂度不断上升，我们希望可以把一个python脚本根据一定的功能分割成多个不同的python module。这样做的好处主要有两个：
+<meta name="twitter:title" content="493 [Implement Queue by Linked List II">
+<meta name="twitter:description" content="原题
+实现一个双端队列
 
-程序看起来结构更加清">
+样例1push_front(1)&amp;#10;push_back(2)&amp;#10;pop_back() // return 2&amp;#10;pop_back() // return 1&amp;#10;push_back(3)&amp;#10;push_back(4)&amp;#10;pop_front() // return 3&amp;#10;pop_front() // return 4
+解题思路
+自己构建">
 
 
 
@@ -115,7 +124,7 @@
   };
 </script>
 
-  <title> Python中的模块(Module) | Code Chemistry </title>
+  <title> 493 [Implement Queue by Linked List II | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -255,7 +264,7 @@
             
             
               
-                Python中的模块(Module)
+                493 [Implement Queue by Linked List II
               
             
           </h1>
@@ -267,8 +276,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T13:50:56-07:00" content="2016-04-10">
-              2016-04-10
+            <time itemprop="dateCreated" datetime="2016-06-28T16:16:43-07:00" content="2016-06-28">
+              2016-06-28
             </time>
           </span>
 
@@ -281,8 +290,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/LintCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LintCode</span>
                   </a>
                 </span>
 
@@ -297,8 +306,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/10/Python中的模块-Module/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/10/Python中的模块-Module/" itemprop="commentsCount"></span>
+                <a href="/2016/06/28/493-Implement-Queue-by-Linked-List-II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/28/493-Implement-Queue-by-Linked-List-II/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -321,37 +330,15 @@
       
 
       
-        <p>与在控制台输入python程序，执行命令相比。当我们的程序变得越来越长的时候，我们希望可以在文本编辑器(如sublime text, notepad++)中编写python程序，因为这样的话，我们的程序可以保存为python脚本。但是随着程序的复杂度不断上升，我们希望可以把一个python脚本根据一定的功能分割成多个不同的python module。这样做的好处主要有两个：</p>
-<ul>
-<li>程序看起来结构更加清晰，易于维护，因为不同的文件可以同时由不同的程序员同时维护，分工合作。</li>
-<li>如果某个module或者整个package具有较强的复用性，其他的脚本甚至其他的project可以直接引用，避免了重复造轮子。</li>
+        <h3 id="原题">原题</h3><blockquote>
+<p>实现一个双端队列</p>
+</blockquote>
+<p><strong>样例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push_front(1)&#10;push_back(2)&#10;pop_back() // return 2&#10;pop_back() // return 1&#10;push_back(3)&#10;push_back(4)&#10;pop_front() // return 3&#10;pop_front() // return 4</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>自己构建一个双向链表</li>
+<li>需要注意从前面pop出最后一个元素和从后面pop出最后一个元素的情况</li>
 </ul>
-<p>这样，我们就引出了python中module和package的概念，可以说python当今十分流行的原因之一就是极为丰富的第三方模块，可以让我在完成很多任务的时候，避免了一切从零开始。当然，python本身也提供了十分强大全面的标准库 - <a href="https://docs.python.org/2/library/" target="_blank" rel="external">Python Standard Library</a></p>
-<p>类似于c++中的<code>include</code>, PHP中的<code>require</code>。在python中导入模块有两种方式<code>import</code>和<code>from ... import ...</code>，下面我们通过<code>test.py</code>和<code>example.py</code>来举例说明。</p>
-<p>test.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">"Hello"</span></span><br><span class="line">b = <span class="string">"World"</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Hello, World"</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="当两个文件在同一个子目录下">当两个文件在同一个子目录下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- project</span><br><span class="line">  |-- test.py</span><br><span class="line">  `-- example.py</span><br></pre></td></tr></table></figure>
-<p>如果我想要在example.py中使用test模块，有下面三种方法：</p>
-<ul>
-<li>第一种方法</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test</span><br><span class="line"></span><br><span class="line">test.Hello()  <span class="comment"># "Hello, World"</span></span><br><span class="line">print(test.a) <span class="comment"># "Hello"</span></span><br></pre></td></tr></table></figure>
-<p>使用时必须遵守<code>module_name.xxx</code>的格式，此方法将整个文件都包括进来</p>
-<ul>
-<li>第二种方法</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">Hello()  <span class="comment"># "Hello, World"</span></span><br><span class="line">print(a) <span class="comment"># "Hello"</span></span><br></pre></td></tr></table></figure>
-<p>使用第二种方法时，不再需要遵守第一种的格式，<code>*</code>表示import everything（但这种方式不会导入以下划线开头的名称），通常导致代码非常难读，不赞成使用。相应的应对方法就是通过使用<code>__all__</code>变量来限制。比如更改 <code>test.py</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__all__ = [<span class="string">"a"</span>, <span class="string">"b"</span>]</span><br><span class="line">a = <span class="string">"Hello"</span></span><br><span class="line">b = <span class="string">"World"</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Hello, World"</span>)</span><br></pre></td></tr></table></figure>
-<p>这样的话，<code>import *</code>将<strong>不能</strong>引入<code>Hello</code>方法</p>
-<ul>
-<li>第三种方法<br>在import的时候就声明具体要引入的内容</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> test <span class="keyword">import</span> Hello</span><br><span class="line"></span><br><span class="line">Hello()  <span class="comment"># "Hello, World"</span></span><br></pre></td></tr></table></figure>
-<h2 id="当主程序所在目录是模块所在目录的父(或祖辈)目录">当主程序所在目录是模块所在目录的父(或祖辈)目录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- project</span><br><span class="line">  |-- module</span><br><span class="line">  |  `--test.py</span><br><span class="line">  `-- example.py</span><br></pre></td></tr></table></figure>
-<p>如果要在<code>example.py</code>中使用<code>test</code>模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> module.test <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> module.test</span><br></pre></td></tr></table></figure></p>
-<p>但要注意必须在module文件夹中添加<code>__init__.py</code>文件，文件可以为空。</p>
-
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, _val)</span>:</span></span><br><span class="line">        self.next = self.prev = <span class="keyword">None</span></span><br><span class="line">        self.val = _val</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dequeue</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># do some intialize if necessary</span></span><br><span class="line">        self.first, self.last = <span class="keyword">None</span>, <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; item an integer</span></span><br><span class="line">    <span class="comment"># @return nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push_front</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        <span class="comment"># Write yout code here</span></span><br><span class="line">        <span class="keyword">if</span> self.first <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.first = Node(item)</span><br><span class="line">            self.last = self.first</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp = Node(item)</span><br><span class="line">            self.first.prev = tmp</span><br><span class="line">            tmp.next = self.first</span><br><span class="line">            self.first = tmp</span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; item an integer</span></span><br><span class="line">    <span class="comment"># @return nothing</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push_back</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        <span class="comment"># Write yout code here</span></span><br><span class="line">        <span class="keyword">if</span> self.last <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.first = Node(item)</span><br><span class="line">            self.last = self.first</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp = Node(item)</span><br><span class="line">            self.last.next = tmp</span><br><span class="line">            tmp.prev = self.last</span><br><span class="line">            self.last = tmp</span><br><span class="line"></span><br><span class="line">    <span class="comment"># @return an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop_front</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> self.first <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            item = self.first.val</span><br><span class="line">            self.first = self.first.next</span><br><span class="line">            <span class="keyword">if</span> self.first <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">                self.first.prev = <span class="keyword">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.last = <span class="keyword">None</span></span><br><span class="line">            <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">12</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @return an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop_back</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> self.last <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            item = self.last.val</span><br><span class="line">            self.last = self.last.prev</span><br><span class="line">            <span class="keyword">if</span> self.last <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">                self.last.next = <span class="keyword">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.first = <span class="keyword">None</span></span><br><span class="line">            <span class="keyword">return</span> item</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">12</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -371,9 +358,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Module/" rel="tag">#Module</a>
+            <a href="/tags/Linked-List/" rel="tag">#Linked List</a>
           
-            <a href="/tags/Python/" rel="tag">#Python</a>
+            <a href="/tags/LintCode/" rel="tag">#LintCode</a>
+          
+            <a href="/tags/Queue/" rel="tag">#Queue</a>
           
         </div>
       
@@ -382,17 +371,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/19/475-Binary-Tree-Maximum-Path-Sum-II/" rel="next" title="475 Binary Tree Maximum Path Sum II">
-                <i class="fa fa-chevron-left"></i> 475 Binary Tree Maximum Path Sum II
+              <a href="/2016/06/28/492-Implement-Queue-by-Linked-List/" rel="next" title="492 Implement Queue by Linked List">
+                <i class="fa fa-chevron-left"></i> 492 Implement Queue by Linked List
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/01/Virtualenv搭建python虚拟环境/" rel="prev" title="Virtualenv搭建python虚拟环境">
-                Virtualenv搭建python虚拟环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -551,7 +536,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#当两个文件在同一个子目录下"><span class="nav-number">1.</span> <span class="nav-text">当两个文件在同一个子目录下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当主程序所在目录是模块所在目录的父(或祖辈)目录"><span class="nav-number">2.</span> <span class="nav-text">当主程序所在目录是模块所在目录的父(或祖辈)目录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -679,9 +664,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2016/04/10/Python中的模块-Module/';
-      var disqus_title = 'Python中的模块(Module)';
-      var disqus_url = 'http://yoursite.com/2016/04/10/Python中的模块-Module/';
+      var disqus_identifier = '2016/06/28/493-Implement-Queue-by-Linked-List-II/';
+      var disqus_title = '493 [Implement Queue by Linked List II';
+      var disqus_url = 'http://yoursite.com/2016/06/28/493-Implement-Queue-by-Linked-List-II/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
