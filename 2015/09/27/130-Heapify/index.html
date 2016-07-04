@@ -87,7 +87,7 @@
 
 给出 [3,2,1,4,5]，返回[1,2,3,4,5] 或者任何一个合法的堆数组
 解题思路
-minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
+sift down函数可以写成recursion也可以写成while循环，比如当我们删除一个最小值以后">
 <meta property="og:type" content="article">
 <meta property="og:title" content="130 Heapify">
 <meta property="og:url" content="http://yoursite.com/2015/09/27/130-Heapify/index.html">
@@ -97,8 +97,8 @@ minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
 
 给出 [3,2,1,4,5]，返回[1,2,3,4,5] 或者任何一个合法的堆数组
 解题思路
-minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
-<meta property="og:updated_time" content="2016-07-04T04:57:54.000Z">
+sift down函数可以写成recursion也可以写成while循环，比如当我们删除一个最小值以后">
+<meta property="og:updated_time" content="2016-07-04T05:14:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="130 Heapify">
 <meta name="twitter:description" content="原题
@@ -106,7 +106,7 @@ minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
 
 给出 [3,2,1,4,5]，返回[1,2,3,4,5] 或者任何一个合法的堆数组
 解题思路
-minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
+sift down函数可以写成recursion也可以写成while循环，比如当我们删除一个最小值以后">
 
 
 
@@ -335,9 +335,9 @@ minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
 </blockquote>
 <p>给出<strong> [3,2,1,4,5]</strong>，返回<strong>[1,2,3,4,5] </strong>或者任何一个合法的堆数组</p>
 <h1 id="解题思路">解题思路</h1><ul>
-<li>minHeapify就相当于sift down函数，minHeapify函数可以写成recursion也可以写成while循环</li>
-<li>heapify就相当于buildMinHeap函数</li>
-<li>sift up函数用于heap.put()的时候</li>
+<li>sift down函数可以写成recursion也可以写成while循环，比如当我们删除一个最小值以后，就把最后一个值交换到顶点，然后<strong>向下swap</strong>，目的就是每次找到当前节点的两个儿子中的最小值，如果小于这个最小值就互换，直到最底层，所以deleteMin的时间复杂度是 - O(logn)</li>
+<li>sift up函数就是用于insert的时候，每次要往minHeap中添加一个数的时候，首先添加到最末的位置。然后每次和它的父亲节点相比较，如果小于父亲结点则<strong>向上swap</strong>，操作可能一直到最顶才结束，所以insert得时间复杂度是 - O(logn)</li>
+<li>heapify就相当于buildMinHeap函数，把一个无序的数组转化成一个minHeap数组，方法就是把数组的前半段做sift down操作。</li>
 <li>注意如果想要在函数中整体覆盖一个数组，Python的写法如下<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正确</span></span><br><span class="line">array[:] = newArray[:]</span><br><span class="line"><span class="comment"># 两个错误示范，相当于在函数内改变了reference指向，并没有实际改变原来array指向的object</span></span><br><span class="line">array = newArray[:]</span><br><span class="line">array = newArray</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
