@@ -98,7 +98,7 @@ minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
 给出 [3,2,1,4,5]，返回[1,2,3,4,5] 或者任何一个合法的堆数组
 解题思路
 minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
-<meta property="og:updated_time" content="2016-04-10T01:24:10.000Z">
+<meta property="og:updated_time" content="2016-07-04T04:57:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="130 Heapify">
 <meta name="twitter:description" content="原题
@@ -337,6 +337,7 @@ minHeapify就相当于sift down函数，minHeapify函数可以写成recursion">
 <h1 id="解题思路">解题思路</h1><ul>
 <li>minHeapify就相当于sift down函数，minHeapify函数可以写成recursion也可以写成while循环</li>
 <li>heapify就相当于buildMinHeap函数</li>
+<li>sift up函数用于heap.put()的时候</li>
 <li>注意如果想要在函数中整体覆盖一个数组，Python的写法如下<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正确</span></span><br><span class="line">array[:] = newArray[:]</span><br><span class="line"><span class="comment"># 两个错误示范，相当于在函数内改变了reference指向，并没有实际改变原来array指向的object</span></span><br><span class="line">array = newArray[:]</span><br><span class="line">array = newArray</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
