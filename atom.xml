@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-07T05:13:02.000Z</updated>
+  <updated>2016-07-07T07:50:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[229 Stack Sorting]]></title>
+    <link href="http://yoursite.com/2016/07/06/229-Stack-Sorting/"/>
+    <id>http://yoursite.com/2016/07/06/229-Stack-Sorting/</id>
+    <published>2016-07-07T00:50:00.000Z</published>
+    <updated>2016-07-07T07:50:33.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>请设计一种方法将一个栈进行升序排列 （最大的数在最上面）。</p>
+</blockquote>
+<p>你可以使用另外一个栈来辅助操作，但不可将这些数复制到另外一个数据结构中 （如，数组）。</p>
+<p><strong>样例</strong><br>给一个栈：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| |&#10;|3|&#10;|1|&#10;|2|&#10;|4|&#10; -</span><br></pre></td></tr></table></figure></p>
+<p>排序之后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| |&#10;|4|&#10;|3|&#10;|2|&#10;|1|&#10; -</span><br></pre></td></tr></table></figure></p>
+<p>栈会被序列化为[4,2,1,3]，也就是说最右边是栈顶。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>首先，把所有元素从原stack倒进临时stack，然后每次从临时stack拿出一个元素放入current中：<ul>
+<li>若该current大于原stack中最上面的元素，则直接加入原stack</li>
+<li>若该current小于原stack中的元素，就把原stack中的元素放回临时stack，直到原stack顶上的元素小于current或者原stack为空，则将current放入原stack</li>
+</ul>
+</li>
+<li>从而，保证了原stack中的元素从底到上是按有小到大排序的</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Your can use Stack class in your solution.</span></span><br><span class="line"><span class="comment">#class Stack:</span></span><br><span class="line"><span class="comment">#  def __init__(self, stk=[])</span></span><br><span class="line"><span class="comment">#    # use stk to initialize the stack</span></span><br><span class="line"><span class="comment">#  def isEmpty(self)</span></span><br><span class="line"><span class="comment">#    # return true is stack is empty or false/</span></span><br><span class="line"><span class="comment">#  def push(self, item)</span></span><br><span class="line"><span class="comment">#    # push a element into stack and return nothing</span></span><br><span class="line"><span class="comment">#  def pop(self)</span></span><br><span class="line"><span class="comment">#    # pop a element from stack</span></span><br><span class="line"><span class="comment">#  def peek(self):</span></span><br><span class="line"><span class="comment">#    # return the top element if stack is not empty or nothing</span></span><br><span class="line"><span class="comment">#  def size(self):</span></span><br><span class="line"><span class="comment">#    # return the size of stack</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;Stack&#125; stk an integer Stack</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; void</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stackSorting</span><span class="params">(self, stk)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        tempStk = Stack()</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> stk.isEmpty():</span><br><span class="line">            tempStk.push(stk.pop())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> tempStk.isEmpty():</span><br><span class="line">            current = tempStk.pop()</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">not</span> stk.isEmpty() <span class="keyword">and</span> stk.peek() &gt; current:</span><br><span class="line">                tempStk.push(stk.peek())</span><br><span class="line">                stk.pop()</span><br><span class="line">            stk.push(current)</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>请设计一种方法将一个栈进行升序排列 （最大的数在最上面）。</p>
+</blockquote>
+<p>你可以使用另外一个栈来辅助操作，但不可将这些数复制到另外一个数据结构中 （如，数组）。</p>
+<p><st]]>
+    </summary>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[531 Six Degrees]]></title>
@@ -694,43 +732,6 @@
       <category term="Hash Map" scheme="http://yoursite.com/tags/Hash-Map/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[148 Sort List]]></title>
-    <link href="http://yoursite.com/2016/06/12/148-Sort-List/"/>
-    <id>http://yoursite.com/2016/06/12/148-Sort-List/</id>
-    <published>2016-06-13T00:56:58.000Z</published>
-    <updated>2016-06-13T08:02:07.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>在 O(<em>n</em> log <em>n</em>) 时间复杂度和常数级的空间复杂度下给链表排序。</p>
-</blockquote>
-<p><strong>样例</strong>给出 1-&gt;3-&gt;2-&gt;null，给它排序变成 1-&gt;2-&gt;3-&gt;null.</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>方法一：遍历链表，存入数组中，排序数组，然后重新构建链表</li>
-<li>方法二：直接操作链表，Merge Sort，先局部有序再整体有序，找中点，然后左半部分和右半部分分别递归merge sort (Divide and Conquer)</li>
-<li>总结：<ul>
-<li>对于数组，quick sort好于merge sort，因为quick sort是in-place，而merge sort需要额外空间，开辟空间/回收空间都要耗费时间</li>
-<li>对于链表，merge sort并不需要额外空间</li>
-</ul>
-</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortList</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        ans = []</span><br><span class="line">        tmp = head</span><br><span class="line">        <span class="keyword">while</span> tmp != <span class="keyword">None</span>:</span><br><span class="line">            ans.append(tmp.val)</span><br><span class="line">            tmp = tmp.next</span><br><span class="line"></span><br><span class="line">        ans.sort()</span><br><span class="line">        tmp = head</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">            tmp.val = i</span><br><span class="line">            tmp = tmp.next</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sortList</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type head: ListNode</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> head == <span class="keyword">None</span> <span class="keyword">or</span> head.next == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line">        mid = self.findMiddle(head)</span><br><span class="line"></span><br><span class="line">        right = self.sortList(mid.next)</span><br><span class="line">        mid.next = <span class="keyword">None</span></span><br><span class="line">        left = self.sortList(head)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.merge(left, right)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMiddle</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        slow, fast = head, head.next</span><br><span class="line">        <span class="keyword">while</span> fast != <span class="keyword">None</span> <span class="keyword">and</span> fast.next != <span class="keyword">None</span>:</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">        <span class="keyword">return</span> slow    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, head1, head2)</span>:</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        head = dummy</span><br><span class="line">        <span class="keyword">while</span> head1 <span class="keyword">and</span> head2:</span><br><span class="line">            <span class="keyword">if</span> head1.val &lt; head2.val:</span><br><span class="line">                head.next = head1</span><br><span class="line">                head1 = head1.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                head.next = head2</span><br><span class="line">                head2 = head2.next</span><br><span class="line">            head = head.next</span><br><span class="line">        <span class="keyword">if</span> head1:</span><br><span class="line">            head.next = head1</span><br><span class="line">        <span class="keyword">if</span> head2:</span><br><span class="line">            head.next = head2</span><br><span class="line">        <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>在 O(<em>n</em> log <em>n</em>) 时间复杂度和常数级的空间复杂度下给链表排序。</p>
-</blockquote>
-<p><strong>样例</strong>给出 1-&gt;3-]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="Merge Sort" scheme="http://yoursite.com/tags/Merge-Sort/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
