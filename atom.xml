@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-09T05:23:01.000Z</updated>
+  <updated>2016-07-09T22:54:24.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[230 Animal Shelter]]></title>
+    <link href="http://yoursite.com/2016/07/09/230-Animal-Shelter/"/>
+    <id>http://yoursite.com/2016/07/09/230-Animal-Shelter/</id>
+    <published>2016-07-09T15:53:58.000Z</published>
+    <updated>2016-07-09T22:54:24.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>在一个宠物避难所里，仅有狗和猫两种动物可供领养，且领养时严格执行“先进先出”的规则。如果有人想要从避难所领养动物，他只有两种选择：要么选择领养所有动物中最资深的一只（根据到达避难所的时间，越早到的越资深），要么选择领养猫或狗（同样，也只能领养最资深的一只）。也就是说，领养者不能随意选择某一指定动物。请建立一个数据结构，使得它可以运行以上规则，并可实 enqueue, dequeueAny, dequeueDog, 和 dequeueCat 操作。<br>建议使用 LinkedList 作为数据结构实现。</p>
+</blockquote>
+<p><strong>样例</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int DOG = <span class="number">1</span></span><br><span class="line">int CAT = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">enqueue(<span class="string">"james"</span>, DOG);</span><br><span class="line">enqueue(<span class="string">"tom"</span>, DOG);</span><br><span class="line">enqueue(<span class="string">"mimi"</span>, CAT);</span><br><span class="line">dequeueAny();  <span class="comment"># should return "james"</span></span><br><span class="line">dequeueCat();  <span class="comment"># should return "mimi"</span></span><br><span class="line">dequeueDog();  <span class="comment"># should return "tom"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>使用两个数组分别记录加入的猫和狗，用0和1表示</li>
+<li>存储时，在python中可以使用set来同时记录名字和先后顺序(使用数字记录age)，初始tot = 0，之后每次tot += 1，在dequeueAny的时候只需要比较Dog[0]和Cat[0]的tot，值越小表明age越大，pop谁</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalShelter</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># do some intialize if necessary</span></span><br><span class="line">        self.cats = []</span><br><span class="line">        self.dogs = []</span><br><span class="line">        self.tot = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param &#123;string&#125; name</span><br><span class="line">    @param &#123;int&#125; type, 1 if Animal is dog or 0</span><br><span class="line">    @return nothing</span><br><span class="line">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self, name, type)</span>:</span></span><br><span class="line">        <span class="comment"># Write yout code here</span></span><br><span class="line">        self.tot += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> type == <span class="number">1</span>:</span><br><span class="line">            self.dogs.append((name, self.tot))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.cats.append((name, self.tot))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return a string</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeueAny</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> len(self.dogs) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.dequeueCat()</span><br><span class="line">        <span class="keyword">elif</span> len(self.cats) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.dequeueDog()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> self.dogs[<span class="number">0</span>][<span class="number">1</span>] &lt; self.cats[<span class="number">0</span>][<span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> self.dequeueDog()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> self.dequeueCat()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return a string</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeueDog</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        name = self.dogs[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">del</span> self.dogs[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line"></span><br><span class="line">    <span class="comment"># return a string</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeueCat</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        name = self.cats[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">del</span> self.cats[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">return</span> name</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>在一个宠物避难所里，仅有狗和猫两种动物可供领养，且领养时严格执行“先进先出”的规则。如果有人想要从避难所领养动物，他只有两种选择：要么选择领养所有动物中最资深的一只（根据到达避难所的时间，越早到的越资深），要么]]>
+    </summary>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Queue" scheme="http://yoursite.com/tags/Queue/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[543 Kth Largest in N Arrays]]></title>
@@ -709,38 +737,6 @@
       <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[533 Two Sum Closest]]></title>
-    <link href="http://yoursite.com/2016/06/19/533-Two-Sum-Closest/"/>
-    <id>http://yoursite.com/2016/06/19/533-Two-Sum-Closest/</id>
-    <published>2016-06-19T16:03:28.000Z</published>
-    <updated>2016-06-19T23:03:57.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>找到两个数字使得他们和最接近target</p>
-</blockquote>
-<p><strong>样例</strong><br>nums = [-1, 2, 1, -4],target = 4.<br>最接近值为 1</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>对撞型指针问题，思路与Two Sum类似 O(n2) =&gt; O(n)</li>
-<li>两个指针分别从数组的头跟尾向中间移动，相比于两次for循环，避免了不必要的扫描</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;int[]&#125; nums an integer array</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; target an integer</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; the difference between the sum and the target</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSumCloset</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        i, j = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        diff = sys.maxint</span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">if</span> nums[i] + nums[j] &lt; target:</span><br><span class="line">                diff = min(diff, target - nums[i] - nums[j])</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                diff = min(diff, nums[i] + nums[j] - target)</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> diff</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>找到两个数字使得他们和最接近target</p>
-</blockquote>
-<p><strong>样例</strong><br>nums = [-1, 2, 1, -4],target = 4.<br>最接近]]>
-    </summary>
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
     
   </entry>
   
