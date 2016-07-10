@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-10T02:07:10.000Z</updated>
+  <updated>2016-07-10T02:08:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/07/09/127-Topological-Sorting/"/>
     <id>http://yoursite.com/2016/07/09/127-Topological-Sorting/</id>
     <published>2016-07-09T19:06:33.000Z</published>
-    <updated>2016-07-10T02:07:10.000Z</updated>
+    <updated>2016-07-10T02:08:26.000Z</updated>
     <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>给定一个有向图，图节点的拓扑排序被定义为：<br>对于每条有向边A–&gt; B，则A必须排在B之前　　<br>拓扑排序的第一个节点可以是任何在图中没有其他节点指向它的节点　　<br>找到给定图的任一拓扑排序</p>
 </blockquote>
@@ -44,6 +44,8 @@
     <![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>给定一个有向图，图节点的拓扑排序被定义为：<br>对于每条有向边A–&gt; B，则A必须排在B之前　　<br>拓扑排序的第一个节点可以是任何在图中没有其他节点指向它的节点　　<br>找到给定图的任一拓扑排序<]]>
     </summary>
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
     
