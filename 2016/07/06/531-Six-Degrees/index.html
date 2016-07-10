@@ -85,9 +85,9 @@
 <meta name="description" content="原题
 六度分离是一个哲学问题，说的是每个人每个东西可以通过六步或者更少的步数建立联系。现在给你一个友谊关系，查询两个人可以通过几步相连，如果不相连返回 -1
 
-样例给出图11------2-----4&amp;#10; \          /&amp;#10;  \        /&amp;#10;   \--3--/
+样例给出图12341------2-----4 \          /  \        /   \--3--/
 {1,2,3#2,1,4#3,1,4#4,2,3} s = 1, t = 4 返回 2
-给出图二1">
+给出图二12341      2-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="531 Six Degrees">
 <meta property="og:url" content="http://yoursite.com/2016/07/06/531-Six-Degrees/index.html">
@@ -95,18 +95,18 @@
 <meta property="og:description" content="原题
 六度分离是一个哲学问题，说的是每个人每个东西可以通过六步或者更少的步数建立联系。现在给你一个友谊关系，查询两个人可以通过几步相连，如果不相连返回 -1
 
-样例给出图11------2-----4&amp;#10; \          /&amp;#10;  \        /&amp;#10;   \--3--/
+样例给出图12341------2-----4 \          /  \        /   \--3--/
 {1,2,3#2,1,4#3,1,4#4,2,3} s = 1, t = 4 返回 2
-给出图二1">
-<meta property="og:updated_time" content="2016-07-07T05:13:02.000Z">
+给出图二12341      2-">
+<meta property="og:updated_time" content="2016-07-09T23:04:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="531 Six Degrees">
 <meta name="twitter:description" content="原题
 六度分离是一个哲学问题，说的是每个人每个东西可以通过六步或者更少的步数建立联系。现在给你一个友谊关系，查询两个人可以通过几步相连，如果不相连返回 -1
 
-样例给出图11------2-----4&amp;#10; \          /&amp;#10;  \        /&amp;#10;   \--3--/
+样例给出图12341------2-----4 \          /  \        /   \--3--/
 {1,2,3#2,1,4#3,1,4#4,2,3} s = 1, t = 4 返回 2
-给出图二1">
+给出图二12341      2-">
 
 
 
@@ -333,9 +333,9 @@
         <h3 id="原题">原题</h3><blockquote>
 <p>六度分离是一个哲学问题，说的是每个人每个东西可以通过六步或者更少的步数建立联系。<br>现在给你一个友谊关系，查询两个人可以通过几步相连，如果不相连返回 -1</p>
 </blockquote>
-<p><strong>样例</strong><br>给出图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1------2-----4&#10; \          /&#10;  \        /&#10;   \--3--/</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例</strong><br>给出图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>------<span class="number">2</span>-----<span class="number">4</span></span><br><span class="line"> \          /</span><br><span class="line">  \        /</span><br><span class="line">   \--<span class="number">3</span>--/</span><br></pre></td></tr></table></figure></p>
 <p>{1,2,3#2,1,4#3,1,4#4,2,3} s = 1, t = 4 返回 2</p>
-<p>给出图二<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1      2-----4&#10;             /&#10;           /&#10;          3</span><br></pre></td></tr></table></figure></p>
+<p>给出图二<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>      <span class="number">2</span>-----<span class="number">4</span></span><br><span class="line">             /</span><br><span class="line">           /</span><br><span class="line">          <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>{1#2,4#3,4#4,2,3} s = 1, t = 4 返回 -1</p>
 <h3 id="解题思路">解题思路</h3><ul>
 <li>本题相当于求图中两点的最短路径，BFS -&gt; 用Queue来实现</li>
@@ -461,7 +461,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">202</span>
+              <span class="site-state-item-count">203</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

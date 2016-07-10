@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Binary Tree,LintCode," />
+  <meta name="keywords" content="BFS,DFS,LeetCode,Queue," />
 
 
 
@@ -83,33 +83,24 @@
 
 
 <meta name="description" content="原题
-给一棵二叉树和二叉树中的两个节点，找到这两个节点的最近公共祖先LCA。
-两个节点的最近公共祖先，是指两个节点的所有父亲节点中（包括这两个节点），离这两个节点最近的公共的节点。
-每个节点除了左右儿子指针以外，还包含一个父亲指针parent，指向自己的父亲。
+克隆一张无向图，图中的每个节点包含一个 label 和一个表 neighbors。你的程序需要返回一个经过深度拷贝的新图。这个新图和原图具有同样的结构，并且对新图的任何改动不会对原图造成任何影响。
 
-对于下面的这棵二叉树12345  4 / \3   7   / \  5   6
-LCA(3, 5) = 4LCA(5, 6) = 7L">
+样例比如，序列化图 {0,1,2#1,2#2,2} 共有三个节点, 因此包含两个个分隔符#。第一个节点label为0，存在边从节点0链接到节点1和节点2第二个节点label为1，存在边从节点1连">
 <meta property="og:type" content="article">
-<meta property="og:title" content="474 Lowest Common Ancestor II">
-<meta property="og:url" content="http://yoursite.com/2016/05/29/474-Lowest-Common-Ancestor-II/index.html">
+<meta property="og:title" content="133 Clone Graph">
+<meta property="og:url" content="http://yoursite.com/2016/07/09/133-Clone-Graph/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-给一棵二叉树和二叉树中的两个节点，找到这两个节点的最近公共祖先LCA。
-两个节点的最近公共祖先，是指两个节点的所有父亲节点中（包括这两个节点），离这两个节点最近的公共的节点。
-每个节点除了左右儿子指针以外，还包含一个父亲指针parent，指向自己的父亲。
+克隆一张无向图，图中的每个节点包含一个 label 和一个表 neighbors。你的程序需要返回一个经过深度拷贝的新图。这个新图和原图具有同样的结构，并且对新图的任何改动不会对原图造成任何影响。
 
-对于下面的这棵二叉树12345  4 / \3   7   / \  5   6
-LCA(3, 5) = 4LCA(5, 6) = 7L">
-<meta property="og:updated_time" content="2016-05-30T02:02:36.000Z">
+样例比如，序列化图 {0,1,2#1,2#2,2} 共有三个节点, 因此包含两个个分隔符#。第一个节点label为0，存在边从节点0链接到节点1和节点2第二个节点label为1，存在边从节点1连">
+<meta property="og:updated_time" content="2016-07-10T01:03:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="474 Lowest Common Ancestor II">
+<meta name="twitter:title" content="133 Clone Graph">
 <meta name="twitter:description" content="原题
-给一棵二叉树和二叉树中的两个节点，找到这两个节点的最近公共祖先LCA。
-两个节点的最近公共祖先，是指两个节点的所有父亲节点中（包括这两个节点），离这两个节点最近的公共的节点。
-每个节点除了左右儿子指针以外，还包含一个父亲指针parent，指向自己的父亲。
+克隆一张无向图，图中的每个节点包含一个 label 和一个表 neighbors。你的程序需要返回一个经过深度拷贝的新图。这个新图和原图具有同样的结构，并且对新图的任何改动不会对原图造成任何影响。
 
-对于下面的这棵二叉树12345  4 / \3   7   / \  5   6
-LCA(3, 5) = 4LCA(5, 6) = 7L">
+样例比如，序列化图 {0,1,2#1,2#2,2} 共有三个节点, 因此包含两个个分隔符#。第一个节点label为0，存在边从节点0链接到节点1和节点2第二个节点label为1，存在边从节点1连">
 
 
 
@@ -127,7 +118,7 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
   };
 </script>
 
-  <title> 474 Lowest Common Ancestor II | Code Chemistry </title>
+  <title> 133 Clone Graph | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -267,7 +258,7 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
             
             
               
-                474 Lowest Common Ancestor II
+                133 Clone Graph
               
             
           </h1>
@@ -279,8 +270,8 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-29T12:01:48-07:00" content="2016-05-29">
-              2016-05-29
+            <time itemprop="dateCreated" datetime="2016-07-09T11:02:08-07:00" content="2016-07-09">
+              2016-07-09
             </time>
           </span>
 
@@ -293,8 +284,8 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/LintCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LintCode</span>
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
                   </a>
                 </span>
 
@@ -309,8 +300,8 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/29/474-Lowest-Common-Ancestor-II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/474-Lowest-Common-Ancestor-II/" itemprop="commentsCount"></span>
+                <a href="/2016/07/09/133-Clone-Graph/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/09/133-Clone-Graph/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -334,18 +325,20 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
 
       
         <h3 id="原题">原题</h3><blockquote>
-<p>给一棵二叉树和二叉树中的两个节点，找到这两个节点的最近公共祖先LCA。</p>
-<p>两个节点的最近公共祖先，是指两个节点的所有父亲节点中（包括这两个节点），离这两个节点最近的公共的节点。</p>
-<p>每个节点除了左右儿子指针以外，还包含一个父亲指针parent，指向自己的父亲。</p>
+<p>克隆一张无向图，图中的每个节点包含一个 label 和一个表 neighbors。<br>你的程序需要返回一个经过深度拷贝的新图。这个新图和原图具有同样的结构，并且对新图的任何改动不会对原图造成任何影响。</p>
 </blockquote>
-<p>对于下面的这棵二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">4</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">3</span>   <span class="number">7</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">5</span>   <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
-<p>LCA(3, 5) = 4<br>LCA(5, 6) = 7<br>LCA(6, 7) = 7</p>
+<p><strong>样例</strong><br>比如，序列化图 {0,1,2#1,2#2,2} 共有三个节点, 因此包含两个个分隔符#。<br>第一个节点label为0，存在边从节点0链接到节点1和节点2<br>第二个节点label为1，存在边从节点1连接到节点2<br>第三个节点label为2，存在边从节点2连接到节点2(本身),从而形成自环。</p>
+<p>我们能看到如下的图：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">1</span></span><br><span class="line">  / \</span><br><span class="line"> /   \</span><br><span class="line"><span class="number">0</span> --- <span class="number">2</span></span><br><span class="line">     / \</span><br><span class="line">     \_/</span><br></pre></td></tr></table></figure></p>
 <h3 id="解题思路">解题思路</h3><ul>
-<li>根据p，一路向上找到所有的parent，得到一个list</li>
-<li>根据q，一路向上找到所有的parent，得到一个list</li>
-<li>从左向右看两个list，最先一样的node即为公共祖先</li>
+<li>首先，要遍历无向图，需要使用Hash Map来当作visited数组，防止重复访问而造成程序中的死循环</li>
+<li>遍历图有两种方式 - BFS &amp; DFS，本题均可采用<ul>
+<li>BFS - 使用Queue (prefer)</li>
+<li>DFS - 递归或者使用Stack，对于DFS，每次clone一个node的时候，就要把它所有的neighbor加入到新clone的node的neighbor中，此时recursivly调用dfs，如果没有visited过 - 新建一个node，否则直接从map中找到返回</li>
 </ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span><br><span class="line">Definition of ParentTreeNode:</span><br><span class="line">class ParentTreeNode:</span><br><span class="line">    def __init__(self, val):</span><br><span class="line">        this.val = val</span><br><span class="line">        this.parent, this.left, this.right = None, None, None</span><br><span class="line">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    @param root: The root of the tree</span><br><span class="line">    @param A and B: Two node in the tree</span><br><span class="line">    @return: The lowest common ancestor of A and B</span><br><span class="line">    """</span> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lowestCommonAncestorII</span><span class="params">(self, root, p, q)</span>:</span></span><br><span class="line">        list = []</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            list.append(p)</span><br><span class="line">            p = p.parent</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            <span class="keyword">if</span> q <span class="keyword">in</span> list:</span><br><span class="line">                <span class="keyword">return</span> q</span><br><span class="line">            q = q.parent</span><br></pre></td></tr></table></figure>
+</li>
+<li>在visited数组中，key值为原来的node，value为新clone的node，如果一个node不存在于map中，说明这个node还未被clone，将它clone后放入queue中继续处理neighbors</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Method 1: BFS</span></span><br><span class="line"><span class="comment"># Definition for a undirected graph node</span></span><br><span class="line"><span class="comment"># class UndirectedGraphNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.label = x</span></span><br><span class="line"><span class="comment">#         self.neighbors = []</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.visited = &#123;&#125;</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cloneGraph</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type node: UndirectedGraphNode</span><br><span class="line">        :rtype: UndirectedGraphNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        newHead = UndirectedGraphNode(node.label)</span><br><span class="line">        self.visited[node] = newHead</span><br><span class="line">        </span><br><span class="line">        myQueue = Queue.Queue()</span><br><span class="line">        myQueue.put(node)</span><br><span class="line">        <span class="keyword">while</span> myQueue.qsize():</span><br><span class="line">            current = myQueue.get()</span><br><span class="line">            <span class="keyword">for</span> neighbor <span class="keyword">in</span> current.neighbors:</span><br><span class="line">                <span class="keyword">if</span> neighbor <span class="keyword">not</span> <span class="keyword">in</span> self.visited:</span><br><span class="line">                    newNode = UndirectedGraphNode(neighbor.label)</span><br><span class="line">                    self.visited[current].neighbors.append(newNode)</span><br><span class="line">                    self.visited[neighbor] = newNode</span><br><span class="line">                    myQueue.put(neighbor)</span><br><span class="line">                <span class="keyword">else</span>: <span class="comment"># turn directed graph to undirected graph</span></span><br><span class="line">                    self.visited[current].neighbors.append(self.visited[neighbor])</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> newHead</span><br><span class="line"></span><br><span class="line"><span class="comment"># Method 2: DFS</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cloneGraph</span><span class="params">(self, node)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type node: UndirectedGraphNode</span><br><span class="line">        :rtype: UndirectedGraphNode</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> self.dfs(node, &#123;&#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, node, map)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">in</span> map:</span><br><span class="line">            <span class="keyword">return</span> map[node]</span><br><span class="line">        newNode = UndirectedGraphNode(node.label)</span><br><span class="line">        map[node] = newNode</span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> node.neighbors:</span><br><span class="line">            newNode.neighbors.append(self.dfs(neighbor, map))</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> newNode</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -365,9 +358,13 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
       
         <div class="post-tags">
           
-            <a href="/tags/Binary-Tree/" rel="tag">#Binary Tree</a>
+            <a href="/tags/BFS/" rel="tag">#BFS</a>
           
-            <a href="/tags/LintCode/" rel="tag">#LintCode</a>
+            <a href="/tags/DFS/" rel="tag">#DFS</a>
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+            <a href="/tags/Queue/" rel="tag">#Queue</a>
           
         </div>
       
@@ -376,17 +373,13 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/29/331-Verify-Preorder-Serialization-of-a-Binary-Tree/" rel="next" title="331 Verify Preorder Serialization of a Binary Tree">
-                <i class="fa fa-chevron-left"></i> 331 Verify Preorder Serialization of a Binary Tree
+              <a href="/2016/07/09/230-Animal-Shelter/" rel="next" title="230 Animal Shelter">
+                <i class="fa fa-chevron-left"></i> 230 Animal Shelter
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/30/87-Remove-Node-in-Binary-Search-Tree/" rel="prev" title="87 Remove Node in Binary Search Tree">
-                87 Remove Node in Binary Search Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,9 +666,9 @@ LCA(3, 5) = 4LCA(5, 6) = 7L">
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2016/05/29/474-Lowest-Common-Ancestor-II/';
-      var disqus_title = '474 Lowest Common Ancestor II';
-      var disqus_url = 'http://yoursite.com/2016/05/29/474-Lowest-Common-Ancestor-II/';
+      var disqus_identifier = '2016/07/09/133-Clone-Graph/';
+      var disqus_title = '133 Clone Graph';
+      var disqus_url = 'http://yoursite.com/2016/07/09/133-Clone-Graph/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
