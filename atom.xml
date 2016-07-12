@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-12T07:06:52.000Z</updated>
+  <updated>2016-07-12T08:33:07.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[52 N-Queens II]]></title>
+    <link href="http://yoursite.com/2016/07/11/52-N-Queens-II/"/>
+    <id>http://yoursite.com/2016/07/11/52-N-Queens-II/</id>
+    <published>2016-07-12T01:32:21.000Z</published>
+    <updated>2016-07-12T08:33:07.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>根据n皇后问题，现在返回n皇后不同的解决方案的数量而不是具体的放置布局。</p>
+</blockquote>
+<p><strong>样例</strong><br>比如n=4，存在2种解决方案</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>比N-Queens还要简单一些，因为不需要画出board，只需要维护一个全局变量result</li>
+<li>完整思路见 N-Queens</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    result = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">totalNQueens</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        cols = []</span><br><span class="line">        self.search(n, cols)</span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, n, cols)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(cols) == n:</span><br><span class="line">            self.result += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.isValid(cols, col):</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.search(n, cols + [col])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, cols, col)</span>:</span></span><br><span class="line">        currentRowNumber = len(cols)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(currentRowNumber):</span><br><span class="line">            <span class="comment"># same column</span></span><br><span class="line">            <span class="keyword">if</span> cols[i] == col:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="comment"># left-top to right-bottom</span></span><br><span class="line">            <span class="keyword">if</span> i - cols[i] == currentRowNumber - col:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="comment"># right-top to left-bottom</span></span><br><span class="line">            <span class="keyword">if</span> i + cols[i] == currentRowNumber + col:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>根据n皇后问题，现在返回n皇后不同的解决方案的数量而不是具体的放置布局。</p>
+</blockquote>
+<p><strong>样例</strong><br>比如n=4，存在2种解决方案</p>
+<h3 i]]>
+    </summary>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[51 N-Queens]]></title>
+    <link href="http://yoursite.com/2016/07/11/51-N-Queens/"/>
+    <id>http://yoursite.com/2016/07/11/51-N-Queens/</id>
+    <published>2016-07-12T01:23:59.000Z</published>
+    <updated>2016-07-12T08:24:37.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>n皇后问题是将n个皇后放置在n*n的棋盘上，皇后彼此之间不能相互攻击。<br>给定一个整数n，返回所有不同的n皇后问题的解决方案。<br>每个解决方案包含一个明确的n皇后放置布局，其中“Q”和“.”分别表示一个女王和一个空位置。</p>
+</blockquote>
+<p><strong>样例</strong><br>对于4皇后问题存在两种解决的方案：<br>[<br>    [“.Q..”, // Solution 1<br>     “…Q”,<br>     “Q…”,<br>     “..Q.”],<br>    [“..Q.”, // Solution 2<br>     “Q…”,<br>     “…Q”,<br>     “.Q..”]<br>]</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/424375-3ff96aba439fe48d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="n-queen puzzle"></p>
+<h3 id="解题思路">解题思路</h3><p><img src="http://upload-images.jianshu.io/upload_images/424375-d44ebef99935ef3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<ul>
+<li><p>本题需要三个helper函数来辅助，使得代码更加清晰，第一需要DFS函数，过程如上图所示。一行一行的放置queen，当出现非法的情况时，直接返回上一级 - backtracking的思路</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># backtracking</span></span><br><span class="line">cols.append(col) <span class="comment"># 加</span></span><br><span class="line">self.dfs(cols)</span><br><span class="line">cols.pop() <span class="comment"># 减</span></span><br><span class="line"><span class="comment"># 等效于</span></span><br><span class="line">self.dfs(cols + [col])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二个函数就是判断某一点放queen是否合法</p>
+<ul>
+<li>因为是一行一行放，所以可以保证不在一行上</li>
+<li>全局变量cols记录了那一列已经放置了queen，通过检查当前列是否在其中，即可判断是不是同一列有两个queen。同时cols的长度也表示已经有多少行放置好了queen，当len(cols) == n的时候可以drawboard并加入result中</li>
+<li>同时还有检查对角线，左上右下和左下右上</li>
+</ul>
+</li>
+<li>第三个函数是根据cols数组画出board，相对简单。比如[2, 4, 1, 3]表示第一行queen在第二列，第二行queen在第四列，第三行queen在第一列，第四行queen在第三列</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solveNQueens</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: List[List[str]]</span><br><span class="line">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">        cols = []</span><br><span class="line">        self.search(n, cols, result);</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, n, cols, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(cols) == n:</span><br><span class="line">            result.append(self.drawBoard(cols))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> range(n):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.isValid(cols, col):</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            self.search(n, cols + [col], result)</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, cols, col)</span>:</span></span><br><span class="line">        currentRowNumber = len(cols)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(currentRowNumber):</span><br><span class="line">            <span class="comment"># same column</span></span><br><span class="line">            <span class="keyword">if</span> cols[i] == col:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="comment"># left-top to right-bottom</span></span><br><span class="line">            <span class="keyword">if</span> i - cols[i] == currentRowNumber - col:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="comment"># right-top to left-bottom</span></span><br><span class="line">            <span class="keyword">if</span> i + cols[i] == currentRowNumber + col:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drawBoard</span><span class="params">(self, cols)</span>:</span></span><br><span class="line">        board = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(cols)):</span><br><span class="line">            line = <span class="string">""</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(cols)):</span><br><span class="line">                <span class="keyword">if</span> j == cols[i]:</span><br><span class="line">                    line += <span class="string">"Q"</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    line += <span class="string">"."</span></span><br><span class="line">            board.append(line)</span><br><span class="line">        <span class="keyword">return</span> board</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>n皇后问题是将n个皇后放置在n*n的棋盘上，皇后彼此之间不能相互攻击。<br>给定一个整数n，返回所有不同的n皇后问题的解决方案。<br>每个解决方案包含一个明确的n皇后放置布局，其中“Q”和“.”分别表示一个]]>
+    </summary>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[9 Palindrome Number]]></title>
@@ -626,92 +704,6 @@
 <p>将 k 个排序数组合并为一个大的排序数组。</p>
 </blockquote>
 <p><strong>样例</strong><br>给出下面的 3 个排序数组：<br><figure class="highli]]>
-    </summary>
-    
-      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="Priority Queue" scheme="http://yoursite.com/tags/Priority-Queue/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[545 Top k Largest Number II]]></title>
-    <link href="http://yoursite.com/2016/06/26/545-Top-k-Largest-Number-II/"/>
-    <id>http://yoursite.com/2016/06/26/545-Top-k-Largest-Number-II/</id>
-    <published>2016-06-26T16:22:37.000Z</published>
-    <updated>2016-06-26T23:23:47.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>实现一个数据结构，提供下面两个接口<br>1.add(number) 添加一个元素<br>2.topk() 返回前K大的数</p>
-</blockquote>
-<p><strong>样例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = new Solution(3);&#10;&#62;&#62; create a new data structure.&#10;s.add(3)&#10;s.add(10)&#10;s.topk()&#10;&#62;&#62; return [10, 3]&#10;s.add(1000)&#10;s.add(-99)&#10;s.topk()&#10;&#62;&#62; return [1000, 10, 3]&#10;s.add(4)&#10;s.topk()&#10;&#62;&#62; return [1000, 10, 4]&#10;s.add(100)&#10;s.topk()&#10;&#62;&#62; return [1000, 100, 10]</span><br></pre></td></tr></table></figure></p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>内部维护一个大小为k的最小堆</li>
-<li>如果size &lt; k则直接将num加入到minHeap</li>
-<li>如果size &gt;= k, 则比较num与minHeap中的最小值，若小于最小值则忽略，大于最小值则删除最小值，并把num加入到minHeap</li>
-<li>每次返回minHeap数组，返回时先反向排序<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(nums, reverse=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; k an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, k)</span>:</span></span><br><span class="line">        <span class="comment"># initialize your data structure here.</span></span><br><span class="line">        self.size = k</span><br><span class="line">        self.minHeap = Queue.PriorityQueue()</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># @param &#123;int&#125; num an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> self.minHeap.qsize() &lt; self.size:</span><br><span class="line">            self.minHeap.put(num)</span><br><span class="line">        <span class="keyword">elif</span> num &gt; self.minHeap.queue[<span class="number">0</span>]:</span><br><span class="line">            self.minHeap.get()</span><br><span class="line">            self.minHeap.put(num)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># @return &#123;int[]&#125; the top k largest numbers</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">topk</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">return</span> sorted(self.minHeap.queue, reverse=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>实现一个数据结构，提供下面两个接口<br>1.add(number) 添加一个元素<br>2.topk() 返回前K大的数</p>
-</blockquote>
-<p><strong>样例</strong><br]]>
-    </summary>
-    
-      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="Priority Queue" scheme="http://yoursite.com/tags/Priority-Queue/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[544 Top k Largest Numbers]]></title>
-    <link href="http://yoursite.com/2016/06/26/544-Top-k-Largest-Numbers/"/>
-    <id>http://yoursite.com/2016/06/26/544-Top-k-Largest-Numbers/</id>
-    <published>2016-06-26T15:59:50.000Z</published>
-    <updated>2016-06-26T23:00:29.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>在一个数组中找到前K大的数</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 [3,10,1000,-99,4,100], k = 3.<br>返回 [1000, 100, 10]</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>方法一：快速排序，然后取出前k大的数。时间复杂度O(n*logn + k)</li>
-<li><p>方法二：维护一个大小为k的最大堆/最小堆，代码如下。时间复杂度为O(n * logk)</p>
-</li>
-<li><p>关于Heap</p>
-<ul>
-<li>在python中有两个接口：<strong>heapq</strong>和<strong>Queue.PriorityQueue</strong>。其中PriorityQueue module is using the <strong>heapq</strong> module which is slower because it adds locks, encapsulation, and a nice object oriented API.</li>
-<li>heapq的使用：<ul>
-<li>heapq.<strong>heappush</strong>: Push the value <em>item</em> onto the <em>heap</em>, maintaining the heap invariant.</li>
-<li>heapq.<strong>heappop</strong>: Pop and return the smallest item from the <em>heap</em>, maintaining the heap invariant.</li>
-<li>heapq.<strong>heapify</strong>: Transform list <em>x</em> into a heap, in-place, in linear time.</li>
-</ul>
-</li>
-<li>Queue.PriorityQueue的使用 (myqueue = Queue.PriorityQueue)<ul>
-<li>myqueue.put()</li>
-<li>myqueue.get()</li>
-<li>myqueue.qsize()</li>
-<li>myqueue.empty()</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="string">'''</span><br><span class="line">    @param &#123;int[]&#125; nums an integer array</span><br><span class="line">    @param &#123;int&#125; k an integer</span><br><span class="line">    @return &#123;int[]&#125; the top k largest numbers in array</span><br><span class="line">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">topk</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums <span class="keyword">or</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">            </span><br><span class="line">        MaxHeap = Queue.PriorityQueue()</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            MaxHeap.put(-num)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">            res.append(-MaxHeap.get())</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>在一个数组中找到前K大的数</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 [3,10,1000,-99,4,100], k = 3.<br>返回 [1000, 1]]>
     </summary>
     
       <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
