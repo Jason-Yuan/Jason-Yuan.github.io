@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-15T07:10:38.000Z</updated>
+  <updated>2016-07-17T05:12:34.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[323 Number of Connected Components in an Undirected Graph]]></title>
+    <link href="http://yoursite.com/2016/07/16/323-Number-of-Connected-Components-in-an-Undirected-Graph/"/>
+    <id>http://yoursite.com/2016/07/16/323-Number-of-Connected-Components-in-an-Undirected-Graph/</id>
+    <published>2016-07-16T22:11:38.000Z</published>
+    <updated>2016-07-17T05:12:34.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>找出无向图中所有的连通块。<br>图中的每个节点包含一个label属性和一个邻接点的列表。（一个无向图的连通块是一个子图，其中任意两个顶点通过路径相连，且不与整个图中的其它顶点相连。）</p>
+</blockquote>
+<p><strong>样例</strong><br>给定图:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A------B  C</span><br><span class="line"> \     |  | </span><br><span class="line">  \    |  |</span><br><span class="line">   \   |  |</span><br><span class="line">    \  |  |</span><br><span class="line">      D   E</span><br></pre></td></tr></table></figure></p>
+<p>返回 {A,B,D}, {C,E}。其中有 2 个连通块，即{A,B,D}, {C,E}</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li><p>方法一：对于无向图，首先要建立一个hash map来去重，然后遍历每一个节点，若该节点不在hash map中，则通过DFS找到所有相连的节点</p>
+</li>
+<li><p>方法二：Union Find<br>本题也可以使用并查集(Union Find)来解决，虽然不是最适合Union Find的题目。在有向图中寻找连通块才是Union Find的用武之地。更多关于Union Find的知识点，详见<strong>Find the Weak Connected Component in the Directed Graph</strong></p>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Method 1</span></span><br><span class="line"><span class="comment"># Definition for a undirected graph node</span></span><br><span class="line"><span class="comment"># class UndirectedGraphNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.label = x</span></span><br><span class="line"><span class="comment">#         self.neighbors = []</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;UndirectedGraphNode[]&#125; nodes a array of undirected graph node</span></span><br><span class="line">    <span class="comment"># @return &#123;int[][]&#125; a connected set of a undirected graph</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connectedSet</span><span class="params">(self, nodes)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        self.hashMap = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">            self.hashMap[node.label] = <span class="keyword">False</span></span><br><span class="line">            </span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.hashMap[node.label]:</span><br><span class="line">                temp = []</span><br><span class="line">                self.dfs(node, temp)</span><br><span class="line">                res.append(sorted(temp))</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, node, temp)</span>:</span></span><br><span class="line">        self.hashMap[node.label] = <span class="keyword">True</span></span><br><span class="line">        temp.append(node.label)</span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> node.neighbors:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.hashMap[neighbor.label]:</span><br><span class="line">                self.dfs(neighbor, temp)</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>找出无向图中所有的连通块。<br>图中的每个节点包含一个label属性和一个邻接点的列表。（一个无向图的连通块是一个子图，其中任意两个顶点通过路径相连，且不与整个图中的其它顶点相连。）</p>
+</block]]>
+    </summary>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Union Find" scheme="http://yoursite.com/tags/Union-Find/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[90 k Sum II]]></title>
@@ -680,39 +714,6 @@
       <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[263 Ugly Number]]></title>
-    <link href="http://yoursite.com/2016/06/26/263-Ugly-Number/"/>
-    <id>http://yoursite.com/2016/06/26/263-Ugly-Number/</id>
-    <published>2016-06-26T23:09:58.000Z</published>
-    <updated>2016-06-27T06:10:43.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>写一个程序来检测一个整数是不是丑数。<br>丑数的定义是，只包含质因子 2, 3, 5的正整数。比如 6, 8 就是丑数，但是 14 不是丑数以为他包含了质因子 7。<br><strong>注意事项</strong><br>可以认为 1 是一个特殊的丑数。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 num = 8，返回 true。<br>给出 num = 14，返回 false。</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>由于本题只需要判断num是不是丑数，根据丑数的定义：<ul>
-<li>如果num对2取模等于0，则num除以2</li>
-<li>如果num对3取模等于0，则num除以3</li>
-<li>如果num对5取模等于0，则num除以5</li>
-</ul>
-</li>
-<li>如果最后num等于1则是丑数，否则不是</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isUgly</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type num: int</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> num &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> num % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                num /= <span class="number">2</span></span><br><span class="line">            <span class="keyword">while</span> num % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">                num /= <span class="number">3</span></span><br><span class="line">            <span class="keyword">while</span> num % <span class="number">5</span> == <span class="number">0</span>:</span><br><span class="line">                num /= <span class="number">5</span></span><br><span class="line">            <span class="keyword">return</span> num == <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>写一个程序来检测一个整数是不是丑数。<br>丑数的定义是，只包含质因子 2, 3, 5的正整数。比如 6, 8 就是丑数，但是 14 不是丑数以为他包含了质因子 7。<br><strong>注意事项</stro]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
