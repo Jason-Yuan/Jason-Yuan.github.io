@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-21T08:51:01.000Z</updated>
+  <updated>2016-07-22T05:56:38.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[208 Implement Trie (Prefix Tree)]]></title>
+    <link href="http://yoursite.com/2016/07/21/208-Implement-Trie-Prefix-Tree/"/>
+    <id>http://yoursite.com/2016/07/21/208-Implement-Trie-Prefix-Tree/</id>
+    <published>2016-07-21T22:56:04.000Z</published>
+    <updated>2016-07-22T05:56:38.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>实现一个 Trie，包含 insert, search, 和 startsWith 这三个方法。</p>
+</blockquote>
+<p><strong>样例</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">insert("lintcode")</span><br><span class="line">search("code") # return false</span><br><span class="line">startsWith("lint") # return true</span><br><span class="line">startsWith("linterror") # return false</span><br><span class="line">insert("linterror")</span><br><span class="line">search("lintcode) # return true</span><br><span class="line">startsWith("linterror") # return true</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>首先，定义一个trie树节点，包含当前的char和isWord布尔值</li>
+<li>注意根节点不包含字符，每个节点最多有26叉</li>
+<li>Insert - 即遍历单词的每个字符，逐层查找，有则继续，没有就创建一个新的TrieNode，左后一位<code>IsWord = True</code></li>
+<li>Search - 同理，遍历单词每个字符，逐层查找，没有立即返回False，找到最后一个TrieNode，则返回 TrieNode.IsWord</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.IsWord = <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.root = TrieNode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Inserts a word into the trie.</span><br><span class="line">        :type word: str</span><br><span class="line">        :rtype: void</span><br><span class="line">        """</span></span><br><span class="line">        node = self.root</span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">            child = node.children.get(letter)</span><br><span class="line">            <span class="keyword">if</span> child <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                child = TrieNode()</span><br><span class="line">                node.children[letter] = child</span><br><span class="line">            node = child</span><br><span class="line">        node.IsWord = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Returns if the word is in the trie.</span><br><span class="line">        :type word: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        node = self.root</span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">            node = node.children.get(letter)</span><br><span class="line">            <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> node.IsWord</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">startsWith</span><span class="params">(self, prefix)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Returns if there is any word in the trie</span><br><span class="line">        that starts with the given prefix.</span><br><span class="line">        :type prefix: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        node = self.root</span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> prefix:</span><br><span class="line">            node = node.children.get(letter)</span><br><span class="line">            <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your Trie object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"># trie = Trie()</span></span><br><span class="line"><span class="comment"># trie.insert("somestring")</span></span><br><span class="line"><span class="comment"># trie.search("key")</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>实现一个 Trie，包含 insert, search, 和 startsWith 这三个方法。</p>
+</blockquote>
+<p><strong>样例</strong><br><figure clas]]>
+    </summary>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="String" scheme="http://yoursite.com/tags/String/"/>
+    
+      <category term="Trie" scheme="http://yoursite.com/tags/Trie/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[261 Graph Valid Tree]]></title>
@@ -703,38 +737,6 @@
       <category term="MinHeap" scheme="http://yoursite.com/tags/MinHeap/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[242 Valid Anagram]]></title>
-    <link href="http://yoursite.com/2016/07/07/242-Valid-Anagram/"/>
-    <id>http://yoursite.com/2016/07/07/242-Valid-Anagram/</id>
-    <published>2016-07-08T02:27:30.000Z</published>
-    <updated>2016-07-08T09:28:12.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>写出一个函数 anagram(s, t)<br> 判断两个字符串是否可以通过改变字母的顺序变成一样的字符串。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 s = “abcd”，t=”dcab”，返回 true.<br>给出 s = “ab”, t = “ab”, 返回 true.<br>给出 s = “ab”, t = “ac”, 返回 false.</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>扫描s，通过哈希表存贮s中每个字母出现的次数</li>
-<li>扫描t，每次在哈希表中寻找相应的key，对于次数-1，如果最后哈希表中所有的value都变成0，则表明s和t是anagram</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isAnagram</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :type t: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> len(s) != len(t):</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        map = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            map[ord(s[i])] += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(t)):</span><br><span class="line">            map[ord(t[i])] -= <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">for</span> flag <span class="keyword">in</span> map:</span><br><span class="line">            <span class="keyword">if</span> flag != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>写出一个函数 anagram(s, t)<br> 判断两个字符串是否可以通过改变字母的顺序变成一样的字符串。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 s =]]>
-    </summary>
-    
-      <category term="Hash Table" scheme="http://yoursite.com/tags/Hash-Table/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
