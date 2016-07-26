@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="BST,Divide and Conquer,LeetCode,Recursion," />
+  <meta name="keywords" content="DFS,LeetCode,Trie," />
 
 
 
@@ -83,45 +83,24 @@
 
 
 <meta name="description" content="原题
-给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的距离。
+设计一个包含下面两个操作的数据结构：addWord(word), search(word)addWord(word)会在数据结构中添加一个单词。而search(word)则支持普通的单词查询或是只包含. 和a-z的简易正则表达式的查询。一个 . 可以代表一个任何的字母。
 
-给出一棵如下的二叉树12345  1 / \ 2   3   / \  4   5
-这个二叉树的最大深度为3.
-解题思路
-Divide &amp;amp; Conquer
-整个树的树高取决于左子树与右子树的树高中的最大值+1
-整个问题被划分为求左子树树高和右子树树高
-
-完整代码12345678910111213141516">
+样例1addWord(&amp;#34;bad&amp;#34;)&amp;#10;addWord(&amp;#34;dad&amp;#34;)&amp;#10;add">
 <meta property="og:type" content="article">
-<meta property="og:title" content="104 Maximum Depth of Binary Tree">
-<meta property="og:url" content="http://yoursite.com/2015/10/20/104-Maximum-Depth-of-Binary-Tree/index.html">
+<meta property="og:title" content="211 Add and Search Word - Data structure design">
+<meta property="og:url" content="http://yoursite.com/2016/07/25/211-Add-and-Search-Word-Data-structure-design/index.html">
 <meta property="og:site_name" content="Code Chemistry">
 <meta property="og:description" content="原题
-给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的距离。
+设计一个包含下面两个操作的数据结构：addWord(word), search(word)addWord(word)会在数据结构中添加一个单词。而search(word)则支持普通的单词查询或是只包含. 和a-z的简易正则表达式的查询。一个 . 可以代表一个任何的字母。
 
-给出一棵如下的二叉树12345  1 / \ 2   3   / \  4   5
-这个二叉树的最大深度为3.
-解题思路
-Divide &amp;amp; Conquer
-整个树的树高取决于左子树与右子树的树高中的最大值+1
-整个问题被划分为求左子树树高和右子树树高
-
-完整代码12345678910111213141516">
-<meta property="og:updated_time" content="2016-04-10T01:21:51.000Z">
+样例1addWord(&amp;#34;bad&amp;#34;)&amp;#10;addWord(&amp;#34;dad&amp;#34;)&amp;#10;add">
+<meta property="og:updated_time" content="2016-07-26T08:56:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="104 Maximum Depth of Binary Tree">
+<meta name="twitter:title" content="211 Add and Search Word - Data structure design">
 <meta name="twitter:description" content="原题
-给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的距离。
+设计一个包含下面两个操作的数据结构：addWord(word), search(word)addWord(word)会在数据结构中添加一个单词。而search(word)则支持普通的单词查询或是只包含. 和a-z的简易正则表达式的查询。一个 . 可以代表一个任何的字母。
 
-给出一棵如下的二叉树12345  1 / \ 2   3   / \  4   5
-这个二叉树的最大深度为3.
-解题思路
-Divide &amp;amp; Conquer
-整个树的树高取决于左子树与右子树的树高中的最大值+1
-整个问题被划分为求左子树树高和右子树树高
-
-完整代码12345678910111213141516">
+样例1addWord(&amp;#34;bad&amp;#34;)&amp;#10;addWord(&amp;#34;dad&amp;#34;)&amp;#10;add">
 
 
 
@@ -139,7 +118,7 @@ Divide &amp;amp; Conquer
   };
 </script>
 
-  <title> 104 Maximum Depth of Binary Tree | Code Chemistry </title>
+  <title> 211 Add and Search Word - Data structure design | Code Chemistry </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -279,7 +258,7 @@ Divide &amp;amp; Conquer
             
             
               
-                104 Maximum Depth of Binary Tree
+                211 Add and Search Word - Data structure design
               
             
           </h1>
@@ -291,8 +270,8 @@ Divide &amp;amp; Conquer
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-10-20T16:40:31-07:00" content="2015-10-20">
-              2015-10-20
+            <time itemprop="dateCreated" datetime="2016-07-25T18:56:23-07:00" content="2016-07-26">
+              2016-07-26
             </time>
           </span>
 
@@ -321,8 +300,8 @@ Divide &amp;amp; Conquer
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/20/104-Maximum-Depth-of-Binary-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/20/104-Maximum-Depth-of-Binary-Tree/" itemprop="commentsCount"></span>
+                <a href="/2016/07/25/211-Add-and-Search-Word-Data-structure-design/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/25/211-Add-and-Search-Word-Data-structure-design/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -345,17 +324,15 @@ Divide &amp;amp; Conquer
       
 
       
-        <h1 id="原题">原题</h1><blockquote>
-<p>给定一个二叉树，找出其最大深度。<br>二叉树的深度为根节点到最远叶子节点的距离。</p>
+        <h3 id="原题">原题</h3><blockquote>
+<p>设计一个包含下面两个操作的数据结构：addWord(word), search(word)<br>addWord(word)会在数据结构中添加一个单词。而search(word)则支持普通的单词查询或是只包含. 和a-z的简易正则表达式的查询。一个 . 可以代表一个任何的字母。</p>
 </blockquote>
-<p>给出一棵如下的二叉树<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">1</span></span><br><span class="line"> / \ </span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">4</span>   <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
-<p>这个二叉树的最大深度为3.</p>
-<h1 id="解题思路">解题思路</h1><ul>
-<li>Divide &amp; Conquer</li>
-<li>整个树的树高取决于左子树与右子树的树高中的最大值+1</li>
-<li>整个问题被划分为求左子树树高和右子树树高</li>
+<p><strong>样例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addWord(&#34;bad&#34;)&#10;addWord(&#34;dad&#34;)&#10;addWord(&#34;mad&#34;)&#10;search(&#34;pad&#34;)  // return false&#10;search(&#34;bad&#34;)  // return true&#10;search(&#34;.ad&#34;)  // return true&#10;search(&#34;b..&#34;)  // return true</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>本题跟Implement Trie十分相似，同样需要使用字典树</li>
+<li>由于本题里中’.’可以代替任意字符，所以当某一个字符是’.’，就需要查找所有的子树，只要有一个最终能够存在，就返回True</li>
 </ul>
-<h1 id="完整代码">完整代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode(object):</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxDepth</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type root: TreeNode</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> max(self.maxDepth(root.left), self.maxDepth(root.right)) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.IsWord = <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WordDictionary</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.root = TrieNode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addWord</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Adds a word into the data structure.</span><br><span class="line">        :type word: str</span><br><span class="line">        :rtype: void</span><br><span class="line">        """</span></span><br><span class="line">        node = self.root</span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">            child = node.children.get(letter)</span><br><span class="line">            <span class="keyword">if</span> child <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                child = TrieNode()</span><br><span class="line">                node.children[letter] = child</span><br><span class="line">            node = child</span><br><span class="line">        node.IsWord = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Returns if the word is in the data structure. A word could</span><br><span class="line">        contain the dot character '.' to represent any one letter.</span><br><span class="line">        :type word: str</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.find(self.root, word)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, node, word)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> word == <span class="string">""</span>:</span><br><span class="line">            <span class="keyword">return</span> node.IsWord</span><br><span class="line">        <span class="keyword">if</span> word[<span class="number">0</span>] == <span class="string">"."</span>:</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> node.children:</span><br><span class="line">                <span class="keyword">if</span> self.find(node.children[x], word[<span class="number">1</span>:]):</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            child = node.children.get(word[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">if</span> child:</span><br><span class="line">                <span class="keyword">return</span> self.find(child, word[<span class="number">1</span>:])</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -375,13 +352,11 @@ Divide &amp;amp; Conquer
       
         <div class="post-tags">
           
-            <a href="/tags/BST/" rel="tag">#BST</a>
-          
-            <a href="/tags/Divide-and-Conquer/" rel="tag">#Divide and Conquer</a>
+            <a href="/tags/DFS/" rel="tag">#DFS</a>
           
             <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/Recursion/" rel="tag">#Recursion</a>
+            <a href="/tags/Trie/" rel="tag">#Trie</a>
           
         </div>
       
@@ -390,17 +365,13 @@ Divide &amp;amp; Conquer
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/20/144-Binary-Tree-Preorder-Traversal/" rel="next" title="144 Binary Tree Preorder Traversal">
-                <i class="fa fa-chevron-left"></i> 144 Binary Tree Preorder Traversal
+              <a href="/2016/07/25/79-Word-Search/" rel="next" title="79 Word Search">
+                <i class="fa fa-chevron-left"></i> 79 Word Search
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/20/110-Balanced-Binary-Tree/" rel="prev" title="110 Balanced Binary Tree">
-                110 Balanced Binary Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -559,7 +530,7 @@ Divide &amp;amp; Conquer
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原题"><span class="nav-number">1.</span> <span class="nav-text">原题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">3.</span> <span class="nav-text">完整代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -687,9 +658,9 @@ Divide &amp;amp; Conquer
 
     <script type="text/javascript">
       var disqus_shortname = 'boyuan0109';
-      var disqus_identifier = '2015/10/20/104-Maximum-Depth-of-Binary-Tree/';
-      var disqus_title = '104 Maximum Depth of Binary Tree';
-      var disqus_url = 'http://yoursite.com/2015/10/20/104-Maximum-Depth-of-Binary-Tree/';
+      var disqus_identifier = '2016/07/25/211-Add-and-Search-Word-Data-structure-design/';
+      var disqus_title = '211 Add and Search Word - Data structure design';
+      var disqus_url = 'http://yoursite.com/2016/07/25/211-Add-and-Search-Word-Data-structure-design/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
