@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-28T05:08:18.000Z</updated>
+  <updated>2016-07-28T05:29:24.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,8 +18,8 @@
     <title><![CDATA[131 Building Outline]]></title>
     <link href="http://yoursite.com/2016/07/27/131-Building-Outline/"/>
     <id>http://yoursite.com/2016/07/27/131-Building-Outline/</id>
-    <published>2016-07-27T22:07:47.000Z</published>
-    <updated>2016-07-28T05:08:18.000Z</updated>
+    <published>2016-07-27T22:28:53.000Z</published>
+    <updated>2016-07-28T05:29:24.000Z</updated>
     <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
 <p>水平面上有 <em>N</em> 座大楼，每座大楼都是矩阵的形状，可以用三个数字表示 (start, end, height)，分别代表其在x轴上的起点，终点和高度。大楼之间从远处看可能会重叠，求出<em>N</em> 座大楼的外轮廓线。<br>外轮廓线的表示方法为若干三元组，每个三元组包含三个数字 (start, end, height)，代表这段轮廓的起始位置，终止位置和高度。</p>
 </blockquote>
