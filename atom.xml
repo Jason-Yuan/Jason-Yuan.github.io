@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-02T05:01:26.000Z</updated>
+  <updated>2016-08-02T05:23:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[202 Happy Number]]></title>
+    <link href="http://yoursite.com/2016/08/01/202-Happy-Number/"/>
+    <id>http://yoursite.com/2016/08/01/202-Happy-Number/</id>
+    <published>2016-08-01T22:20:17.000Z</published>
+    <updated>2016-08-02T05:23:45.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>写一个算法来判断一个数是不是”快乐数”。<br>一个数是不是快乐是这么定义的：对于一个正整数，每一次将该数替换为他每个位置上的数字的平方和，然后重复这个过程直到这个数变为1，或是无限循环但始终变不到1。如果可以变为1，那么这个数就是快乐数。</p>
+</blockquote>
+<p><strong>样例</strong><br>19 就是一个快乐数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1^2 + 9^2 = 82&#10;8^2 + 2^2 = 68&#10;6^2 + 8^2 = 100&#10;1^2 + 0^2 + 0^2 = 1</span><br></pre></td></tr></table></figure></p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>首先写一个helper函数，计算一个数每一位的平方和。比如输入19返回82</li>
+<li>当n不等于1且n计算过后的值未出现过，继续计算。若最后出现循环则返回False</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isHappy</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type n: int</span><br><span class="line">        :rtype: bool</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        myset = set()</span><br><span class="line">        <span class="keyword">while</span> n != <span class="number">1</span> <span class="keyword">and</span> n <span class="keyword">not</span> <span class="keyword">in</span> myset:</span><br><span class="line">            myset.add(n)</span><br><span class="line">            n = self.helper(n)</span><br><span class="line">        <span class="keyword">return</span> n == <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, num)</span>:</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> num:</span><br><span class="line">            res += (num % <span class="number">10</span>) * (num % <span class="number">10</span>)</span><br><span class="line">            num /= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>写一个算法来判断一个数是不是”快乐数”。<br>一个数是不是快乐是这么定义的：对于一个正整数，每一次将该数替换为他每个位置上的数字的平方和，然后重复这个过程直到这个数变为1，或是无限循环但始终变不到1。如果可以]]>
+    </summary>
+    
+      <category term="Hash Table" scheme="http://yoursite.com/tags/Hash-Table/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[231 Power of Two]]></title>
@@ -653,51 +683,6 @@
       <category term="Union Find" scheme="http://yoursite.com/tags/Union-Find/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[432 Find the Weak Connected Component in the Directed Graph]]></title>
-    <link href="http://yoursite.com/2016/07/18/432-Find-the-Weak-Connected-Component-in-the-Directed-Graph/"/>
-    <id>http://yoursite.com/2016/07/18/432-Find-the-Weak-Connected-Component-in-the-Directed-Graph/</id>
-    <published>2016-07-18T23:03:51.000Z</published>
-    <updated>2016-07-19T06:08:34.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>请找出有向图中弱联通分量的数目。图中的每个节点包含其邻居的 1 个标签和1 个列表。 （一个有向图中的相连节点指的是一个包含 2 个通过直接边沿路径相连的顶点的子图。）</p>
-</blockquote>
-<p><strong>样例</strong><br>给定图:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A-----&#62;B  C&#10; \     |  | &#10;  \    |  |&#10;   \   |  |&#10;    \  v  v&#10;     -&#62;D  E &#60;- F</span><br></pre></td></tr></table></figure></p>
-<p>返回 {A,B,D}, {C,E,F}. 图中有 2 个相连要素，即{A,B,D} 和 {C,E,F} 。</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>首先了解有向图中的一个概念<ul>
-<li>弱连通块 - 有向图中，A能到B，B不能到A</li>
-<li>强连通块 - 有向图中，A能到B，B也能到A</li>
-</ul>
-</li>
-<li><p>本题是使用Union Find的典型题，Union Find(并查集)主要提供以下操作：</p>
-<ul>
-<li><p>Find - 判断在不在同一个集合中，边查找边路径压缩，均摊时间复杂度O(1)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def compressed_find(self, x):&#10;        parent = father[x]&#10;        while parent != father[parent]:&#10;            parent = father[parent]&#10;&#10;        temp = -1;&#10;        fa = father[x]&#10;        while fa != father[fa]:&#10;            temp = father[fa]&#10;            father[fa] = parent&#10;            fa = temp&#10;&#10;        return parent</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Union - 合并两个集合，时间复杂度O(1)</p>
-</li>
-</ul>
-</li>
-<li>遍历所有nodes建立hashset，初始化Union Find</li>
-<li>遍历第二遍，合并每个node和他们neighbors的father</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a directed graph node</span></span><br><span class="line"><span class="comment"># class DirectedGraphNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.label = x</span></span><br><span class="line"><span class="comment">#         self.neighbors = []</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFind</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, hashset)</span>:</span></span><br><span class="line">        self.father = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> hashset:</span><br><span class="line">            self.father[item] = item</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        parent = self.father[x]</span><br><span class="line">        <span class="keyword">while</span> parent != self.father[parent]:</span><br><span class="line">            parent = self.father[parent]</span><br><span class="line">        <span class="keyword">return</span> parent</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compressed_find</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        parent = self.father[x]</span><br><span class="line">        <span class="keyword">while</span> parent != self.father[parent]:</span><br><span class="line">            parent = self.father[parent]</span><br><span class="line"></span><br><span class="line">        temp = -<span class="number">1</span>;</span><br><span class="line">        fa = self.father[x]</span><br><span class="line">        <span class="keyword">while</span> fa != self.father[fa]:</span><br><span class="line">            temp = self.father[fa]</span><br><span class="line">            self.father[fa] = parent</span><br><span class="line">            fa = temp</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> parent</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">union</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">            fa_x = self.find(x)</span><br><span class="line">            fa_y = self.find(y)</span><br><span class="line">            <span class="keyword">if</span> fa_x != fa_y:</span><br><span class="line">                self.father[fa_x] = fa_y</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;DirectedGraphNode[]&#125; nodes a array of directed graph node</span></span><br><span class="line">    <span class="comment"># @return &#123;int[][]&#125; a connected set of a directed graph</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connectedSet2</span><span class="params">(self, nodes)</span>:</span></span><br><span class="line">        <span class="comment"># Find all the different nodes in the Graph, store in the hashSet</span></span><br><span class="line">        myHashSet = set()</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">            myHashSet.add(node.label)</span><br><span class="line">            <span class="keyword">for</span> neighbor <span class="keyword">in</span> node.neighbors:</span><br><span class="line">                myHashSet.add(neighbor.label)</span><br><span class="line">                </span><br><span class="line">        <span class="comment"># right now, one node's father is itself</span></span><br><span class="line">        unionFind = UnionFind(myHashSet)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">            node_father = unionFind.compressed_find(node.label)</span><br><span class="line">            <span class="keyword">for</span> neighbor <span class="keyword">in</span> node.neighbors:</span><br><span class="line">                neighbor_father = unionFind.compressed_find(neighbor.label)</span><br><span class="line">                <span class="keyword">if</span> node_father != neighbor_father:</span><br><span class="line">	        		unionFind.union(neighbor.label, node.label)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># group the node with same father</span></span><br><span class="line">        resMap = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">            father = unionFind.compressed_find(node.label)</span><br><span class="line">            <span class="keyword">if</span> father <span class="keyword">not</span> <span class="keyword">in</span> resMap:</span><br><span class="line">                resMap[father] = [node.label]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> node.label <span class="keyword">not</span> <span class="keyword">in</span> resMap[father]:</span><br><span class="line">                    resMap[father].append(node.label)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># append each group into the result            </span></span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> resMap.iteritems():</span><br><span class="line">            result.append(value)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>请找出有向图中弱联通分量的数目。图中的每个节点包含其邻居的 1 个标签和1 个列表。 （一个有向图中的相连节点指的是一个包含 2 个通过直接边沿路径相连的顶点的子图。）</p>
-</blockquote>
-<p]]>
-    </summary>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="Union Find" scheme="http://yoursite.com/tags/Union-Find/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
     
   </entry>
   
