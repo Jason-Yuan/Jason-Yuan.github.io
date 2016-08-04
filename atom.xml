@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-04T07:51:14.000Z</updated>
+  <updated>2016-08-04T08:31:12.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[209 Minimum Size Subarray Sum]]></title>
+    <link href="http://yoursite.com/2016/08/03/209-Minimum-Size-Subarray-Sum/"/>
+    <id>http://yoursite.com/2016/08/03/209-Minimum-Size-Subarray-Sum/</id>
+    <published>2016-08-04T01:30:35.000Z</published>
+    <updated>2016-08-04T08:31:12.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个由 n 个整数组成的数组和一个正整数 s ，请找出该数组中满足其和 ≥ s 的最小长度子数组。如果无解，则返回 -1。</p>
+</blockquote>
+<p><strong>样例</strong><br>给定数组 [2,3,1,2,4,3] 和 s = 7, 子数组 [4,3] 是该条件下的最小长度子数组。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>窗口类型题目 - 因为题目就是让我们找到一个起点和一个终点，保证长度最小且里面的数字之和不小于s</li>
+<li>最自然的解法 - 双层for循环 - O(n2)的时间复杂度</li>
+<li>优化，前向型指针(追击型指针)<ul>
+<li>第一点：因为i = 0, j = 3时 2 + 2 + 1 + 2 = 8 &gt; 7，是一个candidate，之后我们不需要再向下遍历，因为后面都会大于7，<strong>但是长度更长，一定不是最优解，可以直接排除</strong></li>
+<li>第二点：在第一点的情况之后，要让i = 1然后从j=i开始遍历吗?答案当然是<strong>当然不需要</strong>，因为i= 0, j = 3时刚好sum &gt; 7，所以i=1, j=2, i=1, j=3肯定都不需要考虑，可以直接让j从刚刚的位置开始下一轮循环</li>
+</ul>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minSubArrayLen</span><span class="params">(self, s, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: int</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        right, sum = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        res = sys.maxint</span><br><span class="line">        <span class="keyword">for</span> left <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">while</span> right &lt; len(nums) <span class="keyword">and</span> sum &lt; s:</span><br><span class="line">                sum += nums[right]</span><br><span class="line">                right += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> sum &gt;= s:</span><br><span class="line">                res = min(res, right - left)</span><br><span class="line">            sum -= nums[left]</span><br><span class="line">        <span class="keyword">if</span> res == sys.maxint:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个由 n 个整数组成的数组和一个正整数 s ，请找出该数组中满足其和 ≥ s 的最小长度子数组。如果无解，则返回 -1。</p>
+</blockquote>
+<p><strong>样例</strong><]]>
+    </summary>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[399 Nuts & Bolts Problem]]></title>
@@ -641,38 +676,6 @@
       <category term="Back Tracking" scheme="http://yoursite.com/tags/Back-Tracking/"/>
     
       <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
-    
-      <category term="Trie" scheme="http://yoursite.com/tags/Trie/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[212 Word Search II]]></title>
-    <link href="http://yoursite.com/2016/07/21/212-Word-Search-II/"/>
-    <id>http://yoursite.com/2016/07/21/212-Word-Search-II/</id>
-    <published>2016-07-22T03:56:33.000Z</published>
-    <updated>2016-07-26T05:13:39.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给出一个由小写字母组成的矩阵和一个字典。找出所有同时在字典和矩阵中出现的单词。一个单词可以从矩阵中的任意位置开始，可以向左/右/上/下四个相邻方向移动。</p>
-</blockquote>
-<p><strong>样例</strong><br>给出矩阵：<br>doaf<br>agai<br>dcan<br>和字典：<br>{“dog”, “dad”, “dgdg”, “can”, “again”}<br>返回 {“dog”, “dad”, “can”, “again”}</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>最直接但是会超时的方法 - 先把字典做成hashMap，对每一个点DFS，每增加一个字符就去hashMap查找是否存在。一共m*n个点，每次DFS复杂度是O(m*n)，所以总的时间复杂度是O(m*n * m*n)</li>
-<li>可行解 - 把给出的字典变成Trie树，Trie树可以检查前缀，hashMap做不到。检查前缀的时候，如果发现某个前缀不存在，就可以不用继续DFS了，相当于剪枝</li>
-<li>注意：当不必要的check增多时，会导致TLE<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 超时</span></span><br><span class="line"><span class="keyword">if</span> x &lt; <span class="number">0</span> <span class="keyword">or</span> x &gt;= len(board) <span class="keyword">or</span> y &lt; <span class="number">0</span> <span class="keyword">or</span> y &gt;= len(board[<span class="number">0</span>]) <span class="keyword">or</span> board[x][y] == <span class="number">0</span> <span class="keyword">or</span> cur_node == <span class="keyword">None</span>:</span><br><span class="line"><span class="comment"># 免去两个不必要的check，不超时</span></span><br><span class="line"><span class="keyword">if</span> x &lt; <span class="number">0</span> <span class="keyword">or</span> x &gt;= len(board) <span class="keyword">or</span> y &lt; <span class="number">0</span> <span class="keyword">or</span> y &gt;= len(board[<span class="number">0</span>]):</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Initialize your data structure here.</span><br><span class="line">        """</span></span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.IsWord = <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.root = TrieNode()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        Inserts a word into the trie.</span><br><span class="line">        :type word: str</span><br><span class="line">        :rtype: void</span><br><span class="line">        """</span></span><br><span class="line">        node = self.root</span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> word:</span><br><span class="line">            child = node.children.get(letter)</span><br><span class="line">            <span class="keyword">if</span> child <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                child = TrieNode()</span><br><span class="line">                node.children[letter] = child</span><br><span class="line">            node = child</span><br><span class="line">        node.IsWord = <span class="keyword">True</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.result = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findWords</span><span class="params">(self, board, words)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type board: List[List[str]]</span><br><span class="line">        :type words: List[str]</span><br><span class="line">        :rtype: List[str]</span><br><span class="line">        """</span></span><br><span class="line">        trie = Trie()</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            trie.insert(word)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> row_num <span class="keyword">in</span> range(len(board)):</span><br><span class="line">            <span class="keyword">for</span> col_num <span class="keyword">in</span> range(len(board[<span class="number">0</span>])):</span><br><span class="line">                self.search(board, row_num, col_num, trie.root, <span class="string">""</span>)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> self.result</span><br><span class="line">                </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, board, x, y, cur_node, word)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> cur_node.IsWord:</span><br><span class="line">            self.result.append(word)</span><br><span class="line">            cur_node.IsWord = <span class="keyword">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (x &lt; <span class="number">0</span> <span class="keyword">or</span> x &gt;= len(board) <span class="keyword">or</span> y &lt; <span class="number">0</span> <span class="keyword">or</span> y &gt;= len(board[<span class="number">0</span>])):</span><br><span class="line">            temp = board[x][y]</span><br><span class="line">            cur_node = cur_node.children.get(temp)</span><br><span class="line">            <span class="keyword">if</span> cur_node:</span><br><span class="line">                board[x][y] = <span class="string">"#"</span></span><br><span class="line">                self.search(board, x+<span class="number">1</span>, y, cur_node, word+temp)</span><br><span class="line">                self.search(board, x-<span class="number">1</span>, y, cur_node, word+temp)</span><br><span class="line">                self.search(board, x, y+<span class="number">1</span>, cur_node, word+temp)</span><br><span class="line">                self.search(board, x, y-<span class="number">1</span>, cur_node, word+temp)</span><br><span class="line">                board[x][y] = temp</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给出一个由小写字母组成的矩阵和一个字典。找出所有同时在字典和矩阵中出现的单词。一个单词可以从矩阵中的任意位置开始，可以向左/右/上/下四个相邻方向移动。</p>
-</blockquote>
-<p><strong]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Trie" scheme="http://yoursite.com/tags/Trie/"/>
     
