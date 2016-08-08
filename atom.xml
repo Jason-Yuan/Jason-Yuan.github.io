@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-08T05:27:40.000Z</updated>
+  <updated>2016-08-08T06:06:05.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[136 Single Number]]></title>
+    <link href="http://yoursite.com/2016/08/07/136-Single-Number/"/>
+    <id>http://yoursite.com/2016/08/07/136-Single-Number/</id>
+    <published>2016-08-07T23:05:02.000Z</published>
+    <updated>2016-08-08T06:06:05.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出2*n + 1 个的数字，除其中一个数字之外其他每个数字均出现两次，找到这个数字。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出<strong> [1,2,2,1,3,4,3]</strong>，返回 4</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>位运算 - 利用异或运算的特殊性，相同的数异或后等于0：1 XOR 1 = 0</li>
+<li>同时，异或运算有交换律：1^1^5 = 5 = 1^5^1</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">singleNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> nums:</span><br><span class="line">            res ^= item</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给出2*n + 1 个的数字，除其中一个数字之外其他每个数字均出现两次，找到这个数字。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出<strong> [1,2,2]]>
+    </summary>
+    
+      <category term="Bit Manipulation" scheme="http://yoursite.com/tags/Bit-Manipulation/"/>
+    
+      <category term="Hash Table" scheme="http://yoursite.com/tags/Hash-Table/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[340 Longest Substring with At Most K Distinct Characters]]></title>
@@ -657,39 +689,6 @@
       <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[465 Kth Smallest Sum in Two Sorted Array]]></title>
-    <link href="http://yoursite.com/2016/07/27/465-Kth-Smallest-Sum-in-Two-Sorted-Array/"/>
-    <id>http://yoursite.com/2016/07/27/465-Kth-Smallest-Sum-in-Two-Sorted-Array/</id>
-    <published>2016-07-28T00:40:35.000Z</published>
-    <updated>2016-07-28T07:41:04.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定两个排好序的数组 <em>A</em>, <em>B</em>，定义集合 <em>sum</em> = <em>a</em> + <em>b</em> ，求 <em>sum</em> 中第k小的元素</p>
-</blockquote>
-<p><strong>样例</strong><br>给出 <em>A</em> = [1,7,11] <em>B</em> = [2,4,6]<br><strong>sum = [3, 5, 7, 9, 11, 13, 13, 15, 17]</strong><br>当 <em>k</em> = 3, 返回 7.<br>当 <em>k</em> = 4, 返回 9.<br>当 <em>k</em> = 8, 返回 15.</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li><p>使用set来记录访问过的pair</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">visited = set()</span><br><span class="line">visited.add(<span class="number">10</span>)</span><br><span class="line"><span class="number">10</span> <span class="keyword">is</span> <span class="keyword">in</span> visited <span class="comment"># return True</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用一个minHeap，每次可以取最小值。放入堆中的数据结构为(sum, i, j)</p>
-</li>
-<li>每次从堆中取出一个最小值，下一轮的candidates将是(sum, i+1, j), (sum, i, j+1)，将这两个candidates加入的heap之间要去重，因为有可能重复</li>
-<li>从堆中取k次之后，就拿到了想要的结果</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;int[]&#125; A an integer arrays sorted in ascending order</span></span><br><span class="line">    <span class="comment"># @param &#123;int[]&#125; B an integer arrays sorted in ascending order</span></span><br><span class="line">    <span class="comment"># @param &#123;int&#125; k an integer</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kthSmallestSum</span><span class="params">(self, A, B, k)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> A <span class="keyword">or</span> <span class="keyword">not</span> B:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">            </span><br><span class="line">        myQueue = Queue.PriorityQueue()</span><br><span class="line">        visited = set()</span><br><span class="line">        myQueue.put((A[<span class="number">0</span>]+B[<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">        visited.add((<span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">        <span class="keyword">while</span> k &gt; <span class="number">1</span>:</span><br><span class="line">            cur = myQueue.get()</span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> cur[<span class="number">1</span>] + <span class="number">1</span> &lt; len(A) <span class="keyword">and</span> (cur[<span class="number">1</span>] + <span class="number">1</span>, cur[<span class="number">2</span>]) <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                visited.add((cur[<span class="number">1</span>] + <span class="number">1</span>, cur[<span class="number">2</span>]))</span><br><span class="line">                myQueue.put((A[cur[<span class="number">1</span>] + <span class="number">1</span>] + B[cur[<span class="number">2</span>]], cur[<span class="number">1</span>] + <span class="number">1</span>, cur[<span class="number">2</span>]))</span><br><span class="line">            <span class="keyword">if</span> cur[<span class="number">2</span>] + <span class="number">1</span> &lt; len(B) <span class="keyword">and</span> (cur[<span class="number">1</span>], cur[<span class="number">2</span>] + <span class="number">1</span>) <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                visited.add((cur[<span class="number">1</span>], cur[<span class="number">2</span>] + <span class="number">1</span>))</span><br><span class="line">                myQueue.put((A[cur[<span class="number">1</span>]] + B[cur[<span class="number">2</span>] + <span class="number">1</span>], cur[<span class="number">1</span>], cur[<span class="number">2</span>] + <span class="number">1</span>))</span><br><span class="line">        res = myQueue.get()</span><br><span class="line">        <span class="keyword">return</span> res[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定两个排好序的数组 <em>A</em>, <em>B</em>，定义集合 <em>sum</em> = <em>a</em> + <em>b</em> ，求 <em>sum</em> 中第k小的元素</p>]]>
-    </summary>
-    
-      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
     
   </entry>
   
