@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-18T07:26:25.000Z</updated>
+  <updated>2016-09-04T23:09:16.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[378 Kth Smallest Sum in Sorted Matrix]]></title>
+    <link href="http://yoursite.com/2016/09/04/378-Kth-Smallest-Sum-in-Sorted-Matrix/"/>
+    <id>http://yoursite.com/2016/09/04/378-Kth-Smallest-Sum-in-Sorted-Matrix/</id>
+    <published>2016-09-04T16:04:46.000Z</published>
+    <updated>2016-09-04T23:09:16.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>在一个排序矩阵中找从小到大的第 <em>k</em> 个整数。<br>排序矩阵的定义为：每一行递增，每一列也递增。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出 <em>k</em> = 4和一个排序矩阵：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">1</span> ,<span class="number">5</span> ,<span class="number">7</span>],</span><br><span class="line">  [<span class="number">3</span> ,<span class="number">7</span> ,<span class="number">8</span>],</span><br><span class="line">  [<span class="number">4</span> ,<span class="number">8</span> ,<span class="number">9</span>],</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>返回 5。</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>首先把左上角的元素放入minHeap中，进入while循环，每次pop一个最小值，然后把该位置右边和下班的值+坐标放入minHeap中。k减一，当k等于0时，返回当前的值</li>
+<li>同时要注意，另外开一个二维数组记录哪些元素已经被访问过，因为同一个元素可能在A的下面和B的右面</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kthSmallest</span><span class="params">(self, matrix, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type matrix: List[List[int]]</span><br><span class="line">        :type k: int</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        exist = [[<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(matrix[<span class="number">0</span>]))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(matrix))]</span><br><span class="line">        q = Queue.PriorityQueue()</span><br><span class="line">        q.put((matrix[<span class="number">0</span>][<span class="number">0</span>], <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">        exist[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">while</span> k &gt; <span class="number">0</span>:</span><br><span class="line">            cur, x, y = q.get()</span><br><span class="line">            <span class="keyword">if</span> x + <span class="number">1</span> &lt; len(matrix) <span class="keyword">and</span> <span class="keyword">not</span> exist[x+<span class="number">1</span>][y]:</span><br><span class="line">                q.put((matrix[x+<span class="number">1</span>][y], x+<span class="number">1</span>, y))</span><br><span class="line">                exist[x+<span class="number">1</span>][y] = <span class="keyword">True</span></span><br><span class="line">            <span class="keyword">if</span> y + <span class="number">1</span> &lt; len(matrix[<span class="number">0</span>]) <span class="keyword">and</span> <span class="keyword">not</span> exist[x][y+<span class="number">1</span>]:</span><br><span class="line">                q.put((matrix[x][y+<span class="number">1</span>], x, y+<span class="number">1</span>))</span><br><span class="line">                exist[x][y+<span class="number">1</span>] = <span class="keyword">True</span></span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> cur</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>在一个排序矩阵中找从小到大的第 <em>k</em> 个整数。<br>排序矩阵的定义为：每一行递增，每一列也递增。</p>
+</blockquote>
+<p><strong>样例</strong><br>给出 ]]>
+    </summary>
+    
+      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[113 Path Sum II]]></title>
@@ -651,35 +682,6 @@
       <category term="Quick Sort" scheme="http://yoursite.com/tags/Quick-Sort/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[268 Missing Number]]></title>
-    <link href="http://yoursite.com/2016/08/03/268-Missing-Number/"/>
-    <id>http://yoursite.com/2016/08/03/268-Missing-Number/</id>
-    <published>2016-08-03T21:49:32.000Z</published>
-    <updated>2016-08-04T04:49:53.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给出一个包含 0 .. <em>N</em> 中 <em>N</em> 个数的序列，找出0 .. <em>N</em> 中没有出现在序列中的那个数。</p>
-</blockquote>
-<p><strong>样例</strong><br><em>N</em> = 4 且序列为 [0, 1, 3] 时，缺失的数为2。</p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>通过数学公式计算所有数的和，然后减掉已知数组中的的数</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">missingNumber</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type nums: List[int]</span><br><span class="line">        :rtype: int</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        total = (<span class="number">1</span> + len(nums)) * len(nums) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            total -= num</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> total</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给出一个包含 0 .. <em>N</em> 中 <em>N</em> 个数的序列，找出0 .. <em>N</em> 中没有出现在序列中的那个数。</p>
-</blockquote>
-<p><strong>样]]>
-    </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
     
   </entry>
   
