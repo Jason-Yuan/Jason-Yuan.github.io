@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-05T01:07:03.000Z</updated>
+  <updated>2016-09-05T01:53:41.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[397 Longest Increasing Continuous Subsequence]]></title>
+    <link href="http://yoursite.com/2016/09/04/397-Longest-Increasing-Continuous-Subsequence/"/>
+    <id>http://yoursite.com/2016/09/04/397-Longest-Increasing-Continuous-Subsequence/</id>
+    <published>2016-09-04T18:52:15.000Z</published>
+    <updated>2016-09-05T01:53:41.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个整数数组（下标从 0 到 n-1， n 表示整个数组的规模），请找出该数组中的最长上升连续子序列。（最长上升连续子序列可以定义为从右到左或从左到右的序列。）</p>
+</blockquote>
+<p><strong>样例</strong><br>给定 [5, 4, 2, 1, 3], 其最长上升连续子序列（LICS）为[5, 4, 2, 1], 返回 4.<br>给定 [5, 1, 2, 3, 4], 其最长上升连续子序列（LICS）为[1, 2, 3, 4], 返回 4.</p>
+<h3 id="解题思路">解题思路</h3><ul>
+<li>正序逆序各求一个最长序列的值，取最大</li>
+<li>一个全局变量res记录最长的长度，一个局部变量temp<ul>
+<li>当nums[i] &gt; nums[i - 1]时，temp加1</li>
+<li>当nums[i] &lt;= nums[i - 1]时，temp重置为1</li>
+</ul>
+</li>
+</ul>
+<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># @param &#123;int[]&#125; A an array of Integer</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125;  an integer</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestIncreasingContinuousSubsequence</span><span class="params">(self, A)</span>:</span></span><br><span class="line">        <span class="comment"># Write your code here</span></span><br><span class="line">        <span class="keyword">return</span> max(self.helper(A), self.helper(A[::-<span class="number">1</span>]))</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        res, temp = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>] <span class="keyword">or</span> i == <span class="number">0</span>:</span><br><span class="line">                temp += <span class="number">1</span></span><br><span class="line">                res = max(res, temp)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                temp = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="原题">原题</h3><blockquote>
+<p>给定一个整数数组（下标从 0 到 n-1， n 表示整个数组的规模），请找出该数组中的最长上升连续子序列。（最长上升连续子序列可以定义为从右到左或从左到右的序列。）</p>
+</blockquote>
+<p><]]>
+    </summary>
+    
+      <category term="Dynamic Programming" scheme="http://yoursite.com/tags/Dynamic-Programming/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/categories/LintCode/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[213 House Robber II]]></title>
@@ -620,46 +654,6 @@
 </blockquote>
 <p><strong>样例</strong><br>例如，给定 s = “eceba” , k = 3,<br>T 是]]>
     </summary>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
-    
-      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[76 Minimum Window Substring]]></title>
-    <link href="http://yoursite.com/2016/08/06/76-Minimum-Window-Substring/"/>
-    <id>http://yoursite.com/2016/08/06/76-Minimum-Window-Substring/</id>
-    <published>2016-08-06T23:19:36.000Z</published>
-    <updated>2016-08-07T06:21:17.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定一个字符串<strong>source</strong>和一个目标字符串<strong>target</strong>，在字符串source中找到包括所有目标字符串字母的子串。</p>
-</blockquote>
-<p><strong>说明</strong>在答案的子串中的字母在目标字符串中是否需要具有相同的顺序？<br>——不需要。</p>
-<p><strong>样例</strong><br>给出source = <strong>“ADOBECODEBANC”</strong>，target = <strong>“ABC”</strong> 满足要求的解  <strong>“BANC”</strong></p>
-<h3 id="解题思路">解题思路</h3><ul>
-<li>窗口类问题 - 最自然的方法双层for循环，时间复杂度O(n2)解决</li>
-<li>考虑优化 - 即那些状态不需要重复扫描？以”ADOBECODEBANC”为例<ul>
-<li>第一：left = 0, right = 5时出现一个可以覆盖ABC的<strong>最小</strong>子串，则right = 6, 7, …都不需要在考虑，因为只会长度只会增加，不会成为更优解。直接退出while循环</li>
-<li>第二：上一步退出循环以后，从left = 1开始，right需要退回吗？答案是不需要，因为left=0到right=5之间的情况已经判断过了，不需要再判断left=1到right=5之间的情况。但是仍在需要判断left=1和right=5此时是否valid。</li>
-</ul>
-</li>
-<li>需要写一个valid函数去判读”xxxxxxxx”是否包含”ABC”，两个都用hashmap记录出现次数，然后比较。时间复杂度可以当作常数 - O(1)</li>
-<li>最后总的时间复杂度是O(2n) =&gt; O(n)</li>
-</ul>
-<h3 id="完整代码">完整代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minWindow</span><span class="params">(self, s, t)</span>:</span></span><br><span class="line">        <span class="string">"""</span><br><span class="line">        :type s: str</span><br><span class="line">        :type t: str</span><br><span class="line">        :rtype: str</span><br><span class="line">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s <span class="keyword">or</span> <span class="keyword">not</span> t <span class="keyword">or</span> len(t) &gt; len(s):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span></span><br><span class="line">        right, res = <span class="number">0</span>, []</span><br><span class="line">        length = sys.maxint</span><br><span class="line">        sourceHash, targetHash = &#123;&#125;, &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> t:</span><br><span class="line">            <span class="keyword">if</span> char <span class="keyword">not</span> <span class="keyword">in</span> targetHash:</span><br><span class="line">                targetHash[char] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                targetHash[char] += <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">for</span> left <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">not</span> self.valid(sourceHash, targetHash) <span class="keyword">and</span> right &lt; len(s):</span><br><span class="line">                <span class="keyword">if</span> s[right] <span class="keyword">not</span> <span class="keyword">in</span> sourceHash:</span><br><span class="line">                    sourceHash[s[right]] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    sourceHash[s[right]] += <span class="number">1</span></span><br><span class="line">                right += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> self.valid(sourceHash, targetHash) <span class="keyword">and</span> right - left&lt; length:</span><br><span class="line">                length = right - left</span><br><span class="line">                res = [left, right]</span><br><span class="line">            sourceHash[s[left]] -= <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span> <span class="keyword">if</span> <span class="keyword">not</span> res <span class="keyword">else</span> s[res[<span class="number">0</span>]:res[<span class="number">1</span>]]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">valid</span><span class="params">(self, sourceHash, targetHash)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> targetHash.items():</span><br><span class="line">            <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> sourceHash:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">elif</span> key <span class="keyword">in</span> sourceHash <span class="keyword">and</span> targetHash[key] &gt; sourceHash[key]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="原题">原题</h3><blockquote>
-<p>给定一个字符串<strong>source</strong>和一个目标字符串<strong>target</strong>，在字符串source中找到包括所有目标字符串字母的子串。</p>
-</blockquo]]>
-    </summary>
-    
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
